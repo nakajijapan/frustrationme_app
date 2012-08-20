@@ -54,6 +54,9 @@ gem 'sorcery'
 # To use paginator
 gem 'kaminari', '~>0.13.0'
 
+
+gem 'settingslogic'
+
 # for development
 group :development, :test do
   # rspec
