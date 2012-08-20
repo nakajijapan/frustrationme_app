@@ -5,7 +5,7 @@ gem 'rails', '3.2.6'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'mysql2'
 
 
 # Gems used only for assets and not required
@@ -31,8 +31,39 @@ gem 'jquery-rails'
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
 # To use debugger
 # gem 'debugger'
+
+group :deployment, :test do
+  gem 'capistrano'
+  gem 'capistrano_colors'
+  gem 'capistrano-ext'
+  gem 'capistrano_rsync_with_remote_cache'
+end
+
+# To use debugger
+# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'execjs'
+gem 'therubyracer'
+gem 'rake'
+
+# To use sorcery for login system
+gem 'sorcery'
+# gem 'refinerycms'
+
+# To use paginator
+gem 'kaminari', '~>0.13.0'
+
+# for development
+group :development, :test do
+  # rspec
+  gem 'guard-coffeescript'
+  gem 'rspec-rails'
+  gem 'rspec'
+  gem 'rspec-core'
+  gem 'rspec-expectations'
+  gem 'rspec-mocks'
+
+  gem "capybara"
+  gem 'nyan-cat-formatter'
+end
