@@ -34,4 +34,22 @@ Frustration::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  #--------------------------------------------
+  # models
+  #config.photo.save_directory = Rails.root
+
+  # output log
+  config.log_path = "log/#{Rails.env}.log"
+
+  # lotate
+  config.logger = Logger.new(config.log_path, 'daily') # 日別
+  #config.logger = Logger.new(config.log_path, 10, 1024 * 1024) # サイズ
+
+  # format
+  config.logger.formatter = Logger::Formatter.new
+  config.logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+
+  # log level
+  config.logger.level = Logger::DEBUG
 end
