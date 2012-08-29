@@ -1,4 +1,12 @@
 Frustration::Application.routes.draw do
+  get "top/index"
+
+  get "home/index"
+
+  get "users/new"
+
+  get "user_sessions/new"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
