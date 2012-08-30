@@ -34,12 +34,6 @@ gem 'unicorn'
 # To use debugger
 # gem 'debugger'
 
-group :deployment, :test do
-  gem 'capistrano'
-  gem 'capistrano_colors'
-  gem 'capistrano-ext'
-  gem 'capistrano_rsync_with_remote_cache'
-end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
@@ -58,15 +52,41 @@ gem 'kaminari', '~>0.13.0'
 gem 'settingslogic'
 
 # for development
-group :development, :test do
-  # rspec
-  gem 'guard-coffeescript'
-  gem 'rspec-rails'
-  gem 'rspec'
-  gem 'rspec-core'
-  gem 'rspec-expectations'
-  gem 'rspec-mocks'
+group :development do
+  gem 'capistrano'
+  gem 'capistrano_colors'
+  gem 'capistrano-ext'
+  gem 'capistrano_rsync_with_remote_cache'
 
-  gem "capybara"
-  gem 'nyan-cat-formatter'
+  gem 'guard-coffeescript'
+
+  group :test do
+    gem 'guard-rspec'
+    gem 'guard-spork'
+    gem 'guard-jasmine'
+
+    # js
+    gem 'jasminerice'
+    gem 'headless'
+
+    gem 'launchy'
+    gem 'database_cleaner'
+    gem "factory_girl_rails"
+    gem "capybara"
+
+    # rspec
+    gem 'guard-coffeescript'
+    gem 'rspec-rails'
+    gem 'rspec'
+    gem 'rspec-core'
+    gem 'rspec-expectations'
+    gem 'rspec-mocks'
+
+
+
+    gem 'nyan-cat-formatter'
+    gem 'ruby_gntp', platforms: :mswin
+    gem 'pry-rails'
+  end
+
 end
