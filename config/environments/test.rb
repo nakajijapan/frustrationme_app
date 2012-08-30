@@ -34,4 +34,22 @@ Frustration::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # assets
+  config.assets.precompile += %w( *.js *.css )
+
+  #------------------------------------
+  # output log
+  config.log_path = "log/#{Rails.env}.log"
+
+  # lotate
+  config.logger = Logger.new(config.log_path, 'daily') # 日別
+  #config.logger = Logger.new(config.log_path, 10, 1024 * 1024) # サイズ
+
+  # format
+  config.logger.formatter = Logger::Formatter.new
+  config.logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+
+  # log level
+  config.logger.level = Logger::DEBUG
 end

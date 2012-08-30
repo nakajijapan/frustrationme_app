@@ -1,14 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Frustration</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Frustration</title>
+    <%= javascript_include_tag :application %>
+    <%= javascript_include_tag params[:controller] %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag    params[:controller] %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <!-- top menu -->
+    <header>
 
-<%= yield %>
 
-</body>
+      <% if current_user %>
+        <b><%= current_user.username %></b>
+
+        <%= link_to "Top", :root %>
+        <%= link_to "Feed", "/feed" %>
+        <%= link_to "Liked", "/liked" %>
+
+        <%= link_to "Edit Profile", "/settings/profile" %>
+        <%= link_to "Logout", :logout %>
+      <% else %>
+
+        <%= link_to "Top", :root %>
+        <%= link_to "Register", '/users/new' %> |
+        <%= link_to "Login", :login %>
+      <% end %>
+
+
+    </header>
+    <!-- /top menu -->
+
+    <!-- notice -->
+    <div>
+      <p id="notice">
+        <% if params[:notice] %>
+          <%= params[:notice] %>
+        <% else %>
+          <%= notice %>
+        <% end %>
+      </p>
+      <p id="alert">
+        <% if params[:alert] %>
+          <%= params[:alert] %>
+        <% else %>
+          <%= alert %>
+        <% end %>
+      </p>
+    </div>
+    <!-- /notice -->
+
+    
+    <%= yield %>
+
+  </body>
 </html>

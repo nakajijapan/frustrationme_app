@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(:version => 20120829133636) do
   create_table "users", :force => true do |t|
     t.string   "username",         :null => false
     t.string   "crypted_password", :null => false
+    t.string   "email",            :null => false
     t.integer  "sex"
     t.datetime "birthday"
     t.integer  "pref"
