@@ -12,6 +12,7 @@ gem 'mysql2'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
+  gem 'less-rails'
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -42,13 +43,13 @@ gem 'therubyracer'
 gem 'rake'
 
 # To use sorcery for login system
-gem 'sorcery'
+#gem 'sorcery'
 # gem 'refinerycms'
 
 # To use paginator
 gem 'kaminari', '~>0.13.0'
 
-
+gem 'twitter-bootstrap-rails'
 gem 'settingslogic'
 
 # for development
@@ -77,12 +78,10 @@ group :development do
     # rspec
     gem 'guard-coffeescript'
     gem 'rspec-rails'
-    gem 'rspec'
-    gem 'rspec-core'
-    gem 'rspec-expectations'
-    gem 'rspec-mocks'
-
-
+    #gem 'rspec'
+    #gem 'rspec-core'
+    #gem 'rspec-expectations'
+    #gem 'rspec-mocks'
 
     gem 'nyan-cat-formatter'
     gem 'ruby_gntp', platforms: :mswin
