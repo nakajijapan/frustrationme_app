@@ -7,12 +7,14 @@ body {
 
 
 #header_logo {
-  height: 20px;
+  height: 40px;
+  position: absolute;
+  top: 3px;
 }
 
 #header_menu {
   background-color: $main_background_color;
-
+  margin-bottom: 10px;
 
   .navbar-inner {
     background-image: none;
@@ -23,6 +25,4 @@ body {
     color: #fff !important;
     text-shadow: 3px 5px 3px $main_background_color;
   }
-
-
 }

@@ -1,7 +1,19 @@
+<% content_for :sub_header_menu do %>
+    <div id="sub_header_menu" class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li><%= link_to :New, "/users/new"  %></li>
+            <li><%= link_to :Tag, "/users/new"  %></li>
+            <li><%= link_to :Search, "/users/new"  %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<% end %>
 
-
-<div class="box">fixed</div>
-<div id="main" role="main">
+<div>
+<div id="main_box" role="main_box">
 
   <ul id="tiles">
     <!-- These are our grid blocks -->
@@ -46,30 +58,37 @@
 <% content_for :footer_javascript do %>
 
   <script type="text/javascript">
+
+
+
     $(document).ready(new function() {
       // Prepare layout options.
       var options = {
         autoResize: true, // This will auto-update the layout when the browser window is resized.
-        container: $('#main'), // Optional, used for some extra CSS styling
+        container: $('#main_box'), // Optional, used for some extra CSS styling
         offset: 2, // Optional, the distance between grid items
         itemWidth: 210 // Optional, the width of a grid item
       };
 
       // Get a reference to your grid items.
-      var handler = $('#tiles li');
+      var $handler = $('#tiles li');
 
       // Call the layout function.
-      handler.wookmark(options);
+      $handler.wookmark(options);
 
       // Capture clicks on grid items.
-      handler.click(function(){
+      $handler.click(function(){
         // Randomize the height of the clicked item.
-        var newHeight = $('img', this).height() + Math.round(Math.random()*300+30);
+        //var newHeight = $('img', this).height() + Math.round(Math.random()*300+30);
+        var newHeight = $('img', this).height() + Math.round(Math.random()*300);
         $(this).css('height', newHeight+'px');
 
         // Update the layout.
-        handler.wookmark();
+        $handler.wookmark();
       });
     });
+
+
+
   </script>
 <% end %>

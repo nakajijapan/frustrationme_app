@@ -1,113 +1,80 @@
 /**
  * Grid container
- */
+*/
 #tiles {
-list-style-type: none;
-position: relative; /** Needed to ensure items are laid out relative to this container **/
-margin: 0;
+  list-style-type: none;
+  position: relative; /** Needed to ensure items are laid out relative to this container **/
+  margin: 0;
 }
 
 /**
  * Grid items
- */
+*/
 #tiles li {
-width: 200px;
-background-color: #ffffff;
-border: 1px solid #dedede;
--moz-border-radius: 2px;
--webkit-border-radius: 2px;
-border-radius: 2px;
-display: none; /** Hide items initially to avoid a flicker effect **/
+  width: 200px;
+  background-color: #ffffff;
+  border: 1px solid #dedede;
+  border-radius: 2px;
+  display: none; /** Hide items initially to avoid a flicker effect **/
   cursor: pointer;
 
-box-shadow:1px 1px 2px rgba(0,0,0,0.4);
+  box-shadow:1px 1px 2px rgba(0,0,0,0.4);
 }
 #titles li .imgs{
 
 }
 #tiles li img {
-display: block;
-width: 180px ;
-padding: 10px 10px 0 10px ;
-height:auto;
+  display: block;
+  width: 180px ;
+  padding: 10px 10px 0 10px ;
+  height:auto;
 }
 #tiles li p img{
-width:30px;
-float:left;
-padding: 0;
-margin-right:10px;
+  width:30px;
+  float:left;
+  padding: 0;
+  margin-right:10px;
 }
 
 /**
  * Grid item text
- */
+*/
 #tiles li p {
-color: #666;
-font-size: 12px;
-padding:2px 10px;
-overflow:hidden;
+  color: #666;
+  font-size: 12px;
+  padding:2px 10px;
+  overflow:hidden;
 }
 
-#tiles li p.bgarea{background: #eee ;margin-bottom: 0 ;color:#9d7e7e;font-weight:bold;padding:10px;}
+#tiles li p.bgarea{
+  background: #eee ;
+  margin-bottom: 0 ;
+  color:#9d7e7e;
+  font-weight:bold;
+  padding:10px;
+}
 
 /**
  * Some extra styles to randomize heights of grid items.
- */
+*/
 #tiles ali:nth-child(3n) {
-height: 175px;
+  height: 175px;
 }
 
 #tiles ali:nth-child(4n-3) {
-padding-bottom: 30px;
+  padding-bottom: 30px;
 }
 
 #tiles ali:nth-child(5n) {
-height: 250px;
+  height: 250px;
 }
 
 /** General page styling **/
 
-html {
-background: url("../images/fablic.jpg");
-padding:0;
-margin:0;
-}
-body{
-padding:0;
-margin:0;}
-#main {
-padding: 80px 0 30px 0;
-position: relative;
-}
-header{background: #faf7f7 ;margin:0;padding:2px 0;border-bottom:1px solid #cfcaca;}
-header h1 {
-text-align: center;
-font-size: 20px;
-font-weight: normal;
 
-}
-
-header p {
-text-align: center;
-font-size: 13px;
-color: #777;
-margin: 0;
-}
-
-.box {
-    position: absolute;
-
-    top: 55px;
-    background: #faf7f7;
-    width: 100%;
-    padding: 10px 0;
-    text-align: center;
-    color: #555;
-    border-top:1px solid #fff;
-box-shadow:1px 1px 2px rgba(0,0,0,0.4);
-}
 .follow {
-    position: fixed !important;
-    top: 0;
-    z-index:9999;
+  width: 100%;
+  position: fixed !important;
+  top: 0;
+  z-index:9999;
 }

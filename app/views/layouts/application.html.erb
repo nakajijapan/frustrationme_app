@@ -38,7 +38,7 @@
   <body>
 
     <!-- header menu -->
-    <div id="header_menu" class="navbar navbar-fixed-top">
+    <div id="header_menu" class="navbar navbar-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
@@ -51,7 +51,7 @@
           </a>
 
           <!--.nav-collapse -->
-          <div class="container nav-collapse">
+          <div class="container nav-collapse" style="float:right;">
             <% if @current_user %>
               <ul class="nav">
                 <li><%= link_to :Add, "/items/add"  %></li>
@@ -79,11 +79,13 @@
         </div>
       </div>
     </div>
+
+    <%= yield :sub_header_menu %>
     <!-- /header menu -->
 
 
     <!-- container -->
-    <div class="container">
+    <div class="container-fluid">
       <div class="content">
 
         <!-- notice -->
@@ -112,7 +114,6 @@
         <!-- /notice -->
 
 
-
         <%= yield %>
       </div><!--/content-->
 
@@ -129,7 +130,9 @@
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag :application %>
+    <%= javascript_include_tag params[:controller] %>
+
     <%= yield :footer_javascript %>
   </body>
 </html>
