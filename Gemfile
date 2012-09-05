@@ -64,11 +64,11 @@ group :development do
   group :test do
     gem 'guard-rspec'
     gem 'guard-spork'
-    gem 'guard-jasmine'
+    #gem 'guard-jasmine'
 
     # js
-    gem 'jasminerice'
-    gem 'headless'
+    #gem 'jasminerice'
+    #gem 'headless'
 
     gem 'launchy'
     gem 'database_cleaner'
@@ -78,7 +78,7 @@ group :development do
     # rspec
     gem 'guard-coffeescript'
     gem 'rspec-rails'
-    #gem 'rspec'
+    gem 'rspec'
     #gem 'rspec-core'
     #gem 'rspec-expectations'
     #gem 'rspec-mocks'
