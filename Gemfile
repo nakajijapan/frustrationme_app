@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -78,7 +78,7 @@ group :development do
     # rspec
     gem 'guard-coffeescript'
     gem 'rspec-rails'
-    gem 'rspec'
+    #gem 'rspec'
     #gem 'rspec-core'
     #gem 'rspec-expectations'
     #gem 'rspec-mocks'
