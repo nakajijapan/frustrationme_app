@@ -11,3 +11,8 @@ env:
 
 before_script:
  - mysql -e 'create database frustration_test;'
+
+script: 
+  - RAILS_ENV=test bundle exec rake --trace db:migrate
+  - bundle exec rake db:test:prepare
+  - bundle exec -fs rspec spec/
