@@ -1,4 +1,6 @@
 Frustration::Application.routes.draw do
+  get "settings/index"
+
   get "status/index"
 
   get "categories/index"
