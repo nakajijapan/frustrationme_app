@@ -1,4 +1,12 @@
 Frustration::Application.routes.draw do
+  get "status/index"
+
+  get "categories/index"
+
+  get "tags/index"
+
+  get "fumans/search"
+
   # root
   root :to => 'top#index'
 
