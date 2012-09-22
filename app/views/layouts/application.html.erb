@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Contents-type" content="text/html; charaset=utf-8">
+    <meta name="keywords" content="欲求不満,frustration,frustrationme,frustrate,物欲,amazon,calamel,yahoo auction,ナカジ,nakaji,nakajijapan">
+    <meta name="description" content="普段からあれほしいし、あれいらない、あれもってる！そんな物欲をまとめて管理して、さらにみんなで共有してしまおうというサービスです。自分のほしいものが他人にみられて、その物欲が他人に派生して、その方も欲求不満に！自分のいらないものが、それは他人が実はほしいものであったりして身近でコミュニケーションが弾みます！（多分！）さぁ欲求不満になって世界をうめつくせ！！">
+    <link rel="shortcut icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "frustration.me - social wish management" %></title>
     <%= csrf_meta_tags %>
@@ -15,90 +19,43 @@
     <%= stylesheet_link_tag :application, media: 'all' %>
     <%= stylesheet_link_tag params[:controller], media: 'all' %>
 
-    <!-- For third-generation iPad with high-resolution Retina display: -->
-    <!-- Size should be 144 x 144 pixels -->
-    <%= favicon_link_tag 'images/apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
-
-    <!-- For iPhone with high-resolution Retina display: -->
-    <!-- Size should be 114 x 114 pixels -->
-    <%= favicon_link_tag 'images/apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
-
-    <!-- For first- and second-generation iPad: -->
-    <!-- Size should be 72 x 72 pixels -->
-    <%= favicon_link_tag 'images/apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
-
-    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-    <!-- Size should be 57 x 57 pixels -->
-    <%= favicon_link_tag 'images/apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
-
-    <!-- For all other devices -->
-    <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'images/favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
 
     <!-- header menu -->
-    <div id="header_menu" class="navbar navbar-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
+    <header id="header_menu">
+      <div>
+
+        <!-- left_block -->
+        <div class="left_block">
           <a class="brand" href="/">
             <%= image_tag 'logo.png', id: 'header_logo' %>
           </a>
+        </div>
+        <!-- right_block -->
 
-          <!--.nav-collapse -->
-          <div class="container nav-collapse" style="float:right;">
-            <% if @current_user %>
-              <ul class="nav">
-                <li><%= link_to :Add, "/items/add"  %></li>
-                <li class="dropdown">
-                  <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><%= @current_user.username %> <b class="caret"></b></a>
-                  <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
-
-                    <li class="divider"></li>
-                    <li><%= link_to "/fumans/",       fumans_path %></li>
-                    <li><%= link_to "/fumans/search", search_fumans_path %></li>
-                    <li><%= link_to "/fumans/itunes", itunes_fumans_path %></li>
-
-                    <li class="divider"></li>
-                    <li><%= link_to "/setting/profile",     settings_profile_path %></li>
-                    <li><%= link_to "/settings/categories", settings_categories_path %></li>
-                    <li><%= link_to "/settings/tags",       settings_tags_path %></li>
-                    <li><%= link_to "/settings/twitter",    settings_twitter_path %></li>
-                    <li><%= link_to "/settings/facebook",   settings_facebook_path %></li>
-
-                    <li class="divider"></li>
-                    <li><%= link_to "Chrome Extension", 'https://chrome.google.com/webstore/detail/iobjgdkkfkanhfgnjnbbdbkcpgeckddo?hl=ja' %></li>
-                    <li><%= link_to "/settings/gadget",   settings_gadget_path %></li>
-
-
-                  </ul>
-                </li>
-              </ul>
-            <% else %>
-              <ul class="nav">
-                <li><%= link_to :Signup, "/users/new"  %></li>
-                <li><%= link_to :Login, "/login"  %></li>
-              </ul>
-            <% end %>
-
-          </div>
-          <!--/.nav-collapse -->
+        <!-- right_block -->
+        <div class="right_block">
+          <nav>
+            <ul>
+              <li><%= link_to :Signup, "/users/new"  %></li>
+              <li><%= link_to :Login, "/login"  %></li>
+            </ul>
+          </nav>
 
         </div>
+        <!-- /right_block -->
+
+
       </div>
-    </div>
+    </header>
 
     <%= yield :sub_header_menu %>
     <!-- /header menu -->
 
 
     <!-- container -->
-    <div class="container-fluid">
+    <div class="container">
       <div class="content">
 
         <!-- notice -->
@@ -126,15 +83,13 @@
         </div>
         <!-- /notice -->
 
-
         <%= yield %>
 
+      </div>
+      <!--/content-->
 
 
-      </div><!--/content-->
-
-
-      <br style="clear: both;"/>
+      <br class="clearfix" />
       <footer>
         <p>About us. Copyright 2011 - 2012 &copy; nakajijapan all right reserved.</p>
       </footer>
@@ -143,11 +98,10 @@
     <!-- /container -->
 
 
-    <!-- Javascripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Javascripts -->
     <%= javascript_include_tag :application %>
     <%= javascript_include_tag params[:controller] %>
+    <!-- /Javascripts -->
 
     <%= yield :footer_javascript %>
   </body>

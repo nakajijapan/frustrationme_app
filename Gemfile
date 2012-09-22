@@ -49,7 +49,7 @@ gem 'rake'
 # To use paginator
 gem 'kaminari', '~>0.13.0'
 
-gem 'twitter-bootstrap-rails'
+#gem 'twitter-bootstrap-rails'
 gem 'settingslogic'
 
 # for development
