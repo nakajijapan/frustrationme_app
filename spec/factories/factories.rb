@@ -6,4 +6,9 @@ FactoryGirl.define do
      password 'hogehoge'
      email 'hogehoge@majide.com'
    end
+
+  factory :category, :class => Category do
+     name 'hogehoge_name'
+   end
+
 end

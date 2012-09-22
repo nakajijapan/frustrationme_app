@@ -36,4 +36,8 @@ class User < ActiveRecord::Base
   end
 
 
+ def get_hash
+    Digest::MD5.new.update(@id.to_s + @crypted_password.to_s)
+ end
+
 end

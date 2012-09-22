@@ -58,11 +58,24 @@
                 <li class="dropdown">
                   <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><%= @current_user.username %> <b class="caret"></b></a>
                   <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
-                    <li><a tabindex="-1" href="#">Action</a></li>
-                    <li><a tabindex="-1" href="#">Another action</a></li>
-                    <li><a tabindex="-1" href="#">Something else here</a></li>
+
                     <li class="divider"></li>
-                    <li><a tabindex="-1" href="#">Separated link</a></li>
+                    <li><%= link_to "/fumans/",       fumans_path %></li>
+                    <li><%= link_to "/fumans/search", search_fumans_path %></li>
+                    <li><%= link_to "/fumans/itunes", itunes_fumans_path %></li>
+
+                    <li class="divider"></li>
+                    <li><%= link_to "/setting/profile",     settings_profile_path %></li>
+                    <li><%= link_to "/settings/categories", settings_categories_path %></li>
+                    <li><%= link_to "/settings/tags",       settings_tags_path %></li>
+                    <li><%= link_to "/settings/twitter",    settings_twitter_path %></li>
+                    <li><%= link_to "/settings/facebook",   settings_facebook_path %></li>
+
+                    <li class="divider"></li>
+                    <li><%= link_to "Chrome Extension", 'https://chrome.google.com/webstore/detail/iobjgdkkfkanhfgnjnbbdbkcpgeckddo?hl=ja' %></li>
+                    <li><%= link_to "/settings/gadget",   settings_gadget_path %></li>
+
+
                   </ul>
                 </li>
               </ul>
@@ -115,6 +128,9 @@
 
 
         <%= yield %>
+
+
+
       </div><!--/content-->
 
 

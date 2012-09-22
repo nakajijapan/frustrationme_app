@@ -25,4 +25,31 @@ body {
     color: #fff !important;
     text-shadow: 3px 5px 3px $main_background_color;
   }
+
+
+
+}
+
+li .dropdown .open  {
+  background-color: $main_background_color;
+}
+
+.dropdown-menu {
+  position: absolute;
+  left: -80px;
+}
+
+
+.navbar .nav li.dropdown > .dropdown-toggle .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+
+.navbar .nav > li > .dropdown-menu::before {
+  left: 109px;
+}
+
+
+.navbar .nav > li > .dropdown-menu::after {
+  left: 110px;
 }
