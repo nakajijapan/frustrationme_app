@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -35,9 +35,7 @@ gem 'unicorn'
 # To use debugger
 # gem 'debugger'
 
-
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'execjs'
 gem 'therubyracer'
 gem 'rake'
@@ -47,7 +45,7 @@ gem 'rake'
 # gem 'refinerycms'
 
 # To use paginator
-gem 'kaminari', '~>0.13.0'
+gem 'kaminari', '~>0.14.1'
 
 #gem 'twitter-bootstrap-rails'
 gem 'settingslogic'
@@ -78,10 +76,6 @@ group :development do
     # rspec
     gem 'guard-coffeescript'
     gem 'rspec-rails'
-    #gem 'rspec'
-    #gem 'rspec-core'
-    #gem 'rspec-expectations'
-    #gem 'rspec-mocks'
 
     gem 'nyan-cat-formatter'
     gem 'ruby_gntp', platforms: :mswin
