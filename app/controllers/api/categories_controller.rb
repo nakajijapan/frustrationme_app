@@ -18,7 +18,7 @@ class Api::CategoriesController < Api::ApplicationController
       flash[:notice] = 'created!'
     end
 
-    respond_with @category
+    respond_with @category, location: nil
   end
 
   def update
