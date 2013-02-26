@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string    :username,       :null => false
       t.string    :crypted_password
-      t.string    :icon_name
+      t.string    :icon_name,     :limit => 1024
       t.string    :email
       t.integer   :sex
       t.datetime  :birthday

@@ -36,19 +36,18 @@ ActiveRecord::Schema.define(:version => 20120914012927) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "fumen", :force => true do |t|
-    t.integer  "user_id",     :null => false
+  create_table "fumans", :force => true do |t|
+    t.integer  "user_id",                    :null => false
     t.datetime "date"
     t.string   "title"
     t.integer  "price",       :default => 0
     t.text     "content"
-    t.integer  "priority",    :default => 2
     t.integer  "status",      :default => 1
     t.text     "tag_ids"
     t.integer  "category_id"
     t.integer  "item_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "items", :force => true do |t|
@@ -73,20 +72,19 @@ ActiveRecord::Schema.define(:version => 20120914012927) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username",         :null => false
+    t.string   "username",                         :null => false
     t.string   "crypted_password"
-    t.string   "icon_name"
+    t.string   "icon_name",        :limit => 1024
     t.string   "email"
     t.integer  "sex"
     t.datetime "birthday"
-    t.integer  "pref"
     t.text     "message"
     t.string   "twitter_use"
     t.integer  "facebook_use"
     t.string   "provider"
     t.string   "uid"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
 end

@@ -10,10 +10,7 @@ class ApplicationController < ActionController::Base
   def current_user
     redirect_to :root if session[:user_id].blank?
 
-    if @current_user = User.find(session[:user_id])
-      redirect_to :root if @current_user.nil?
-    end
-
-    @current_user
+    @current_user = User.find_by_id(session[:user_id])
+    redirect_to :root if @current_user.nil?
   end
 end

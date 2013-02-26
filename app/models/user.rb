@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :provider, :uid
   attr_accessible :mode, :password, :password_confirmation, :icon_name
-  attr_accessor :mode, :password, :password_confirmation, :icon_name
+  attr_accessor :mode, :password, :password_confirmation
 
   validates :username,
     presence: true,
@@ -46,20 +46,24 @@ class User < ActiveRecord::Base
   end
 
   def self.create_with_omniauth(auth)
+    params = {
+      mode:      :social,
+      provider:  auth['provider'],
+      uid:       auth['uid'],
+      username:  auth['info']['nickname'],
+      icon_name: auth['info']['image']
+    }
 
-    user = User.new(
-      mode: :social,
-      provider: auth["provider"],
-      uid:      auth["uid"],
-      username: auth["info"]["nickname"],
-      icon_name: auth["info"]["image"],
-    )
+    user = User.new(params)
 
     if User.find_by_username(auth['info']['nickname'])
       user.errors.add 'ユーザ名', 'が既に登録済みです'
       return false
     end
 
+    #ActiveRecord::Base.transaction do
+    #  user.save!
+    #end
     user.save!
 
     user

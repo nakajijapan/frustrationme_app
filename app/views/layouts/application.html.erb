@@ -35,17 +35,29 @@
         <!-- right_block -->
 
         <!-- right_block -->
-        <div class="right_block">
-          <nav>
-            <ul>
-              <li><%= link_to :Signup, "/users/new"  %></li>
-              <li><%= link_to :Login, "/login"  %></li>
-            </ul>
-          </nav>
-
-        </div>
+        <% if @current_user %>
+          <div class="right_block">
+            <nav>
+              <ul>
+                <li><%= link_to :Home, '/home' %></li>
+                <li>
+                  <%= @current_user.username %>
+                  <%= image_tag @current_user.icon_name %>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        <% else %>
+          <div class="right_block">
+            <nav>
+              <ul>
+                <li><%= link_to :Signup, "/users/new"  %></li>
+                <li><%= link_to :Login, "/login"  %></li>
+              </ul>
+            </nav>
+          </div>
+        <% end %>
         <!-- /right_block -->
-
 
       </div>
     </header>
@@ -60,7 +72,6 @@
 
         <!-- notice -->
         <div>
-
           <% if params[:notice] || notice %>
             <p id="notice" class="alert alert-success">
               <% if params[:notice] %>
@@ -83,7 +94,9 @@
         </div>
         <!-- /notice -->
 
+
         <%= yield %>
+
 
       </div>
       <!--/content-->
