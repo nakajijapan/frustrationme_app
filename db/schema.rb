@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20120914012927) do
   end
 
   create_table "fumen", :force => true do |t|
-    t.integer  "user_id",                    :null => false
+    t.integer  "user_id",     :null => false
     t.datetime "date"
     t.string   "title"
     t.integer  "price",       :default => 0
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(:version => 20120914012927) do
     t.text     "tag_ids"
     t.integer  "category_id"
     t.integer  "item_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "items", :force => true do |t|
@@ -74,19 +74,17 @@ ActiveRecord::Schema.define(:version => 20120914012927) do
 
   create_table "users", :force => true do |t|
     t.string   "username",         :null => false
-    t.string   "crypted_password", :null => false
+    t.string   "crypted_password"
     t.string   "icon_name"
-    t.string   "email",            :null => false
+    t.string   "email"
     t.integer  "sex"
     t.datetime "birthday"
     t.integer  "pref"
     t.text     "message"
-    t.string   "twitter_id"
-    t.text     "twitter_token"
-    t.integer  "twitter_notice"
-    t.string   "facebook_id"
-    t.text     "facebook_token"
-    t.integer  "facebook_notice"
+    t.string   "twitter_use"
+    t.integer  "facebook_use"
+    t.string   "provider"
+    t.string   "uid"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
