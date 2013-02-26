@@ -833,7 +833,7 @@ legend + .control-group {
 
   *zoom: 1;
   padding: 4px 14px;
-  margin-bottom: 0;
+  /* margin-bottom: 0; */
   font-size: 14px;
   line-height: 20px;
   *line-height: 20px;
@@ -886,7 +886,7 @@ legend + .control-group {
 .btn:hover {
   color: #333333;
   text-decoration: none;
-  background-color: #e6e6e6;
+  bamargin-bottomckground-color: #e6e6e6;
   *background-color: #d9d9d9;
   /* Buttons in IE7 don't get borders, so darken on hover */
 

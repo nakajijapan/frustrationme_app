@@ -1,17 +1,11 @@
 
-
-
-
 <%= form_tag '/search', :method => :post do %>
-  <%= hidden_field_tag :service, 1 %>
+  <%= hidden_field_tag :type, 'amazon' %>
 
   <div class="field">
     <%= label_tag :keywords %>
     <%= text_field_tag :keywords %>
-  </div>
-
-  <div class="actions">
-    <%= button_tag "Login", type: :submit, class: 'btn' %>
+    <%= button_tag "Search", type: :submit, class: 'btn' %>
   </div>
 
 <% end %>

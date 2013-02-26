@@ -4,6 +4,9 @@
 $main_background_color: #FB697E;
 
 
+/*-------------------------------
+   over ride
+-------------------------------*/
 
 /*-------------------------------
    header
@@ -65,6 +68,7 @@ header#header_menu {
       }
       li:hover {
         background-color: #FB697E;
+        //background-color: #FB919D;
       }
     }
   }
