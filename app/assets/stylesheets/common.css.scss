@@ -12,6 +12,7 @@ header#header_menu {
   background-color: $main_background_color;
   margin-bottom: 10px;
   height: 50px;
+  box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
 
   #header_logo {
     height: 40px;
@@ -27,7 +28,7 @@ header#header_menu {
     padding-top: 8px;
   }
 
-  nav {
+  nav.top_menu {
     ul {
       padding: 5px;
     }
@@ -37,10 +38,34 @@ header#header_menu {
     }
 
     ul li > a {
-
       font-size: 16px;
       color: #fff !important;
-      text-shadow: 3px 5px 3px $main_background_color;
+      //text-shadow: 3px 5px 3px $main_background_color;
+    }
+
+    li.user_menu {
+      ul {
+        padding: 0px;
+        position: absolute;
+        right: 15px;
+        top: 50px;
+        background-color: #FA8A9A;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+      }
+      li {
+        float: none;
+        margin: 0px;
+      }
+      li a {
+        display: block;
+        margin: 0px;
+        padding: 5px 10px;
+        //border-bottom: 1px solid #000;
+        width: 140px;
+      }
+      li:hover {
+        background-color: #FB697E;
+      }
     }
   }
 }

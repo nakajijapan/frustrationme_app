@@ -37,20 +37,31 @@
         <!-- right_block -->
         <% if @current_user %>
           <div class="right_block">
-            <nav>
+            <nav class='top_menu'>
               <ul>
                 <li>
                   <a href='/home'>
-                    <%= @current_user.username %>
                     <%= image_tag @current_user.icon_name, size: '30x30' %>
+                    <%= @current_user.username %>
+                    &nbsp;
+                    ▼
                   </a>
+                </li>
+
+                <li class='user_menu'>
+                  <ul>
+                    <li><a href="/settings/tags">Tags</a></li>
+                    <li><a href="/settings/category">Category</a></li>
+                    <li><a href="/seggings/profile">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
                 </li>
               </ul>
             </nav>
           </div>
         <% else %>
           <div class="right_block">
-            <nav>
+            <nav class='top_menu'>
               <ul>
                 <li><%= link_to :Signup, "/users/new"  %></li>
                 <li><%= link_to :Login, "/login"  %></li>
