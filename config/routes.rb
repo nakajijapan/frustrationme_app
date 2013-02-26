@@ -17,6 +17,8 @@ Frustration::Application.routes.draw do
   match "users"     => 'users#create', :via => :post
 
   match "home" => 'home#index', :via => :get
+  match 'search' => 'home#search', via: [:get, :post]
+
   scope "/settings", as: :settings do
     match '/icon'  => 'settings#icon', via: :get
     match '/profile'  => 'settings#profile', via: :get
@@ -49,7 +51,7 @@ Frustration::Application.routes.draw do
         get 'user_timeline'
 
         post 'upload_file'
-        put 'upload_icon'
+        put  'upload_icon'
       end
 
     end
