@@ -39,10 +39,11 @@
           <div class="right_block">
             <nav>
               <ul>
-                <li><%= link_to :Home, '/home' %></li>
                 <li>
-                  <%= @current_user.username %>
-                  <%= image_tag @current_user.icon_name %>
+                  <a href='/home'>
+                    <%= @current_user.username %>
+                    <%= image_tag @current_user.icon_name, size: '30x30' %>
+                  </a>
                 </li>
               </ul>
             </nav>
