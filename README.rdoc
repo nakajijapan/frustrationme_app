@@ -1,8 +1,0 @@
-
-# frustration.me
-
-
-## What is this?
-
-this application is wish sharing service.
-
