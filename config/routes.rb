@@ -17,7 +17,7 @@ Frustration::Application.routes.draw do
   match 'users'     => 'users#create', :via => :post
 
   match 'home' => 'home#index', :via => :get
-  match 'search' => 'home#search', via: [:get, :post]
+  #match 'search' => 'home#search', via: [:get, :post]
 
   scope '/settings', as: :settings do
     match '/icon'  => 'settings#icon', via: :get
@@ -30,11 +30,11 @@ Frustration::Application.routes.draw do
     match '/gadget' => 'settings#gadget', via: :get
   end
 
+  match 'fumans/search' => 'fumans#search', via: [:get, :post]
+  match 'fumans/categories/:type' => 'fumans#categories', via: :get
   resources :fumans, :only => [:index] do
     collection do
-      get 'search'
       get 'itunes'
-
     end
   end
 
