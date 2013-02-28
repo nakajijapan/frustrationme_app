@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
   end
 
-  def require_user
+  def current_user
     redirect_to :root if session[:user_id].blank?
 
     if @current_user = User.find(session[:user_id])

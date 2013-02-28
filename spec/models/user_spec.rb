@@ -7,7 +7,7 @@ describe User do
       @u = create(:user_nakaji)
     end
 
-    describe 'username' do
+    describe '@username' do
 
       it 'is invalid require' do
         @u.username = nil
@@ -35,7 +35,7 @@ describe User do
       end
     end
 
-    describe 'password' do
+    describe '@password' do
 
       it 'is invalid require' do
         @u.password = nil
@@ -63,7 +63,7 @@ describe User do
       end
     end
 
-    describe 'email' do
+    describe '@email' do
       it 'is invalid require' do
         @u.email = nil
         @u.should_not be_valid
@@ -79,14 +79,36 @@ describe User do
         @u.should be_valid
       end
     end
+
+    describe '@sex' do
+      it 'is invalid format' do
+        @u.sex = 4
+        @u.should_not be_valid
+      end
+
+      it 'is invalid string format' do
+        @u.sex = '1'
+        @u.should be_valid
+      end
+
+      it 'is valid' do
+        @u.sex = 2
+        @u.should be_valid
+      end
+    end
   end
 
   context 'when user is a valid data' do
     it 'can save' do
-      u = User.new(username: 'nakajijapan', password: 'nahanaha', email: 'hogehoge@hoge.com')
-      u.save.should be_true
+      u = User.new(username: 'nakajijapan', password: 'nahanaha', password_confirmation: 'nahanaha', email: 'hogehoge@hoge.com')
+      u.save!.should be_true
     end
 
+    it 'can create with omniauth' do
+      auth = {'provider' => 'twitter', 'uid' => 1234567890, 'info' => {'nickname' => 'hogejapan'}}
+      u = User.create_with_omniauth(auth)
+      u.class.should == User
+    end
   end
 
 end

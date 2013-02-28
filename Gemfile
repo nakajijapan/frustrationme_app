@@ -42,7 +42,11 @@ gem 'rake'
 
 # To use sorcery for login system
 #gem 'sorcery'
-# gem 'refinerycms'
+#gem 'refinerycms'
+gem 'bcrypt-ruby', '~> 3.0.0'
+#gem 'omniauth-identity'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 # To use paginator
 gem 'kaminari', '~>0.14.1'
