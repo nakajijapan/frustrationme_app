@@ -1,5 +1,5 @@
 class Api::ApplicationController < ActionController::Base
-  respond_to :html, :json
+  respond_to :json
 
   before_filter :require_user
 

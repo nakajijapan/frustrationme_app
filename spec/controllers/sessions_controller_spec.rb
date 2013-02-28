@@ -1,12 +1,10 @@
 require 'spec_helper'
 
-describe Api::CategoriesController do
-
-  describe "GET 'index'" do
+describe SessionsController do
+  describe "GET 'new'" do
     it "returns http success" do
-      get 'index'
+      get 'new'
       response.should be_success
     end
   end
-
 end

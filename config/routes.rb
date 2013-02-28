@@ -8,9 +8,10 @@ Frustration::Application.routes.draw do
   #-----------------------------------------------
   # web
   #-----------------------------------------------
-  match 'login' => 'user_sessions#new', :as => :login
-  match 'logout' => 'user_sessions#destroy', :as => :logout
-  resources :user_sessions, :only => %w[new create destroy]
+  match 'login'  => 'sessions#new', :as => :login
+  match 'logout' => 'sessions#destroy', :as => :logout
+  match "/auth/:provider/callback" => "sessions#create"
+  resources :sessions, :only => %w[new create destroy]
 
   match "users/new" => 'users#new', :via => :get
   match "users"     => 'users#create', :via => :post

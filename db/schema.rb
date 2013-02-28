@@ -74,19 +74,16 @@ ActiveRecord::Schema.define(:version => 20120914012927) do
 
   create_table "users", :force => true do |t|
     t.string   "username",         :null => false
-    t.string   "crypted_password", :null => false
+    t.string   "crypted_password"
     t.string   "icon_name"
-    t.string   "email",            :null => false
+    t.string   "email"
     t.integer  "sex"
     t.datetime "birthday"
-    t.integer  "pref"
     t.text     "message"
-    t.string   "twitter_id"
-    t.text     "twitter_token"
-    t.integer  "twitter_notice"
-    t.string   "facebook_id"
-    t.text     "facebook_token"
-    t.integer  "facebook_notice"
+    t.string   "twitter_use"
+    t.integer  "facebook_use"
+    t.string   "provider"
+    t.string   "uid"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

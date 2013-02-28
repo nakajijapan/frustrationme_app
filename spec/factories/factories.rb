@@ -5,10 +5,10 @@ FactoryGirl.define do
      username 'daichi'
      password 'hogehoge'
      email 'hogehoge@majide.com'
+     sex 1
    end
 
   factory :category, :class => Category do
      name 'hogehoge_name'
    end
-
 end
