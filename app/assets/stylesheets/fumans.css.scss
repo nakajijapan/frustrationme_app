@@ -1,3 +1,60 @@
 // Place all the styles related to the fumans controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.search {
+  height: 61px;
+
+  a {
+    &.service_button {
+      background-color: #fb697e;
+      background: -linear-gradient(top, #fa8a9a, #fb697e);
+      background: -webkit-linear-gradient(top, #fa8a9a, #fb697e);
+      margin: 0px 10px;
+      display: block;
+      width: 95px;
+      height: 70px;
+      color: #fff;
+      float: left;
+      text-align: center;
+      position: relative;
+      font-size: 11px;
+      line-height: 120%;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: #fb697e;
+        background: linear-gradient(top, #fb697e, #f53b55);
+        background: -webkit-linear-gradient(top, #fb697e, #f53b55);
+        text-decoration: none;
+      }
+
+      p {
+        padding: 5px 0px 3px 0px;
+      }
+
+      img {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+        display: block;
+      }
+    }
+
+    &.forcus:after {
+      content:"";
+      position:absolute;
+      bottom:-10px;
+      left:37px;
+      border-width:10px 10px 0;
+      border-style:solid;
+      border-color:#fb697e transparent;
+        display:block;
+        width:0;
+    }
+  }
+}
+
+input {
+  width: 250px;
+}
