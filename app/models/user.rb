@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   attr_accessible :facebook_use, :twitter_use
 
   attr_accessible :provider, :uid
-  attr_accessible :mode, :password, :password_confirmation, :icon_name
+  attr_accessible :mode, :password, :password_confirmation, :icon_name, :crypted_password
   attr_accessor :mode, :password, :password_confirmation
 
   validates :username,
