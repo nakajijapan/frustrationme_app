@@ -58,11 +58,11 @@
         hMax = hList[0];
 
         // 高さの最大値を要素に適用
-        var browser = $.browser.version;
+        var browser = $.support.boxModel;
         if (op.column > 1) {
             for (var j=0; j<hListLine.length; j++) {
                 for (var k=0; k<op.column; k++) {
-                    if (browser == '6.0') {
+                    if (browser == false) {
                         self.eq(j*op.column+k).height(hListLine[j]);
                         if (k == 0 && op.clear != 0) self.eq(j*op.column+k).css('clear','both');
                     } else {
@@ -72,7 +72,7 @@
                 }
             }
         } else {
-            if (browser == '6.0') {
+            if (browser == false) {
                 self.height(hMax);
             } else {
                 self.css(op.height,hMax);
