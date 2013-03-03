@@ -1,62 +1,115 @@
-<ul class="search">
-  <li>
-    <a href='javascript:void' class="service_button forcus">
-      <p>Amazon</p>
-      <%= image_tag 'service/icon_0.png' %>
-    </a>
-  </li>
-
-  <!--
-  <li>
-    <a href='javascript:void' class="service_button">
-      <p>Calamel</p>
-      <%= image_tag 'service/icon_1.png' %>
-    </a>
-  </li>
-  -->
-
-  <li>
-    <a href='javascript:void' class="service_button">
-      <p>Yahoo!Auction</p>
-      <%= image_tag 'service/icon_2.png' %>
-    </a>
-  </li>
-
-  <li>
-    <a href='javascript:void' class="service_button">
-      <p>Rakuten</p>
-      <%= image_tag 'service/icon_3.png' %>
-　   </a>
-  </li>
-
-  <li>
-    <a href='javascript:void' class="service_button">
-      <p>iTunes</p>
-      <%= image_tag 'service/icon_4.png' %>
-    </a>
-  </li>
-
-  <li>
-    <a href='javascript:void' class="service_button">
-      <p>frustration</p>
-      <%= image_tag 'service/icon_5.png' %>
-    </a>
-  </li>
-</ul>
-
-<br />
-
-<%= form_tag '/fumans/search', :method => :post do %>
-  <%= hidden_field_tag :type, '1' %>
-
-  <div class="field">
-    <%#= label_tag :keywords %>
-    <%= select_tag :Category,  options_for_select(ApiBucket::Service.instance(:amazon).categories) %>
-    <%= text_field_tag :keywords %>
-    <%= button_tag "Search", type: :submit, class: 'btn' %>
-  </div>
-
+<% content_for :footer_javascript do %>
+<%= javascript_include_tag 'jquery/jqueryAutoHeight.js'%>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.item_box').autoHeight({
+    column : 3,
+    height : 'height'
+  });
+});
+</script>
 <% end %>
 
+<div id="<%= controller_name %>_<%= action_name %>">
+  <ul class="search">
+    <li>
+      <a href='javascript:;' class="service_button forcus" data="amazon">
+        <p>Amazon</p>
+        <%= image_tag 'service/icon_0.png' %>
+      </a>
+    </li>
 
-＊とりあえずAmazon。あとでjsonで動的に取得できるようにする
+    <!--
+    <li>
+      <a href='javascript:void' class="service_button">
+        <p>Calamel</p>
+        <%= image_tag 'service/icon_1.png' %>
+      </a>
+    </li>
+    -->
+
+    <li>
+      <a href='javascript:;' class="service_button" data="yahooauction">
+        <p>Yahoo!Auction</p>
+        <%= image_tag 'service/icon_2.png' %>
+      </a>
+    </li>
+
+    <li>
+      <a href='javascript:;' class="service_button" data="rakuten">
+        <p>Rakuten</p>
+        <%= image_tag 'service/icon_3.png' %>
+  　   </a>
+    </li>
+
+    <li>
+      <a href='javascript:;' class="service_button" data="itunes">
+        <p>iTunes</p>
+        <%= image_tag 'service/icon_4.png' %>
+      </a>
+    </li>
+
+    <li>
+      <a href='javascript:;' class="service_button" data="frustration">
+        <p>frustration</p>
+        <%= image_tag 'service/icon_5.png' %>
+      </a>
+    </li>
+  </ul>
+
+  <br />
+
+  <%= form_tag '/fumans/search', :method => :post do %>
+    <%= hidden_field_tag :s_type, params[:s_type] %>
+
+    <div class="input-append">
+      <span class="service_categories">
+        <% h = {}; ApiBucket::Service.instance(:amazon).categories.each_pair {|k,v| h[v]=k} %>
+        <%= select_tag :s_category, options_for_select(h), selected: params[:s_category]  %>
+      </span>
+      <%= text_field_tag :s_keywords, params[:s_keywords] %>
+      <%= button_tag "Search", type: :submit, class: 'btn' %>
+    </div>
+  <% end %>
+
+
+  <div class="items">
+
+    <% @items.each do |item| %>
+      <!-- item -->
+      <div class="item_box">
+        <div class="item_image">
+          <a href="<%= item.detail_url %>" target="_blank">
+            <%= image_tag item.image[:l][:url], onload: "Frustration.Common.show_resize_image(this, 250);" %>
+          </a>
+        </div>
+        <div class="item_title">
+          <%= item.title %>
+        </div>
+
+        <div class="settings">
+          <ul>
+            <li><%= select_tag :status, options_for_select(Fuman::status_options), class: 'status' %></li>
+            <li><%= select_tag :category, options_for_select(@categories.map{|c| [c.name,c.id]}) %></li>
+          </ul>
+          <div class="actions">
+            <%= button_tag "登録する", type: :submit, class: 'btn regist' %>
+          </div>
+        </div>
+
+      </div>
+      <!-- /item -->
+    <% end %>
+
+  </div>
+
+  <br class="clearfix" />
+  ＊とりあえずAmazon。あとでjsonで動的に取得できるようにする
+</div>
+
+
+<script>
+  $(function() {
+      var app_view = new BackboneFrustration.Views.Fumans.SearchView();
+  });
+</script>

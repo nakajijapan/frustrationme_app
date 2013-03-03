@@ -2,59 +2,156 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.search {
-  height: 61px;
+#frustration {
 
-  a {
-    &.service_button {
-      background-color: #fb697e;
-      background: -linear-gradient(top, #fa8a9a, #fb697e);
-      background: -webkit-linear-gradient(top, #fa8a9a, #fb697e);
-      margin: 0px 10px;
+  //------------------------------------------------------------
+  // search
+  //------------------------------------------------------------
+  #fumans_search {
+    .search {
+      height: 61px;
+
+      a {
+        &.service_button {
+          background-color: #fb697e;
+          background: -linear-gradient(top, #fa8a9a, #fb697e);
+          background: -webkit-linear-gradient(top, #fa8a9a, #fb697e);
+          margin: 0px 10px;
+          display: block;
+          width: 95px;
+          height: 70px;
+          color: #fff;
+          float: left;
+          text-align: center;
+          position: relative;
+          font-size: 11px;
+          line-height: 120%;
+          border-radius: 20px;
+
+          &:hover {
+            background-color: #fb697e;
+            background: linear-gradient(top, #fb697e, #f53b55);
+            background: -webkit-linear-gradient(top, #fb697e, #f53b55);
+            text-decoration: none;
+          }
+
+          p {
+            padding: 5px 0px 3px 0px;
+          }
+
+          img {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            display: block;
+          }
+        }
+
+        &.forcus:after {
+          content:"";
+          position:absolute;
+          bottom:-10px;
+          left:37px;
+          border-width:10px 10px 0;
+          border-style:solid;
+          border-color:#fb697e transparent;
+            display:block;
+            width:0;
+        }
+
+        &.forcus:hover:after {
+          content:"";
+          position:absolute;
+          bottom:-10px;
+          left:37px;
+          border-width:10px 10px 0;
+          border-style:solid;
+          border-color:#f53b55 transparent;
+            display:block;
+            width:0;
+        }
+      }
+    }
+
+    input {
+      width: 250px;
+    }
+
+    #s_category {
+      margin-right: 10px;
+    }
+
+    //---------------
+    // item_box
+    //---------------
+    .item_box {
+      width:  300px;
+      border: 1px solid #eee;
+      box-shadow: 1px 1px 2px #EEE;
+      padding: 10px;
+      margin: 10px;
       display: block;
-      width: 95px;
-      height: 70px;
-      color: #fff;
+
       float: left;
-      text-align: center;
+      margin: 0px 11px 20px 1px;
+
+      /* border: solid 2px #FF8294; */
       position: relative;
-      font-size: 11px;
-      line-height: 120%;
-      border-radius: 5px;
-
-      &:hover {
-        background-color: #fb697e;
-        background: linear-gradient(top, #fb697e, #f53b55);
-        background: -webkit-linear-gradient(top, #fb697e, #f53b55);
-        text-decoration: none;
-      }
-
-      p {
-        padding: 5px 0px 3px 0px;
-      }
-
-      img {
-        width: 40px;
-        height: 40px;
-        margin: 0 auto;
-        display: block;
-      }
+      /* background-color: white; */
+      padding: 4px 4px;
+      overflow: hidden;
     }
 
-    &.forcus:after {
-      content:"";
-      position:absolute;
-      bottom:-10px;
-      left:37px;
-      border-width:10px 10px 0;
-      border-style:solid;
-      border-color:#fb697e transparent;
-        display:block;
-        width:0;
+    .item_box .item_image {
+      width:  250px;
+      height: 250px;
+      margin: 0 auto;
     }
+    .item_box img {
+      margin: 0 auto;
+      // width:  250px;
+      // height: 250px;
+    }
+    .item_title {
+
+      padding: 10px 5px;
+      border-radius: 8px;
+
+      // background-color: #FFCDD4;
+      font-size: 16px;
+      margin: 8px 3px;
+      /* padding: 5px; */
+      /*text-shadow: rgba(0, 0, 0, 0.4) 0 1px 2px;*/
+    }
+
+    .item_box ul {
+      margin: 0px;
+      padding-left: 3px;
+    }
+    .item_box ul li {
+      // float: left;
+
+    }
+    .item_box ul li .status{
+      width: 120px;
+    }
+    .item_box .regist{
+    }
+
+    .item_box .settings{
+      background-color: #fff2fa;
+      padding: 10px;
+    }
+    .item_box .settings::before {
+      content: "";
+      position: relative;
+      top: -19px;
+      border-width: 0px 10px 10px;
+      border-style: solid;
+      border-color: #FFF2FA transparent;
+      display: block;
+      width: 0;
+    }
+
   }
-}
-
-input {
-  width: 250px;
 }
