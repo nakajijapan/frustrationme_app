@@ -10,29 +10,40 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
   events:
     'click .service_button'      : 'change_search_type'
 
+
   #------------------------
   initialize: () ->
     # イベントの追加
     @delegateEvents(@events)
 
+    # default of api is amazon
+    type = $('#s_type').val()
+    type = 'amazon' if type == ''
+
     # arrow
-    @_change_search_type($('#s_type').val())
+    @_change_search_type(type)
 
   #------------------------
   change_search_type : (e) ->
     target = $(e.currentTarget)
 
-    @_change_search_type(target.attr('data'))
+    @_change_search_type(target.attr('data-type'))
 
   _change_search_type : (type) ->
+    console.error "no type" if type == ''
+
     $.get("/fumans/categories/#{type}", null, (data, status) ->
+
+      # add hidden
+      $('#s_type').val(type)
+
       # add options
       $('.service_categories').html(data)
 
       # arrow
       $('.service_button').each( (i, elm) ->
         $(elm).removeClass('forcus')
-        $(elm).addClass('forcus') if $(elm).attr('data') == type
+        $(elm).addClass('forcus') if $(elm).attr('data-type') == type
       )
     )
 

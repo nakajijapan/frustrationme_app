@@ -37,7 +37,7 @@ window.Frustration.Common = {
     elm.parent().parent().removeClass("g_loading_icon")
     elm.fadeIn(1000)
 
-    console.log("laod bind end")
+    #console.log("laod bind end")
     return false;
 
 }

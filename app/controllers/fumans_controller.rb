@@ -12,9 +12,7 @@ class FumansController < ApplicationController
       res = service.search(params[:s_keywords], {count: 18, search_index: params[:s_category]})
 
       @items = res.items
-      logger.warn res.items
-
-      #respond_with @items
+      logger.warn "count = #{res.items}"
     end
 
 
