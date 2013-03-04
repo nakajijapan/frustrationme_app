@@ -9,7 +9,7 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
   el: $("#fumans_search")
   events:
     'click .service_button'      : 'change_search_type'
-
+    'keyup': 'short_cut'
 
   #------------------------
   initialize: () ->
@@ -46,6 +46,11 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
         $(elm).addClass('forcus') if $(elm).attr('data-type') == type
       )
     )
+
+  #------------------------
+  # キーでサービスを切り替えるようにする
+  short_cut: (e)->
+    # a:65 y:89 r82 i:73 f:70 Ctrl:17
 
   #------------------------
   # ボックスの表示制御
