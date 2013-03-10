@@ -14,6 +14,7 @@
 //= require jquery-ui.min
 //= require jquery_ujs
 //= require jquery/jquery.wookmark
+//= require bootstrap
 
 //----------------------------------------------
 // サイズ取得
