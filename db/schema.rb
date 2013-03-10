@@ -38,31 +38,30 @@ ActiveRecord::Schema.define(:version => 20120914012927) do
 
   create_table "fumans", :force => true do |t|
     t.integer  "user_id",                    :null => false
-    t.datetime "date"
-    t.string   "title"
-    t.integer  "price",       :default => 0
     t.text     "content"
     t.integer  "status",      :default => 1
-    t.text     "tag_ids"
     t.integer  "category_id"
+    t.text     "tag_ids"
     t.integer  "item_id"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
 
   create_table "items", :force => true do |t|
-    t.integer  "type"
+    t.integer  "service_code"
     t.integer  "product_id"
-    t.string   "url",         :limit => 1024
-    t.string   "url_media",   :limit => 1024
+    t.string   "url",          :limit => 1024
+    t.string   "preview_url",  :limit => 1024
+    t.string   "title",        :limit => 512
     t.text     "description"
-    t.datetime "date"
-    t.string   "image_s",     :limit => 1024
-    t.string   "image_m",     :limit => 1024
-    t.string   "image_l",     :limit => 1024
+    t.datetime "release_date"
+    t.string   "image_s",      :limit => 1024
+    t.string   "image_m",      :limit => 1024
+    t.string   "image_l",      :limit => 1024
     t.integer  "is_adult"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.integer  "price"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "tags", :force => true do |t|
