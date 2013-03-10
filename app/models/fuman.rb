@@ -1,11 +1,12 @@
 # coding: utf-8
 class Fuman < ActiveRecord::Base
-  attr_accessible :category_id, :content, :date, :item_id, :price, :priority, :status, :tag_ids, :title, :user_id
+  self.table_name = 'fumans'
+  attr_accessible :user_id, :content, :category_id, :item_id, :status, :tag_ids
 
   STATUSES = {
-    '1' => '欲している',
-    '2' => '持っている',
-    '3' => 'あげる',
+    '1' => '欲しい',
+    '2' => '持ってる',
+    '3' => 'あげたい',
     '4' => '体験した',
     '5' => '持っていた',
   }
