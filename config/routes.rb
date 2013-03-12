@@ -35,6 +35,7 @@ Frustration::Application.routes.draw do
   resources :fumans, :only => [:index] do
     collection do
       get 'itunes'
+      post 'create_with_item'
     end
   end
 

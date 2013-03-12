@@ -2,21 +2,19 @@
 BackboneFrustration.Views.Fumans ||= {}
 
 #-----------------------------------------------------------------------------
-# SettingsMobileFilterView
+# View
 #-----------------------------------------------------------------------------
 class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
 
   el: $("#fumans_search")
+
+  form_view: null
+
   events:
     'click .service_button'      : 'change_search_type'
-    'click .actions .create' : 'create'
+    'click .show_modal': 'show_modal'
+
     'keyup': 'short_cut'
-  services:
-    'amazon': 0
-    'yahooauction': 2
-    'rakuten': 3
-    'itunes': 4
-    'frustration': 5
 
   #------------------------
   initialize: () ->
@@ -30,40 +28,14 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
     # arrow
     @_change_search_type(type)
 
+    # form
+    @form_view = new BackboneFrustration.Views.Fumans.CreateView();
+
   #------------------------
-  create : (e) ->
-    console.log e.currentTarget
-
-    name       = $('s_service_name').val()
-    product_id = $(e.currentTarget).attr('data-product_id')
-
-    data = {
-      item : {
-        service_code: @services['amazon']
-        product_id: 'B000J4P83G'
-      }
-      fuman : {
-        status:      '1'
-        category_id: '1'
-        content:     'hogehoge'
-      }
-    }
-
-    console.log data
-
-    $.ajax(
-      type : 'POST'
-      url  : "/fumans/create_with_item.json"
-      data : data
-      success : (data, status, xhr) ->
-        #$(e.srcElement).effect("highlight", {}, 1000)
-        console.log data
-        console.log status
-      error : (xhr, status, thrown) ->
-        console.log thrown
-        console.log status
-        #alert 'create error'
-    )
+  show_modal : (e) ->
+    console.log $(e.currentTarget).data('product_code')
+    $('.create_fuman').attr('data-product_code', $(e.currentTarget).data('product_code'))
+    @form_view.open()
 
   #------------------------
   change_search_type : (e) ->
@@ -102,3 +74,86 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
   #    $('.filter_setting').css('opacity', 0.3);
   #  else
   #    $('.filter_setting').css('opacity', 1);
+
+
+#-----------------------------------------------------------------------------
+# ModalView
+#-----------------------------------------------------------------------------
+class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
+  el: $("#modal_create_fuman")
+  events:
+    'click .create_fuman' : 'create'
+  services:
+    'amazon': 0
+    'yahooauction': 2
+    'rakuten': 3
+    'itunes': 4
+    'frustration': 5
+  #------------------------
+  initialize: () ->
+    # イベントの追加
+    @delegateEvents(@events)
+
+    #$(@el).SimpleModal().open()
+
+  open: () ->
+    $(@el).SimpleModal().open()
+
+
+  create : (e) ->
+    console.log "------------------------------- create"
+    console.log e.currentTarget
+
+
+    name       = $('#s_service_name').val()
+    product_id = $(e.currentTarget).attr('data-product_code')
+    status     = $('.fuman_status.active').data('status')
+    category   = $('#fuman_category option:selected').val()
+    content    = $('#fuman_content').val()
+
+    console.log "データ格納前"
+    console.log name
+    console.log @services[name]
+
+    return alert 'no service code'  if !name?
+
+    _this = @
+
+    data = {
+      item : {
+        service_code: @services[name]
+        product_id: product_id
+      }
+      fuman : {
+        status:      status
+        category_id: category
+        content:     content
+      }
+    }
+
+    console.log data
+
+    $.ajax(
+      type : 'POST'
+      url  : "/fumans/create_with_item.json"
+      data : data
+      success : (data, status, xhr) ->
+        #$(e.srcElement).effect("highlight", {}, 1000)
+        #console.log '-------success'
+        #console.log data
+        #console.log status
+        $("#modal_create_fuman").SimpleModal({
+          close_callback: ()->
+            $("#code_#{product_id}").append('<div class="item_overlay">f</div>');
+        }).close();
+
+      error : (xhr, status, thrown) ->
+        #console.log '-------error'
+        #console.log thrown
+        #console.log status
+        #console.log xhr
+        #alert 'create error'
+    )
+
+
+

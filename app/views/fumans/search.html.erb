@@ -13,7 +13,7 @@ $(document).ready(function() {
 <div id="<%= controller_name %>_<%= action_name %>">
   <ul class="search">
     <li>
-      <a href='javascript:;' class="service_button forcus" data-type="amazon">
+      <a href='javascript:;' class="service_button forcus" data-service_name="amazon">
         <p>Amazon</p>
         <%= image_tag 'service/icon_0.png' %>
       </a>
@@ -29,28 +29,28 @@ $(document).ready(function() {
     -->
 
     <li>
-      <a href='javascript:;' class="service_button" data-type="yahooauction">
+      <a href='javascript:;' class="service_button" data-service_name="yahooauction">
         <p>Yahoo!Auction</p>
         <%= image_tag 'service/icon_2.png' %>
       </a>
     </li>
 
     <li>
-      <a href='javascript:;' class="service_button" data-type="rakuten">
+      <a href='javascript:;' class="service_button" data-service_name="rakuten">
         <p>Rakuten</p>
         <%= image_tag 'service/icon_3.png' %>
   　   </a>
     </li>
 
     <li>
-      <a href='javascript:;' class="service_button" data-type="itunes">
+      <a href='javascript:;' class="service_button" data-service_name="itunes">
         <p>iTunes</p>
         <%= image_tag 'service/icon_4.png' %>
       </a>
     </li>
 
     <li>
-      <a href='javascript:;' class="service_button" data-type="frustration">
+      <a href='javascript:;' class="service_button" data-service_name="frustration">
         <p>frustration</p>
         <%= image_tag 'service/icon_5.png' %>
       </a>
@@ -60,7 +60,7 @@ $(document).ready(function() {
   <br />
 
   <%= form_tag '/fumans/search', :method => :post do %>
-    <%= hidden_field_tag :s_type, params[:s_type] %>
+    <%= hidden_field_tag :s_service_name, params[:s_service_name] %>
 
     <div class="input-append">
       <span class="service_categories">
@@ -73,11 +73,12 @@ $(document).ready(function() {
   <% end %>
 
 
+  <!-- items -->
   <div class="items">
 
     <% @items.each do |item| %>
       <!-- item -->
-      <div class="item_box">
+      <div class="item_box" id="code_<%= item.product_code %>">
         <div class="item_image">
           <a href="<%= item.detail_url %>" target="_blank">
             <%= image_tag item.image[:l][:url], onload: "Frustration.Common.show_resize_image(this, 250);" %>
@@ -88,24 +89,74 @@ $(document).ready(function() {
         </div>
 
         <div class="settings">
+          <div class="actions">
+            <%= button_tag "登録する", type: :button, class: 'btn show_modal', 'data-product_code' => item.product_code %>
+          </div>
+        </div>
+        <div class="settings" style="display:none;">
           <ul>
             <li><%= select_tag :status, options_for_select(Fuman::status_options), class: 'status' %></li>
             <li><%= select_tag :category, options_for_select(@categories.map{|c| [c.name,c.id]}) %></li>
+            <li><%= text_area_tag :content, '', size: '20x6' %></li>
           </ul>
           <div class="actions">
-            <%= button_tag "登録する", type: :submit, class: 'btn regist' %>
+            <%= button_tag "登録する", type: :button, class: 'btn show_modal', 'data-product_code' => item.product_code %>
           </div>
         </div>
 
+        <% if @checked_items.has_value?(item.product_code) %>
+          <div class="item_overlay">f</div>
+        <% end %>
       </div>
       <!-- /item -->
     <% end %>
 
   </div>
+  <!-- /items -->
 
   <br class="clearfix" />
   ＊とりあえずAmazon。あとでjsonで動的に取得できるようにする
 </div>
+
+
+
+<!-- modal_create_fuman -->
+<div class="modal_conteiner" id="modal_create_fuman">
+  <div class="header">
+    <h2>Add</h2>
+    <a href="#" class="right" onClick="$('#modal_create_fuman').SimpleModal().cancel();">
+      <div>X</div>
+    </a>
+  </div>
+
+  <div class="body">
+    <h4>Status</h4>
+    <div class="btn-group" data-toggle="buttons-radio">
+      <% Fuman::status_options.each do |v, k| %>
+        <button type="button" class="btn fuman_status" data-status="<%= k %>"><%= v %></button>
+      <% end %>
+    </div>
+
+    <h4>Category</h4>
+    <div>
+      <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}) %>
+    </div>
+
+    <h4>Memo</h4>
+    <div>
+      <%= text_area_tag 'fuman_content', '', style: 'width: 400px; height: 60px;' %>
+    </div>
+    <br />
+  </div>
+
+  <div class="footer">
+    <div class="actions">
+      <button class="btn create_fuman" data-product_code="" name="button" type="button">Save</button>
+    </div>
+  </div>
+</div>
+<div id="modal_overlay" class="visible"></div>
+<!-- /modal_create_fuman -->
 
 
 <script>

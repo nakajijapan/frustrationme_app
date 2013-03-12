@@ -8,8 +8,10 @@ class User < ActiveRecord::Base
   attr_accessor :mode, :password, :password_confirmation
 
   has_many :categories
+  has_many :fumans
 
   accepts_nested_attributes_for :categories
+  accepts_nested_attributes_for :fumans
 
   validates :username,
     presence: true,
@@ -71,5 +73,13 @@ class User < ActiveRecord::Base
     user.save!
 
     user
+  end
+
+  def checked_items(ids)
+    items = Item.joins(:fuman).where('user_id = ?', self.id).where('product_id in (?)', ids)
+    list = {}
+    items.map{|item| list[item.id] = item.product_id}
+
+    list
   end
 end
