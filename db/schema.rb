@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20120914012927) do
 
   create_table "items", :force => true do |t|
     t.integer  "service_code"
-    t.integer  "product_id"
+    t.string   "product_id"
     t.string   "url",          :limit => 1024
     t.string   "preview_url",  :limit => 1024
     t.string   "title",        :limit => 512
