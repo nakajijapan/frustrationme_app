@@ -1,3 +1,5 @@
+<%# あとでjsonで動的に取得できるようにする %>
+
 <% content_for :footer_javascript do %>
 <%= javascript_include_tag 'jquery/jqueryAutoHeight.js'%>
 <script type="text/javascript">
@@ -90,22 +92,12 @@ $(document).ready(function() {
 
         <div class="settings">
           <div class="actions">
-            <%= button_tag "登録する", type: :button, class: 'btn show_modal', 'data-product_code' => item.product_code %>
-          </div>
-        </div>
-        <div class="settings" style="display:none;">
-          <ul>
-            <li><%= select_tag :status, options_for_select(Fuman::status_options), class: 'status' %></li>
-            <li><%= select_tag :category, options_for_select(@categories.map{|c| [c.name,c.id]}) %></li>
-            <li><%= text_area_tag :content, '', size: '20x6' %></li>
-          </ul>
-          <div class="actions">
-            <%= button_tag "登録する", type: :button, class: 'btn show_modal', 'data-product_code' => item.product_code %>
+            <%= button_tag "+", type: :button, class: 'btn show_modal', 'data-product_code' => item.product_code %>
           </div>
         </div>
 
         <% if @checked_items.has_value?(item.product_code) %>
-          <div class="item_overlay">f</div>
+          <div class="item_overlay"><div>f</div></div>
         <% end %>
       </div>
       <!-- /item -->
@@ -115,7 +107,6 @@ $(document).ready(function() {
   <!-- /items -->
 
   <br class="clearfix" />
-  ＊とりあえずAmazon。あとでjsonで動的に取得できるようにする
 </div>
 
 
@@ -131,10 +122,12 @@ $(document).ready(function() {
 
   <div class="body">
     <h4>Status</h4>
-    <div class="btn-group" data-toggle="buttons-radio">
-      <% Fuman::status_options.each do |v, k| %>
-        <button type="button" class="btn fuman_status" data-status="<%= k %>"><%= v %></button>
-      <% end %>
+    <div style="margin: 0 0 15px 0;">
+      <div class="btn-group" data-toggle="buttons-radio">
+        <% Fuman::status_options.each do |v, k| %>
+          <button type="button" class="btn fuman_status" data-status="<%= k %>"><%= v %></button>
+        <% end %>
+      </div>
     </div>
 
     <h4>Category</h4>

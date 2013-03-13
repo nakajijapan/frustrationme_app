@@ -115,7 +115,12 @@
       color: #FB697E;
       font-weight: bold;
       font-family: cursive;
+
+      div:hover {
+        -webkit-animation-name: tada;
+      }
     }
+
     .item_box .item_image {
       width:  250px;
       height: 250px;
@@ -153,9 +158,20 @@
     }
 
     .item_box .settings{
-      background-color: #fff2fa;
-      padding: 10px;
+      //background-color: #FFF2FA;
+      padding: 0px 10px 10px 10px;
+      position: absolute;
+      top: 0px;
+      opacity: 1;
+      right: 0px;
+
+      .actions .btn{
+        font-size: 30px;
+        line-height: 40px;
+        padding: 0px 12px 6px 12px;
+      }
     }
+
     .item_box .settings::before {
       content: "";
       position: relative;

@@ -3,6 +3,9 @@
 -------------------------------*/
 $main_background_color: #FB697E;
 
+h1, h2, h3, h4 {
+  color: #333;
+}
 
 /*-------------------------------
    over ride
@@ -109,8 +112,6 @@ li .dropdown .open  {
   padding: 0 15px;
 }
 
-
-
 /*-------------------------------
    modal
 -------------------------------*/
@@ -165,30 +166,43 @@ li .dropdown .open  {
       position: relative;
       font-size: 30px;
     }
+
     h2 {
       height:  50px;
       margin: 0;
       padding: 10px 0 0 10px;
     }
   }
-}
-.modal_conteiner .body {
-  margin: 10px;
-  //top: -10px;
-  position: relative;
-  padding-top: 10px
 
-  select {
-    font-size: 24px;
+  .body {
+    margin: 10px;
+    //top: -10px;
+    position: relative;
+    padding-top: 10px
+
+    select {
+      font-size: 24px;
+    }
+
+    h4 {
+      color: #666;
+      //padding: 5px;
+      //border-radius: 8px;
+    }
+
+    .btn-group > .btn {
+      height: 50px;
+    }
+  }
+
+  .footer{
+    margin: 0 10px 10px 0;
+    text-align: right;
   }
 }
-.modal_conteiner .body .btn-group > .btn {
-  height: 50px;
-}
-.modal_conteiner .footer{
-  margin: 0 10px 10px 0;
-  text-align: right;
-}
+
+
+
 #modal_overlay {
   position: fixed;
   top: 0;
@@ -200,7 +214,8 @@ li .dropdown .open  {
   opacity: 0.85;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
   filter: alpha(opacity=80);
-}
-#modal_overlay.visible{
-  display: none;
+
+  &.visible{
+    display: none;
+  }
 }
