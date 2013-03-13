@@ -118,6 +118,14 @@
 
       div:hover {
         -webkit-animation-name: tada;
+        -webkit-animation-duration: 1s;
+        -webkit-animation-delay: .2s;
+        -webkit-animation-timing-function: ease;
+        -webkit-animation-fill-mode: both;
+        animation-duration: 1s;
+        animation-delay: .2s;
+        animation-timing-function: ease;
+        animation-fill-mode: both;
       }
     }
 
