@@ -13,7 +13,6 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
   events:
     'click .service_button'      : 'change_search_type'
     'click .show_modal': 'show_modal'
-
     'keyup': 'short_cut'
 
   #------------------------
@@ -30,6 +29,9 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
 
     # form
     @form_view = new BackboneFrustration.Views.Fumans.CreateView();
+
+    # add effect
+    @effect_toggle()
 
   #------------------------
   show_modal : (e) ->
@@ -59,6 +61,15 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
         $(elm).removeClass('forcus')
         $(elm).addClass('forcus') if $(elm).attr('data-service_name') == type
       )
+    )
+
+  #------------------------
+  effect_toggle : () ->
+    $('.item_overlay div').hover(
+      ->
+        $(this).addClass('tada');
+      ->
+        $(this).removeClass('tada');
     )
 
   #------------------------
