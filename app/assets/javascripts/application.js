@@ -134,7 +134,7 @@ jQuery.fn.extend({
           $('#modal_overlay').fadeOut(1000, options.close_callback);
         }
 
-        $(_this).animate({top: "-=300px", opacity: 0}, 500, callback).animate({top: "-1000px"}, 0);;
+        $(_this).animate({top: "-=300px", opacity: 0}, 500, callback).animate({top: "-1000px"}, 0);
         console.log('delay');
 
         return this;
