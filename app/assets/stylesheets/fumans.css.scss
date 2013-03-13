@@ -10,6 +10,11 @@
   #fumans_search {
     .search {
       height: 61px;
+      width:  600px;
+      margin: 0 auto;
+      li {
+        float: left;
+      }
 
       a {
         &.service_button {
@@ -21,7 +26,6 @@
           width: 95px;
           height: 70px;
           color: #fff;
-          float: left;
           text-align: center;
           position: relative;
           font-size: 11px;
@@ -73,6 +77,10 @@
       }
     }
 
+    form {
+      margin: 0 auto;
+      width: 600px;
+    }
     input {
       width: 250px;
     }
@@ -84,6 +92,11 @@
     //---------------
     // item_box
     //---------------
+    .items {
+      margin: 0 auto;
+      max-width: 1300px;
+      min-width: 1000px;
+    }
     .item_box {
       width:  300px;
       border: 1px solid #eee;
