@@ -30,9 +30,6 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
     # form
     @form_view = new BackboneFrustration.Views.Fumans.CreateView();
 
-    # add effect
-    @effect_toggle()
-
   #------------------------
   show_modal : (e) ->
     console.log $(e.currentTarget).data('product_code')
@@ -61,15 +58,6 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
         $(elm).removeClass('forcus')
         $(elm).addClass('forcus') if $(elm).attr('data-service_name') == type
       )
-    )
-
-  #------------------------
-  effect_toggle : () ->
-    $('.item_overlay div').hover(
-      ->
-        $(this).addClass('tada');
-      ->
-        $(this).removeClass('tada');
     )
 
   #------------------------
@@ -155,7 +143,7 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
         #console.log status
         $("#modal_create_fuman").SimpleModal({
           close_callback: ()->
-            $("#code_#{product_id}").append('<div class="item_overlay">f</div>');
+            $("#code_#{product_id}").append('<div class="item_overlay"><div>f</div></div>');
         }).close();
 
       error : (xhr, status, thrown) ->
