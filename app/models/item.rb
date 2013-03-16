@@ -1,3 +1,6 @@
 class Item < ActiveRecord::Base
-  attr_accessible :date, :description, :image_l, :image_m, :image_s, :is_adult, :product_id, :type, :url
+  attr_accessible :product_id, :release_date, :description, :url, :preview_url
+  attr_accessible :image_l, :image_m, :image_s, :is_adult, :service_code, :price, :title
+
+  has_one :fuman
 end

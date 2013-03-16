@@ -3,8 +3,16 @@
 -------------------------------*/
 $main_background_color: #FB697E;
 
+h1, h2, h3, h4 {
+  color: #333;
+}
 
-
+/*-------------------------------
+   over ride
+-------------------------------*/
+button {
+  margin-top: -0.5px;
+}
 /*-------------------------------
    header
 -------------------------------*/
@@ -12,11 +20,12 @@ header#header_menu {
   background-color: $main_background_color;
   margin-bottom: 10px;
   height: 50px;
+  box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
 
   #header_logo {
-    height: 40px;
+    height: 50px;
     position: absolute;
-    top: 3px;
+    top: 5px;
   }
 
   .left_block {
@@ -27,7 +36,7 @@ header#header_menu {
     padding-top: 8px;
   }
 
-  nav {
+  nav.top_menu {
     ul {
       padding: 5px;
     }
@@ -37,10 +46,35 @@ header#header_menu {
     }
 
     ul li > a {
-
       font-size: 16px;
       color: #fff !important;
-      text-shadow: 3px 5px 3px $main_background_color;
+      //text-shadow: 3px 5px 3px $main_background_color;
+    }
+
+    li.user_menu {
+      ul {
+        padding: 0px;
+        position: absolute;
+        right: 15px;
+        top: 50px;
+        background-color: #FA8A9A;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+      }
+      li {
+        float: none;
+        margin: 0px;
+      }
+      li a {
+        display: block;
+        margin: 0px;
+        padding: 5px 10px;
+        //border-bottom: 1px solid #000;
+        width: 140px;
+      }
+      li:hover {
+        background-color: #FB697E;
+        //background-color: #FB919D;
+      }
     }
   }
 }
@@ -78,3 +112,110 @@ li .dropdown .open  {
   padding: 0 15px;
 }
 
+/*-------------------------------
+   modal
+-------------------------------*/
+.modal_conteiner {
+  display: none;
+  position: fixed;
+  z-index: 1025;
+  left: 50%;
+  top: 50%;
+  /* 550 : -300 */
+  width: 450px;
+  // height: 350px;
+
+  margin-left: -250px;
+  margin-top: -150px;
+
+  padding: 0px;
+  background-color: white;
+  border: 1px solid #aaa;
+  box-shadow: 0px 0px 10px #333;
+  border-radius: 6px;
+  over-flow: auto;
+
+  .header{
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid #DDD;
+    background-color: whitesmoke;
+
+    a.right{
+      border-radius: 0 6px 0 0;
+      position: absolute;
+      z-index: 1;
+      top:     0px;
+      right:   0;
+      bottom:  0;
+      display: block;
+      width:   60px;
+      height:  60px;
+
+      font-size: 20px;
+
+      border-left: 1px solid rgba(34, 25, 25, 0.15);
+      box-shadow: inset 0 1px 2px white;
+      /* text-indent: -9999px; */
+    }
+    a:hover.right{
+      background-color: #ddd;
+    }
+    a.right div{
+      text-align: center;
+      top: 10px;
+      position: relative;
+      font-size: 30px;
+    }
+
+    h2 {
+      height:  50px;
+      margin: 0;
+      padding: 10px 0 0 10px;
+    }
+  }
+
+  .body {
+    margin: 10px;
+    //top: -10px;
+    position: relative;
+    padding-top: 10px
+
+    select {
+      font-size: 24px;
+    }
+
+    h4 {
+      color: #666;
+      //padding: 5px;
+      //border-radius: 8px;
+    }
+
+    .btn-group > .btn {
+      height: 50px;
+    }
+  }
+
+  .footer{
+    margin: 0 10px 10px 0;
+    text-align: right;
+  }
+}
+
+
+
+#modal_overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  opacity: 0.85;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
+  filter: alpha(opacity=80);
+
+  &.visible{
+    display: none;
+  }
+}

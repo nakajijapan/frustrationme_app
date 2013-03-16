@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -11,6 +11,12 @@
     <title><%= content_for?(:title) ? yield(:title) : "frustration.me - social wish management" %></title>
     <%= csrf_meta_tags %>
 
+    <!-- Javascripts -->
+    <%= javascript_include_tag :application %>
+    <%= javascript_include_tag 'common' %>
+    <%= yield :header_javascript %>
+    <!-- /Javascripts -->
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
@@ -20,7 +26,7 @@
     <%= stylesheet_link_tag params[:controller], media: 'all' %>
 
   </head>
-  <body>
+  <body id='frustration'>
 
     <!-- header menu -->
     <header id="header_menu">
@@ -35,17 +41,42 @@
         <!-- right_block -->
 
         <!-- right_block -->
-        <div class="right_block">
-          <nav>
-            <ul>
-              <li><%= link_to :Signup, "/users/new"  %></li>
-              <li><%= link_to :Login, "/login"  %></li>
-            </ul>
-          </nav>
+        <% if @current_user %>
+          <div class="right_block">
+            <nav class='top_menu'>
+              <ul>
+                <li>
+                  <a href='/home'>
+                    <%= image_tag @current_user.icon_name, size: '30x30' %>
+                    <%= @current_user.username %>
+                    &nbsp;
+                    ▼
+                  </a>
+                </li>
 
-        </div>
+                <li class='user_menu'>
+                  <ul>
+                    <li><a href="/fumans/search">Search</a></li>
+                    <li><a href="/settings/tags">Tags</a></li>
+                    <li><a href="/settings/category">Category</a></li>
+                    <li><a href="/seggings/profile">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        <% else %>
+          <div class="right_block">
+            <nav class='top_menu'>
+              <ul>
+                <li><%= link_to :Signup, "/users/new"  %></li>
+                <li><%= link_to :Login, "/login"  %></li>
+              </ul>
+            </nav>
+          </div>
+        <% end %>
         <!-- /right_block -->
-
 
       </div>
     </header>
@@ -60,7 +91,6 @@
 
         <!-- notice -->
         <div>
-
           <% if params[:notice] || notice %>
             <p id="notice" class="alert alert-success">
               <% if params[:notice] %>
@@ -83,7 +113,9 @@
         </div>
         <!-- /notice -->
 
+
         <%= yield %>
+
 
       </div>
       <!--/content-->
@@ -99,10 +131,8 @@
 
 
     <!-- Javascripts -->
-    <%= javascript_include_tag :application %>
-    <%= javascript_include_tag params[:controller] %>
-    <!-- /Javascripts -->
-
+    <%= javascript_include_tag "backbone/application" %>
     <%= yield :footer_javascript %>
+    <!-- /Javascripts -->
   </body>
 </html>

@@ -4,16 +4,25 @@ class ApplicationController < ActionController::Base
 
   # 404
   def render_not_found
-    render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+    if params[:format] == 'json'
+      render :json => {:error => "not_found"}.to_json, status: :not_found, layout: false
+    else
+      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+    end
+  end
+
+  def exception
+    if env["REQUEST_PATH"] =~ /^\/api/
+      render :json => {:error => "internal_server_error"}.to_json, :status => 500
+    else
+      render file: "#{Rails.root}/public/500.html", :status => 500
+    end
   end
 
   def current_user
     redirect_to :root if session[:user_id].blank?
 
-    if @current_user = User.find(session[:user_id])
-      redirect_to :root if @current_user.nil?
-    end
-
-    @current_user
+    @current_user = User.find_by_id(session[:user_id])
+    redirect_to :root if @current_user.nil?
   end
 end

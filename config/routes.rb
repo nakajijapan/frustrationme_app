@@ -1,6 +1,6 @@
 Frustration::Application.routes.draw do
 
-  get "users/show"
+  get 'users/show'
 
   # root
   root :to => 'top#index'
@@ -10,14 +10,16 @@ Frustration::Application.routes.draw do
   #-----------------------------------------------
   match 'login'  => 'sessions#new', :as => :login
   match 'logout' => 'sessions#destroy', :as => :logout
-  match "/auth/:provider/callback" => "sessions#create"
+  match '/auth/:provider/callback' => 'sessions#create'
   resources :sessions, :only => %w[new create destroy]
 
-  match "users/new" => 'users#new', :via => :get
-  match "users"     => 'users#create', :via => :post
+  match 'users/new' => 'users#new', :via => :get
+  match 'users'     => 'users#create', :via => :post
 
-  match "home" => 'home#index', :via => :get
-  scope "/settings", as: :settings do
+  match 'home' => 'home#index', :via => :get
+  #match 'search' => 'home#search', via: [:get, :post]
+
+  scope '/settings', as: :settings do
     match '/icon'  => 'settings#icon', via: :get
     match '/profile'  => 'settings#profile', via: :get
     match '/categories' => 'settings#categories', via: :get
@@ -28,11 +30,12 @@ Frustration::Application.routes.draw do
     match '/gadget' => 'settings#gadget', via: :get
   end
 
+  match 'fumans/search' => 'fumans#search', via: [:get, :post]
+  match 'fumans/categories/:type' => 'fumans#categories', via: :get
   resources :fumans, :only => [:index] do
     collection do
-      get 'search'
       get 'itunes'
-
+      post 'create_with_item'
     end
   end
 
@@ -49,7 +52,7 @@ Frustration::Application.routes.draw do
         get 'user_timeline'
 
         post 'upload_file'
-        put 'upload_icon'
+        put  'upload_icon'
       end
 
     end
@@ -64,20 +67,20 @@ Frustration::Application.routes.draw do
 
 
     resources :users, :only => [:create, :destroy]
-    scope "/users/:username/" do
-      match "/"  => 'users#show',  :via => :get
+    scope '/users/:username/' do
+      match '/'  => 'users#show',  :via => :get
 
       #resources :photos, :only => [:index, :show] do
-      #  match "/cools" => 'cools#create',  :via => :post
-      #  match "/cools" => 'cools#destroy', :via => :delete
+      #  match '/cools' => 'cools#create',  :via => :post
+      #  match '/cools' => 'cools#destroy', :via => :delete
       #  resources :comments, :only => [:index, :create, :destroy]
       #end
 
-      match "/follow/"   => 'friendships#create',  :via => :post
-      match "/unfollow/" => 'friendships#destroy', :via => :delete
+      match '/follow/'   => 'friendships#create',  :via => :post
+      match '/unfollow/' => 'friendships#destroy', :via => :delete
 
-      match "/followings/" => 'friendships#followings', :via => :get
-      match "/followers/" => 'friendships#followers', :via => :get
+      match '/followings/' => 'friendships#followings', :via => :get
+      match '/followers/' => 'friendships#followers', :via => :get
     end
 
 
