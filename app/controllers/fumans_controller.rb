@@ -12,7 +12,7 @@ class FumansController < ApplicationController
     # search items
     if params[:s_keywords].present?
       service = ApiBucket::Service.instance(:"#{params[:s_service_name]}")
-      res     = service.search(params[:s_keywords], {count: 18, search_index: params[:s_category]})
+      res     = service.search(params[:s_keywords], {count: 16, search_index: params[:s_category]})
       @items  = res.items
 
       # get items checked
