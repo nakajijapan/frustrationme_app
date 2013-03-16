@@ -54,6 +54,8 @@ gem 'kaminari', '~>0.14.1'
 #gem 'twitter-bootstrap-rails'
 gem 'settingslogic'
 
+gem 'api_bucket'
+
 # for development
 group :development do
   gem 'capistrano'

@@ -1,2 +1,159 @@
-<h1>Fumans#search</h1>
-<p>Find me in app/views/fumans/search.html.erb</p>
+<%# あとでjsonで動的に取得できるようにする %>
+
+<% content_for :footer_javascript do %>
+<%= javascript_include_tag 'jquery/jqueryAutoHeight.js'%>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.item_box').autoHeight({
+    column : 4,
+    height : 'height'
+  });
+});
+</script>
+<% end %>
+
+<div id="<%= controller_name %>_<%= action_name %>">
+  <ul class="search">
+    <li>
+      <a href='javascript:;' class="service_button forcus" data-service_name="amazon">
+        <p>Amazon</p>
+        <%= image_tag 'service/icon_0.png' %>
+      </a>
+    </li>
+
+    <!--
+    <li>
+      <a href='javascript:void' class="service_button">
+        <p>Calamel</p>
+        <%= image_tag 'service/icon_1.png' %>
+      </a>
+    </li>
+    -->
+
+    <li>
+      <a href='javascript:;' class="service_button" data-service_name="yahooauction">
+        <p>Yahoo!Auction</p>
+        <%= image_tag 'service/icon_2.png' %>
+      </a>
+    </li>
+
+    <li>
+      <a href='javascript:;' class="service_button" data-service_name="rakuten">
+        <p>Rakuten</p>
+        <%= image_tag 'service/icon_3.png' %>
+  　   </a>
+    </li>
+
+    <li>
+      <a href='javascript:;' class="service_button" data-service_name="itunes">
+        <p>iTunes</p>
+        <%= image_tag 'service/icon_4.png' %>
+      </a>
+    </li>
+
+    <li>
+      <a href='javascript:;' class="service_button" data-service_name="frustration">
+        <p>frustration</p>
+        <%= image_tag 'service/icon_5.png' %>
+      </a>
+    </li>
+  </ul>
+
+  <br />
+
+  <%= form_tag '/fumans/search', :method => :post do %>
+    <%= hidden_field_tag :s_service_name, params[:s_service_name] %>
+
+    <div class="input-append">
+      <span class="service_categories">
+        <% h = {}; ApiBucket::Service.instance(:amazon).categories.each_pair {|k,v| h[v]=k} %>
+        <%= select_tag :s_category, options_for_select(h), selected: params[:s_category]  %>
+      </span>
+      <%= text_field_tag :s_keywords, params[:s_keywords] %>
+      <%= button_tag "Search", type: :submit, class: 'btn' %>
+    </div>
+  <% end %>
+
+
+  <!-- items -->
+  <div class="items">
+
+    <% @items.each do |item| %>
+      <!-- item -->
+      <div class="item_box" id="code_<%= item.product_code %>">
+        <div class="item_image">
+          <a href="<%= item.detail_url %>" target="_blank">
+            <%= image_tag item.image[:l][:url], onload: "Frustration.Common.show_resize_image(this, 250);" %>
+          </a>
+        </div>
+        <div class="item_title">
+          <%= item.title %>
+        </div>
+
+        <div class="settings">
+          <div class="actions">
+            <%= button_tag "+", type: :button, class: 'btn show_modal', 'data-product_code' => item.product_code %>
+          </div>
+        </div>
+
+        <% if @checked_items.has_value?(item.product_code) %>
+          <div class="item_overlay"><div>f</div></div>
+        <% end %>
+      </div>
+      <!-- /item -->
+    <% end %>
+
+  </div>
+  <!-- /items -->
+
+  <br class="clearfix" />
+</div>
+
+
+
+<!-- modal_create_fuman -->
+<div class="modal_conteiner" id="modal_create_fuman">
+  <div class="header">
+    <h2>Add</h2>
+    <a href="javascript:;" class="right" onClick="$('#modal_create_fuman').SimpleModal().cancel();">
+      <div>X</div>
+    </a>
+  </div>
+
+  <div class="body">
+    <h4>Status</h4>
+    <div style="margin: 0 0 15px 0;">
+      <div class="btn-group" data-toggle="buttons-radio">
+        <% Fuman::status_options.each do |v, k| %>
+          <button type="button" class="btn fuman_status" data-status="<%= k %>"><%= v %></button>
+        <% end %>
+      </div>
+    </div>
+
+    <h4>Category</h4>
+    <div>
+      <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}) %>
+    </div>
+
+    <h4>Memo</h4>
+    <div>
+      <%= text_area_tag 'fuman_content', '', style: 'width: 400px; height: 60px;' %>
+    </div>
+    <br />
+  </div>
+
+  <div class="footer">
+    <div class="actions">
+      <button class="btn create_fuman" data-product_code="" name="button" type="button">Save</button>
+    </div>
+  </div>
+</div>
+<div id="modal_overlay" class="visible"></div>
+<!-- /modal_create_fuman -->
+
+
+<script>
+  $(function() {
+      var app_view = new BackboneFrustration.Views.Fumans.SearchView();
+  });
+</script>

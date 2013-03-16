@@ -15,8 +15,6 @@ class SessionsController < ApplicationController
       @user = User.find_by_username_and_crypted_password(params[:username], Digest::MD5.hexdigest(params[:password]))
     end
 
-    logger.warn @user.inspect
-
     if @user
       session[:user_id] = @user.id
       redirect_to '/home', :notice => 'Login successful.'

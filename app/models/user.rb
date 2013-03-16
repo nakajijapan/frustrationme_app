@@ -4,8 +4,14 @@ class User < ActiveRecord::Base
   attr_accessible :facebook_use, :twitter_use
 
   attr_accessible :provider, :uid
-  attr_accessible :mode, :password, :password_confirmation, :icon_name
-  attr_accessor :mode, :password, :password_confirmation, :icon_name
+  attr_accessible :mode, :password, :password_confirmation, :icon_name, :crypted_password
+  attr_accessor :mode, :password, :password_confirmation
+
+  has_many :categories
+  has_many :fumans
+
+  accepts_nested_attributes_for :categories
+  accepts_nested_attributes_for :fumans
 
   validates :username,
     presence: true,
@@ -46,22 +52,34 @@ class User < ActiveRecord::Base
   end
 
   def self.create_with_omniauth(auth)
+    params = {
+      mode:      :social,
+      provider:  auth['provider'],
+      uid:       auth['uid'],
+      username:  auth['info']['nickname'],
+      icon_name: auth['info']['image']
+    }
 
-    user = User.new(
-      mode: :social,
-      provider: auth["provider"],
-      uid:      auth["uid"],
-      username: auth["info"]["nickname"],
-      icon_name: auth["info"]["image"],
-    )
+    user = User.new(params)
 
     if User.find_by_username(auth['info']['nickname'])
       user.errors.add 'ユーザ名', 'が既に登録済みです'
       return false
     end
 
+    #ActiveRecord::Base.transaction do
+    #  user.save!
+    #end
     user.save!
 
     user
+  end
+
+  def checked_items(ids)
+    items = Item.joins(:fuman).where('user_id = ?', self.id).where('product_id in (?)', ids)
+    list = {}
+    items.map{|item| list[item.id] = item.product_id}
+
+    list
   end
 end
