@@ -9,30 +9,18 @@ class FumansController < ApplicationController
     @items = {}
     @checked_items = {}
 
+    # search items
     if params[:s_keywords].present?
       service = ApiBucket::Service.instance(:"#{params[:s_service_name]}")
-      res = service.search(params[:s_keywords], {count: 18, search_index: params[:s_category]})
+      res     = service.search(params[:s_keywords], {count: 18, search_index: params[:s_category]})
+      @items  = res.items
 
-      #logger.warn res.inspect
-      #logger.warn res.doc
-
-      #return if res.nil?
-      #logger.warn res.doc
-      #logger.warn res.class
-      #logger.warn res.items
-
-      @items = res.items
-
+      # get items checked
       if @items.present?
-        code_list = @items.map {|i| i.product_code}
+        code_list      = @items.map {|i| i.product_code}
         @checked_items = @current_user.checked_items(code_list)
       end
-
-      logger.warn @checked_items.inspect
-      logger.warn "count = #{res.items.length}"
     end
-
-
   end
 
   def create_with_item
