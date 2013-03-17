@@ -135,10 +135,6 @@ $(document).ready(function() {
       <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}) %>
     </div>
 
-    <h4>Memo</h4>
-    <div>
-      <%= text_area_tag 'fuman_content', '', style: 'width: 400px; height: 60px;' %>
-    </div>
     <br />
   </div>
 

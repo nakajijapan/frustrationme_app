@@ -9,9 +9,11 @@ class User < ActiveRecord::Base
 
   has_many :categories
   has_many :fumans
+  has_many :comments
 
   accepts_nested_attributes_for :categories
   accepts_nested_attributes_for :fumans
+  accepts_nested_attributes_for :comments
 
   validates :username,
     presence: true,
@@ -75,6 +77,7 @@ class User < ActiveRecord::Base
     user
   end
 
+  # 自分が持っているアイテムを抽出
   def checked_items(ids)
     items = Item.joins(:fuman).where('user_id = ?', self.id).where('product_id in (?)', ids)
     list = {}
@@ -82,4 +85,5 @@ class User < ActiveRecord::Base
 
     list
   end
+
 end
