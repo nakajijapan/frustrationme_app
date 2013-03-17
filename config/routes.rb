@@ -20,14 +20,15 @@ Frustration::Application.routes.draw do
   #match 'search' => 'home#search', via: [:get, :post]
 
   scope '/settings', as: :settings do
-    match '/icon'  => 'settings#icon', via: :get
-    match '/profile'  => 'settings#profile', via: :get
-    match '/categories' => 'settings#categories', via: :get
-    match '/tags' => 'settings#tags', via: :get
+    match '/icon'       => 'settings#icon', via: :get
+    match '/profile'    => 'settings#profile', via: :get
+    resources :categories
+    resources :tags
+    resources :comments
 
-    match '/twitter' => 'settings#twitter', via: :get
-    match '/facebook' => 'settings#facebook', via: :get
-    match '/gadget' => 'settings#gadget', via: :get
+    match '/twitter'    => 'settings#twitter', via: :get
+    match '/facebook'   => 'settings#facebook', via: :get
+    match '/gadget'     => 'settings#gadget', via: :get
   end
 
   match 'fumans/search' => 'fumans#search', via: [:get, :post]
@@ -38,7 +39,6 @@ Frustration::Application.routes.draw do
       post 'create_with_item'
     end
   end
-
 
   #-----------------------------------------------
   # api
