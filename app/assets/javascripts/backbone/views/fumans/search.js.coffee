@@ -93,8 +93,6 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
     # イベントの追加
     @delegateEvents(@events)
 
-    #$(@el).SimpleModal().open()
-
   open: () ->
     $(@el).SimpleModal().open()
 
@@ -108,7 +106,6 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
     product_id = $(e.currentTarget).attr('data-product_code')
     status     = $('.fuman_status.active').data('status')
     category   = $('#fuman_category option:selected').val()
-    content    = $('#fuman_content').val()
 
     console.log "データ格納前"
     console.log name
@@ -126,7 +123,6 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
       fuman : {
         status:      status
         category_id: category
-        content:     content
       }
     }
 

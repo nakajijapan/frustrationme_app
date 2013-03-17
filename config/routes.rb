@@ -23,15 +23,25 @@ Frustration::Application.routes.draw do
 
   # setting
   scope '/settings', as: :settings do
+<<<<<<< HEAD
     match '/icon'       => 'settings#icon',    via: :get
+=======
+    match '/icon'       => 'settings#icon', via: :get
+>>>>>>> 22d14e625c3fff9c389f057f8a4310655c01aaa6
     match '/profile'    => 'settings#profile', via: :get
     resources :categories
     resources :tags
     resources :comments
 
+<<<<<<< HEAD
     match '/twitter'    => 'settings#twitter',  via: :get
     match '/facebook'   => 'settings#facebook', via: :get
     match '/gadget'     => 'settings#gadget',   via: :get
+=======
+    match '/twitter'    => 'settings#twitter', via: :get
+    match '/facebook'   => 'settings#facebook', via: :get
+    match '/gadget'     => 'settings#gadget', via: :get
+>>>>>>> 22d14e625c3fff9c389f057f8a4310655c01aaa6
   end
 
   match 'fumans/'                 => 'fumans#index',      via: [:get, :post]
