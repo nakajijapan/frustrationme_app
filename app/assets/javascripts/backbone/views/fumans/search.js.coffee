@@ -139,7 +139,7 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
         #console.log status
         $("#modal_create_fuman").SimpleModal({
           close_callback: ()->
-            $("#code_#{product_id}").append('<div class="item_overlay"><div>f</div></div>');
+            $("[data-code='#{product_id}']").append('<div class="item_overlay"><div>f</div></div>')
         }).close();
 
       error : (xhr, status, thrown) ->
