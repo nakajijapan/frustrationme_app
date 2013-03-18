@@ -13,4 +13,5 @@
  *= require common
  *= require form
  *= require effect
+ *= require_directory ./fumans
  */
