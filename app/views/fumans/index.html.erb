@@ -1,0 +1,114 @@
+<div id="<%= controller_name %>_<%= action_name %>">
+  <!-- items -->
+  <div class="items">
+    <ul>
+      <% @items.each do |item| %>
+        <!-- item -->
+        <li class="item">
+          <section>
+            <div class="side_left">
+              <h2><%= image_tag item.image_l %></h2>
+            </div>
+
+            <!-- side_right -->
+            <div class="side_right">
+              <div class="title">
+                <%= item.title %>
+              </div>
+
+              <!-- status -->
+              <div class="status">
+                <h4>Status</h4>
+                <div class="btn-group fuman_form" data-toggle="buttons-radio">
+                  <% Fuman::status_options.each do |v, k| %>
+                    <button type="button" class="btn fuman_status" data-status="<%= k %>"><%= v %></button>
+                  <% end %>
+                </div>
+              </div>
+              <!-- /status -->
+
+              <!-- category -->
+              <div class="category">
+                <h4>Category</h4>
+                <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}), class: 'fuman_form' %>
+              </div>
+              <!-- /category -->
+
+              <!-- tag -->
+              <!--
+              <div class="tag">
+              </div>
+              -->
+              <!-- /tag -->
+
+              <!-- comment -->
+              <div class="comment">
+                <h4>Comment</h4>
+                <%= text_field_tag 'fuman_comment', '', class: 'fuman_form' %>
+                <%= button_tag 'save', class: 'btn save_button' %>
+              </div>
+
+              <div class="comment_list">
+                <div class="user">
+                  <%= image_tag @current_user.icon_name, size: '70x70' %>
+                </div>
+
+                <div class="list">
+                  <ul>
+                    <li>
+                      <div class="comment_line">
+                        コレスゴイホシイ
+                      </div>
+                      <div class="date">
+                        2012-10-09 10:10:10
+                      </div>
+                      <div class="delete_comment">
+                        <a href="javascript:;"><span>x</span></a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="comment_line">
+                        コレスゴイホシイ
+                      </div>
+                      <div class="date">
+                        2012-10-09 10:10:10
+                      </div>
+                      <div class="delete_comment">
+                        <a href="javascript:;"><span>x</span></a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="comment_line">
+                        コレスゴイホシイ
+                      </div>
+                      <div class="date">
+                        2012-10-09 10:10:10
+                      </div>
+                      <div class="delete_comment">
+                        <a href="javascript:;"><span>x</span></a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- comment -->
+            </div>
+            <!-- /side_right -->
+
+          </section>
+        </li>
+        <!-- /item -->
+      <% end %>
+    </ul>
+  </div>
+  <!-- /items -->
+
+</div>
+
+
+<script>
+  $(function() {
+      var app_view = new BackboneFrustration.Views.Fumans.IndexView();
+  });
+</script>

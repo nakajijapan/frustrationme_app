@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
     user
   end
 
-  # 自分が持っているアイテムを抽出
+  # 指定されたIDから自分が持っているアイテムを抽出
   def checked_items(ids)
     items = Item.joins(:fuman).where('user_id = ?', self.id).where('product_id in (?)', ids)
     list = {}
@@ -86,4 +86,8 @@ class User < ActiveRecord::Base
     list
   end
 
+  # 登録アイテム一覧
+  def items_with_fuman(params, per=10)
+    Item.includes(:fuman).joins(:fuman).where('user_id = ?', self.id).page(params[:page]).per(per)
+  end
 end

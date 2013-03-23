@@ -1,0 +1,192 @@
+#frustration {
+
+  //------------------------------------------------------------
+  // search
+  //------------------------------------------------------------
+
+  #fumans_index {
+    /*
+    .items {
+      list-style-type: none;
+      position: relative;
+      margin: 0 auto;
+      display: block;
+      //width: 1100px;
+
+      li.item {
+        width: 200px;
+        //height: 300px;
+        float: left;
+        margin: 3px 5px;
+
+
+        border: 1px solid #eee;
+        box-shadow: 1px 1px 2px #EEE;
+        background-color: #fff;
+        cursor: pointer;
+
+        //box-shadow:1px 1px 2px rgba(0,0,0,0.4);
+        img {
+          display: block;
+          width: 180px ;
+          padding: 10px;
+        }
+      }
+    }
+    */
+    .items {
+      list-style-type: none;
+      position: relative;
+      margin: 0 auto;
+      display: block;
+      width: 800px;
+
+      li.item {
+        section {
+          display: table;
+          width: 100%;
+
+          .side_left {
+            display: table-cell;
+            width: 180px;
+
+            img {
+              display: block;
+              width: 180px ;
+              padding: 10px;
+            }
+          }
+          .side_right {
+            display: table-cell;
+            vertical-align: top;
+            width: 500px;
+
+            .title {
+              margin: 10px 0px;
+            }
+            .status,
+            .category,
+            .comment,
+            .tag {
+              position: relative;
+              margin: 0px;
+              padding: 5px 0px;
+              border-bottom: 1px dotted #ccc;
+
+              .fuman_form {
+                position: absolute;
+                top: 10px;
+                left: 150px;
+
+              }
+              .save_button {
+                position: absolute;
+                top: 10px;
+                left: 400px;
+              }
+            }
+
+            .comment {
+
+            }
+
+            .comment_list {
+              //border: 1px solid #000;
+              position: relative;
+              display: table;
+              margin: 10px 0px;
+
+              .user {
+                vertical-align: top;
+                display: table-cell;
+
+                img {
+                  background-color: #333;
+                  padding: 3px;
+                  margin-left: 10px;
+                }
+              }
+              .list {
+                display: table-cell;
+                //position: absolute;
+                //top: 0;
+                //left: 80px;
+                width: 430px;
+                li {
+                  //border: 1px solid #000;
+                  height: 70px;
+                  margin: 0px;
+                  position: relative;
+
+                  border: 1px solid #fcfafa;
+                  //border-top: 1px solid #FCFAFA;
+                  //border-bottom: 1px solid #D9D4D4;
+                  //border-bottom-width: 1px;
+                  //border-bottom-style: solid;
+                  //order-bottom-color: #D9D4D4;
+                  overflow: hidden;
+
+                  .comment_line {
+                    float: left;
+
+                  }
+                  .date {
+                    float: left;
+                    position: absolute;
+                    bottom: 0px;
+                    float: left;
+                    position: absolute;
+                    bottom: 0px;
+                    right: 75px;
+                    font-size: 12px;
+                    color: #999;
+                  }
+                  .delete_comment {
+                    float: right;
+                    vertical-align: middle;
+                    text-align: center;
+
+                    a {
+                      font-size: 50px;
+                      width: 70px;
+                      height: 70px;
+                      background-color: #ddd;
+                      display: block;
+
+                      &:hover {
+                        color: #000;
+                      }
+                      span {
+                        position: relative;
+                        top: 20px;
+                        color: #999;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+
+        }
+
+
+        width: 100%;
+        //height: 300px;
+        //float: left;
+        margin: 3px 5px;
+
+
+        border: 1px solid #eee;
+        box-shadow: 1px 1px 2px #EEE;
+        background-color: #fff;
+        //cursor: pointer;
+
+        //box-shadow:1px 1px 2px rgba(0,0,0,0.4);
+
+      }
+    }
+
+  }
+}
