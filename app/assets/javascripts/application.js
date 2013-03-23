@@ -10,7 +10,7 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery.min
+//= require jquery
 //= require jquery-ui.min
 //= require jquery_ujs
 //= require jquery/jquery.wookmark
