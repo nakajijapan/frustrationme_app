@@ -46,6 +46,14 @@ class FumansController < ApplicationController
     #end
   end
 
+  def update
+    @fuman = Fuman.find(params[:id])
+    params[:fuman][:user_id] = @current_user.id
+    @fuman.update_attributes(params[:fuman])
+
+    respond_with @fuman, :notice => 'created!', :location => '/'
+  end
+
   def categories
     h = {}
     ApiBucket::Service.instance(:"#{params[:type]}").categories.each_pair {|k,v| h[v]=k}

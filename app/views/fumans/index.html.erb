@@ -4,7 +4,7 @@
     <ul>
       <% @items.each do |item| %>
         <!-- item -->
-        <li class="item">
+        <li class="item" data-fuman_id="<%= item.fuman.id %>">
           <section>
             <div class="side_left">
               <h2><%= image_tag item.image_l %></h2>
@@ -21,7 +21,8 @@
                 <h4>Status</h4>
                 <div class="btn-group fuman_form" data-toggle="buttons-radio">
                   <% Fuman::status_options.each do |v, k| %>
-                    <button type="button" class="btn fuman_status" data-status="<%= k %>"><%= v %></button>
+                    <% pushed = 'active' if item.fuman.status == k.to_i %>
+                    <button type="button" class="btn fuman_status <%= pushed %>" data-status="<%= k %>" data-fuman_id="<%= item.fuman.id %>"><%= v %></button>
                   <% end %>
                 </div>
               </div>
@@ -30,7 +31,7 @@
               <!-- category -->
               <div class="category">
                 <h4>Category</h4>
-                <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}), class: 'fuman_form' %>
+                <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}, selected: item.fuman.category_id.to_i), id: '', class: 'fuman_form fuman_category', 'data-fuman_id' => item.fuman.id %>
               </div>
               <!-- /category -->
 
@@ -44,8 +45,8 @@
               <!-- comment -->
               <div class="comment">
                 <h4>Comment</h4>
-                <%= text_field_tag 'fuman_comment', '', class: 'fuman_form' %>
-                <%= button_tag 'save', class: 'btn save_button' %>
+                <%= text_field_tag 'fuman_comment', '', class: 'fuman_form', id: "fuman_comment_#{item.id}" %>
+                <%= button_tag 'save', class: 'btn save_button', 'data-item_id' => item.id %>
               </div>
 
               <div class="comment_list">
@@ -53,41 +54,23 @@
                   <%= image_tag @current_user.icon_name, size: '70x70' %>
                 </div>
 
-                <div class="list">
-                  <ul>
-                    <li>
-                      <div class="comment_line">
-                        コレスゴイホシイ
-                      </div>
-                      <div class="date">
-                        2012-10-09 10:10:10
-                      </div>
-                      <div class="delete_comment">
-                        <a href="javascript:;"><span>x</span></a>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="comment_line">
-                        コレスゴイホシイ
-                      </div>
-                      <div class="date">
-                        2012-10-09 10:10:10
-                      </div>
-                      <div class="delete_comment">
-                        <a href="javascript:;"><span>x</span></a>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="comment_line">
-                        コレスゴイホシイ
-                      </div>
-                      <div class="date">
-                        2012-10-09 10:10:10
-                      </div>
-                      <div class="delete_comment">
-                        <a href="javascript:;"><span>x</span></a>
-                      </div>
-                    </li>
+                <div class="list" >
+                  <ul data-item_id="<%= item.id %>">
+
+                    <% item.fuman.comments_of_user.each do |comment| %>
+                     <li data-comment_id="<%= comment.id %>">
+                        <div class="comment_line">
+                          <%= comment.text %>
+                        </div>
+                        <div class="date">
+                          <%= l comment.created_at, format: :short %>
+                        </div>
+                        <div class="delete_comment">
+                          <a href="javascript:;" data-comment_id="<%= comment.id %>"><span>x</span></a>
+                        </div>
+                      </li>
+                    <% end %>
+
                   </ul>
                 </div>
               </div>
@@ -105,7 +88,6 @@
   <!-- /items -->
 
 </div>
-
 
 <script>
   $(function() {
