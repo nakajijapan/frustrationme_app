@@ -1,6 +1,17 @@
 class FumansController < ApplicationController
   before_filter :current_user
 
+  def index
+    @items     = @current_user.items_with_fuman(params, 30)
+    @categories = @current_user.categories
+
+    # 絞り込み
+    if params[:s_category].present?
+    end
+
+
+  end
+
   def search
     logger.warn params
 
@@ -33,6 +44,14 @@ class FumansController < ApplicationController
     #respond_with do |format|
     #  format.json { render :json => service_fuman.fuman, status: 201}
     #end
+  end
+
+  def update
+    @fuman = Fuman.find(params[:id])
+    params[:fuman][:user_id] = @current_user.id
+    @fuman.update_attributes(params[:fuman])
+
+    respond_with @fuman, :notice => 'created!', :location => '/'
   end
 
   def categories

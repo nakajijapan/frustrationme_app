@@ -1,0 +1,96 @@
+<div id="<%= controller_name %>_<%= action_name %>">
+  <!-- items -->
+  <div class="items">
+    <ul>
+      <% @items.each do |item| %>
+        <!-- item -->
+        <li class="item" data-fuman_id="<%= item.fuman.id %>">
+          <section>
+            <div class="side_left">
+              <h2><%= image_tag item.image_l %></h2>
+            </div>
+
+            <!-- side_right -->
+            <div class="side_right">
+              <div class="title">
+                <h2><%= item.title %></h2>
+              </div>
+
+              <!-- status -->
+              <div class="status">
+                <h4>Status</h4>
+                <div class="btn-group fuman_form" data-toggle="buttons-radio">
+                  <% Fuman::status_options.each do |v, k| %>
+                    <% pushed = 'active' if item.fuman.status == k.to_i %>
+                    <button type="button" class="btn fuman_status <%= pushed %>" data-status="<%= k %>" data-fuman_id="<%= item.fuman.id %>"><%= v %></button>
+                  <% end %>
+                </div>
+              </div>
+              <!-- /status -->
+
+              <!-- category -->
+              <div class="category">
+                <h4>Category</h4>
+                <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}, selected: item.fuman.category_id.to_i), id: '', class: 'fuman_form fuman_category', 'data-fuman_id' => item.fuman.id %>
+              </div>
+              <!-- /category -->
+
+              <!-- tag -->
+              <!--
+              <div class="tag">
+              </div>
+              -->
+              <!-- /tag -->
+
+              <!-- comment -->
+              <div class="comment">
+                <h4>Comment</h4>
+                <%= text_field_tag 'fuman_comment', '', class: 'fuman_form', id: "fuman_comment_#{item.id}" %>
+                <%= button_tag 'save', class: 'btn save_button', 'data-item_id' => item.id %>
+              </div>
+
+              <div class="comment_list">
+                <div class="user">
+                  <%= image_tag @current_user.icon_name, size: '70x70' %>
+                </div>
+
+                <div class="list" >
+                  <ul data-item_id="<%= item.id %>">
+
+                    <% item.fuman.comments_of_user.each do |comment| %>
+                     <li data-comment_id="<%= comment.id %>">
+                        <div class="comment_line">
+                          <%= comment.text %>
+                        </div>
+                        <div class="date">
+                          <%= l comment.created_at, format: :short %>
+                        </div>
+                        <div class="delete_comment">
+                          <a href="javascript:;" data-comment_id="<%= comment.id %>"><span>x</span></a>
+                        </div>
+                      </li>
+                    <% end %>
+
+                  </ul>
+                </div>
+              </div>
+
+              <!-- comment -->
+            </div>
+            <!-- /side_right -->
+
+          </section>
+        </li>
+        <!-- /item -->
+      <% end %>
+    </ul>
+  </div>
+  <!-- /items -->
+
+</div>
+
+<script>
+  $(function() {
+      var app_view = new BackboneFrustration.Views.Fumans.IndexView();
+  });
+</script>

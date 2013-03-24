@@ -80,7 +80,7 @@ $(document).ready(function() {
 
     <% @items.each do |item| %>
       <!-- item -->
-      <div class="item_box" id="code_<%= item.product_code %>">
+      <div class="item_box" data-code="<%= item.product_code %>">
         <div class="item_image">
           <a href="<%= item.detail_url %>" target="_blank">
             <%= image_tag item.image[:l][:url], onload: "Frustration.Common.show_resize_image(this, 250);" %>

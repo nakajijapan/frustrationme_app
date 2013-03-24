@@ -19,4 +19,7 @@ class Fuman < ActiveRecord::Base
     options
   end
 
+  def comments_of_user
+    Comment.where('user_id = ?', self.user_id).where('item_id = ?', self.item_id).order('created_at desc')
+  end
 end

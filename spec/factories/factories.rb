@@ -32,7 +32,9 @@ FactoryGirl.define do
     category_id nil
    end
 
-   factory :comment, class: Comment do
-   end
-
+  factory :comment, class: Comment do
+    user_id nil
+    item_id nil
+    text 'moge'
+  end
 end

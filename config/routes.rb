@@ -8,32 +8,36 @@ Frustration::Application.routes.draw do
   #-----------------------------------------------
   # web
   #-----------------------------------------------
-  match 'login'  => 'sessions#new', :as => :login
-  match 'logout' => 'sessions#destroy', :as => :logout
+  # login/out
+  match 'login'                    => 'sessions#new',     :as => :login
+  match 'logout'                   => 'sessions#destroy', :as => :logout
   match '/auth/:provider/callback' => 'sessions#create'
-  resources :sessions, :only => %w[new create destroy]
+  resources :sessions, :only       => %w[new create destroy]
 
-  match 'users/new' => 'users#new', :via => :get
+  # sign up
+  match 'users/new' => 'users#new',    :via => :get
   match 'users'     => 'users#create', :via => :post
 
+  # home
   match 'home' => 'home#index', :via => :get
-  #match 'search' => 'home#search', via: [:get, :post]
 
+  # setting
   scope '/settings', as: :settings do
-    match '/icon'       => 'settings#icon', via: :get
+    match '/icon'       => 'settings#icon',    via: :get
     match '/profile'    => 'settings#profile', via: :get
     resources :categories
     resources :tags
     resources :comments
 
-    match '/twitter'    => 'settings#twitter', via: :get
+    match '/twitter'    => 'settings#twitter',  via: :get
     match '/facebook'   => 'settings#facebook', via: :get
-    match '/gadget'     => 'settings#gadget', via: :get
+    match '/gadget'     => 'settings#gadget',   via: :get
   end
 
-  match 'fumans/search' => 'fumans#search', via: [:get, :post]
+  match 'fumans/'                 => 'fumans#index',      via: [:get, :post]
+  match 'fumans/search'           => 'fumans#search',     via: [:get, :post]
   match 'fumans/categories/:type' => 'fumans#categories', via: :get
-  resources :fumans, :only => [:index] do
+  resources :fumans, :only => [:index, :update] do
     collection do
       get 'itunes'
       post 'create_with_item'
