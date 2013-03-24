@@ -24,7 +24,6 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
   initialize: () ->
     # イベントの追加
     @delegateEvents(@events)
-    console.log @events
 
   #auto_height: () ->
   #  options  =
@@ -44,9 +43,7 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
     fuman.save(
       data,
       success : (model, res) ->
-        console.log 'success'
     )
-
 
   update_category : (e) ->
     fuman = new BackboneFrustration.Models.Fuman
@@ -74,7 +71,6 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
     saved = comment.save(
       data,
       success : (model, res) ->
-
         _this._append_comment(res)
     )
 
@@ -85,7 +81,6 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
 
   delete_comment : (e) ->
     comment_id = $(e.currentTarget).data('comment_id')
-    console.log comment_id
 
     data =
       id: comment_id
@@ -116,8 +111,6 @@ class BackboneFrustration.Views.Fumans.Index_CommentView extends Backbone.View
     data =
       comment: @comment.model
 
-    console.log 'render'
-    console.log data
     $(@el).html(@template.render(data)).fadeIn('slow')
 
     @
