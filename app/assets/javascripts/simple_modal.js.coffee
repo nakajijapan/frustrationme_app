@@ -155,7 +155,6 @@
           #$(_this).animate({top: "50%", opacity: 1}, 500)
           #$modal = $('#modal_window').html($(_this))).css(options.css_window).css({'display': 'block', top: '-100px'}
 
-
           $('img', $modal).css('width', width + 'px')
           #$modal.animate({top: "30%", opacity: 1}, 500)
           $modal.animate({top: center_h, left: center_w, opacity: 1}, 500)
