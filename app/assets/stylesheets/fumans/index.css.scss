@@ -3,8 +3,11 @@
   //------------------------------------------------------------
   // search
   //------------------------------------------------------------
-
   #fumans_index {
+    button.active {
+      background-color: #888;
+    }
+
     /*
     .items {
       list-style-type: none;
@@ -63,6 +66,11 @@
 
             .title {
               margin: 10px 0px;
+              h2 {
+                font-size: 24px;
+              }
+
+
             }
             .status,
             .category,
@@ -82,7 +90,7 @@
               .save_button {
                 position: absolute;
                 top: 10px;
-                left: 400px;
+                left: 380px;
               }
             }
 
@@ -152,6 +160,7 @@
                       height: 66px;
                       background-color: #ddd;
                       display: block;
+                      border: 1px solid #BBB;
 
                       &:hover {
                         color: #000;
