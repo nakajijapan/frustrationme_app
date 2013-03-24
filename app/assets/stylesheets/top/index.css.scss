@@ -1,3 +1,7 @@
+#main_box {
+  height: 100%;
+}
+
 /**
  * Grid container
 */
@@ -5,6 +9,7 @@
   list-style-type: none;
   position: relative; /** Needed to ensure items are laid out relative to this container **/
   margin: 0;
+  display: block;
 }
 
 /**
@@ -18,7 +23,7 @@
   display: none; /** Hide items initially to avoid a flicker effect **/
   cursor: pointer;
 
-  box-shadow:1px 1px 2px rgba(0,0,0,0.4);
+  //box-shadow:1px 1px 2px rgba(0,0,0,0.4);
 }
 #titles li .imgs{
 
@@ -29,6 +34,7 @@
   padding: 10px 10px 0 10px ;
   height:auto;
 }
+
 #tiles li p img{
   width:30px;
   float:left;
@@ -36,9 +42,11 @@
   margin-right:10px;
 }
 
+
 /**
  * Grid item text
 */
+/*
 #tiles li p {
   color: #666;
   font-size: 12px;
@@ -53,10 +61,12 @@
   font-weight:bold;
   padding:10px;
 }
+*/
 
 /**
  * Some extra styles to randomize heights of grid items.
 */
+/*
 #tiles ali:nth-child(3n) {
   height: 175px;
 }
@@ -68,13 +78,8 @@
 #tiles ali:nth-child(5n) {
   height: 250px;
 }
+*/
 
 /** General page styling **/
 
 
-.follow {
-  width: 100%;
-  position: fixed !important;
-  top: 0;
-  z-index:9999;
-}

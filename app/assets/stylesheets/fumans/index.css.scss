@@ -1,0 +1,151 @@
+#frustration {
+
+  //------------------------------------------------------------
+  // search
+  //------------------------------------------------------------
+  #fumans_index {
+    button.active {
+      background-color: #888;
+    }
+
+    .items {
+      list-style-type: none;
+      position: relative;
+      margin: 0 auto;
+      display: block;
+      width: 800px;
+
+      li.item {
+
+        width: 100%;
+        margin: 10px 0px;
+
+        border: 1px solid #eee;
+        box-shadow: 1px 1px 2px #EEE;
+        background-color: #fff;
+
+        section {
+          display: table;
+          width: 100%;
+
+          .side_left {
+            display: table-cell;
+            width: 180px;
+
+            img {
+              display: block;
+              width: 180px ;
+              padding: 10px;
+            }
+          }
+          .side_right {
+            display: table-cell;
+            vertical-align: top;
+            width: 500px;
+
+            .title {
+              margin: 10px 0px;
+              h2 {
+                font-size: 24px;
+              }
+
+
+            }
+            .status,
+            .category,
+            .comment,
+            .tag {
+              position: relative;
+              margin: 0px;
+              padding: 5px 0px;
+              border-bottom: 1px dotted #ccc;
+
+              .fuman_form {
+                position: absolute;
+                top: 10px;
+                left: 150px;
+
+              }
+              .save_button {
+                position: absolute;
+                top: 10px;
+                left: 380px;
+              }
+            }
+
+            .comment {
+            }
+
+            .comment_list {
+
+              position: relative;
+              display: table;
+              margin: 10px 0px;
+
+              .user {
+                vertical-align: top;
+                display: table-cell;
+
+                img {
+                  background-color: #333;
+                  padding: 3px;
+                  margin-left: 10px;
+                }
+              }
+              .list {
+                display: table-cell;
+                width: 480px;
+                li {
+                  min-height: 70px;
+                  margin: 0px;
+                  padding-bottom: 20px;
+                  position: relative;
+                  overflow: hidden;
+
+
+                  .comment_line {
+                    font-size: 14px;
+                    width: 360px;
+                  }
+                  .date {
+                    position: absolute;
+                    bottom: 0px;
+                    right: 0px;
+                    font-size: 12px;
+                    color: #999;
+                  }
+                  .delete_comment {
+                    position: absolute;
+                    right: 0px;
+                    top: 2px;
+                    //  float: right;
+                    vertical-align: middle;
+                    text-align: center;
+
+                    a {
+                      font-size: 50px;
+                      width: 70px;
+                      height: 66px;
+                      background-color: #ddd;
+                      display: block;
+                      border: 1px solid #BBB;
+
+                      &:hover {
+                        color: #000;
+                      }
+                      span {
+                        position: relative;
+                        top: 20px;
+                        color: #999;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
