@@ -162,12 +162,13 @@ EJS.Scanner = function(source, left, right) {
 };
 
 EJS.Scanner.to_text = function(input){
-  if(input == null || input === undefined)
-        return '';
-    if(input instanceof Date)
-    return input.toDateString();
+  if(input == null || input === undefined) return '';
+  if(input instanceof Date) return input.toDateString();
   if(input.toString)
-        return input.toString();
+  {
+    /* return input.toString(); // an error occurs in safari (Type Error) */
+    return '' + input + '';
+  }
   return '';
 };
 
