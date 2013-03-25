@@ -42,18 +42,19 @@
         <!-- right_block -->
         <% if @current_user %>
           <div class="right_block">
+            <nav class='separate'>
+            </nav>
             <nav class='top_menu'>
+              <div class="user_info">
+                <a href='/home'>
+                  <%= image_tag @current_user.icon_name, size: '30x30' %>
+                  <%= @current_user.username %>
+                  &nbsp;
+                  ▼
+                </a>
+              </div>
               <ul>
-                <li>
-                  <a href='/home'>
-                    <%= image_tag @current_user.icon_name, size: '30x30' %>
-                    <%= @current_user.username %>
-                    &nbsp;
-                    ▼
-                  </a>
-                </li>
-
-                <li class='user_menu'>
+                <li class='user_menu hide'>
                   <ul>
                     <li><a href="/fumans/search">Search</a></li>
                     <li><a href="/fumans/">List</a></li>
@@ -133,6 +134,11 @@
 
     <!-- Javascripts -->
     <%= javascript_include_tag "backbone/application" %>
+    <script>
+      $(function() {
+          var app_view = new BackboneFrustration.Views.HeaderView();
+      });
+    </script>
     <%= yield :footer_javascript %>
     <!-- /Javascripts -->
   </body>

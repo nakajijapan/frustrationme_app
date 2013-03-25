@@ -88,6 +88,6 @@ class User < ActiveRecord::Base
 
   # 登録アイテム一覧
   def items_with_fuman(params, per=10)
-    Item.includes(:fuman).joins(:fuman).where('user_id = ?', self.id).page(params[:page]).per(per)
+    Item.includes(:fuman).joins(:fuman).where('user_id = ?', self.id).order('fumans.created_at desc').page(params[:page]).per(per)
   end
 end

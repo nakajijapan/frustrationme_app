@@ -19,6 +19,7 @@ body {
 //------------------------------------------------------------------------------
 //   header
 //------------------------------------------------------------------------------
+
 header#header_menu {
   background-color: $main_background_color;
   margin-bottom: 10px;
@@ -36,16 +37,48 @@ header#header_menu {
   }
   .right_block {
     float: right;
-    padding-top: 8px;
+    height: 100%;
+    //padding-top: 8px;
   }
 
+  ul {
+    z-index: 100;
+  }
+
+  nav.separate {
+    background-color: #FA8A9A;
+    float: left;
+    height: 50px;
+    width: 1px;
+    //border: 1px solid #FA8A9A;
+    box-shadow: 1px 0px 2px #FA8A9A;
+    box-shadow: 1px 0px 2px #FA8A9A inset;
+    box-sizing: content-box;
+  }
+
+
   nav.top_menu {
-    ul {
-      padding: 5px;
-    }
-    li {
-      float: left;
-      margin-right: 10px;
+    z-index: 9100;
+    height: 50px;
+    float: left;
+
+    .user_info {
+      display: block;
+
+      vertical-align: middle;
+
+      a {
+        color: #fff;
+        display: block;
+        height: 40px;
+        width: 200px;
+        padding: 10px 0 0 10px;
+
+        //&:hover {
+        //  background-color: $menu_hover_color;
+        //}
+      }
+
     }
 
     ul li > a {
@@ -57,10 +90,10 @@ header#header_menu {
     li.user_menu {
       ul {
         padding: 0px;
+        margin: 0px;
         position: absolute;
-        right: 15px;
-        top: 50px;
-        background-color: #FA8A9A;
+        right: 30px;
+        background-color: $menu_background_color;
         box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
       }
       li {
@@ -71,52 +104,30 @@ header#header_menu {
         display: block;
         margin: 0px;
         padding: 5px 10px;
-        //border-bottom: 1px solid #000;
-        width: 140px;
+        width: 120px;
       }
       li:hover {
-        background-color: #FB697E;
-        //background-color: #FB919D;
+        background-color: $menu_hover_color;
       }
     }
   }
 }
 
-
-/*
-li .dropdown .open  {
-  background-color: $main_background_color;
-}
-
-.dropdown-menu {
-  position: absolute;
-  left: -80px;
-}
-
-
-.navbar .nav li.dropdown > .dropdown-toggle .caret {
-  border-top-color: #fff;
-  border-bottom-color: #fff;
-}
-
-.navbar .nav > li > .dropdown-menu::before {
-  left: 109px;
-}
-
-.navbar .nav > li > .dropdown-menu::after {
-  left: 110px;
-}
-*/
-
 //------------------------------------------------------------------------------
-//   notice
+// util
+//------------------------------------------------------------------------------
+.hide {
+  display: none;
+}
+//------------------------------------------------------------------------------
+// notice
 //------------------------------------------------------------------------------
 .container {
   padding: 0 15px;
 }
 
 //------------------------------------------------------------------------------
-//   modal
+// modal
 //------------------------------------------------------------------------------
 .modal_conteiner {
   display: none;
