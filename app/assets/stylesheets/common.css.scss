@@ -56,6 +56,28 @@ header#header_menu {
     box-sizing: content-box;
   }
 
+  nav.top_menu_nologin {
+    height: 50px;
+    float: left;
+
+    ul li {
+      float: left;
+    }
+    a {
+      font-size: 16px;
+      color: #fff;
+      height: 35px;
+      width: 70px;
+      display: block;
+      padding: 15px 0 0 10px;
+
+      &:hover {
+        text-decoration: none;
+        color: $main_background_color;
+        background-color: #fff;
+      }
+    }
+  }
 
   nav.top_menu {
     z-index: 9100;
