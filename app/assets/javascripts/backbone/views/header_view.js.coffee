@@ -24,9 +24,4 @@ class BackboneFrustration.Views.HeaderView extends Backbone.View
   menu_toggle: (e) ->
     $target = $(e.curentTarget)
 
-    #display = $target.data('display');
 
-    #if display == 0
-    #  $target.show().data('display', 1);
-    #else
-    #  $target.hide().data('display', 0);
