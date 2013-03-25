@@ -3,10 +3,6 @@
 #----------------------------------------------
 (($)->
   $.SimpleModal = (element, options) ->
-    #console.log('new init------------');
-    #console.log(options);
-    #console.log('new init------------ end');
-
     defaults =
       target: ''
       continue_overlay: false
@@ -23,23 +19,29 @@
         filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=85)'
         filter: 'alpha(opacity=80)'
         display: 'none'
+        cursor: 'wait'
       css_window:
         opacity:            0
         position:           'fixed'
         padding:            '0px'
         margin:             '0px'
-        width:              '30%'
-        top:                '30%'
-        left:               '35%'
-        #'text-align':       'center'
+        top:                '0px'
         color:              'rgb(0, 0, 0)'
-        #border:             '3px solid #000'
         border:             '0px'
         'background-color': '#fff'
-        #cursor: 'wait'
         'z-index': 9000
 
     plugin = this;
+
+    # init
+    options = {} if options == undefined
+
+    # window's style sheet
+    options.css_window  = $.fn.extend(defaults.css_window, options.css_window) if options.css_window
+
+    # overlay's style sheet
+    options.css_overlay = $.fn.extend(defaults.css_overlay, options.css_overlay) if options.css_overlay
+
     plugin.options = $.fn.extend(defaults, options)
     _this = element
 
@@ -101,7 +103,6 @@
       $modal.animate({top: "-=100px", opacity: 0}, 500, callback)
       return this
 
-
     #---------------------------
     # open
     #---------------------------
@@ -109,35 +110,27 @@
       # init
       options = plugin.options;
 
-      #$(this).css('opacity', 0);
-      #$(this).css(options.css_window);
-      #console.log('start animate show')
-
       $clone = $(_this).clone(true)
 
-      console.log $(window).height()
-      console.log $(window).width()
-      console.log $(_this).height()
-      console.log $(_this).width()
-      console.log _this
-
+      # browser window size
       window_height = $(window).height()
       window_width  = $(window).width()
+
+      # modal window size
       height = $(_this).height()
       width  = $(_this).width()
 
-      retio = 1
-      if width > 1000
-        console.log "1000 / #{width} = " + 1000.0 / width
-        retio = 1000.0 / width
-        width = 1000
+      # resize if modal window size is biggger than window size
+      if width > window_width
+        retio = window_width * 0.9 / width
+        width = window_width * 0.9
+        height = height * retio
 
-      console.log "retio = " + retio
-
+      # calcurate modal window position
       center_h = window_height * 0.5 - height * 0.5
       center_w = window_width * 0.5 - width * 0.5
 
-
+      # configure position
       $modal = $('#modal_window')
       $modal.html($clone)
       $modal.children().show()
@@ -145,24 +138,17 @@
       $modal.css(
         'display': 'block'
         'top':     '-100px'
-        'height':  height * retio + 'px'
-        'width':  width + 'px'
+        'left':    center_w
+        'height':  height + 'px'
+        'width':   width + 'px'
       )
 
       if options.continue_overlay == false
         $('#modal_overlay').fadeIn(300, () ->
-          #$(_this).css({'display': 'block', top: '-100px'})
-          #$(_this).animate({top: "50%", opacity: 1}, 500)
-          #$modal = $('#modal_window').html($(_this))).css(options.css_window).css({'display': 'block', top: '-100px'}
-
           $('img', $modal).css('width', width + 'px')
-          #$modal.animate({top: "30%", opacity: 1}, 500)
           $modal.animate({top: center_h, left: center_w, opacity: 1}, 500)
-          #console.log $modal
         )
       else
-        #$(_this).css({'display': 'block', top: '-100px'})
-        #$(_this).animate({top: "30%", opacity: 1}, 500)
         $modal.animate({top: center_h, left: center_w, opacity: 1}, 500)
 
     plugin.init()
