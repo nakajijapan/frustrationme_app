@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_filter :current_user
 
   def index
   end
