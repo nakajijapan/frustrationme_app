@@ -1,2 +1,65 @@
-<h1>Categories#index</h1>
-<p>Find me in app/views/categories/index.html.erb</p>
+<div id="<%= controller_name %>_<%= action_name %>">
+
+  <div class="wrapper">
+
+    <form class="form_create">
+      <label for="name">Category</label>
+      <div>
+      <%= text_field_tag :name %>
+      <%= button_tag :create, type: :button, class: 'btn' %>
+      </div>
+    </form>
+
+
+    <ul>
+      <li>
+        <div class="mode_show">
+          <span>カテゴリ１</span>
+          <%= button_tag :x, type: :button, class: 'delete' %>
+        </div>
+      </li>
+      <li>
+        <div class="mode_show">
+          <span>カテゴリ１</span>
+          <%= button_tag :x, type: :button, class: 'delete' %>
+        </div>
+      </li>
+      <li>
+        <div class="mode_show">
+          <span>カテゴリ１</span>
+          <%= button_tag :x, type: :button, class: 'delete' %>
+        </div>
+      </li>
+      <li>
+        <div class="mode_edit">
+          <span>
+            <%= text_field_tag :name, 'かてごり１' %>
+          </span>
+
+          <%= button_tag :save, type: :button, class: 'btn' %>
+          <%= button_tag :cancel, type: :button, class: 'btn' %>
+        </div>
+      </li>
+      <li>
+        <div class="mode_edit">
+          <span>
+            <%= text_field_tag :name, 'かてごり１' %>
+          </span>
+
+          <%= button_tag :save, type: :button, class: 'btn' %>
+          <%= button_tag :cancel, type: :button, class: 'btn' %>
+        </div>
+      </li>
+    </ul>
+
+
+
+  </div>
+</div>
+
+<script>
+  $(function() {
+      var app_view = new BackboneFrustration.Views.Categories.IndexView();
+  });
+</script>
+
