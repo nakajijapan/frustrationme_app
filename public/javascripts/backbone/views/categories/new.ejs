@@ -1,0 +1,17 @@
+
+      <li data-id=<%= category.id %>>
+        <div class="mode_show" data-id=<%= category.id %>>
+          <span class="category_name" data-id=<%= category.id %>><%= category.name %></span>
+          <button class="category_delete" name="button" type="button">x</button>
+        </div>
+
+        <div class="mode_edit hide" data-id=<%= category.id %>>
+          <span class="category_name">
+            <input id="name" name="name" type="text" value="<%= category.name %>" />
+          </span>
+
+          <button class="category_update btn" name="button" type="button">save</button>
+          <button class="category_cancel btn" name="button" type="button" data-id=<%= category.id %>>cancel</button>
+        </div>
+      </li>
+

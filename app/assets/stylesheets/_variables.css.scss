@@ -4,13 +4,24 @@
 $main_background_color: #FB697E;
 $body_background_color: #fffafa;
 
-$header_background_color: #ffffff;
+//$header_background_color: #ffffff;
 
 $menu_background_color: #FA8A9A;
 $menu_hover_color: #FB697E;
+
+$link_hover_color: #aaaaaa;
+$link_active_color: #FA8A9A;
+
+
 
 @mixin list_box_design {
   border: 1px solid #bbb;
   box-shadow: 0px 0px 4px #bbb;
   background-color: #fff;
+}
+
+@mixin border_raidus($pixel) {
+  border-radius: $pixel;
+  -webkit-border-radius: $pixel;
+  -moz-border-radius: $pixel;
 }

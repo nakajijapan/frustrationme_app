@@ -8,8 +8,6 @@ class FumansController < ApplicationController
     # 絞り込み
     if params[:s_category].present?
     end
-
-
   end
 
   def search
