@@ -12,5 +12,5 @@ class BackboneFrustration.Models.Fuman extends BackboneFrustration.Model
     @urlRoot = "/fumans"
 
 
-class BackboneFrustration.Collections.CategoryStore extends Backbone.Collection
+class BackboneFrustration.Collections.Fumans extends Backbone.Collection
   model: BackboneFrustration.Models.Fuman
