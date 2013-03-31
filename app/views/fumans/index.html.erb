@@ -31,7 +31,7 @@
               <!-- category -->
               <div class="category">
                 <h4>Category</h4>
-                <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}, selected: item.fuman.category_id.to_i), id: '', class: 'fuman_form fuman_category', 'data-fuman_id' => item.fuman.id %>
+                <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}.unshift(['----', '']), selected: item.fuman.category_id.to_i), id: '', class: 'fuman_form fuman_category', 'data-fuman_id' => item.fuman.id %>
               </div>
               <!-- /category -->
 

@@ -15,4 +15,5 @@
  *= require effect
  *= require_directory ./fumans
  *= require_directory ./top
+ *= require_directory ./categories
  */

@@ -24,3 +24,6 @@ class BackboneFrustration.Model extends Backbone.Model
      else if typeof(error) == 'string'
        if error? or error != ''
          alert(error);
+
+
+class BackboneFrustration.Collection extends Backbone.Collection

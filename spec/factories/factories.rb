@@ -9,6 +9,7 @@ FactoryGirl.define do
    end
 
   factory :category, :class => Category do
+     user_id nil
      name 'hogehoge_name'
    end
 

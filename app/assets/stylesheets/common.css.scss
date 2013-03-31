@@ -146,6 +146,7 @@ header#header_menu {
 //------------------------------------------------------------------------------
 .container {
   padding: 0 15px;
+  color: #6d6d6d;
 }
 
 //------------------------------------------------------------------------------
@@ -209,7 +210,6 @@ header#header_menu {
 
   .body {
     margin: 10px;
-    //top: -10px;
     position: relative;
     padding-top: 10px
 
@@ -219,8 +219,6 @@ header#header_menu {
 
     h4 {
       color: #666;
-      //padding: 5px;
-      //border-radius: 8px;
     }
 
     .btn-group > .btn {

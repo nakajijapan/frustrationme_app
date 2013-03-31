@@ -17,5 +17,5 @@ class BackboneFrustration.Models.Comment extends BackboneFrustration.Model
       return "Please Input Comment"
 
 
-class BackboneFrustration.Collections.CommentStore extends Backbone.Collection
+class BackboneFrustration.Collections.Comments extends Backbone.Collection
   model: BackboneFrustration.Models.Comment
