@@ -5,51 +5,13 @@
     <form class="form_create">
       <label for="name">Category</label>
       <div>
-      <%= text_field_tag :name %>
-      <%= button_tag :create, type: :button, class: 'btn' %>
+      <%= text_field_tag :name, '', id: 'category_name' %>
+      <%= button_tag :create, type: :button, class: 'btn category_create' %>
       </div>
     </form>
 
 
-    <ul>
-      <li>
-        <div class="mode_show">
-          <span>カテゴリ１</span>
-          <%= button_tag :x, type: :button, class: 'delete' %>
-        </div>
-      </li>
-      <li>
-        <div class="mode_show">
-          <span>カテゴリ１</span>
-          <%= button_tag :x, type: :button, class: 'delete' %>
-        </div>
-      </li>
-      <li>
-        <div class="mode_show">
-          <span>カテゴリ１</span>
-          <%= button_tag :x, type: :button, class: 'delete' %>
-        </div>
-      </li>
-      <li>
-        <div class="mode_edit">
-          <span>
-            <%= text_field_tag :name, 'かてごり１' %>
-          </span>
-
-          <%= button_tag :save, type: :button, class: 'btn' %>
-          <%= button_tag :cancel, type: :button, class: 'btn' %>
-        </div>
-      </li>
-      <li>
-        <div class="mode_edit">
-          <span>
-            <%= text_field_tag :name, 'かてごり１' %>
-          </span>
-
-          <%= button_tag :save, type: :button, class: 'btn' %>
-          <%= button_tag :cancel, type: :button, class: 'btn' %>
-        </div>
-      </li>
+    <ul id="items">
     </ul>
 
 
