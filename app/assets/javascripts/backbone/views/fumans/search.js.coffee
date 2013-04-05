@@ -5,11 +5,8 @@ BackboneFrustration.Views.Fumans ||= {}
 # View
 #-----------------------------------------------------------------------------
 class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
-
   el: $("#fumans_search")
-
   form_view: null
-
   events:
     'click .service_button'      : 'change_search_type'
     'click .show_modal': 'show_modal'
