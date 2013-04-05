@@ -1,0 +1,26 @@
+@import "variables";
+
+#frustration {
+  #users_show {
+    .items {
+      position: relative;
+      margin: 0;
+      display: block;
+
+      li.item {
+        width: 200px;
+        border: 1px solid #dedede;
+        margin: 10px 0;
+
+        .side_top {
+          img {
+            display: block;
+            width: 180px ;
+            height:auto;
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
+}

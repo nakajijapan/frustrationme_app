@@ -1,0 +1,28 @@
+<section id="<%= controller_name %>_<%= action_name %>">
+  <!-- items -->
+  <div class="item_box">
+    <ul class="items">
+      <% @items.each do |item| %>
+        <!-- item -->
+        <li class="item" data-fuman_id="<%= item.fuman.id %>">
+          <div class="side_top">
+            <h2>
+              <%#= image_tag item.image_l, style: 'width:180px;height:180px' %>
+              <%= image_tag item.image_l %>
+            </h2>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <!-- /items -->
+</section>
+
+<script>
+$(function() {
+  var app_view = new BackboneFrustration.Views.Users.ShowView();
+});
+$(window).load(function () {
+  var app_view = new BackboneFrustration.Views.Users.ShowView();
+});
+</script>

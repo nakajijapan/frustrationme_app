@@ -16,4 +16,5 @@
  *= require_directory ./fumans
  *= require_directory ./top
  *= require_directory ./categories
+ *= require_directory ./users
  */

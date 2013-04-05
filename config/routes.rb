@@ -1,7 +1,5 @@
 Frustration::Application.routes.draw do
 
-  get 'users/show'
-
   # root
   root :to => 'top#index'
 
@@ -15,8 +13,8 @@ Frustration::Application.routes.draw do
   resources :sessions, :only       => %w[new create destroy]
 
   # sign up
-  match 'users/new' => 'users#new',    :via => :get
-  match 'users'     => 'users#create', :via => :post
+  resources :users, only: [:new, :create]
+  match '/users/:username/', to: 'users#show'
 
   # home
   match 'home' => 'home#index', :via => :get
