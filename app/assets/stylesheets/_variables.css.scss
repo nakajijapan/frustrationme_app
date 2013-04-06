@@ -20,17 +20,18 @@ $link_active_color: #fa8a9a;
   background-color: #fff;
 }
 
-@mixin border_raidus($pixel) {
-  border-radius: $pixel;
-  -webkit-border-radius: $pixel;
-  -moz-border-radius: $pixel;
-}
-
 @mixin border-radius($pixel) {
   border-radius: $pixel;
   -webkit-border-radius: $pixel;
   -moz-border-radius: $pixel;
 }
+
+@mixin box-shadow($first) {
+  box-shadow: $first;
+  -webkit-box-shadow: $first;
+  -moz-box-shadow: $first;
+}
+
 @mixin box-shadow2($first, $second) {
   box-shadow: $first, $second;
   -webkit-box-shadow: $first, $second;
