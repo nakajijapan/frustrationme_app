@@ -10,7 +10,7 @@ $menu_background_color: #FA8A9A;
 $menu_hover_color: #FB697E;
 
 $link_hover_color: #aaaaaa;
-$link_active_color: #FA8A9A;
+$link_active_color: #fa8a9a;
 
 
 
@@ -24,4 +24,22 @@ $link_active_color: #FA8A9A;
   border-radius: $pixel;
   -webkit-border-radius: $pixel;
   -moz-border-radius: $pixel;
+}
+
+@mixin border-radius($pixel) {
+  border-radius: $pixel;
+  -webkit-border-radius: $pixel;
+  -moz-border-radius: $pixel;
+}
+@mixin box-shadow2($first, $second) {
+  box-shadow: $first, $second;
+  -webkit-box-shadow: $first, $second;
+  -moz-box-shadow: $first, $second;
+}
+
+@mixin linear-gradient-top($first, $second) {
+  background: linear-gradient(top, $first, $second);
+  background: -webkit-linear-gradient(top, $first, $second);
+  background: -moz-linear-gradient(top, $first, $second);
+
 }

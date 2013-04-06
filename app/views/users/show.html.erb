@@ -1,7 +1,39 @@
 <section id="<%= controller_name %>_<%= action_name %>">
+
   <!-- prefile -->
+  <div class="profile_header">
+    <div class="profile_icon">
+      <%= image_tag @target_user.icon_name %>
+    </div>
+
+    <div class="username">
+      <h2>
+        <%= @target_user.username %>
+      </h2>
+    </div>
+
+    <div class="status_bar">
+      <!--
+      <button class="btn">23458<div>monmon</div></button>
+      -->
+    </div>
+
+    <div class="friends btn-group">
+      <button class="btn"><span>23458</span><div>follows</div></button>
+      <button class="btn"><span>23458</span><div>followers</div></button>
+    </div>
+  </div>
   <!-- /prefile -->
 
+  <!-- item_menu -->
+  <div class="items_menu">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#">23458 monmon</a></li>
+      <li><a href="#">32 Category</a></li>
+      <li><a href="#">22 Tab</a></li>
+    </ul>
+  </div>
+  <!-- /item_menu -->
 
   <!-- items -->
   <div class="item_box">

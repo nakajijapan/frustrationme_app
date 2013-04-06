@@ -39,6 +39,10 @@ header#header_menu {
     float: right;
     height: 100%;
     //padding-top: 8px;
+
+    &:hover {
+      background-color: $link_active_color;
+    }
   }
 
   ul {
