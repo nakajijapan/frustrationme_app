@@ -1,4 +1,8 @@
 <section id="<%= controller_name %>_<%= action_name %>">
+  <!-- prefile -->
+  <!-- /prefile -->
+
+
   <!-- items -->
   <div class="item_box">
     <ul class="items">
@@ -6,12 +10,18 @@
         <!-- item -->
         <li class="item" data-fuman_id="<%= item.fuman.id %>">
           <div class="side_top">
-            <h2>
-              <%#= image_tag item.image_l, style: 'width:180px;height:180px' %>
+            <a href="/items/<%= item.id %>">
               <%= image_tag item.image_l %>
-            </h2>
+            </a>
+            <p>
+              <%= item.title %>
+            </p>
+          </div>
+          <div class="service_icon">
+            <%= image_tag "/assets/service/icon_#{item.service_code}.png", title: item.title %>
           </div>
         </li>
+        <!-- /item-->
       <% end %>
     </ul>
   </div>
