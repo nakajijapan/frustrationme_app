@@ -19,7 +19,6 @@ body {
 //------------------------------------------------------------------------------
 //   header
 //------------------------------------------------------------------------------
-
 header#header_menu {
   background-color: $main_background_color;
   margin-bottom: 10px;
@@ -38,7 +37,6 @@ header#header_menu {
   .right_block {
     float: right;
     height: 100%;
-    //padding-top: 8px;
 
     &:hover {
       background-color: $link_active_color;
@@ -54,7 +52,6 @@ header#header_menu {
     float: left;
     height: 50px;
     width: 1px;
-    //border: 1px solid #FA8A9A;
     box-shadow: 1px 0px 2px #FA8A9A;
     box-shadow: 1px 0px 2px #FA8A9A inset;
     box-sizing: content-box;
@@ -90,7 +87,6 @@ header#header_menu {
 
     .user_info {
       display: block;
-
       vertical-align: middle;
 
       a {
@@ -100,17 +96,18 @@ header#header_menu {
         width: 200px;
         padding: 10px 0 0 10px;
 
-        //&:hover {
-        //  background-color: $menu_hover_color;
-        //}
+        &:hover {
+          text-decoration: none;
+        }
       }
-
     }
 
     ul li > a {
       font-size: 16px;
       color: #fff !important;
-      //text-shadow: 3px 5px 3px $main_background_color;
+      &:hover {
+        text-decoration: none;
+      }
     }
 
     li.user_menu {
