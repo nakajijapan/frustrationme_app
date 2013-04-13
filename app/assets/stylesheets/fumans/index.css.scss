@@ -8,8 +8,13 @@
   #fumans_index {
     button.active {
       background-color: #888;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
     }
 
+    //------------------------
+    // items
+    //------------------------
     .items {
       list-style-type: none;
       position: relative;
@@ -42,14 +47,11 @@
             display: table-cell;
             vertical-align: top;
             width: 500px;
-
             .title {
               margin: 10px 0px;
               h2 {
                 font-size: 24px;
               }
-
-
             }
             .status,
             .category,
@@ -64,7 +66,6 @@
                 position: absolute;
                 top: 10px;
                 left: 150px;
-
               }
               .save_button {
                 position: absolute;
@@ -73,11 +74,13 @@
               }
             }
 
+            //------------------------
+            // comment list for items
+            //------------------------
             .comment {
             }
 
             .comment_list {
-
               position: relative;
               display: table;
               margin: 10px 0px;
@@ -87,7 +90,7 @@
                 display: table-cell;
 
                 img {
-                  background-color: #333;
+                  background-color: #ccc;
                   padding: 3px;
                   margin-left: 10px;
                 }
@@ -101,7 +104,6 @@
                   padding-bottom: 20px;
                   position: relative;
                   overflow: hidden;
-
 
                   .comment_line {
                     font-size: 14px;
