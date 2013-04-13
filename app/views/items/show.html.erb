@@ -1,0 +1,112 @@
+<div id="<%= controller_name %>_<%= action_name %>">
+  <!-- item_box -->
+  <section class="item_box">
+    <%= link_to image_tag(@item.image_l), @item.url, target: '_blank', class: 'item_image' %>
+    <p>
+    <%= @item.title %>
+    </p>
+
+    <a href="#" class="btn frustrate" title="このアイテムを登録します">♥</a>
+  </section>
+  <!-- /item_box -->
+
+  <!-- info_box -->
+  <section class="info_box">
+    <article class="left_box">
+      <div class="comments">
+        <ul>
+          <!-- comment -->
+          <% @comments.each do |c| %>
+            <li>
+              <a href="#" class="user">
+                <%= icon_image_tag c.icon_name, class: 'icon_name' %>
+              </a>
+              <div class="message">
+                <div class="username">
+                  <a href="/users/<%= c.username %>">
+                    <%= c.username %>
+                  </a>
+                  <span class="created"><%= c.created_at %></span>
+                </div>
+                <p>
+                  <%= c.text %>
+                </p>
+              </div>
+            </li>
+          <% end %>
+          <!-- /comment -->
+        </ul>
+      </div>
+
+      <div class="comment_create">
+      </div>
+    </article>
+    <!-- info_box -->
+
+    <article class="right_box">
+      <div class="status status_1">
+        <h4>ほしい</h4>
+        <div class="users">
+          <% @registers[:want].each do |user| %>
+            <a href="/users/<%= user.username %>">
+              <%= icon_image_tag user.icon_name  %>
+            </a>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="status status_2">
+        <h4>持ってる</h4>
+        <div class="users">
+          <% @registers[:has].each do |user| %>
+            <a href="/users/<%= user.username %>">
+              <%= icon_image_tag user.icon_name  %>
+            </a>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="status status_3">
+        <h4>あげたい</h4>
+        <div class="users">
+          <% @registers[:give].each do |user| %>
+            <% if  user.icon_name.blank? %>
+              <%= image_tag '/assets/user/icon.gif' %>
+            <% else %>
+            <a href="/users/<%= user.username %>">
+              <%= icon_image_tag user.icon_name  %>
+            </a>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="status status_4">
+        <h4>体験した</h4>
+        <div class="users">
+          <% @registers[:experience].each do |user| %>
+            <a href="/users/<%= user.username %>">
+              <%= icon_image_tag user.icon_name  %>
+            </a>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="status status_5">
+        <h4>体験した</h4>
+        <div class="users">
+          <% @registers[:had].each do |user| %>
+            <a href="/users/<%= user.username %>">
+              <%= icon_image_tag user.icon_name  %>
+            </a>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="registers">
+      </div>
+    </article>
+
+  </section>
+</div>
+

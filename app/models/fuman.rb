@@ -3,6 +3,7 @@ class Fuman < ActiveRecord::Base
   self.table_name = 'fumans'
   attr_accessible :user_id, :content, :category_id, :item_id, :status, :tag_ids
 
+  belongs_to :user
   has_one :item
 
   STATUSES = {

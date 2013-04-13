@@ -7,13 +7,19 @@
         <li class="item" data-fuman_id="<%= item.fuman.id %>">
           <section>
             <div class="side_left">
-              <h2><%= image_tag item.image_l %></h2>
+              <h2>
+                <a href="<%= item.url %>" alt="<%= item.title %>">
+                  <%= image_tag item.image_l, alt: item.title %>
+                </a>
+              </h2>
             </div>
 
             <!-- side_right -->
             <div class="side_right">
               <div class="title">
-                <h2><%= item.title %></h2>
+                <h2>
+                  <%= item.title %>
+                </h2>
               </div>
 
               <!-- status -->
@@ -51,7 +57,7 @@
 
               <div class="comment_list">
                 <div class="user">
-                  <%= image_tag @current_user.icon_name, size: '70x70' %>
+                  <%= icon_image_tag @current_user.icon_name, size: '70x70', alt: @current_user.username %>
                 </div>
 
                 <div class="list" >

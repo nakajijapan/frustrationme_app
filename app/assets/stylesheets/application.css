@@ -17,4 +17,5 @@
  *= require_directory ./top
  *= require_directory ./categories
  *= require_directory ./users
+ *= require_directory ./items
  */

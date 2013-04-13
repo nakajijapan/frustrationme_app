@@ -1,5 +1,7 @@
 Frustration::Application.routes.draw do
 
+  get "items/show"
+
   # root
   root :to => 'top#index'
 
@@ -15,6 +17,9 @@ Frustration::Application.routes.draw do
   # sign up
   resources :users, only: [:new, :create]
   match '/users/:username/', to: 'users#show'
+
+  # items
+  resources :items, only: [:show]
 
   # home
   match 'home' => 'home#index', :via => :get
