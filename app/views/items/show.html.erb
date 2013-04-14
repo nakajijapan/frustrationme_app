@@ -64,7 +64,9 @@
           <!-- create_comment -->
           <% if @current_user.nil? %>
           <% else %>
-            <li>
+            <li id="create_comment_box">
+              <%= hidden_field_tag 'user_username', @current_user.username %>
+              <%= hidden_field_tag 'user_icon_name', @current_user.icon_name %>
               <a href="#" class="user">
                 <%= icon_image_tag @current_user.icon_name, class: 'icon_name' %>
               </a>
@@ -73,11 +75,10 @@
                   <a href="/users/<%= @current_user.username %>">
                     <%= @current_user.username %>
                   </a>
-                  <span class="created"><%= @current_user.created_at %></span>
                 </div>
                 <p>
-                  <%= text_field_tag 'text' %>
-                  <%= button_tag 'save', class: 'btn save_button', 'data-item_id' => @item.id %>
+                  <%= text_field_tag 'text', '', id: 'fuman_comment' %>
+                  <%= button_tag 'add', class: 'btn', 'data-item_id' => @item.id, id: 'create_comment' %>
                 </p>
               </div>
             </li>

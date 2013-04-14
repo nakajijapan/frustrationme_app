@@ -75,7 +75,7 @@
         &:hover {
           text-shadow: 0 2px 5px #F8ADC1, 0 -2px 5px #F8ADC1;
           box-shadow: 0 0 10px #FFAEAE;
-          @include linear-gradient-top($create_button_top, $create_button_bottom);
+          @include linear-gradient-top($created_button_top, $created_button_bottom);
         }
 
         &:active {
@@ -168,7 +168,9 @@
         //border: 1px solid #ddd;
         vertical-align: top;
 
-
+        //---------------------------
+        // comments
+        //---------------------------
         ul {
           margin: 10px 0 0 0;
           border: 1px solid #ddd;
@@ -209,6 +211,12 @@
               }
             }
             .comment {
+            }
+          }
+
+          li#create_comment_box {
+            input {
+              margin: 0;
             }
           }
         }

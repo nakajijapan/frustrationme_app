@@ -15,10 +15,10 @@ BackboneFrustration.Views.Fumans ||= {}
 class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
   el: $('#fumans_index')
   events:
-    'click  .fuman_status'    : 'update_status'
-    'change .fuman_category' : 'update_category'
-    'click .save_button' : 'create_comment'
-    'click .delete_comment a' : 'delete_comment'
+    'click  .fuman_status'     : 'update_status'
+    'change .fuman_category'   : 'update_category'
+    'click  .save_button'      : 'create_comment'
+    'click  .delete_comment a' : 'delete_comment'
 
   #------------------------
   initialize: () ->
