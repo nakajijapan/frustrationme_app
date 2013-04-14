@@ -1,9 +1,17 @@
 class ItemsController < ApplicationController
-  before_filter :current_user, only: :show
+  before_filter :check_user, only: :show
 
   def show
-    logger.warn params
+    # categories
+    @categories = []
+    @categories = @current_user.categories if @current_user.present?
+
+    # item
     @item = Item.find(params[:id])
+
+    # 登録された商品かどうか
+    @registered = false
+    @registered = true if @current_user.checked_items(@item.product_id).present?
 
     # 登録されたユーザ一覧
     @registers = {}
@@ -15,6 +23,5 @@ class ItemsController < ApplicationController
 
     # コメント一覧
     @comments = @item.comment_list
-    logger.warn @comments.inspect
   end
 end

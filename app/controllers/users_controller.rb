@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :current_user, only: :show
+  before_filter :check_user, only: :show
 
   def new
     @user = User.new

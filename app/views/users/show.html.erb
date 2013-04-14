@@ -3,7 +3,7 @@
   <!-- prefile -->
   <div class="profile_header">
     <div class="profile_icon">
-      <%= image_tag @target_user.icon_name %>
+      <%= icon_image_tag @target_user.icon_name, alt: @target_user.username %>
     </div>
 
     <div class="username">
@@ -43,7 +43,7 @@
         <li class="item" data-fuman_id="<%= item.fuman.id %>">
           <div class="side_top">
             <a href="/items/<%= item.id %>">
-              <%= image_tag item.image_l %>
+              <%= icon_image_tag item.image_l, alt: item.title %>
             </a>
             <p>
               <%= item.title %>

@@ -106,7 +106,7 @@
     #---------------------------
     # open
     #---------------------------
-    plugin.open = ->
+    plugin.open = () ->
       # init
       options = plugin.options;
 

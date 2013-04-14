@@ -6,7 +6,32 @@
     <%= @item.title %>
     </p>
 
-    <a href="#" class="btn frustrate" title="このアイテムを登録します">♥</a>
+    <% item_url = "http://#{Settings.site_name}/items/#{@item.id}" %>
+    <ul class="button_group">
+      <li>
+        <% if @current_user.nil? %>
+        <% else %>
+          <%= hidden_field_tag :service_code, @item.service_code, id: 's_service_name' %>
+          <a href="#" class="btn frustrate <% if @registered %>registered<% end %>" title="このアイテムを登録します" data-product_code="<%= @item.product_id%>" id="frustration_button"><span>♥</span></a>
+        <% end %>
+      </li>
+      <li>
+        <a href="http://www.facebook.com/share.php?u=<%= item_url %>" onclick="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;" href="#" class="btn social facebook" title="このアイテムをfacebookで共有します">
+          <span>f</span>
+        </a>
+      </li>
+      <li>
+        <a href="http://twitter.com/share?count=horizontal&original_referer=<%= item_url %>&text=<%= @item.title %>&url=<%= item_url %>&via=frustrationme" onclick="window.open(this.href, 'tweetwindow', 'width=550, height=450,personalbar=0,toolbar=0,scrollbars=1,resizable=1'); return false;" class="btn social twitter" title="このアイテムをfacebookで共有します">
+          <span>t</span>
+        </a>
+      </li>
+      <li>
+        <a  href="http://pinterest.com/pin/create/button/?url=<%= item_url %>&media=<%= @item.image_l %>&description=<%= @item.title %>" onclick="window.open(this.href, 'PINwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;" href="#" class="btn social pintarest" title="このアイテムをfacebookで共有します">
+          <span>p</span>
+        </a>
+      </li>
+    </ul>
+
   </section>
   <!-- /item_box -->
 
@@ -35,6 +60,30 @@
             </li>
           <% end %>
           <!-- /comment -->
+
+          <!-- create_comment -->
+          <% if @current_user.nil? %>
+          <% else %>
+            <li>
+              <a href="#" class="user">
+                <%= icon_image_tag @current_user.icon_name, class: 'icon_name' %>
+              </a>
+              <div class="message">
+                <div class="username">
+                  <a href="/users/<%= @current_user.username %>">
+                    <%= @current_user.username %>
+                  </a>
+                  <span class="created"><%= @current_user.created_at %></span>
+                </div>
+                <p>
+                  <%= text_field_tag 'text' %>
+                  <%= button_tag 'save', class: 'btn save_button', 'data-item_id' => @item.id %>
+                </p>
+              </div>
+            </li>
+          <% end %>
+          <!-- /create_comment -->
+
         </ul>
       </div>
 
@@ -110,3 +159,11 @@
   </section>
 </div>
 
+<%= render file: 'layouts/modal_create_fuman' %>
+
+
+<script>
+$(function() {
+  var app_view = new BackboneFrustration.Views.Items.ShowView();
+});
+</script>

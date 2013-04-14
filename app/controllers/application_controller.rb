@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
     @current_user = User.find_by_id(session[:user_id])
     redirect_to :root if @current_user.nil?
   end
+
+  def check_user
+    @current_user = User.find_by_id(session[:user_id])
+  end
 end

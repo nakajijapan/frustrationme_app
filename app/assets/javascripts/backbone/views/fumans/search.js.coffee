@@ -26,6 +26,8 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
 
     # form
     @form_view = new BackboneFrustration.Views.Fumans.CreateView();
+    @form_view.close_callback = (product_id) ->
+      $("[data-code='#{product_id}']").append('<div class="item_overlay"><div>f</div></div>')
 
   #------------------------
   show_modal : (e) ->
@@ -85,6 +87,8 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
     'rakuten': 3
     'itunes': 4
     'frustration': 5
+  close_callback: () ->
+
   #------------------------
   initialize: () ->
     # イベントの追加
@@ -94,17 +98,23 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
     $(@el).SimpleModal().open()
 
 
+  #---------------------------------------
+  # create
+  #---------------------------------------
   create : (e) ->
     console.log "------------------------------- create"
-    console.log e.currentTarget
+    @_create(e)
 
-
+  #-------------------
+  # _create
+  #-------------------
+  _create: (e) ->
     name       = $('#s_service_name').val()
     product_id = $(e.currentTarget).attr('data-product_code')
     status     = $('.fuman_status.active').data('status')
     category   = $('#fuman_category option:selected').val()
 
-    console.log "データ格納前"
+    console.log "データ格納前 -------"
     console.log name
     console.log @services[name]
 
@@ -136,7 +146,7 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
         #console.log status
         $("#modal_create_fuman").SimpleModal({
           close_callback: ()->
-            $("[data-code='#{product_id}']").append('<div class="item_overlay"><div>f</div></div>')
+            _this.close_callback(product_id)
         }).close();
 
       error : (xhr, status, thrown) ->
@@ -146,6 +156,3 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
         #console.log xhr
         #alert 'create error'
     )
-
-
-
