@@ -69,13 +69,13 @@
         border: solid 1px #ECBBBB;
         background-color: #F7E3E3;
         text-shadow: 0 2px 5px white, 0 -2px 5px white;
-        @include linear-gradient-top(#F7E3E3,#FFD7D7);
+        @include linear-gradient-top($create_button_top, $create_button_bottom);
 
         &.registered,
         &:hover {
           text-shadow: 0 2px 5px #F8ADC1, 0 -2px 5px #F8ADC1;
           box-shadow: 0 0 10px #FFAEAE;
-          @include linear-gradient-top(#FB697E,#F6415B);
+          @include linear-gradient-top($create_button_top, $create_button_bottom);
         }
 
         &:active {
@@ -92,6 +92,7 @@
         background-color: #F7E3E3;
         text-shadow: 0 2px 5px white, 0 -2px 5px white;
         @include linear-gradient-top(#F7E3E3,#FFD7D7);
+
         &:hover {
           text-shadow: 0 2px 5px #F8ADC1, 0 -2px 5px #F8ADC1;
         }
