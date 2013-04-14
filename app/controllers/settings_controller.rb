@@ -1,6 +1,5 @@
 class SettingsController < ApplicationController
-  def index
-  end
+  before_filter :current_user
 
   def profile
     #@user = User.find()
