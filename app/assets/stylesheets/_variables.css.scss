@@ -12,8 +12,11 @@ $menu_hover_color: #FB697E;
 $link_hover_color: #aaaaaa;
 $link_active_color: #fa8a9a;
 
-$create_button_top: #f6415b;
-$create_button_bottom: #ffd7d7;
+// for item's button
+$create_button_top: #F7E3E3;
+$create_button_bottom: #FFD7D7;
+$created_button_top: #FB697E;
+$created_button_bottom: #F6415B;
 
 @mixin list_box_design {
   border: 1px solid #bbb;
