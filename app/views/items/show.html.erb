@@ -1,9 +1,10 @@
 <div id="<%= controller_name %>_<%= action_name %>">
   <!-- item_box -->
   <section class="item_box">
-    <%= link_to image_tag(@item.image_l), @item.url, target: '_blank', class: 'item_image' %>
+    <%= link_to image_tag(@item.image_l), @item.url, class: 'item_image', target: '_blank' %>
+
     <p>
-    <%= @item.title %>
+      <%= @item.title %>
     </p>
 
     <% item_url = "http://#{Settings.site_name}/items/#{@item.id}" %>

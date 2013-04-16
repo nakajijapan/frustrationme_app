@@ -8,9 +8,7 @@
           <section>
             <div class="side_left">
               <h2>
-                <a href="<%= item.url %>" alt="<%= item.title %>">
-                  <%= image_tag item.image_l, alt: item.title %>
-                </a>
+                <%= link_to image_tag(item.image_l, alt: item.title), item.url, alt: item.title, target: '_blank' %>
               </h2>
             </div>
 
