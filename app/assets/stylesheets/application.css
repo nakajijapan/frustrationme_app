@@ -18,4 +18,5 @@
  *= require_directory ./categories
  *= require_directory ./users
  *= require_directory ./items
+ *= require_directory ./settings
  */

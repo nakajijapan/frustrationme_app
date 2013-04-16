@@ -1,0 +1,64 @@
+@import 'variables';
+
+
+#frustration {
+
+  //------------------------------------------------------------
+  // profile
+  //------------------------------------------------------------
+  #settings_profile {
+
+    //------------------------
+    // items
+    //------------------------
+    .profile_box {
+      list-style-type: none;
+      position: relative;
+      margin: 0 auto;
+      display: block;
+      width: 800px;
+
+      @include list_box_design;
+
+      h1 {
+        margin: 10px;
+      }
+
+      form {
+        margin: 0 auto;
+        width: 700px;
+      }
+
+      ul {
+//        margin: 10px;
+        li {
+          margin-bottom: 15px;
+          display: table;
+          border-bottom: 1px dotted #ddd;
+          padding: 10px 0;
+
+          label {
+            font-weight: bold;
+            display: table-cell;
+            width: 250px;
+            font-size: 22px;
+          }
+
+          .input_box {
+            display: table-cell;
+
+            input[type=file],input[type=text],textarea {
+              font-size: 22px;
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .actions {
+        margin-bottom: 10px;
+        text-align: right;
+      }
+    }
+  }
+}

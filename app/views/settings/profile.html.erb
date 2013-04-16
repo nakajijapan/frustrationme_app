@@ -1,1 +1,38 @@
-profile
+<div id="<%= controller_name %>_profile">
+  <!-- items -->
+  <section class="profile_box">
+    <h1>Infomation</h1>
+
+    <%= form_for(@user, :html => {:multipart => true}, :url => {:action => 'profile_update'}) do |f| %>
+      <ul>
+        <li>
+          <%= f.label :icon_name %>
+          <div class="input_box">
+            <%= icon_image_tag @user.icon_name.url %>
+            <%= f.file_field :icon_name, class: '' %>
+          </div>
+        </li>
+
+        <li>
+          <%= f.label :email %>
+          <div class="input_box">
+            <%= f.text_field :email %>
+          </div>
+        </li>
+        <li>
+          <%= f.label :message, 'About you' %>
+          <div class="input_box">
+            <%= f.text_area :message, class: '', rows: '10' %>
+          </div>
+        </li>
+        <li>
+        </li>
+      </ul>
+
+      <div class="actions">
+        <%= f.submit :save, class: 'btn' %>
+      </div>
+
+    <% end %>
+  </section>
+</div>
