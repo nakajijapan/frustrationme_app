@@ -28,6 +28,7 @@ Frustration::Application.routes.draw do
   scope '/settings', as: :settings do
     match '/icon'       => 'settings#icon',    via: :get
     match '/profile'    => 'settings#profile', via: :get
+    match '/profile'    => 'settings#profile_update', via: :put
     resources :categories
     resources :tags
     resources :comments

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317145427) do
+ActiveRecord::Schema.define(:version => 20130415191824) do
 
   create_table "categories", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -78,9 +78,9 @@ ActiveRecord::Schema.define(:version => 20130317145427) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username",                         :null => false
+    t.string   "username",                               :null => false
     t.string   "crypted_password"
-    t.string   "icon_name",        :limit => 1024
+    t.string   "icon_name",              :limit => 1024
     t.string   "email"
     t.integer  "sex"
     t.datetime "birthday"
@@ -89,8 +89,12 @@ ActiveRecord::Schema.define(:version => 20130317145427) do
     t.integer  "facebook_use"
     t.string   "provider"
     t.string   "uid"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "icon_name_file_name"
+    t.string   "icon_name_content_type"
+    t.integer  "icon_name_file_size"
+    t.datetime "icon_name_updated_at"
   end
 
 end
