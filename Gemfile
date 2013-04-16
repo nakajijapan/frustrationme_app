@@ -56,6 +56,8 @@ gem 'settingslogic'
 
 gem 'api_bucket'
 
+gem 'paperclip'
+gem 'aws-sdk'
 # for development
 group :development do
   gem 'capistrano'

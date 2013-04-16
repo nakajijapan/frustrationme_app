@@ -7,6 +7,18 @@ class User < ActiveRecord::Base
   attr_accessible :mode, :password, :password_confirmation, :icon_name, :crypted_password
   attr_accessor :mode, :password, :password_confirmation
 
+  has_attached_file :icon_name,
+    storage: :s3,
+    s3_credentials: "#{Rails.root}/config/s3.yml",
+    styles: {thumb: '100x100>'},
+    path: "#{Rails.env}/:id/icon_names/:style.:extension"
+
+  validate :icon_name_size_validation, :if => "icon_name?"
+  def icon_name_size_validation
+    errors[:icon_name] << "should be less than 1MB" if icon_name.size > 2.megabytes
+  end
+
+
   has_many :categories
   has_many :fumans
   has_many :comments
@@ -36,6 +48,9 @@ class User < ActiveRecord::Base
 
   before_create :password_hash, unless: :social?
 
+  #-----------------------------------------------------------------------------
+  # password_hash
+  #-----------------------------------------------------------------------------
   def password_hash
     self.crypted_password = Digest::MD5.hexdigest(self.password)
   end
@@ -48,7 +63,6 @@ class User < ActiveRecord::Base
     Digest::MD5.new.update(@id.to_s + @crypted_password.to_s)
   end
 
-  # for omniauth
   def self.from_omniauth(auth)
     find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)
   end
