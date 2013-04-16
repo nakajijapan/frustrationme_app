@@ -1,0 +1,15 @@
+              <a href="#" class="user">
+                <img alt="Icon" class="icon_name" src="/assets/users/icon.gif">
+              </a>
+
+              <div class="message">
+                <div class="username">
+                  <a href="/users/<%= user.username %>">
+                    <%= comment.username %>
+                  </a>
+                  <span class="created"><%= comment.created_at %></span>
+                </div>
+                <p>
+                  <%= comment.text %>
+                </p>
+              </div>
