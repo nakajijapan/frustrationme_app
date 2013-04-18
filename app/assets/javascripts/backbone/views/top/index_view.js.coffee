@@ -8,8 +8,6 @@ class BackboneFrustration.Views.Top.IndexView extends Backbone.View
 
   #------------------------
   initialize: () ->
-    # イベントの追加
-    #@delegateEvents(@events)
     @initialize_grid()
 
     _ = @
@@ -20,17 +18,11 @@ class BackboneFrustration.Views.Top.IndexView extends Backbone.View
         _.initialize_grid()
     )
 
-
-  loadOnScroll: () ->
-
-
   initialize_grid: () ->
     options =
       autoResize: true
       container: $('.items')
       offset: 2
       item_width: 210
-
-    console.log options
 
     $('.item').CoolGrid(options)
