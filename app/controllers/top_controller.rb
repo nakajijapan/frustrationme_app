@@ -1,5 +1,7 @@
 class TopController < ApplicationController
+  before_filter :check_user
+
   def index
-    @current_user = User.find_by_id(session[:user_id]) if session[:user_id].present?
+    @items = Item.index_list(params)
   end
 end

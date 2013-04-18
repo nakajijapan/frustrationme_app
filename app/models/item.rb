@@ -24,4 +24,8 @@ class Item < ActiveRecord::Base
       .where('item_id = ?', self.id)
       .order('comments.created_at')
   end
+
+  def self.index_list(params, limit=20)
+    Item.order('created_at desc').page(params[:page]).limit(limit)
+  end
 end

@@ -1,85 +1,53 @@
-#main_box {
-  height: 100%;
+@import "variables";
+
+#frustration {
+  #top_index {
+    //-----------------------
+    // items
+    //-----------------------
+    .items {
+      position: relative;
+      margin: 0;
+      display: block;
+
+      li.item {
+        @include border-radius(8px);
+
+        background-color: #ffffff;
+        //width: 200px;
+        border: 1px solid #dedede;
+        margin: 10px 0;
+
+        .side_top {
+          img {
+            display: block;
+            width: 180px ;
+            height:auto;
+            padding: 10px;
+          }
+
+          p {
+            font-size: 12px;
+            padding: 5px 5px;
+            word-break: break-all;
+            width: 180px;
+          }
+
+          hr {
+            margin: 5px 0px;
+          }
+        }
+
+        .service_icon {
+          position: absolute;
+          top:   5px;
+          right: 5px;
+
+          img {
+            width: 25px;
+          }
+        }
+      }
+    }
+  }
 }
-
-/**
- * Grid container
-*/
-#tiles {
-  list-style-type: none;
-  position: relative; /** Needed to ensure items are laid out relative to this container **/
-  margin: 0;
-  display: block;
-}
-
-/**
- * Grid items
-*/
-#tiles li {
-  width: 200px;
-  background-color: #ffffff;
-  border: 1px solid #dedede;
-  border-radius: 2px;
-  display: none; /** Hide items initially to avoid a flicker effect **/
-  cursor: pointer;
-
-  //box-shadow:1px 1px 2px rgba(0,0,0,0.4);
-}
-#titles li .imgs{
-
-}
-#tiles li img {
-  display: block;
-  width: 180px ;
-  padding: 10px 10px 0 10px ;
-  height:auto;
-}
-
-#tiles li p img{
-  width:30px;
-  float:left;
-  padding: 0;
-  margin-right:10px;
-}
-
-
-/**
- * Grid item text
-*/
-/*
-#tiles li p {
-  color: #666;
-  font-size: 12px;
-  padding:2px 10px;
-  overflow:hidden;
-}
-
-#tiles li p.bgarea{
-  background: #eee ;
-  margin-bottom: 0 ;
-  color:#9d7e7e;
-  font-weight:bold;
-  padding:10px;
-}
-*/
-
-/**
- * Some extra styles to randomize heights of grid items.
-*/
-/*
-#tiles ali:nth-child(3n) {
-  height: 175px;
-}
-
-#tiles ali:nth-child(4n-3) {
-  padding-bottom: 30px;
-}
-
-#tiles ali:nth-child(5n) {
-  height: 250px;
-}
-*/
-
-/** General page styling **/
-
-
