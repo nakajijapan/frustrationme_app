@@ -50,6 +50,9 @@
       backup_row = 0
       current_column = 0
 
+      max_row_height  = 0
+      max_item_height = 0
+
       # gridの位置を確定する
       element.each( (i, v)->
 
@@ -86,8 +89,17 @@
           'top': data.top
           'left': data.left_position
 
+        if data.top > max_row_height
+          max_row_height = data.top
+
+        if $(v).height() > max_item_height
+          max_item_height = $(v).height()
+
         current_column++
       )
+
+      options.container.css('height', "#{max_row_height + max_item_height}px")
+      console.log max_row_height
 
     #---------------------------
     # main
