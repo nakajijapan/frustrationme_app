@@ -71,6 +71,6 @@ class BackboneFrustration.Views.Items.Show_CommentView extends Backbone.View
         username: $("#user_username").val()
         icon_name: $("#icon_name").val()
 
-    $(@el).html(@template.render(data)).fadeIn('slow')
+    $(@el).html(@template.render(data)).fadeIn('slow').removeAttr('style')
 
     @

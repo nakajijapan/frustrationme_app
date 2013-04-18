@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
 
     # 登録された商品かどうか
     @registered = false
-    @registered = true if @current_user.checked_items(@item.product_id).present?
+    @registered = true if @current_user.present? && @current_user.checked_items(@item.product_id).present?
 
     # 登録されたユーザ一覧
     @registers = {}

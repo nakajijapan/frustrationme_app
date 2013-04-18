@@ -173,7 +173,7 @@
         //---------------------------
         ul {
           margin: 10px 0 0 0;
-          border: 1px solid #ddd;
+          //border: 1px solid #ddd;
           @include border-radius(8px);
           background-color: #fff;
 
@@ -184,10 +184,18 @@
             height: 100%;
             width:  100%;
             display: table;
-            border-top: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
 
             &:first-child {
-              border-top: none;
+              border-top: 1px solid #ddd;
+              @include border-radius(8px 8px 0 0);
+
+            }
+            &:last-child {
+              //border-bottom: 1px solid #ddd;
+              @include border-radius(0 0 8px 8px);
             }
 
             a.user {
