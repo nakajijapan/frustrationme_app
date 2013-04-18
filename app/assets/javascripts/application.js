@@ -16,6 +16,7 @@
 //= require jquery/jquery.wookmark
 //= require bootstrap
 //= require cool_grid
+//= require auto_pager
 //= require simple_modal
 
 //----------------------------------------------
