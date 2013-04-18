@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery-ui.min
 //= require jquery_ujs
-//= require jquery/jquery.wookmark
 //= require bootstrap
 //= require cool_grid
 //= require auto_pager
