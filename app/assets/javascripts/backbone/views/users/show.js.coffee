@@ -9,9 +9,15 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
 
   #------------------------
   initialize: () ->
-    # イベントの追加
-    #@delegateEvents(@events)
     @initialize_grid()
+
+    _ = @
+
+    $.AutoPager(
+      content: '.items'
+      loaded: (next_page_num) ->
+        _.initialize_grid()
+    )
 
   initialize_grid: () ->
     options =

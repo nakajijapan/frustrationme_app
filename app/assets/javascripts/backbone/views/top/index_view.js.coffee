@@ -13,7 +13,6 @@ class BackboneFrustration.Views.Top.IndexView extends Backbone.View
     @initialize_grid()
 
     _ = @
-    console.log "start"
 
     $.AutoPager(
       content: '.items'
