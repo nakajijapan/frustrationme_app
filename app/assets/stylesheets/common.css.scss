@@ -41,6 +41,12 @@ header#header_menu {
     &:hover {
       background-color: $link_active_color;
     }
+
+    &.nologin {
+      &:hover {
+        background-color: $main_background_color;
+      }
+    }
   }
 
   ul {
@@ -79,7 +85,15 @@ header#header_menu {
       }
     }
   }
-
+  /*
+  ul li > a {
+    font-size: 16px;
+    color: #fff !important;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  */
   nav.top_menu {
     z-index: 9100;
     height: 50px;
@@ -102,13 +116,7 @@ header#header_menu {
       }
     }
 
-    ul li > a {
-      font-size: 16px;
-      color: #fff !important;
-      &:hover {
-        text-decoration: none;
-      }
-    }
+
 
     li.user_menu {
       ul {
