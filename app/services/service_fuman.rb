@@ -35,16 +35,10 @@ class ServiceFuman
         @logger.warn name
 
         service = ApiBucket::Service.instance(:"#{name}")
-        res = service.lookup(params_item[:product_id])
-        item = res.items.first
+        res     = service.lookup(params_item[:product_id])
+        item    = res.items.first
 
-        @logger.warn res
-        @logger.warn item
-
-        #item = Item.new(params[:item])
         params_item.merge!({
-          #type:         params_item[:type],
-          #product_id:   params_item[:product_id],
           url:          item.detail_url,
           preview_url:  item.preview_url,
           title:        item.title,
@@ -69,8 +63,7 @@ class ServiceFuman
       # create
       params_fuman.merge!({
         user_id: @user.id,
-        item_id: item.id,
-        status:  params_fuman[:status] || Fuman::STATUSES['1']
+        item_id: item.id
       })
 
       fuman = Fuman.new(params_fuman)

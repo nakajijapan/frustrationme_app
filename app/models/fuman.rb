@@ -6,6 +6,8 @@ class Fuman < ActiveRecord::Base
   belongs_to :user
   has_one :item
 
+  before_save :set_default
+
   STATUSES = {
     '1' => '欲しい',
     '2' => '持ってる',
@@ -13,6 +15,10 @@ class Fuman < ActiveRecord::Base
     '4' => '体験した',
     '5' => '持っていた',
   }
+
+  def set_default
+    self.status = 1 if self.status.blank?
+  end
 
   def self.status_options
     options = {}
