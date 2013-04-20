@@ -11,12 +11,9 @@ class FumansController < ApplicationController
   end
 
   def search
-    logger.warn params
-
-    @categories = @current_user.categories
-
-    @items = {}
+    @items         = {}
     @checked_items = {}
+    @categories    = @current_user.categories
 
     # search items
     if params[:s_keywords].present?
@@ -33,8 +30,6 @@ class FumansController < ApplicationController
   end
 
   def create_with_item
-    logger.warn params
-
     service_fuman = ServiceFuman.new(@current_user)
     saved = service_fuman.create_with_item(params[:item], params[:fuman])
 
@@ -46,6 +41,7 @@ class FumansController < ApplicationController
 
   def update
     @fuman = Fuman.find(params[:id])
+
     params[:fuman][:user_id] = @current_user.id
     @fuman.update_attributes(params[:fuman])
 
