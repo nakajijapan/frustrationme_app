@@ -19,4 +19,5 @@
  *= require_directory ./users
  *= require_directory ./items
  *= require_directory ./settings
+ *= require_directory ./sessions
  */

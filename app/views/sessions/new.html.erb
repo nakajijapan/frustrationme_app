@@ -1,10 +1,5 @@
-<h1>Sessions#new</h1>
-<p>app/views/sessions/new.html.erb</p>
-
-
-<h1>Login</h1>
-
-<%= render 'form' %>
-
-<%= link_to "Sign in with Twitter", "/auth/twitter" %>
-<%= link_to 'Back', root_path %>
+<div id="<%= controller_name %>_new">
+  <h1>Login</h1>
+  <%= render 'form' %>
+  <%= link_to "Sign in with Twitter", "/auth/twitter" %>
+</div>

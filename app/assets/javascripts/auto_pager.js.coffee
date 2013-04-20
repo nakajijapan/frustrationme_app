@@ -26,10 +26,16 @@
     _.init = () ->
       $(window).scroll(_.load_on_scroll);
 
+    #---------------------------
+    # load_on_scroll
+    #---------------------------
     _.load_on_scroll = () ->
       if $(document).height() - $(window).height() - $(document).scrollTop() <= 0
         _.load()
 
+    #---------------------------
+    # load
+    #---------------------------
     _.load = () ->
       return if active
 
@@ -40,7 +46,9 @@
       $.get(current_url, data, _.append_content)
       return _
 
-
+    #---------------------------
+    # append_content
+    #---------------------------
     _.append_content = (res)->
       next_page    = $('<div/>').append(res.replace(/<script(.|\s)*?\/script>/g, ""))
       next_content = next_page.find(_.options.content)

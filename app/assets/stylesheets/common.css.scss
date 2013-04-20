@@ -32,7 +32,6 @@ header#header_menu {
   }
 
   .left_block {
-
   }
   .right_block {
     float: right;
@@ -63,37 +62,38 @@ header#header_menu {
     box-sizing: content-box;
   }
 
+  //------------------------------------
+  // not login
+  //------------------------------------
   nav.top_menu_nologin {
     height: 50px;
     float: left;
 
-    ul li {
-      float: left;
-    }
-    a {
-      font-size: 16px;
-      color: #fff;
-      height: 35px;
-      width: 70px;
-      display: block;
-      padding: 15px 0 0 10px;
+    ul {
+      li {
+        float: left;
 
-      &:hover {
-        text-decoration: none;
-        color: $main_background_color;
-        background-color: #fff;
+        a {
+          font-size: 16px;
+          color: #fff;
+          height: 35px;
+          width: 70px;
+          display: block;
+          padding: 15px 0 0 10px;
+
+          &:hover {
+            text-decoration: none;
+            color: $main_background_color;
+            background-color: #fff;
+          }
+        }
       }
     }
   }
-  /*
-  ul li > a {
-    font-size: 16px;
-    color: #fff !important;
-    &:hover {
-      text-decoration: none;
-    }
-  }
-  */
+
+  //------------------------------------
+  // logined
+  //------------------------------------
   nav.top_menu {
     z-index: 9100;
     height: 50px;
@@ -116,8 +116,6 @@ header#header_menu {
       }
     }
 
-
-
     li.user_menu {
       ul {
         padding: 0px;
@@ -126,19 +124,23 @@ header#header_menu {
         right: 30px;
         background-color: $menu_background_color;
         box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
-      }
-      li {
-        float: none;
-        margin: 0px;
-      }
-      li a {
-        display: block;
-        margin: 0px;
-        padding: 5px 10px;
-        width: 120px;
-      }
-      li:hover {
-        background-color: $menu_hover_color;
+
+        li {
+          float: none;
+          margin: 0px;
+
+          a {
+            color: #fff;
+            display: block;
+            margin: 0px;
+            padding: 5px 10px;
+            width: 120px;
+          }
+
+          &:hover {
+            background-color: $menu_hover_color;
+          }
+        }
       }
     }
   }
@@ -168,16 +170,6 @@ img {
 //------------------------------------------------------------------------------
 .modal_conteiner {
   display: none;
-  //position: fixed;
-  //z-index: 1025;
-  //left: 50%;
-  //top: 50%;
-  /* 550 : -300 */
-  //width: 450px;
-  // height: 350px;
-
-  //margin-left: -250px;
-  //margin-top: -150px;
 
   padding: 0px;
   background-color: white;
