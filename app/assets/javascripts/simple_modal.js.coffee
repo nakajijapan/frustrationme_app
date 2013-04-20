@@ -73,12 +73,12 @@
 
       if options.continue_overlay == false
         callback = () ->
-          $('#modal_overlay').fadeOut(500, options.close_callback)
+          $('#modal_overlay').fadeOut(200, options.close_callback)
       else
         callback = options.close_callback
 
       $modal = $('#modal_window')
-      $modal.animate({top: "+=100px", opacity: 0}, 500,
+      $modal.animate({top: "+=100px", opacity: 0}, 200,
         () ->
           setTimeout(() ->
             callback();
@@ -100,7 +100,7 @@
         $('#modal_overlay').fadeOut(1000, options.close_callback)
 
       $modal = $('#modal_window')
-      $modal.animate({top: "-=100px", opacity: 0}, 500, callback)
+      $modal.animate({top: "-=100px", opacity: 0}, 200, callback)
       return this
 
     #---------------------------
@@ -146,10 +146,10 @@
       if options.continue_overlay == false
         $('#modal_overlay').fadeIn(300, () ->
           $('img', $modal).css('width', width + 'px')
-          $modal.animate({top: center_h, left: center_w, opacity: 1}, 500)
+          $modal.animate({top: center_h, left: center_w, opacity: 1}, 200)
         )
       else
-        $modal.animate({top: center_h, left: center_w, opacity: 1}, 500)
+        $modal.animate({top: center_h, left: center_w, opacity: 1}, 200)
 
     plugin.init()
 
