@@ -61,3 +61,11 @@ ja:
   activerecord:
     errors:
       <<: *errors
+
+  views:
+    pagination:
+      first: "first"
+      last: "last"
+      previous: "prev"
+      next: "next"
+      truncate: "..."

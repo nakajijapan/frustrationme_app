@@ -149,5 +149,24 @@
         }
       }
     }
+
+    .pagination {
+      text-align: center;
+      span {
+        font-size: 32px;
+        width: 100px;
+        text-shadow: 0px 0px 2px #666;
+        font-weight: bold;
+
+        &.current {
+          color: #333;
+        }
+
+        a:hover {
+          color: #333;
+          text-decoration: none;
+        }
+      }
+    }
   }
 }

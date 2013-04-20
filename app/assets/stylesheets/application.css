@@ -10,8 +10,8 @@
  *
  *= require_self
  *= require reset
- *= require common
  *= require form
+ *= require common
  *= require effect
  *= require_directory ./fumans
  *= require_directory ./top

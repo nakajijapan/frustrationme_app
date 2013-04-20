@@ -4,9 +4,7 @@ gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'mysql2'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -23,26 +21,14 @@ end
 
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
 # Use unicorn as the app server
 gem 'unicorn'
-
-# To use debugger
-# gem 'debugger'
 
 # To use debugger
 gem 'execjs'
 gem 'therubyracer'
 gem 'rake'
 
-# To use sorcery for login system
-#gem 'sorcery'
-#gem 'refinerycms'
 gem 'bcrypt-ruby', '~> 3.0.0'
 #gem 'omniauth-identity'
 gem 'omniauth-twitter'
@@ -51,13 +37,15 @@ gem 'omniauth-facebook'
 # To use paginator
 gem 'kaminari', '~>0.14.1'
 
-#gem 'twitter-bootstrap-rails'
 gem 'settingslogic'
 
+# search apis
 gem 'api_bucket'
 
+# file management
 gem 'paperclip'
 gem 'aws-sdk'
+
 # for development
 group :development do
   gem 'capistrano'
