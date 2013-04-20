@@ -70,6 +70,7 @@ class ServiceFuman
       params_fuman.merge!({
         user_id: @user.id,
         item_id: item.id,
+        status:  params_fuman[:status] || Fuman::STATUSES['1']
       })
 
       fuman = Fuman.new(params_fuman)

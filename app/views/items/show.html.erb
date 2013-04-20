@@ -67,9 +67,9 @@
           <% else %>
             <li id="create_comment_box">
               <%= hidden_field_tag 'user_username', @current_user.username %>
-              <%= hidden_field_tag 'user_icon_name', @current_user.icon_name %>
+              <%= hidden_field_tag 'user_icon_name', @current_user.icon_name.url('thumb') %>
               <a href="#" class="user">
-                <%= icon_image_tag @current_user.icon_name, class: 'icon_name' %>
+                <%= icon_image_tag @current_user.icon_name.url('thumb'), class: 'icon_name' %>
               </a>
               <div class="message">
                 <div class="username">
@@ -100,7 +100,7 @@
         <div class="users">
           <% @registers[:want].each do |user| %>
             <a href="/users/<%= user.username %>">
-              <%= icon_image_tag user.icon_name  %>
+              <%= icon_image_tag user.icon_name.url('thumb')  %>
             </a>
           <% end %>
         </div>
@@ -111,7 +111,7 @@
         <div class="users">
           <% @registers[:has].each do |user| %>
             <a href="/users/<%= user.username %>">
-              <%= icon_image_tag user.icon_name  %>
+              <%= icon_image_tag user.icon_name.url('thumb')  %>
             </a>
           <% end %>
         </div>
@@ -122,7 +122,7 @@
         <div class="users">
           <% @registers[:give].each do |user| %>
             <a href="/users/<%= user.username %>">
-              <%= icon_image_tag user.icon_name  %>
+              <%= icon_image_tag user.icon_name.url('thumb')  %>
             </a>
           <% end %>
         </div>
@@ -133,7 +133,7 @@
         <div class="users">
           <% @registers[:experience].each do |user| %>
             <a href="/users/<%= user.username %>">
-              <%= icon_image_tag user.icon_name  %>
+              <%= icon_image_tag user.icon_name.url('thumb')  %>
             </a>
           <% end %>
         </div>
@@ -144,7 +144,7 @@
         <div class="users">
           <% @registers[:had].each do |user| %>
             <a href="/users/<%= user.username %>">
-              <%= icon_image_tag user.icon_name  %>
+              <%= icon_image_tag user.icon_name.url('thumb')  %>
             </a>
           <% end %>
         </div>

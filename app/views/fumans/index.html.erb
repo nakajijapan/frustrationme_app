@@ -55,7 +55,7 @@
 
               <div class="comment_list">
                 <div class="user">
-                  <%= icon_image_tag @current_user.icon_name, size: '70x70', alt: @current_user.username %>
+                  <%= icon_image_tag @current_user.icon_name.url('thumb'), size: '70x70', alt: @current_user.username %>
                 </div>
 
                 <div class="list" >

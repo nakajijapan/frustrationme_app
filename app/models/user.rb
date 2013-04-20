@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_attached_file :icon_name,
     storage: :s3,
     s3_credentials: "#{Rails.root}/config/s3.yml",
-    styles: {thumb: '100x100>'},
+    styles: {thumb: '200x200#'},
     path: "#{Rails.env}/:id/icon_names/:style.:extension"
 
   validate :icon_name_size_validation, :if => "icon_name?"

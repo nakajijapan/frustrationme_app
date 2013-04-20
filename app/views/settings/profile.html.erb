@@ -8,7 +8,7 @@
         <li>
           <%= f.label :icon_name %>
           <div class="input_box">
-            <%= icon_image_tag @user.icon_name.url %>
+            <%= icon_image_tag @user.icon_name.url('thumb') %>
             <%= f.file_field :icon_name, class: '' %>
           </div>
         </li>
