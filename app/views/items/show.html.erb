@@ -121,13 +121,9 @@
         <h4>あげたい</h4>
         <div class="users">
           <% @registers[:give].each do |user| %>
-            <% if  user.icon_name.blank? %>
-              <%= image_tag '/assets/user/icon.gif' %>
-            <% else %>
             <a href="/users/<%= user.username %>">
               <%= icon_image_tag user.icon_name  %>
             </a>
-            <% end %>
           <% end %>
         </div>
       </div>
