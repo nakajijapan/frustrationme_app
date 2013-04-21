@@ -8,6 +8,13 @@ FactoryGirl.define do
      sex 1
    end
 
+  factory :user_hamaji, :class => User do
+     username 'hamaji'
+     password 'hogehoge'
+     email 'hogehoge@majide.com'
+     sex 1
+   end
+
   factory :category, :class => Category do
      user_id nil
      name 'hogehoge_name'
