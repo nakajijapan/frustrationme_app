@@ -3,7 +3,7 @@ class FriendshipsController < ApplicationController
   before_filter :check_user, only: [:followings, :followers]
 
   def create
-    target_user = User.where(id: params[:id]).first
+    target_user = User.where(id: params[:following_id]).first
     return render_not_found if target_user.blank?
     return render_success('already created') if @current_user.following(target_user.id).present?
 
@@ -14,15 +14,8 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    target_user = User.where(id: params[:id]).first
-    return render_not_found if target_user.blank?
-
-    @friendship = @current_user.following(target_user.id)
-    return render_not_found if @friendship.blank?
-
-    @friendship.destroy
-
-    respond_with @friendship, notice: 'deleted!'
+    @friendship = @current_user.unfollow(params[:id])
+    respond_with @friendship, notice: 'deleted!', location: nil
   end
 
   def followings

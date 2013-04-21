@@ -139,4 +139,8 @@ class User < ActiveRecord::Base
     .page(page)
     .per(limit)
   end
+
+  def unfollow(id)
+    Friendship.where('user_id = ?', self.id).delete(id)
+  end
 end

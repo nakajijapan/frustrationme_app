@@ -13,7 +13,7 @@ describe FriendshipsController do
     it "returns http success" do
       params = {
         format: 'json',
-        id: @u_target.id
+        following_id: @u_target.id
       }
       post 'create', params
       expect(response).to be_success
@@ -23,16 +23,17 @@ describe FriendshipsController do
       Friendship.new({user_id: @u.id, following_id: @u_target.id}).save
       params = {
         format: 'json',
-        id: @u_target.id
+        following_id: @u_target.id
       }
       post 'create', params
-      expect(response.code).to eq '200'
+      expected = {info: 'already created'}.to_json
+      expect(response.body).to eq expected
     end
 
     it "returns not_found" do
       params = {
         format: 'json',
-        id: 9999
+        following_id: 9999
       }
       post 'create', params
       expect(response.code).to eq '404'
@@ -51,13 +52,13 @@ describe FriendshipsController do
       expect(response).to be_success
     end
 
-    it "returns not_found" do
+    it "returns 204" do
       params = {
         format: 'json',
         id: 9999
       }
       delete 'destroy', params
-      expect(response.code).to eq '404'
+      expect(response.code).to eq '204'
     end
   end
 

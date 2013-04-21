@@ -16,6 +16,7 @@
       //border: 1px solid #dedede;
       background-color: #fff;
       width: 800px;
+      height: 150px;
       border: 1px solid #dedede;
       @include border-radius(8px);
 
@@ -27,6 +28,7 @@
 
         img {
           width: 150px;
+          height: 150px;
           @include border-radius(8px 0px 0px 8px);
         }
       }
@@ -38,6 +40,30 @@
         h2 {
           font-size: 42px;
           text-shadow: 1px 1px 2px #CCC;
+        }
+      }
+
+      .follow_group {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+
+        button {
+          height: 60px;
+          width: 210px;
+          font-size: 32px;
+          color: white;
+          @include linear-gradient-top(#FA8A9A,#FB697E);
+          border: 1px solid #FA8A9A;
+
+          &:hover {
+            @include linear-gradient-top(#FB697E,#F6415B);
+            border: 1px solid #FA8A9A;
+            color: white;
+          }
+          &:active {
+            @include box-shadow2(inset 0 5px 10px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05));
+          }
         }
       }
 

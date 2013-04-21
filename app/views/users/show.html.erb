@@ -18,6 +18,18 @@
       -->
     </div>
 
+    <!-- follow_button -->
+    <% if @current_user.id != @target_user.id %>
+      <div class="follow_group">
+        <% if @friendship.present? %>
+          <button class="btn" id="unfollow_button" data-following_id="<%= @target_user.id %>" data-id="<%= @friendship.id %>">unfollow</button>
+        <% else %>
+          <button class="btn" id="follow_button" data-following_id="<%= @target_user.id %>">follow</button>
+        <% end %>
+      </div>
+    <% end %>
+    <!-- /follow_button -->
+
     <div class="friends btn-group">
       <a class="btn" href="<%= "/users/#{@target_user.username}/followings" %>">
         <h4><%= @target_user.count_followings %></h4>
@@ -81,6 +93,6 @@ $(function() {
   var app_view = new BackboneFrustration.Views.Users.ShowView();
 });
 $(window).load(function () {
-  var app_view = new BackboneFrustration.Views.Users.ShowView();
+  BackboneFrustration.Views.Users.ShowView.prototype.initialize_grid();
 });
 </script>
