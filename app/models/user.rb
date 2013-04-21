@@ -104,4 +104,39 @@ class User < ActiveRecord::Base
   def items_with_fuman(params, per=10)
     Item.includes(:fuman).joins(:fuman).where('user_id = ?', self.id).order('fumans.created_at desc').page(params[:page]).per(per)
   end
+
+  # フォローしているユーザを取得する
+  def following(following_id)
+    Friendship.where('user_id = ?',      self.id)
+              .where('following_id = ?', following_id)
+              .first
+  end
+
+  # count
+  def count_followings
+    Friendship.where('user_id = ?', self.id).count
+  end
+  def count_followers
+    Friendship.where('following_id = ?', self.id).count
+  end
+
+  # フォローされている人一覧
+  def followers(page=1, limit=10)
+    Friendship.select('friendships.*, users.username, users.icon_name, users.icon_name_file_name')
+      .joins("inner join users on friendships.following_id = users.id")
+      .where("following_id = ?", self.id)
+      .order("friendships.created_at desc")
+      .page(page)
+      .per(limit)
+  end
+
+  # フォローしている人
+  def followings(page=1, limit=10)
+    Friendship.select('friendships.*, users.username, users.icon_name, users.icon_name_file_name')
+    .joins(:user)
+    .where("user_id = ?", self.id)
+    .order("friendships.created_at desc")
+    .page(page)
+    .per(limit)
+  end
 end

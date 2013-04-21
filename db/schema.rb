@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20130415191824) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "frendships", :force => true do |t|
+  create_table "friendships", :force => true do |t|
     t.integer  "user_id",      :null => false
     t.integer  "following_id", :null => false
     t.datetime "created_at",   :null => false
