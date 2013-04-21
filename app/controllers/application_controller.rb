@@ -11,8 +11,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # app success
+  def render_success(msg='')
+    render json: {info: msg}.to_json, status: 200, layout: false
+  end
+
   def exception
-    if env["REQUEST_PATH"] =~ /^\/api/
+    if env["REQUEST_PATH"] =~ /^\/api/ or params[:format] == 'json'
       render :json => {:error => "internal_server_error"}.to_json, :status => 500
     else
       render file: "#{Rails.root}/public/500.html", :status => 500
