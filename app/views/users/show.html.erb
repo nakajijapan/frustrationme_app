@@ -34,8 +34,15 @@
   <!-- item_menu -->
   <div class="items_menu">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#">23458 monmon</a></li>
-      <li><a href="#">32 Category</a></li>
+      <li class="active">
+        <a href="#"><%= @target_user.fumans.count %> monmon</a>
+      </li>
+      <li>
+        <a href="#"><%= @target_user.categories.count %> Categories</a>
+      </li>
+       <li>
+        <a href="#">5 Statuses</a>
+      </li>
       <li><a href="#">22 Tab</a></li>
     </ul>
   </div>
