@@ -1,0 +1,112 @@
+@import "variables";
+
+#frustration {
+  #friendships_followings,
+  #friendships_followers {
+
+    //------------------------
+    // items
+    //------------------------
+    .items {
+      list-style-type: none;
+      position: relative;
+      margin: 0 auto;
+      display: block;
+      width: 800px;
+
+      li.item {
+        position: relative;
+        width: 100%;
+        margin: 10px 0px;
+        @include list_box_design;
+        @include border-radius(8px);
+
+        .profile_icon {
+          @include border-radius(8px);
+
+          img {
+            width: 150px;
+            height: 150px;
+            @include border-radius(8px 0px 0px 8px);
+          }
+        }
+
+        .username {
+          position: absolute;
+          top: 10px;
+          left: 180px;
+          h2 {
+            font-size: 42px;
+            text-shadow: 1px 1px 2px #CCC;
+          }
+        }
+
+        .follow_group {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+
+          button {
+            height: 60px;
+            width: 210px;
+            font-size: 32px;
+            color: white;
+            @include linear-gradient-top(#FA8A9A,#FB697E);
+            border: 1px solid #FA8A9A;
+
+            &:hover {
+              @include linear-gradient-top(#FB697E,#F6415B);
+              border: 1px solid #FA8A9A;
+              color: white;
+            }
+            &:active {
+              @include box-shadow2(inset 0 5px 10px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05));
+            }
+          }
+        }
+
+        .friends {
+          button, a {
+            width:  80px;
+            height: 50px;
+
+            h4, p {
+              font-size: 16px;
+              line-height: 25px;
+              color: white;
+              margin: 0;
+              padding: 0;
+            }
+            //text-shadow: 1px 1px 1px #ddd;
+            @include linear-gradient-top(#FA8A9A,#FB697E);
+            border: 1px solid #FA8A9A;
+
+            &:hover {
+              @include linear-gradient-top(#FB697E,#F6415B);
+              border: 1px solid #FA8A9A;
+              color: white;
+            }
+            &:active {
+              @include box-shadow2(inset 0 2px 10px rgba(0, 0, 0, 0.15), 0 1px 10px rgba(0, 0, 0, 0.05));
+            }
+          }
+        }
+        .status_bar {
+          position: absolute;
+          left: 200px;
+          bottom: 20px;
+        }
+
+        .friends {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+
+          span {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+}

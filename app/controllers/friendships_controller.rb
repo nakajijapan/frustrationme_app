@@ -21,14 +21,14 @@ class FriendshipsController < ApplicationController
   def followings
     target_user = User.where(username: params[:username]).first
     return render_not_found if target_user.blank?
-
-    respond_with target_user.followings
+    @users = target_user.followings
+    respond_with @users
   end
 
   def followers
     target_user = User.where(username: params[:username]).first
     return render_not_found if target_user.blank?
-
-    respond_with target_user.followers
+    @users = target_user.followers
+    respond_with @users
   end
 end

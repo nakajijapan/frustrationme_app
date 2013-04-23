@@ -1,0 +1,34 @@
+<section id="<%= controller_name %>_<%= action_name %>">
+  <!-- items -->
+  <div class="items">
+    <ul>
+      <% @users.each do |user| %>
+        <li class="item">
+
+          <div class="profile_icon">
+            <%= icon_image_tag user.icon_name, alt: user.username %>
+          </div>
+
+          <div class="username">
+            <h2>
+              <%= user.username %>
+            </h2>
+          </div>
+
+          <div class="friends btn-group">
+            <a class="btn" href="<%= "/users/#{user.username}/followings" %>">
+              <h4><%= user.user.count_followings %></h4>
+              <p>follows</p>
+            </a>
+            <a class="btn" href="<%= "/users/#{user.username}/followers" %>">
+              <h4><%= user.user.count_followers %></h4>
+              <p>followers</p>
+            </a>
+          </div>
+
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <!-- /items -->
+</section>
