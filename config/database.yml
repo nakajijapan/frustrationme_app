@@ -16,8 +16,11 @@ test:
   encoding: utf8
 
 production:
-  adapter: mysql2
-  database: frustration
+  adapter:  <%= ENV['DB_ADAPTER'] %>
+  database: <%= ENV['DB_DATABASE'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host:     <%= ENV['DB_HOST'] %>
   pool: 5
   timeout: 5000
   encoding: utf8
