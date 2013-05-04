@@ -23,10 +23,8 @@
       width: 800px;
 
       li.item {
-
         width: 100%;
         margin: 10px 0px;
-
         @include list_box_design;
 
         section {

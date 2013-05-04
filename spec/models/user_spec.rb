@@ -111,4 +111,19 @@ describe User do
     end
   end
 
+  context 'when user following others' do
+    before do
+      @u        = create(:user_nakaji)
+      @u_target = create(:user_hamaji)
+      Friendship.new({user_id: @u.id, following_id: @u_target.id}).save
+    end
+
+    it 'can unfollow' do
+      @u.unfollow(@u_target.id).should be > 0
+    end
+
+    it 'has following' do
+      @u.following_ids([@u_target.id]).should have(1).items
+    end
+  end
 end

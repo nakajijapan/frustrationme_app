@@ -7,15 +7,25 @@ class ApplicationController < ActionController::Base
     if params[:format] == 'json'
       render :json => {:error => "not_found"}.to_json, status: :not_found, layout: false
     else
-      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+      render file: "#{Rails.root}/public/404", status: :not_found, layout: false
     end
   end
 
+  # app success
+  def render_success(msg='')
+    if params[:format] == 'json'
+      render json: {info: msg}.to_json, status: 200, layout: false
+    else
+      render file: "#{Rails.root}/public/500", status: 500, layout: false
+    end
+
+  end
+
   def exception
-    if env["REQUEST_PATH"] =~ /^\/api/
+    if env["REQUEST_PATH"] =~ /^\/api/ or params[:format] == 'json'
       render :json => {:error => "internal_server_error"}.to_json, :status => 500
     else
-      render file: "#{Rails.root}/public/500.html", :status => 500
+      render file: "#{Rails.root}/public/500", :status => 500, layout: false
     end
   end
 

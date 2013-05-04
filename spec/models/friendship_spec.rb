@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Frendship do
+describe Friendship do
 end

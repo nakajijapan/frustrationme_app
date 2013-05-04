@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
     logger.warn @target_user
 
+    @friendship = @current_user.following(@target_user.id)
     @items     = @target_user.items_with_fuman(params, 50)
     @categories = @target_user.categories
   end
