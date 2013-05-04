@@ -2,29 +2,43 @@
   <!-- items -->
   <div class="items">
     <ul>
-      <% @users.each do |user| %>
+      <% @users.each do |friendship| %>
         <li class="item">
 
           <div class="profile_icon">
-            <%= icon_image_tag user.icon_name, alt: user.username %>
+            <%= icon_image_tag friendship.icon_name, alt: friendship.username %>
           </div>
 
           <div class="username">
             <h2>
-              <%= user.username %>
+              <%= friendship.username %>
             </h2>
           </div>
 
+          <!-- follow_button -->
+          <% if @current_user.nil? or @current_user.id != friendship.user_id %>
+            <div class="follow_group">
+              <% if @current_friends.present? %>
+                <button class="btn" id="unfollow_button" data-following_id="<%= friendship.user_id %>" data-id="<%= friendship.id %>">unfollow</button>
+              <% else %>
+                <button class="btn" id="follow_button" data-following_id="<%= friendship.user_id %>">follow</button>
+              <% end %>
+            </div>
+          <% end %>
+          <!-- /follow_button -->
+
+          <!-- follow group -->
           <div class="friends btn-group">
-            <a class="btn" href="<%= "/users/#{user.username}/followings" %>">
-              <h4><%= user.user.count_followings %></h4>
+            <a class="btn" href="<%= "/users/#{friendship.username}/followings" %>">
+              <h4><%= friendship.user.count_followings %></h4>
               <p>follows</p>
             </a>
-            <a class="btn" href="<%= "/users/#{user.username}/followers" %>">
-              <h4><%= user.user.count_followers %></h4>
+            <a class="btn" href="<%= "/users/#{friendship.username}/followers" %>">
+              <h4><%= friendship.user.count_followers %></h4>
               <p>followers</p>
             </a>
           </div>
+          <!-- /follow group -->
 
         </li>
       <% end %>
@@ -32,3 +46,9 @@
   </div>
   <!-- /items -->
 </section>
+
+<script>
+$(function() {
+  var app_view = new BackboneFrustration.Views.Friendships.FollowersView();
+});
+</script>

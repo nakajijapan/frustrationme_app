@@ -1,8 +1,53 @@
 <div id="<%= controller_name %>_<%= action_name %>">
   <!-- items -->
   <div class="items">
-    <section class="profile_icon">
-    </section>
+      <% @users.each do |friendship| %>
+        <li class="item">
+
+          <div class="profile_icon">
+            <%= icon_image_tag friendship.icon_name, alt: friendship.username %>
+          </div>
+
+          <div class="username">
+            <h2>
+              <%= friendship.username %>
+            </h2>
+          </div>
+
+          <!-- follow_button -->
+          <%= @current_friends %>
+          <% if @current_user.present? and @current_user.id != friendship.following_id  %>
+            <div class="follow_group">
+              <% unless @current_friends.index(friendship.following_id).nil? %>
+                <button class="btn" id="unfollow_button" data-following_id="<%= friendship.following_id %>" data-id="<%= friendship.id %>">unfollow</button>
+              <% else %>
+                <button class="btn" id="follow_button" data-following_id="<%= friendship.following_id %>">follow</button>
+              <% end %>
+            </div>
+          <% end %>
+          <!-- /follow_button -->
+
+          <!-- follow group -->
+          <div class="friends btn-group">
+            <a class="btn" href="<%= "/users/#{friendship.username}/followings" %>">
+              <h4><%= friendship.user.count_followings %></h4>
+              <p>follows</p>
+            </a>
+            <a class="btn" href="<%= "/users/#{friendship.username}/followers" %>">
+              <h4><%= friendship.user.count_followers %></h4>
+              <p>followers</p>
+            </a>
+          </div>
+          <!-- /follow group -->
+
+        </li>
+      <% end %>
   </div>
   <!-- /items -->
 </div>
+
+<script>
+$(function() {
+  var app_view = new BackboneFrustration.Views.Friendships.FollowingsView();
+});
+</script>

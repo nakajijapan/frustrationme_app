@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
   # フォローされている人一覧
   def followers(page=1, limit=10)
     Friendship.select('friendships.*, users.username, users.icon_name, users.icon_name_file_name')
-      .joins("inner join users on friendships.following_id = users.id")
+      .joins("inner join users on friendships.user_id = users.id")
       .where("following_id = ?", self.id)
       .order("friendships.created_at desc")
       .page(page)
@@ -133,7 +133,7 @@ class User < ActiveRecord::Base
   # フォローしている人
   def followings(page=1, limit=10)
     Friendship.select('friendships.*, users.username, users.icon_name, users.icon_name_file_name')
-    .joins(:user)
+    .joins("inner join users on friendships.following_id = users.id")
     .where("user_id = ?", self.id)
     .order("friendships.created_at desc")
     .page(page)
@@ -142,5 +142,10 @@ class User < ActiveRecord::Base
 
   def unfollow(id)
     Friendship.where('user_id = ?', self.id).delete(id)
+  end
+
+  def following_ids(ids)
+    return [] if ids.blank?
+    Friendship.where('user_id = ?', self.id).where("following_id in (?)", ids).map{|f| f.following_id}
   end
 end
