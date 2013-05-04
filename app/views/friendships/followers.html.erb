@@ -1,8 +1,8 @@
 <section id="<%= controller_name %>_<%= action_name %>">
   <!-- items -->
-  <div class="items">
+  <div class="item_box">
 
-    <ul>
+    <ul class="itmes">
       <li class="item">
         <div class="profile_icon">
           <a href="/users/<%= @target_user.username %>">
@@ -33,7 +33,7 @@
 
     <hr />
 
-    <ul>
+    <ul class="items">
       <% @users.each do |friendship| %>
         <li class="item">
 
