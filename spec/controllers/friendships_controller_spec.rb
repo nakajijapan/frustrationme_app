@@ -40,24 +40,24 @@ describe FriendshipsController do
     end
   end
 
-  context "DELETE /friendships/" do
+  context "DELETE /friendships/delete" do
     it "returns http success" do
       Friendship.new({user_id: @u.id, following_id: @u_target.id}).save
 
       params = {
         format: 'json',
-        id: @u_target.id
+        following_id: @u_target.id
       }
-      delete 'destroy', params
+      delete 'delete', params
       expect(response).to be_success
     end
 
     it "returns 204" do
       params = {
         format: 'json',
-        id: 9999
+        following_id: 9999
       }
-      delete 'destroy', params
+      delete 'delete', params
       expect(response.code).to eq '204'
     end
   end
