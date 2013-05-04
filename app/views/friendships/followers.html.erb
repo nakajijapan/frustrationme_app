@@ -1,6 +1,36 @@
 <section id="<%= controller_name %>_<%= action_name %>">
   <!-- items -->
   <div class="items">
+
+    <ul>
+      <li class="item">
+        <div class="profile_icon">
+          <%= icon_image_tag @target_user.icon_name, alt: @target_user.username %>
+        </div>
+
+        <div class="username">
+          <h2>
+            <%= @target_user.username %>
+          </h2>
+        </div>
+
+        <!-- follow group -->
+        <div class="friends btn-group">
+          <a class="btn" href="<%= "/users/#{@target_user.username}/followings" %>">
+            <h4><%= @target_user.count_followings %></h4>
+            <p>follows</p>
+          </a>
+          <a class="btn" href="<%= "/users/#{@target_user.username}/followers" %>">
+            <h4><%= @target_user.count_followers %></h4>
+            <p>followers</p>
+          </a>
+        </div>
+        <!-- /follow group -->
+      </li>
+    </ul>
+
+    <hr />
+
     <ul>
       <% @users.each do |friendship| %>
         <li class="item">
@@ -16,12 +46,13 @@
           </div>
 
           <!-- follow_button -->
-          <% if @current_user.nil? or @current_user.id != friendship.user_id %>
-            <div class="follow_group">
-              <% if @current_friends.present? %>
-                <button class="btn" id="unfollow_button" data-following_id="<%= friendship.user_id %>" data-id="<%= friendship.id %>">unfollow</button>
+
+          <% if @current_user.present? and @current_user.id != friendship.following_id %>
+            <div class="follow_group" data-following_id="<%= friendship.following_id %>">
+              <% unless @current_friends.index(friendship.following_id).nil? %>
+                <button class="btn" id="unfollow_button" data-following_id="<%= friendship.following_id %>">unfollow</button>
               <% else %>
-                <button class="btn" id="follow_button" data-following_id="<%= friendship.user_id %>">follow</button>
+                <button class="btn" id="follow_button" data-following_id="<%= friendship.following_id %>">follow</button>
               <% end %>
             </div>
           <% end %>
@@ -39,10 +70,10 @@
             </a>
           </div>
           <!-- /follow group -->
-
         </li>
       <% end %>
     </ul>
+
   </div>
   <!-- /items -->
 </section>

@@ -17,7 +17,13 @@ Frustration::Application.routes.draw do
   # sign up
   resources :users, only: [:new, :create]
 
-  resources :friendships, only: [:create, :destroy]
+  resources :friendships, only: [:create] do
+    collection do
+      delete 'delete'
+    end
+  end
+
+
 
   # users
   scope '/users/:username', as: :users do

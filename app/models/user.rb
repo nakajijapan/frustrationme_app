@@ -116,6 +116,7 @@ class User < ActiveRecord::Base
   def count_followings
     Friendship.where('user_id = ?', self.id).count
   end
+
   def count_followers
     Friendship.where('following_id = ?', self.id).count
   end
@@ -141,7 +142,7 @@ class User < ActiveRecord::Base
   end
 
   def unfollow(id)
-    Friendship.where('user_id = ?', self.id).delete(id)
+    Friendship.delete_all(['user_id = ? and following_id = ?', self.id, id])
   end
 
   def following_ids(ids)

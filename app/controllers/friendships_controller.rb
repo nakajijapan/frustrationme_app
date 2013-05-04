@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_filter :current_user, only: [:create, :destroy]
+  before_filter :current_user, only: [:create, :delete]
   before_filter :check_user, only: [:followings, :followers]
 
   def create
@@ -13,9 +13,13 @@ class FriendshipsController < ApplicationController
     respond_with @friendship, location: nil
   end
 
-  def destroy
-    @friendship = @current_user.unfollow(params[:id])
-    respond_with @friendship, notice: 'deleted!', location: nil
+  def delete
+    @friendship = @current_user.unfollow(params[:following_id])
+
+    respond_to do |format|
+      format.html
+      format.json { head :no_content }
+    end
   end
 
   def followings
@@ -33,7 +37,7 @@ class FriendshipsController < ApplicationController
     return render_not_found if @target_user.blank?
 
     @users = @target_user.followings
-    @current_friends = @current_user.following_ids(@users.map{|f| f.user_id})
+    @current_friends = @current_user.following_ids(@users.map{|f| f.following_id})
 
     respond_with @users
   end
