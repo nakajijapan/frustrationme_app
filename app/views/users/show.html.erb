@@ -3,7 +3,9 @@
   <!-- prefile -->
   <div class="profile_header">
     <div class="profile_icon">
-      <%= icon_image_tag @target_user.icon_name, alt: @target_user.username %>
+      <a href="/users/<%= @target_user.username %>">
+        <%= icon_image_tag @target_user.icon_name, alt: @target_user.username %>
+      </a>
     </div>
 
     <div class="username">
@@ -12,19 +14,25 @@
       </h2>
     </div>
 
-    <div class="status_bar">
-      <!--
-      <button class="btn">23458<div>monmon</div></button>
-      -->
-    </div>
+    <!-- follow_button -->
+    <% if @current_user.id != @target_user.id %>
+      <div class="follow_group">
+        <% if @friendship.present? %>
+          <button class="btn" id="unfollow_button" data-following_id="<%= @target_user.id %>">unfollow</button>
+        <% else %>
+          <button class="btn" id="follow_button" data-following_id="<%= @target_user.id %>">follow</button>
+        <% end %>
+      </div>
+    <% end %>
+    <!-- /follow_button -->
 
     <div class="friends btn-group">
-      <a class="btn" href="<%= "/users/#{@target_user.username}/following" %>">
-        <h4>23458</h4>
+      <a class="btn" href="<%= "/users/#{@target_user.username}/followings" %>">
+        <h4><%= @target_user.count_followings %></h4>
         <p>follows</p>
       </a>
       <a class="btn" href="<%= "/users/#{@target_user.username}/followers" %>">
-        <h4>23458</h4>
+        <h4><%= @target_user.count_followers %></h4>
         <p>followers</p>
       </a>
     </div>
@@ -34,9 +42,19 @@
   <!-- item_menu -->
   <div class="items_menu">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#">23458 monmon</a></li>
-      <li><a href="#">32 Category</a></li>
+      <li class="active">
+        <a href="#"><%= @target_user.fumans.count %> monmon</a>
+      </li>
+      <li>
+        <a href="#"><%= @target_user.categories.count %> Categories</a>
+      </li>
+       <li>
+        <a href="#">5 Statuses</a>
+      </li>
+
+      <!--
       <li><a href="#">22 Tab</a></li>
+      -->
     </ul>
   </div>
   <!-- /item_menu -->
@@ -71,6 +89,6 @@ $(function() {
   var app_view = new BackboneFrustration.Views.Users.ShowView();
 });
 $(window).load(function () {
-  var app_view = new BackboneFrustration.Views.Users.ShowView();
+  BackboneFrustration.Views.Users.ShowView.prototype.initialize_grid();
 });
 </script>

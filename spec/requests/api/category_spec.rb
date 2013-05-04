@@ -47,7 +47,5 @@ describe 'Api::Categories' do
       delete "/api/me/categories/1.json#{@auth_str}"
       response.status.should == 204
     end
-
   end
-
 end

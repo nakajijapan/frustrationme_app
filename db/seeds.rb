@@ -10,7 +10,6 @@ user = User.create!(
   username: 'monyu',
   password: 'monyu',
   password_confirmation: 'monyu',
-  icon_name: 'http://a0.twimg.com/profile_images/2879950764/49d6b6ba83491fb6addfa61b607e5bde_normal.png',
   email: 'pp.kupepo.gattyanmo@gmail.com'
 )
 

@@ -9,14 +9,28 @@ Frustration::Application.routes.draw do
   # web
   #-----------------------------------------------
   # login/out
-  match 'login'                    => 'sessions#new',     :as => :login
-  match 'logout'                   => 'sessions#destroy', :as => :logout
-  match '/auth/:provider/callback' => 'sessions#create'
+  match 'login',                    to: 'sessions#new',     as: :login
+  match 'logout',                   to: 'sessions#destroy', as: :logout
+  match '/auth/:provider/callback', to: 'sessions#create'
   resources :sessions, :only       => %w[new create destroy]
 
   # sign up
   resources :users, only: [:new, :create]
-  match '/users/:username/', to: 'users#show'
+
+  resources :friendships, only: [:create] do
+    collection do
+      delete 'delete'
+    end
+  end
+
+
+
+  # users
+  scope '/users/:username', as: :users do
+    match '/', to: 'users#show'
+    match '/followings', to: 'friendships#followings'
+    match '/followers',  to: 'friendships#followers'
+  end
 
   # items
   resources :items, only: [:show]
@@ -52,45 +66,34 @@ Frustration::Application.routes.draw do
   # api
   #-----------------------------------------------
   namespace :api do
-
     resources :me, :only => [:index] do
       collection do
         get 'loginedcheck'
         get 'friends_timeline'
         get 'user_timeline'
-
         post 'upload_file'
         put  'upload_icon'
       end
-
     end
-
     scope '/me/' do
       resources :categories
-      resources :tags
-      resources :fumans do
-        resources :tags, only: [:create]
-      end
+      #resources :tags
+      #resources :fumans do
+      #  resources :tags, only: [:create]
+      #end
     end
-
-
     resources :users, :only => [:create, :destroy]
     scope '/users/:username/' do
       match '/'  => 'users#show',  :via => :get
-
       #resources :photos, :only => [:index, :show] do
       #  match '/cools' => 'cools#create',  :via => :post
       #  match '/cools' => 'cools#destroy', :via => :delete
       #  resources :comments, :only => [:index, :create, :destroy]
       #end
-
       match '/follow/'   => 'friendships#create',  :via => :post
       match '/unfollow/' => 'friendships#destroy', :via => :delete
-
       match '/followings/' => 'friendships#followings', :via => :get
       match '/followers/' => 'friendships#followers', :via => :get
     end
-
-
   end
 end
