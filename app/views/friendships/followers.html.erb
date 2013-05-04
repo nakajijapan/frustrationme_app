@@ -5,7 +5,9 @@
     <ul>
       <li class="item">
         <div class="profile_icon">
-          <%= icon_image_tag @target_user.icon_name, alt: @target_user.username %>
+          <a href="/users/<%= @target_user.username %>">
+            <%= icon_image_tag @target_user.icon_name, alt: @target_user.username %>
+          </a>
         </div>
 
         <div class="username">
@@ -36,7 +38,9 @@
         <li class="item">
 
           <div class="profile_icon">
-            <%= icon_image_tag friendship.icon_name, alt: friendship.username %>
+            <a href="/users/<%= friendship.username %>">
+              <%= icon_image_tag friendship.icon_name, alt: friendship.username %>
+            </a>
           </div>
 
           <div class="username">
