@@ -9,6 +9,10 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
     'click #follow_button': 'create_friendship'
     'click #unfollow_button': 'destroy_friendship'
 
+    'click #item_menu_all':      'menu_toggle_all'
+    'click #item_menu_status':   'menu_toggle_status'
+    'click #item_menu_category': 'menu_toggle_category'
+
   #------------------------
   initialize: () ->
 
@@ -49,3 +53,15 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
     item.delete(following_id, success : (result) ->
       $('.follow_group').html('<button class="btn" id="follow_button" data-following_id="' + following_id + '">follow</button>')
     )
+
+  menu_toggle_all: (e) ->
+    $(".menu_status").hide()
+    $(".menu_category").hide()
+
+  menu_toggle_status: (e) ->
+    $(".menu_status").show()
+    $(".menu_category").hide()
+
+  menu_toggle_category: (e) ->
+    $(".menu_status").hide()
+    $(".menu_category").show()
