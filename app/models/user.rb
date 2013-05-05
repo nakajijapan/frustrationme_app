@@ -48,9 +48,7 @@ class User < ActiveRecord::Base
 
   before_create :password_hash, unless: :social?
 
-  #-----------------------------------------------------------------------------
-  # password_hash
-  #-----------------------------------------------------------------------------
+  # crypt md5
   def password_hash
     self.crypted_password = Digest::MD5.hexdigest(self.password)
   end
