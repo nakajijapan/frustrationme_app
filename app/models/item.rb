@@ -31,4 +31,12 @@ class Item < ActiveRecord::Base
   def self.index_list(params, limit=20)
     Item.order('created_at desc').page(params[:page]).limit(limit)
   end
+
+  def last_created_user
+    User.joins(:fumans)
+      .where('fumans.item_id = ?', self.id)
+      .order('created_at desc')
+      .limit(1)
+      .first
+  end
 end

@@ -17,6 +17,16 @@
           <div class="service_icon">
             <%= image_tag "/assets/service/icon_#{item.service_code}.png", title: item.title %>
           </div>
+
+          <div class="created_user">
+            <% user = item.last_created_user %>
+            <% if user.present? %>
+              <a href="/users/<%= user.username %>">
+                <%= icon_image_tag user.icon_name.url('thumb'), title: user.username %>
+                <%= user.username %>
+              </a>
+            <% end %>
+          </div>
         </li>
         <!-- /item-->
       <% end %>
