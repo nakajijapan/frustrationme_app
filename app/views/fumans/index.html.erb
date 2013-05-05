@@ -29,6 +29,8 @@
                     <button type="button" class="btn fuman_status <%= pushed %>" data-status="<%= k %>" data-fuman_id="<%= item.fuman.id %>"><%= v %></button>
                   <% end %>
                 </div>
+
+                <div class="popup_info"><div class="arrow"></div>updated!!</div>
               </div>
               <!-- /status -->
 
@@ -36,6 +38,8 @@
               <div class="category">
                 <h4>Category</h4>
                 <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}.unshift(['----', '']), selected: item.fuman.category_id.to_i), id: '', class: 'fuman_form fuman_category', 'data-fuman_id' => item.fuman.id %>
+
+                <div class="popup_info"><div class="arrow"></div>updated!!</div>
               </div>
               <!-- /category -->
 
@@ -50,7 +54,9 @@
               <div class="comment">
                 <h4>Comment</h4>
                 <%= text_field_tag 'fuman_comment', '', class: 'fuman_form', id: "fuman_comment_#{item.id}" %>
-                <%= button_tag 'save', class: 'btn save_button', 'data-item_id' => item.id %>
+                <%= button_tag 'save', class: 'btn save_button', 'data-item_id' => item.id, 'data-fuman_id' => item.fuman.id %>
+
+                <div class="popup_info"><div class="arrow"></div>updated!!</div>
               </div>
 
               <div class="comment_list">

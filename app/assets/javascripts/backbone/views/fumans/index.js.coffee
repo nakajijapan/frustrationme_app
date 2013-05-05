@@ -36,6 +36,7 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
 
   update_status : (e) ->
     fuman = new BackboneFrustration.Models.Fuman
+
     data =
       id     : $(e.currentTarget).data('fuman_id')
       status : $(e.currentTarget).data('status')
@@ -43,6 +44,7 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
     fuman.save(
       data,
       success : (model, res) ->
+        $('[data-fuman_id=' + data.id  + '] .status .popup_info').fadeIn(1000).fadeOut(1000)
     )
 
   update_category : (e) ->
@@ -54,10 +56,12 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
     fuman.save(
       data,
       success : (model, res) ->
+        $('[data-fuman_id=' + data.id  + '] .category .popup_info').fadeIn(1000).fadeOut(1000)
     )
 
   create_comment : (e) ->
     item_id = $(e.currentTarget).data('item_id')
+    fuman_id = $(e.currentTarget).data('fuman_id')
     comment = new BackboneFrustration.Models.Comment
     data =
       item_id: item_id
@@ -72,6 +76,7 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
       data,
       success : (model, res) ->
         _this._append_comment(res)
+        $('[data-fuman_id=' + fuman_id  + '] .comment .popup_info').fadeIn(1000).fadeOut(1000)
     )
 
   _append_comment : (comment) ->
