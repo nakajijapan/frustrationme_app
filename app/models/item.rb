@@ -10,6 +10,9 @@ class Item < ActiveRecord::Base
   has_many :comments
   accepts_nested_attributes_for :comments
 
+  scope :fuman_status,   lambda { |name| where("fumans.status = ?", name) if name.present? }
+  scope :fuman_category, lambda { |name| where("fumans.category_id = ?", name) if name.present? }
+
   def users_with_status(status, count=50)
     User.joins(:fumans)
       .where('item_id = ?', self.id)

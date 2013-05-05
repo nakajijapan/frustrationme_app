@@ -119,7 +119,6 @@
       ul {
         li {
           &.active {
-
             a {
               background-color: $body_background_color;
             }
@@ -129,14 +128,71 @@
           }
 
           a {
-
             font-weight: bold;
             //background-color: #fa8a9a;
             &:hover {
               background-color: #ffffff;
-
             }
           }
+        }
+      }
+
+      .menu_status {
+        text-align: center;
+        a {
+          width: 100px;
+          font-size: 18px;
+          margin: 2px 0;
+          border: 1px solid #eee;
+          //border: 1px solid white;
+          &:hover {
+            color: #000;
+          }
+
+          &.f_1 {
+            @include linear-gradient-top($fuman_status_color_1, $fuman_status_color_1_grad);
+            &:hover {
+              @include linear-gradient-top($fuman_status_color_1, $fuman_status_color_1);
+            }
+          }
+
+          &.f_2 {
+            background-color: $fuman_status_color_2;
+            @include linear-gradient-top($fuman_status_color_2, $fuman_status_color_2_grad);
+            &:hover {
+              @include linear-gradient-top($fuman_status_color_2, $fuman_status_color_2);
+            }
+          }
+          &.f_3 {
+            background-color: $fuman_status_color_3;
+            @include linear-gradient-top($fuman_status_color_3, $fuman_status_color_3_grad);
+            &:hover {
+              @include linear-gradient-top($fuman_status_color_3, $fuman_status_color_3);
+            }
+          }
+          &.f_4 {
+            background-color: $fuman_status_color_4;
+            @include linear-gradient-top($fuman_status_color_4, $fuman_status_color_4_grad);
+            &:hover {
+              @include linear-gradient-top($fuman_status_color_4, $fuman_status_color_4);
+            }
+          }
+          &.f_5 {
+            background-color: $fuman_status_color_5;
+            @include linear-gradient-top($fuman_status_color_5, $fuman_status_color_5_grad);
+            &:hover {
+              @include linear-gradient-top($fuman_status_color_5, $fuman_status_color_5);
+            }
+          }
+        }
+
+      }
+
+      .menu_category {
+        text-align: center;
+        a {
+          font-size: 18px;
+          margin: 2px 0;
         }
       }
     }

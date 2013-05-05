@@ -16,10 +16,8 @@ class UsersController < ApplicationController
     @target_user = User.find_by_username(params[:username])
     return render_not_found if @target_user.blank?
 
-    logger.warn @target_user
-
     @friendship = @current_user.following(@target_user.id)
-    @items     = @target_user.items_with_fuman(params, 50)
+    @items      = @target_user.items_with_fuman(params, 50)
     @categories = @target_user.categories
   end
 end

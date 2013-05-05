@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
     errors[:icon_name] << "should be less than 1MB" if icon_name.size > 2.megabytes
   end
 
-
   has_many :categories
   has_many :fumans
   has_many :comments
@@ -100,7 +99,13 @@ class User < ActiveRecord::Base
 
   # 登録アイテム一覧
   def items_with_fuman(params, per=10)
-    Item.includes(:fuman).joins(:fuman).where('user_id = ?', self.id).order('fumans.created_at desc').page(params[:page]).per(per)
+    Item.includes(:fuman)
+    .joins(:fuman)
+    .where('user_id = ?', self.id)
+    .fuman_status(params[:status])
+    .fuman_category(params[:category_id])
+    .order('fumans.created_at desc')
+    .page(params[:page]).per(per)
   end
 
   # フォローしているユーザを取得する
