@@ -47,12 +47,7 @@ jQuery.fn.extend({
 
     // 画像が取得できない場合は、noimage用の画像と入れ替える。
     if (nWidth < 2 && nHeight < 2) {
-      if (size > 120) {
-        this.attr('src', '/img/noimage_l.png');
-      }
-      else {
-        this.attr('src', '/img/noimage_m.png');
-      }
+      this.attr('src', '/img/noimage_l.png');
       return {width: size, height: size};
     }
 
