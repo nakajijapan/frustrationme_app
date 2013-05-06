@@ -12,6 +12,7 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
     'click #item_menu_all':      'menu_toggle_all'
     'click #item_menu_status':   'menu_toggle_status'
     'click #item_menu_category': 'menu_toggle_category'
+  default_grid_size: 180.0
 
   #------------------------
   initialize: () ->
@@ -24,16 +25,32 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
 
     _ = @
 
-    $.AutoPager(
+    # ロード時に再計算
+    $(window).load () ->
+      _.initialize_grid()
+
+    $.AutoPager
       content: '.items'
-      loaded: (next_page_num) ->
+      loaded: (content, next_page_num) ->
         _.initialize_grid()
       before_append: (content) ->
-        $('img', $(content)).each( (i, elm) ->
+        $('img.item_image', $(content)).each (i, elm) ->
           i = new Image()
-          i.src = $(elm).attr('src')
-        )
-    )
+          $elm = $(elm)
+          i.src = $elm.attr('src')
+          #i.onload = () ->
+          #  frame = $(@).getImageSize()
+          #  $elm.css
+          #    width:  "#{_.default_grid_size}px"
+          #    height: ((frame.height * _.default_grid_size) / frame.width) + 'px'
+          i.onerror = () ->
+            $elm.attr('src', '/assets/noimage_l.png')
+            $elm.css
+              width:  "#{_.default_grid_size}px"
+              height: "#{_.default_grid_size}px"
+
+
+        return content
 
   initialize_grid: () ->
     options =

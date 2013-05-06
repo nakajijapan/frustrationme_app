@@ -8,7 +8,7 @@
         <li class="item" data-item_id="<%= item.id %>">
           <div class="side_top">
             <a href="/items/<%= item.id %>">
-              <%= icon_image_tag item.image_l, alt: item.title %>
+              <%= icon_image_tag item.image_l, alt: item.title, class: 'item_image' %>
             </a>
             <p>
               <%= item.title %>
@@ -38,9 +38,6 @@
 
 <script>
 $(function() {
-  var app_view = new BackboneFrustration.Views.Top.IndexView();
-});
-$(window).load(function () {
   var app_view = new BackboneFrustration.Views.Top.IndexView();
 });
 </script>

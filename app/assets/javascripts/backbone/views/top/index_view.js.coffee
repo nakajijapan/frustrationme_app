@@ -1,4 +1,3 @@
-
 BackboneFrustration.Views.Top ||= {}
 
 #-----------------------------------------------------------------------------
@@ -6,11 +5,18 @@ BackboneFrustration.Views.Top ||= {}
 #-----------------------------------------------------------------------------
 class BackboneFrustration.Views.Top.IndexView extends Backbone.View
   el: $("#top_index")
+  default_grid_size: 180.0
 
   initialize: () ->
+
+    # グリッド描画
     @initialize_grid()
 
     _ = @
+
+    # ロード時に再計算
+    $(window).load () ->
+      _.initialize_grid()
 
     $.AutoPager(
       content: '.items'
@@ -21,9 +27,11 @@ class BackboneFrustration.Views.Top.IndexView extends Backbone.View
           i = new Image()
           i.src = $(elm).attr('src')
           i.onerror = () ->
-            console.log 'error'
+            $elm.attr('src', '/assets/noimage_l.png')
+            $elm.css
+              width:  "#{_.default_grid_size}px"
+              height: "#{_.default_grid_size}px"
         )
-
     )
 
   initialize_grid: () ->

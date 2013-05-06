@@ -6,7 +6,8 @@
     defaults =
       content: ''
       start: () ->
-      before_append: () ->
+      before_append: (content) ->
+        return content
       loaded: () ->
 
     _ = this;
@@ -54,9 +55,9 @@
       next_content = $(res).find(_.options.content)
 
       # before append
-      _.options.before_append($(res).find(_.options.content))
+      modified_content = _.options.before_append($(res).find(_.options.content))
 
-      content.append(next_content.children())
+      content.append(modified_content.children())
 
       # recall
       _.options.loaded($(res).find(_.options.content), page_num)
