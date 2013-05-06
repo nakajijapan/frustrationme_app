@@ -31,6 +31,7 @@ class BackboneFrustration.Views.Top.IndexView extends Backbone.View
             $elm.css
               width:  "#{_.default_grid_size}px"
               height: "#{_.default_grid_size}px"
+            _.initialize_grid()
         )
     )
 

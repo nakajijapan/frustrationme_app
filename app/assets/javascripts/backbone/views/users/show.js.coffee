@@ -32,7 +32,8 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
     $.AutoPager
       content: '.items'
       loaded: (content, next_page_num) ->
-        _.initialize_grid()
+        #_.initialize_grid()
+        setTimeout(_.initialize_grid(), 1000)
       before_append: (content) ->
         $('img.item_image', $(content)).each (i, elm) ->
           i = new Image()
@@ -48,7 +49,7 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
             $elm.css
               width:  "#{_.default_grid_size}px"
               height: "#{_.default_grid_size}px"
-
+            _.initialize_grid()
 
         return content
 
