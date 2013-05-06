@@ -28,6 +28,11 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
       content: '.items'
       loaded: (next_page_num) ->
         _.initialize_grid()
+      before_append: (content) ->
+        $('img', $(content)).each( (i, elm) ->
+          i = new Image()
+          i.src = $(elm).attr('src')
+        )
     )
 
   initialize_grid: () ->
