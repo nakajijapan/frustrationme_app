@@ -32,7 +32,8 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
     $.AutoPager
       content: '.items'
       loaded: (content, next_page_num) ->
-        setTimeout(_.initialize_grid(), 2000)
+        _.initialize_grid()
+        # setTimeout(_.initialize_grid(), 2000) # error: Uncaught SyntaxError: Unexpected identifier
       before_append: (content) ->
         $('img.item_image', $(content)).each (i, elm) ->
           i = new Image()
@@ -49,7 +50,6 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
               width:  "#{_.default_grid_size}px"
               height: "#{_.default_grid_size}px"
             _.initialize_grid()
-
         return content
 
   initialize_grid: () ->

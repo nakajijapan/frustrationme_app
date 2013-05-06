@@ -18,12 +18,12 @@ class BackboneFrustration.Views.Top.IndexView extends Backbone.View
     $(window).load () ->
       _.initialize_grid()
 
-    $.AutoPager(
+    $.AutoPager
       content: '.items'
       loaded: (content, next_page_num) ->
-        setTimeout(_.initialize_grid(), 2000)
+        _.initialize_grid()
       before_append: (content) ->
-        $('img', $(content)).each( (i, elm) ->
+        $('img.item_image', $(content)).each (i, elm) ->
           i = new Image()
           i.src = $(elm).attr('src')
           i.onerror = () ->
@@ -32,8 +32,7 @@ class BackboneFrustration.Views.Top.IndexView extends Backbone.View
               width:  "#{_.default_grid_size}px"
               height: "#{_.default_grid_size}px"
             _.initialize_grid()
-        )
-    )
+        return content
 
   initialize_grid: () ->
     options =
