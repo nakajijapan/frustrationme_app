@@ -70,9 +70,8 @@ class User < ActiveRecord::Base
       provider:  auth['provider'],
       uid:       auth['uid'],
       username:  auth['info']['nickname'],
-      icon_name: auth['info']['image']
+      icon_name: open(auth['info']['image'].gsub(/_normal/, ''))
     }
-
     user = User.new(params)
 
     if User.find_by_username(auth['info']['nickname'])
