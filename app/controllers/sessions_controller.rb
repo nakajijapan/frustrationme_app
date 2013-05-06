@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
     if @user
       session[:user_id] = @user.id
-      redirect_to '/home', :notice => 'Login successful.'
+      redirect_to "/users/#{@user.username}", :notice => 'Login successful.'
     else
       flash.now[:alert] = "Login failed."; render :action => "new"
     end
