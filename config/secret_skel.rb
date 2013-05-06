@@ -1,12 +1,16 @@
 # config
 if ENV['RAILS_ENV'] == 'production'
-  ENV['AUTH_TWITTER_KEY'] = ''
-  ENV['AUTH_TWITTER_SECRET'] = ''
-  ENV['API_SELF_KEY'] = ''
+  ENV['AUTH_TWITTER_KEY']     = ''
+  ENV['AUTH_TWITTER_SECRET']  = ''
+  ENV['API_SELF_KEY']         = ''
+  ENV['AUTH_FACEBOOK_KEY']    = ''
+  ENV['AUTH_FACEBOOK_SECRET'] = ''
 else
-  ENV['AUTH_TWITTER_KEY'] = ''
-  ENV['AUTH_TWITTER_SECRET'] = ''
-  ENV['API_SELF_KEY'] = ''
+  ENV['AUTH_TWITTER_KEY']     = ''
+  ENV['AUTH_TWITTER_SECRET']  = ''
+  ENV['API_SELF_KEY']         = ''
+  ENV['AUTH_FACEBOOK_KEY']    = ''
+  ENV['AUTH_FACEBOOK_SECRET'] = ''
 end
 
 # api_bucket                                                                                                                                                          ENV['API_BUCKET_RAKUTEN_APPLICATION_ID']      = ''

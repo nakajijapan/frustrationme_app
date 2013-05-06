@@ -26,7 +26,7 @@ pid "/tmp/unicorn_#{application}.pid"
 working_directory app_path
 
 # ソケット
-listen  "/tmp/unicorn_#{application}.sock"
+listen "/var/www/frustration/tmp/sockets/unicorn.sock"
 
 # ダウンタイムなくす
 preload_app false
