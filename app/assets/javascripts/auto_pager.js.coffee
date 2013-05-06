@@ -6,6 +6,7 @@
     defaults =
       content: ''
       start: () ->
+      before_append: () ->
       loaded: () ->
 
     _ = this;
@@ -50,15 +51,17 @@
     # append_content
     #---------------------------
     _.append_content = (res)->
-      next_page    = $('<div/>').append(res.replace(/<script(.|\s)*?\/script>/g, ""))
-      next_content = next_page.find(_.options.content)
+      next_content = $(res).find(_.options.content)
+
+      # before append
+      _.options.before_append($(res).find(_.options.content))
 
       content.append(next_content.children())
 
-      _.options.loaded.call(next_content, page_num)
+      # recall
+      _.options.loaded($(res).find(_.options.content), page_num)
 
       active = false
-
 
     #---------------------------
     # main
