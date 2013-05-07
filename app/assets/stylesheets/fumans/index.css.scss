@@ -1,15 +1,49 @@
 @import "variables";
 
 #frustration {
-
-  //------------------------------------------------------------
-  // search
-  //------------------------------------------------------------
   #fumans_index {
     button.active {
       background-color: #888;
       color: #fff;
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+    }
+
+    h1 {
+      margin: 10px;
+    }
+
+    //------------------------
+    // search
+    //------------------------
+    #search_box {
+      margin: 0 auto;
+      width: 600px;
+      @include list_box_design;
+
+      form {
+        padding-left: 30px;
+
+        h4 {
+          width: 550px;
+        }
+
+        .status,
+        .category {
+          position: relative;
+          margin: 0px;
+          padding: 5px 0px;
+          border-bottom: 1px dotted #ccc;
+
+          .fuman_form {
+            position: absolute;
+            top: 10px;
+            left: 150px;
+          }
+        }
+        button[type=submit] {
+          margin: 20px 0 0 0;
+        }
+      }
     }
 
     //------------------------
@@ -22,6 +56,9 @@
       display: block;
       width: 800px;
 
+      ul {
+        margin: 0px;
+      }
       li.item {
         width: 100%;
         margin: 10px 0px;
@@ -30,6 +67,33 @@
         section {
           display: table;
           width: 100%;
+
+          .popup_info {
+            display: none;
+            position: absolute;
+            right: -65px;
+            top: 0;
+            background:rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 0.8em;
+            padding: 3px;
+            border-radius: 2px;
+            margin: 15px 0 0 0;
+
+            .arrow {
+              position: absolute;
+              width: 0;
+              height: 0;
+              border-color: transparent;
+              border-style: solid;
+              top: 50%;
+              left: 0;
+              margin: -5px 0 0 -5px;
+              border-width: 5px 5px 5px 0;
+              border-right-color: rgba(0, 0, 0, 0.7);
+            }
+          }
+
 
           .side_left {
             display: table-cell;

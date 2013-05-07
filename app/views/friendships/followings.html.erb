@@ -64,11 +64,11 @@
           <!-- follow group -->
           <div class="friends btn-group">
             <a class="btn" href="<%= "/users/#{friendship.username}/followings" %>">
-              <h4><%= friendship.user.count_followings %></h4>
+              <h4><%= friendship.following_user.count_followings %></h4>
               <p>follows</p>
             </a>
             <a class="btn" href="<%= "/users/#{friendship.username}/followers" %>">
-              <h4><%= friendship.user.count_followers %></h4>
+              <h4><%= friendship.following_user.count_followers %></h4>
               <p>followers</p>
             </a>
           </div>

@@ -9,6 +9,11 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
     'click #follow_button': 'create_friendship'
     'click #unfollow_button': 'destroy_friendship'
 
+    'click #item_menu_all':      'menu_toggle_all'
+    'click #item_menu_status':   'menu_toggle_status'
+    'click #item_menu_category': 'menu_toggle_category'
+  default_grid_size: 180.0
+
   #------------------------
   initialize: () ->
 
@@ -20,11 +25,32 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
 
     _ = @
 
-    $.AutoPager(
+    # ロード時に再計算
+    $(window).load () ->
+      _.initialize_grid()
+
+    $.AutoPager
       content: '.items'
-      loaded: (next_page_num) ->
+      loaded: (content, next_page_num) ->
         _.initialize_grid()
-    )
+        # setTimeout(_.initialize_grid(), 2000) # error: Uncaught SyntaxError: Unexpected identifier
+      before_append: (content) ->
+        $('img.item_image', $(content)).each (i, elm) ->
+          i = new Image()
+          $elm = $(elm)
+          i.src = $elm.attr('src')
+          #i.onload = () ->
+          #  frame = $(@).getImageSize()
+          #  $elm.css
+          #    width:  "#{_.default_grid_size}px"
+          #    height: ((frame.height * _.default_grid_size) / frame.width) + 'px'
+          i.onerror = () ->
+            $elm.attr('src', '/assets/noimage_l.png')
+            $elm.css
+              width:  "#{_.default_grid_size}px"
+              height: "#{_.default_grid_size}px"
+            _.initialize_grid()
+        return content
 
   initialize_grid: () ->
     options =
@@ -49,3 +75,15 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
     item.delete(following_id, success : (result) ->
       $('.follow_group').html('<button class="btn" id="follow_button" data-following_id="' + following_id + '">follow</button>')
     )
+
+  menu_toggle_all: (e) ->
+    $(".menu_status").hide()
+    $(".menu_category").hide()
+
+  menu_toggle_status: (e) ->
+    $(".menu_status").show()
+    $(".menu_category").hide()
+
+  menu_toggle_category: (e) ->
+    $(".menu_status").hide()
+    $(".menu_category").show()

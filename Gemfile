@@ -46,6 +46,9 @@ gem 'api_bucket'
 gem 'paperclip'
 gem 'aws-sdk'
 
+# mail
+gem 'mail-iso-2022-jp'
+
 # for development
 group :development do
   gem 'capistrano'

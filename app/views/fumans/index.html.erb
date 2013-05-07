@@ -1,4 +1,37 @@
 <div id="<%= controller_name %>_<%= action_name %>">
+
+  <section id="search_box">
+    <h1>Item List</h1>
+
+    <%= form_tag '/fumans', method: :get do %>
+      <%= hidden_field_tag :status, params[:status], id: :search_status %>
+
+      <div>
+        <!-- status -->
+        <div class="status">
+          <h4>Status</h4>
+          <div class="btn-group fuman_form" data-toggle="buttons-radio">
+            <% Fuman::status_options.each do |v, k| %>
+              <% pushed = 'active' if params[:status] == k %>
+              <button type="button" class="btn search_status <%= pushed %>" data-status="<%= k %>"><%= v %></button>
+            <% end %>
+          </div>
+        </div>
+        <!-- /status -->
+
+        <!-- category -->
+        <div class="category">
+          <h4>Category</h4>
+          <%= select_tag :category, options_for_select(@categories.map{|c| [c.name,c.id]}.unshift(['----', '']), selected: params[:category]), class: 'fuman_form' %>
+        </div>
+        <!-- /category -->
+
+        <%= button_tag "Search", type: :submit, class: 'btn' %>
+      </div>
+    <% end %>
+  </section>
+
+
   <!-- items -->
   <div class="items">
     <ul>
@@ -8,7 +41,7 @@
           <section>
             <div class="side_left">
               <h2>
-                <%= link_to image_tag(item.image_l, alt: item.title), item.url, alt: item.title, target: '_blank' %>
+                <%= link_to image_tag(item.image_l, alt: item.title, class: 'item_image'), item.url, alt: item.title, target: '_blank' %>
               </h2>
             </div>
 
@@ -29,6 +62,8 @@
                     <button type="button" class="btn fuman_status <%= pushed %>" data-status="<%= k %>" data-fuman_id="<%= item.fuman.id %>"><%= v %></button>
                   <% end %>
                 </div>
+
+                <div class="popup_info"><div class="arrow"></div>updated!!</div>
               </div>
               <!-- /status -->
 
@@ -36,6 +71,8 @@
               <div class="category">
                 <h4>Category</h4>
                 <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}.unshift(['----', '']), selected: item.fuman.category_id.to_i), id: '', class: 'fuman_form fuman_category', 'data-fuman_id' => item.fuman.id %>
+
+                <div class="popup_info"><div class="arrow"></div>updated!!</div>
               </div>
               <!-- /category -->
 
@@ -50,7 +87,9 @@
               <div class="comment">
                 <h4>Comment</h4>
                 <%= text_field_tag 'fuman_comment', '', class: 'fuman_form', id: "fuman_comment_#{item.id}" %>
-                <%= button_tag 'save', class: 'btn save_button', 'data-item_id' => item.id %>
+                <%= button_tag 'save', class: 'btn save_button', 'data-item_id' => item.id, 'data-fuman_id' => item.fuman.id %>
+
+                <div class="popup_info"><div class="arrow"></div>updated!!</div>
               </div>
 
               <div class="comment_list">

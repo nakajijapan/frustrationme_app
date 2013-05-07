@@ -27,6 +27,5 @@ class SettingsController < ApplicationController
   end
 
   def category
-    #@category = Category.new
   end
 end

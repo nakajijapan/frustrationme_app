@@ -18,10 +18,23 @@ $create_button_bottom: #FFD7D7;
 $created_button_top: #FB697E;
 $created_button_bottom: #F6415B;
 
+// graduation colors
+$fuman_status_color_1: #ff8294;
+$fuman_status_color_1_grad: #D16675;
+$fuman_status_color_2: #bcf99e;
+$fuman_status_color_2_grad: #7AA764;
+$fuman_status_color_3: #9ef2f9;
+$fuman_status_color_3_grad: #82CBD1;
+$fuman_status_color_4: #f9f99e;
+$fuman_status_color_4_grad: #D5D57C;
+$fuman_status_color_5: rgba(255,130,148, 0.3);
+$fuman_status_color_5_grad: rgba(168, 0, 24, 0.3);
+
 @mixin list_box_design {
   border: 1px solid #ccc;
-  box-shadow: 0px 0px 4px #bbb;
+  box-shadow: 0px 0px 1px #bbb;
   background-color: #fff;
+  border-radius: 4px;
 }
 
 @mixin border-radius($pixel) {

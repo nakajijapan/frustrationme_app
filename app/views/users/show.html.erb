@@ -43,19 +43,32 @@
   <div class="items_menu">
     <ul class="nav nav-tabs">
       <li class="active">
-        <a href="#"><%= @target_user.fumans.count %> monmon</a>
+        <a href="#" id="item_menu_all"><%= @target_user.fumans.count %> monmon</a>
       </li>
       <li>
-        <a href="#"><%= @target_user.categories.count %> Categories</a>
+        <a href="#" id="item_menu_category"><%= @target_user.categories.count %> Categories</a>
       </li>
        <li>
-        <a href="#">5 Statuses</a>
+        <a href="#" id="item_menu_status">5 Statuses</a>
       </li>
-
-      <!--
-      <li><a href="#">22 Tab</a></li>
-      -->
     </ul>
+
+    <div class="menu_status hide">
+      <% Fuman::status_options.each do |v, k| %>
+        <a href="/users/<%= @target_user.username %>/?status=<%= k %>" class="btn btn-large fuman_status_label f_<%= k %>">
+          <%= v %>
+        </a>
+      <% end %>
+    </div>
+
+    <div class="menu_category hide">
+      <% @categories.each do |c| %>
+        <a href="/users/<%= @target_user.username %>/?category_id=<%= c.id %>" class="btn btn-large">
+          <%= c.name %>
+        </a>
+      <% end %>
+    </div>
+
   </div>
   <!-- /item_menu -->
 
@@ -67,7 +80,7 @@
         <li class="item" data-fuman_id="<%= item.fuman.id %>">
           <div class="side_top">
             <a href="/items/<%= item.id %>">
-              <%= icon_image_tag item.image_l, alt: item.title %>
+              <%= icon_image_tag item.image_l, alt: item.title, class: 'item_image' %>
             </a>
             <p>
               <%= item.title %>
@@ -87,8 +100,5 @@
 <script>
 $(function() {
   var app_view = new BackboneFrustration.Views.Users.ShowView();
-});
-$(window).load(function () {
-  BackboneFrustration.Views.Users.ShowView.prototype.initialize_grid();
 });
 </script>

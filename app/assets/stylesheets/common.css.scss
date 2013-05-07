@@ -130,7 +130,7 @@ header#header_menu {
     li.user_menu {
       ul {
         padding: 0px;
-        margin: 0px;
+        margin: 5px 0 0 0;
         position: absolute;
         right: 30px;
         background-color: $menu_background_color;
@@ -166,7 +166,7 @@ header#header_menu {
 }
 
 //------------------------------------------------------------------------------
-// notice
+// container
 //------------------------------------------------------------------------------
 .container {
   padding: 0 15px;

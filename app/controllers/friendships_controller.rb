@@ -36,7 +36,7 @@ class FriendshipsController < ApplicationController
     @target_user = User.where(username: params[:username]).first
     return render_not_found if @target_user.blank?
 
-    @users = @target_user.followings
+    @users = @target_user.followers
     @current_friends = @current_user.following_ids(@users.map{|f| f.following_id})
 
     respond_with @users

@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
     errors[:icon_name] << "should be less than 1MB" if icon_name.size > 2.megabytes
   end
 
-
   has_many :categories
   has_many :fumans
   has_many :comments
@@ -48,9 +47,7 @@ class User < ActiveRecord::Base
 
   before_create :password_hash, unless: :social?
 
-  #-----------------------------------------------------------------------------
-  # password_hash
-  #-----------------------------------------------------------------------------
+  # crypt md5
   def password_hash
     self.crypted_password = Digest::MD5.hexdigest(self.password)
   end
@@ -73,9 +70,8 @@ class User < ActiveRecord::Base
       provider:  auth['provider'],
       uid:       auth['uid'],
       username:  auth['info']['nickname'],
-      icon_name: auth['info']['image']
+      icon_name: open(auth['info']['image'].gsub(/_normal/, ''))
     }
-
     user = User.new(params)
 
     if User.find_by_username(auth['info']['nickname'])
@@ -102,7 +98,13 @@ class User < ActiveRecord::Base
 
   # 登録アイテム一覧
   def items_with_fuman(params, per=10)
-    Item.includes(:fuman).joins(:fuman).where('user_id = ?', self.id).order('fumans.created_at desc').page(params[:page]).per(per)
+    Item.includes(:fuman)
+    .joins(:fuman)
+    .where('user_id = ?', self.id)
+    .fuman_status(params[:status])
+    .fuman_category(params[:category_id])
+    .order('fumans.created_at desc')
+    .page(params[:page]).per(per)
   end
 
   # フォローしているユーザを取得する

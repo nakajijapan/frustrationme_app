@@ -1,17 +1,3 @@
-<% content_for :sub_header_menu do %>
-    <div id="sub_header_menu" class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <ul class="nav">
-            <li><%= link_to :New, "/users/new"  %></li>
-            <li><%= link_to :Tag, "/users/new"  %></li>
-            <li><%= link_to :Search, "/users/new"  %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-<% end %>
-
 <div id="<%= controller_name %>_<%= action_name %>">
 
   <!-- items -->
@@ -22,7 +8,7 @@
         <li class="item" data-item_id="<%= item.id %>">
           <div class="side_top">
             <a href="/items/<%= item.id %>">
-              <%= icon_image_tag item.image_l, alt: item.title %>
+              <%= icon_image_tag item.image_l, alt: item.title, class: 'item_image' %>
             </a>
             <p>
               <%= item.title %>
@@ -30,6 +16,16 @@
           </div>
           <div class="service_icon">
             <%= image_tag "/assets/service/icon_#{item.service_code}.png", title: item.title %>
+          </div>
+
+          <div class="created_user">
+            <% user = item.last_created_user %>
+            <% if user.present? %>
+              <a href="/users/<%= user.username %>">
+                <%= icon_image_tag user.icon_name.url('thumb'), title: user.username %>
+                <%= user.username %>
+              </a>
+            <% end %>
           </div>
         </li>
         <!-- /item-->
@@ -42,9 +38,6 @@
 
 <script>
 $(function() {
-  var app_view = new BackboneFrustration.Views.Top.IndexView();
-});
-$(window).load(function () {
   var app_view = new BackboneFrustration.Views.Top.IndexView();
 });
 </script>

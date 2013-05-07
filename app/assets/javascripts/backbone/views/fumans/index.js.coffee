@@ -15,6 +15,7 @@ BackboneFrustration.Views.Fumans ||= {}
 class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
   el: $('#fumans_index')
   events:
+    'click  .search_status'    : 'set_status'
     'click  .fuman_status'     : 'update_status'
     'change .fuman_category'   : 'update_category'
     'click  .save_button'      : 'create_comment'
@@ -25,17 +26,23 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
     # イベントの追加
     @delegateEvents(@events)
 
-  #auto_height: () ->
-  #  options  =
-  #    auto_resize: true
-  #    container: $('.items')
-  #    offset: 2
-  #    item_width: 210
-  #  $('li.item').CoolGrid(options)
-  #  return
+    $('img.item_image').each (i, elm) ->
+      $elm  = $(elm)
+      i     = new Image()
+      i.src = $elm.attr('src')
+      i.onload = () ->
+        if $elm.getImageSize().width == undefined
+          $elm.attr('src', '/assets/noimage_l.png')
+      i.onerror = () ->
+        $elm.attr('src', '/assets/noimage_l.png')
+
+  set_status: (e) ->
+    status = $(e.currentTarget).data('status')
+    $('#search_status').val(status)
 
   update_status : (e) ->
     fuman = new BackboneFrustration.Models.Fuman
+
     data =
       id     : $(e.currentTarget).data('fuman_id')
       status : $(e.currentTarget).data('status')
@@ -43,6 +50,7 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
     fuman.save(
       data,
       success : (model, res) ->
+        $('[data-fuman_id=' + data.id  + '] .status .popup_info').fadeIn(1000).fadeOut(1000)
     )
 
   update_category : (e) ->
@@ -54,10 +62,12 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
     fuman.save(
       data,
       success : (model, res) ->
+        $('[data-fuman_id=' + data.id  + '] .category .popup_info').fadeIn(1000).fadeOut(1000)
     )
 
   create_comment : (e) ->
     item_id = $(e.currentTarget).data('item_id')
+    fuman_id = $(e.currentTarget).data('fuman_id')
     comment = new BackboneFrustration.Models.Comment
     data =
       item_id: item_id
@@ -72,6 +82,7 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
       data,
       success : (model, res) ->
         _this._append_comment(res)
+        $('[data-fuman_id=' + fuman_id  + '] .comment .popup_info').fadeIn(1000).fadeOut(1000)
     )
 
   _append_comment : (comment) ->

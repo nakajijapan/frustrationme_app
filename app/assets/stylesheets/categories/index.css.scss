@@ -1,11 +1,11 @@
 @import "variables";
 
 #frustration {
-
-  //------------------------------------------------------------
-  // index
-  //------------------------------------------------------------
   #categories_index {
+    h1 {
+      margin: 10px;
+    }
+
     input {
       margin-bottom: 0;
     }
@@ -14,19 +14,13 @@
       width: 800px;
       min-height: 100px;
       margin: 0 auto;
-      background-color: #fff;
-      border: 1px solid #ccc;
+      @include list_box_design;
 
       .form_create {
         vertical-align: middle;
         margin: 30px auto;
-        width: 420px;
+        width:  300px;
 
-        label {
-          display: inline-block;
-          font-size: 24px;
-          font-weight: bold;
-        }
         div {
           display: inline-block;
         }

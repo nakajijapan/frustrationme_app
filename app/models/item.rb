@@ -10,6 +10,9 @@ class Item < ActiveRecord::Base
   has_many :comments
   accepts_nested_attributes_for :comments
 
+  scope :fuman_status,   lambda { |name| where("fumans.status = ?", name) if name.present? }
+  scope :fuman_category, lambda { |name| where("fumans.category_id = ?", name) if name.present? }
+
   def users_with_status(status, count=50)
     User.joins(:fumans)
       .where('item_id = ?', self.id)
@@ -27,5 +30,13 @@ class Item < ActiveRecord::Base
 
   def self.index_list(params, limit=20)
     Item.order('created_at desc').page(params[:page]).limit(limit)
+  end
+
+  def last_created_user
+    User.joins(:fumans)
+      .where('fumans.item_id = ?', self.id)
+      .order('created_at desc')
+      .limit(1)
+      .first
   end
 end
