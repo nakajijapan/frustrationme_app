@@ -1,4 +1,37 @@
 <div id="<%= controller_name %>_<%= action_name %>">
+
+  <section id="search_box">
+    <h1>Item List</h1>
+
+    <%= form_tag '/fumans', method: :get do %>
+      <%= hidden_field_tag :status, params[:status], id: :search_status %>
+
+      <div>
+        <!-- status -->
+        <div class="status">
+          <h4>Status</h4>
+          <div class="btn-group fuman_form" data-toggle="buttons-radio">
+            <% Fuman::status_options.each do |v, k| %>
+              <% pushed = 'active' if params[:status] == k %>
+              <button type="button" class="btn search_status <%= pushed %>" data-status="<%= k %>"><%= v %></button>
+            <% end %>
+          </div>
+        </div>
+        <!-- /status -->
+
+        <!-- category -->
+        <div class="category">
+          <h4>Category</h4>
+          <%= select_tag :category, options_for_select(@categories.map{|c| [c.name,c.id]}.unshift(['----', '']), selected: params[:category]), class: 'fuman_form' %>
+        </div>
+        <!-- /category -->
+
+        <%= button_tag "Search", type: :submit, class: 'btn' %>
+      </div>
+    <% end %>
+  </section>
+
+
   <!-- items -->
   <div class="items">
     <ul>
@@ -8,7 +41,7 @@
           <section>
             <div class="side_left">
               <h2>
-                <%= link_to image_tag(item.image_l, alt: item.title), item.url, alt: item.title, target: '_blank' %>
+                <%= link_to image_tag(item.image_l, alt: item.title, class: 'item_image'), item.url, alt: item.title, target: '_blank' %>
               </h2>
             </div>
 

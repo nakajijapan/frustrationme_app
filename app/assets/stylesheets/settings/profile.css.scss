@@ -1,11 +1,6 @@
 @import 'variables';
 
-
 #frustration {
-
-  //------------------------------------------------------------
-  // profile
-  //------------------------------------------------------------
   #settings_profile {
 
     //------------------------
@@ -17,7 +12,6 @@
       margin: 0 auto;
       display: block;
       width: 800px;
-
       @include list_box_design;
 
       h1 {

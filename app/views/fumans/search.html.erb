@@ -1,78 +1,71 @@
 <%# あとでjsonで動的に取得できるようにする %>
-
-<% content_for :footer_javascript do %>
-<%= javascript_include_tag 'jquery/jqueryAutoHeight.js'%>
-<script type="text/javascript">
-$(document).ready(function() {
-  $('.item_box').autoHeight({
-    column : 4,
-    height : 'height'
-  });
-});
-</script>
-<% end %>
-
 <div id="<%= controller_name %>_<%= action_name %>">
-  <ul class="search">
-    <li>
-      <a href='javascript:;' class="service_button forcus" data-service_name="amazon">
-        <p>Amazon</p>
-        <%= image_tag 'service/icon_0.png' %>
-      </a>
-    </li>
 
-    <!--
-    <li>
-      <a href='javascript:void' class="service_button">
-        <p>Calamel</p>
-        <%= image_tag 'service/icon_1.png' %>
-      </a>
-    </li>
-    -->
+  <!-- search_box -->
+  <section id="search_box">
+    <h1>Search Item</h1>
 
-    <li>
-      <a href='javascript:;' class="service_button" data-service_name="yahooauction">
-        <p>Yahoo!Auction</p>
-        <%= image_tag 'service/icon_2.png' %>
-      </a>
-    </li>
+    <ul class="search">
+      <li>
+        <a href='javascript:;' class="service_button forcus" data-service_name="amazon">
+          <p>Amazon</p>
+          <%= image_tag 'service/icon_0.png' %>
+        </a>
+      </li>
 
-    <li>
-      <a href='javascript:;' class="service_button" data-service_name="rakuten">
-        <p>Rakuten</p>
-        <%= image_tag 'service/icon_3.png' %>
-  　   </a>
-    </li>
+      <!--
+      <li>
+        <a href='javascript:void' class="service_button">
+          <p>Calamel</p>
+          <%= image_tag 'service/icon_1.png' %>
+        </a>
+      </li>
+      -->
 
-    <li>
-      <a href='javascript:;' class="service_button" data-service_name="itunes">
-        <p>iTunes</p>
-        <%= image_tag 'service/icon_4.png' %>
-      </a>
-    </li>
+      <li>
+        <a href='javascript:;' class="service_button" data-service_name="yahooauction">
+          <p>Yahoo!Auction</p>
+          <%= image_tag 'service/icon_2.png' %>
+        </a>
+      </li>
 
-    <li>
-      <a href='javascript:;' class="service_button" data-service_name="frustration">
-        <p>frustration</p>
-        <%= image_tag 'service/icon_5.png' %>
-      </a>
-    </li>
-  </ul>
+      <li>
+        <a href='javascript:;' class="service_button" data-service_name="rakuten">
+          <p>Rakuten</p>
+          <%= image_tag 'service/icon_3.png' %>
+    　   </a>
+      </li>
 
-  <br />
+      <li>
+        <a href='javascript:;' class="service_button" data-service_name="itunes">
+          <p>iTunes</p>
+          <%= image_tag 'service/icon_4.png' %>
+        </a>
+      </li>
 
-  <%= form_tag '/fumans/search', :method => :post do %>
-    <%= hidden_field_tag :s_service_name, params[:s_service_name] %>
+      <li>
+        <a href='javascript:;' class="service_button" data-service_name="frustration">
+          <p>frustration</p>
+          <%= image_tag 'service/icon_5.png' %>
+        </a>
+      </li>
+    </ul>
 
-    <div class="input-append">
-      <span class="service_categories">
-        <% h = {}; ApiBucket::Service.instance(:amazon).categories.each_pair {|k,v| h[v]=k} %>
-        <%= select_tag :s_category, options_for_select(h), selected: params[:s_category]  %>
-      </span>
-      <%= text_field_tag :s_keywords, params[:s_keywords] %>
-      <%= button_tag "Search", type: :submit, class: 'btn' %>
-    </div>
-  <% end %>
+    <%= form_tag '/fumans/search', :method => :post do %>
+      <%= hidden_field_tag :s_service_name, params[:s_service_name] %>
+
+      <div class="input-append">
+        <span class="service_categories">
+          <% h = {}; ApiBucket::Service.instance(:amazon).categories.each_pair {|k,v| h[v]=k} %>
+          <%= select_tag :s_category, options_for_select(h), selected: params[:s_category]  %>
+        </span>
+        <%= text_field_tag :s_keywords, params[:s_keywords] %>
+        <%= button_tag "Search", type: :submit, class: 'btn' %>
+      </div>
+    <% end %>
+  </section>
+  <!-- /search_box -->
+
 
 
   <!-- items -->
@@ -146,8 +139,14 @@ $(document).ready(function() {
 <!-- /modal_create_fuman -->
 
 
+<%= javascript_include_tag 'jquery/jqueryAutoHeight.js'%>
 <script>
   $(function() {
-      var app_view = new BackboneFrustration.Views.Fumans.SearchView();
+    var app_view = new BackboneFrustration.Views.Fumans.SearchView();
+    $('.item_box').autoHeight({
+      column : 4,
+      height : 'height'
+    });
+
   });
 </script>
