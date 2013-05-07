@@ -31,3 +31,7 @@ ENV['DB_USERNAME'] = ''
 ENV['DB_PASSWORD'] = ''
 ENV['DB_DATABASE'] = ''
 ENV['DB_HOST']     = ''
+
+# mail
+ENV['MAIL_USERNAME'] = ''
+ENV['MAIL_PASSWARD'] = ''
