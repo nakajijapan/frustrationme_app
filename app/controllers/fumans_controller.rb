@@ -4,10 +4,6 @@ class FumansController < ApplicationController
   def index
     @items     = @current_user.items_with_fuman(params, 30)
     @categories = @current_user.categories
-
-    # 絞り込み
-    if params[:s_category].present?
-    end
   end
 
   def search
