@@ -1,6 +1,5 @@
 Frustration::Application.routes.draw do
 
-  get "items/show"
 
   # root
   root :to => 'top#index'
@@ -28,6 +27,13 @@ Frustration::Application.routes.draw do
     match '/', to: 'users#show'
     match '/followings', to: 'friendships#followings'
     match '/followers',  to: 'friendships#followers'
+  end
+
+  scope '/password/', as: :passwords do
+    match '/',      to: 'password#index', via: :get
+    match '/sendmail',   to: 'password#sendmail',  via: :post
+    match '/reset',  to: 'password#reset', via: :get
+    match '/finish', to: 'password#finish', via: :put
   end
 
   # items

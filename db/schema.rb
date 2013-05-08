@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20130425220732) do
     t.integer  "facebook_use"
     t.string   "provider"
     t.string   "uid"
+    t.string   "reset_hash"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "icon_name_file_name"
