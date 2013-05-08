@@ -20,8 +20,7 @@
         a {
           &.service_button {
             background-color: #fb697e;
-            background: -linear-gradient(top, #fa8a9a, #fb697e);
-            background: -webkit-linear-gradient(top, #fa8a9a, #fb697e);
+            @include linear-gradient-top(#fa8a9a, #fb697e);
             margin: 0px 10px;
             display: block;
             width: 95px;
@@ -35,8 +34,7 @@
 
             &:hover {
               background-color: #fb697e;
-              background: linear-gradient(top, #fb697e, #f53b55);
-              background: -webkit-linear-gradient(top, #fb697e, #f53b55);
+              @include linear-gradient-top(#fb697e, #f53b55);
               text-decoration: none;
             }
 
@@ -90,6 +88,9 @@
     #s_category {
       margin-right: 10px;
     }
+    #s_url {
+      width: 500px;
+    }
 
     //---------------
     // item_box
@@ -126,7 +127,7 @@
       width: 100%;
       height: 100%;
       opacity: 0.8;
-      font-size: 200px;
+      font-size: 150px;
       text-align: center;
       color: #FB697E;
       font-weight: bold;

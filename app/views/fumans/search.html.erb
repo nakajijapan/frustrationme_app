@@ -51,7 +51,7 @@
       </li>
     </ul>
 
-    <%= form_tag '/fumans/search', :method => :post do %>
+    <%= form_tag '/fumans/search', method: :post, name: 'search_form' do %>
       <%= hidden_field_tag :s_service_name, params[:s_service_name] %>
 
       <div class="input-append">
@@ -59,8 +59,10 @@
           <% h = {}; ApiBucket::Service.instance(:amazon).categories.each_pair {|k,v| h[v]=k} %>
           <%= select_tag :s_category, options_for_select(h), selected: params[:s_category]  %>
         </span>
+
         <%= text_field_tag :s_keywords, params[:s_keywords] %>
-        <%= button_tag "Search", type: :submit, class: 'btn' %>
+        <%= text_field_tag :s_url,      params[:s_url], placeholder: 'http://' %>
+        <%= button_tag "Search", type: :button, class: 'btn', id: 'search_button' %>
       </div>
     <% end %>
   </section>
@@ -102,41 +104,42 @@
   <br class="clearfix" />
 </div>
 
+<% ['', '_frustration'].each do |v|%>
+  <!-- modal_create_fuman<%= v %> -->
+  <div class="modal_conteiner" id="modal_create_fuman<%= v %>">
+    <div class="header">
+      <h2>Add</h2>
+      <a href="javascript:;" class="right" onClick="$('#modal_create_fuman<%= v %>').SimpleModal().cancel();">
+        <div>X</div>
+      </a>
+    </div>
 
-<!-- modal_create_fuman -->
-<div class="modal_conteiner" id="modal_create_fuman">
-  <div class="header">
-    <h2>Add</h2>
-    <a href="javascript:;" class="right" onClick="$('#modal_create_fuman').SimpleModal().cancel();">
-      <div>X</div>
-    </a>
-  </div>
+    <div class="body">
+      <h4>Status</h4>
+      <div style="margin: 0 0 15px 0;">
+        <div class="btn-group" data-toggle="buttons-radio">
+          <% Fuman::status_options.each do |v, k| %>
+            <button type="button" class="btn fuman_status" data-status="<%= k %>"><%= v %></button>
+          <% end %>
+        </div>
+      </div>
 
-  <div class="body">
-    <h4>Status</h4>
-    <div style="margin: 0 0 15px 0;">
-      <div class="btn-group" data-toggle="buttons-radio">
-        <% Fuman::status_options.each do |v, k| %>
-          <button type="button" class="btn fuman_status" data-status="<%= k %>"><%= v %></button>
-        <% end %>
+      <h4>Category</h4>
+      <div>
+        <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}) %>
+      </div>
+
+      <br />
+    </div>
+
+    <div class="footer">
+      <div class="actions">
+        <button class="btn create_fuman" data-product_code="" name="button" type="button">Save</button>
       </div>
     </div>
-
-    <h4>Category</h4>
-    <div>
-      <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}) %>
-    </div>
-
-    <br />
   </div>
-
-  <div class="footer">
-    <div class="actions">
-      <button class="btn create_fuman" data-product_code="" name="button" type="button">Save</button>
-    </div>
-  </div>
-</div>
-<!-- /modal_create_fuman -->
+  <!-- /modal_create_fuman<%= v %> -->
+<% end %>
 
 
 <%= javascript_include_tag 'jquery/jqueryAutoHeight.js'%>

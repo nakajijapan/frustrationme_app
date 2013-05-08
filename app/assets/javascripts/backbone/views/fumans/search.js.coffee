@@ -9,9 +9,12 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
   form_view: null
   events:
     'click .service_button': 'change_search_type'
+    'click #search_button' : 'search_items'
     'click .show_modal':     'show_modal'
     'keyup':                 'short_cut'
 
+  #------------------------
+  # init
   #------------------------
   initialize: () ->
     # イベントの追加
@@ -21,7 +24,7 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
     type = $('#s_service_name').val()
     type = 'amazon' if type == ''
 
-    # arrow
+    # arrow(->)
     @_change_search_type(type)
 
     # form
@@ -30,38 +33,143 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
       $("[data-code='#{product_id}']").append('<div class="item_overlay"><div>f</div></div>')
 
   #------------------------
+  # モーダル画面の表示
+  #------------------------
   show_modal : (e) ->
-    console.log $(e.currentTarget).data('product_code')
     $('.create_fuman').attr('data-product_code', $(e.currentTarget).data('product_code'))
     @form_view.open()
 
   #------------------------
+  # 検索サービスのfocusの変更
+  #------------------------
   change_search_type : (e) ->
     target = $(e.currentTarget)
-
     @_change_search_type(target.attr('data-service_name'))
 
+  #------------------------
+  # _change_search_type
+  #------------------------
   _change_search_type : (type) ->
     console.error "no type" if type == ''
 
-    $.get("/fumans/categories/#{type}", null, (data, status) ->
+    # frustrationは通常のサービスとは別処理
+    if type == 'frustration'
+      $('.service_categories').hide()
+      $('#s_keywords').hide()
+      $('#s_url').show()
+      $('#s_service_name').val('frustration')
+    else
+      $('.service_categories').show()
+      $('#s_keywords').show()
+      $('#s_url').hide()
 
-      # add hidden
-      $('#s_service_name').val(type)
+      $.get("/fumans/categories/#{type}", null, (data, status) ->
 
-      # add options
-      $('.service_categories').html(data)
+        # add hidden
+        $('#s_service_name').val(type)
 
-      # arrow
-      $('.service_button').each( (i, elm) ->
-        $(elm).removeClass('forcus')
-        $(elm).addClass('forcus') if $(elm).attr('data-service_name') == type
+        # add options
+        $('.service_categories').html(data)
       )
+
+    # arrow
+    $('.service_button').each( (i, elm) ->
+      $(elm).removeClass('forcus')
+      $(elm).addClass('forcus') if $(elm).attr('data-service_name') == type
     )
 
   #------------------------
+  # search_items
+  #------------------------
+  search_items: (e) ->
+    type = $('#s_service_name').val()
+    if type == 'frustration'
+      @_search_items_frustration()
+    else
+      search_form.submit()
+
+  #------------------------
+  # frustration用検索
+  #------------------------
+  _search_items_frustration: () ->
+    url = $('#s_url').val()
+
+    _ = @
+
+    $.ajax
+      url: url
+      type: 'GET'
+      beforeSend: (data) ->
+        $('.items').html('<b>loading....</b>')
+
+      success: (data) ->
+        title  = _._get_title(data.responseText)
+        images = _._get_images(data.responseText, url)
+
+        $items = $('.items')
+        if images.length > 0
+          $items.html('')
+          for image, i in images
+            _._show_item(i, url, title, image)
+        else
+          $items.html('<b>not found (ToT)</b>')
+
+  #------------------------
+  # 取得したアイテムを画面に描画
+  #------------------------
+  _show_item: (i, url, title, image) ->
+    params =
+      detail_url: url
+      title: title
+      image: image
+      index: i
+
+    view = new BackboneFrustration.Views.Fumans.Search_ItemView params: params
+    $('.items').append view.render().el
+
+  #------------------------
+  # タイトル取得
+  #------------------------
+  _get_title: (string) ->
+    return /<title>(.*)<\/title>/.exec(string)[1]
+
+  #------------------------
+  # 画像URLの一覧を取得
+  #------------------------
+  _get_images: (string, url) ->
+    image_urls = new Array()
+    $(string).find('img').each (i, v) ->
+
+      src = $(v).attr('src')
+
+      #console.log "----------------------match start"
+      #if src.match(/^\//) == null && src.match(/^http:/) == null
+      #  img_url = url + src
+      #  v       = new Image()
+      #  v.src   = img_url
+      #  src     = img_url
+      #else
+      #  if v.naturalHeight < 200
+      #    return
+      #  if v.naturalWidth < 200
+      #    return
+      #console.log "----------------------match end"
+
+      # あまりにも小さい画像は取得しないようにする
+      if v.naturalHeight < 200
+        return
+      if v.naturalWidth < 200
+        return
+
+      image_urls.push src
+
+    return image_urls
+
+
+  #------------------------
   # キーでサービスを切り替えるようにする
-  short_cut: (e)->
+  #------------------------
+  short_cut: (e) ->
     # a:65 y:89 r82 i:73 f:70 Ctrl:17
 
   #------------------------
@@ -73,6 +181,48 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
   #  else
   #    $('.filter_setting').css('opacity', 1);
 
+#-----------------------------------------------------------------------------
+# Search_ItemView
+#-----------------------------------------------------------------------------
+class BackboneFrustration.Views.Fumans.Search_ItemView extends Backbone.View
+  template: new EJS({url: '/javascripts/backbone/views/fumans/item_frustration'})
+  item: null
+  events:
+    'click .show_modal_frustration':     'show_modal'
+
+  #------------------------
+  # init
+  #------------------------
+  initialize: (options) ->
+    @item = options.params
+
+    # イベントの追加
+    @delegateEvents(@events)
+
+  #------------------------
+  # render
+  #------------------------
+  render: ->
+    data =
+      item: @item
+
+    $(@el).html(@template.render(data)).delay(1000 * @item.index).fadeIn(1000)
+
+    @
+
+  #------------------------
+  # show_modal
+  #------------------------
+  show_modal : (e) ->
+
+    _ = @
+
+    # form
+    form_view = new BackboneFrustration.Views.Fumans.CreateFrustrationView()
+    form_view.item = @item
+    form_view.close_callback = () ->
+      $('.item_box', $(_.el)).append('<div class="item_overlay"><div>f</div></div>')
+    form_view.open()
 
 #-----------------------------------------------------------------------------
 # ModalView
@@ -90,10 +240,15 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
   close_callback: () ->
 
   #------------------------
-  initialize: () ->
+  # init
+  #------------------------
+  initialize: (options) ->
     # イベントの追加
     @delegateEvents(@events)
 
+  #------------------------
+  # open
+  #------------------------
   open: () ->
     $(@el).SimpleModal().open()
 
@@ -102,7 +257,6 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
   # create
   #---------------------------------------
   create : (e) ->
-    console.log "------------------------------- create"
     @_create(e)
 
   #-------------------
@@ -113,10 +267,6 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
     product_id = $(e.currentTarget).attr('data-product_code')
     status     = $('.fuman_status.active').data('status')
     category   = $('#fuman_category option:selected').val()
-
-    console.log "データ格納前 -------"
-    console.log name
-    console.log @services[name]
 
     return alert 'no service code'  if !name?
 
@@ -133,26 +283,54 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
       }
     }
 
-    console.log data
+    $.ajax(
+      type : 'POST'
+      url  : "/fumans/create_with_item.json"
+      data : data
+      success : (data, status, xhr) ->
+        $("#modal_create_fuman").SimpleModal({
+          close_callback: ()->
+            _this.close_callback(product_id)
+        }).close();
+    )
+
+#-----------------------------------------------------------------------------
+# ModalView
+#-----------------------------------------------------------------------------
+class BackboneFrustration.Views.Fumans.CreateFrustrationView extends BackboneFrustration.Views.Fumans.CreateView
+  el: $("#modal_create_fuman_frustration")
+  item: null
+
+  #-------------------
+  # _create
+  #-------------------
+  _create: (e) ->
+    _ = @
+
+    data = {
+      item : {
+        service_code: 5
+        title:        @item.title
+        url:          @item.detail_url
+        image_l:      @item.image
+      }
+      fuman : {
+        status:      $('.fuman_status.active').data('status')
+        category_id: $('#fuman_category option:selected').val()
+      }
+    }
 
     $.ajax(
       type : 'POST'
       url  : "/fumans/create_with_item.json"
       data : data
       success : (data, status, xhr) ->
-        #$(e.srcElement).effect("highlight", {}, 1000)
-        #console.log '-------success'
-        #console.log data
-        #console.log status
         $("#modal_create_fuman").SimpleModal({
           close_callback: ()->
-            _this.close_callback(product_id)
+            _.close_callback()
         }).close();
-
       error : (xhr, status, thrown) ->
-        #console.log '-------error'
-        #console.log thrown
-        #console.log status
-        #console.log xhr
-        #alert 'create error'
+
     )
+
+

@@ -13,6 +13,12 @@ class Item < ActiveRecord::Base
   scope :fuman_status,   lambda { |name| where("fumans.status = ?", name) if name.present? }
   scope :fuman_category, lambda { |name| where("fumans.category_id = ?", name) if name.present? }
 
+  SERVICE_CODE_AMAZON       = 0
+  SERVICE_CODE_YAHOOAUCTION = 2
+  SERVICE_CODE_RAKUTEN      = 3
+  SERVICE_CODE_ITUNES       = 4
+  SERVICE_CODE_FRUSTRATION  = 5
+
   def users_with_status(status, count=50)
     User.joins(:fumans)
       .where('item_id = ?', self.id)

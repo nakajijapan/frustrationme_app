@@ -27,7 +27,12 @@ class FumansController < ApplicationController
 
   def create_with_item
     service_fuman = ServiceFuman.new(@current_user)
-    saved = service_fuman.create_with_item(params[:item], params[:fuman])
+
+    if params[:item][:service_code].to_i == Item::SERVICE_CODE_FRUSTRATION
+      saved = service_fuman.create_with_item_using_frustration(params[:item], params[:fuman])
+    else
+      saved = service_fuman.create_with_item(params[:item], params[:fuman])
+    end
 
     respond_with service_fuman.fuman, :notice => 'created!', :location => '/'
     #respond_with do |format|

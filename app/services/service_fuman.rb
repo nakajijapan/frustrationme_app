@@ -76,4 +76,44 @@ class ServiceFuman
     true
   end
 
+  # item[:service_code]
+  # item[:title]
+  # item[:url]
+  # item[:image_l]
+
+  # fuman[:status]
+  # fuman[:category_id]
+  # fuman[:content]
+  def create_with_item_using_frustration(params_item, params_fuman)
+    @logger.warn params_item
+    @logger.warn params_item[:product_id]
+    @logger.warn params_fuman
+
+    ActiveRecord::Base.transaction do
+      params_item.merge!({
+        price:    nil,
+        image_l:  params_item[:image_l],
+        image_m:  params_item[:image_l],
+        image_s:  params_item[:image_l]
+      })
+
+      item = Item.new(params_item)
+      saved = item.save
+      raise ActiveRecord::Rollback unless saved
+
+      # create
+      params_fuman.merge!({
+        user_id: @user.id,
+        item_id: item.id
+      })
+
+      fuman = Fuman.new(params_fuman)
+      saved = fuman.save
+      raise ActiveRecord::Rollback unless saved
+    end
+
+    @fuman = fuman
+
+    true
+  end
 end
