@@ -1,0 +1,21 @@
+<div id="<%= controller_name %>_reset">
+  <h1>パスワード再設定</h1>
+
+  <%= form_for @user, url: {action: 'finish', method: :put} do |f| %>
+    <%= hidden_field_tag :reset_hash, params[:reset_hash] %>
+    <%= render template: 'layouts/error_message', locals: {models: @user} %>
+
+    <div class="field">
+       <%= f.password_field :password, placeholder: 'password', class: 'input-xlarge' %>
+    </div>
+    <div class="field">
+       <%= f.password_field :password_confirmation, placeholder: 'confirmation', class: 'input-xlarge' %>
+    </div>
+
+    <div class="actions">
+      <%= button_tag 'password change', type: :submit, class: 'btn btn-large' %>
+    </div>
+
+  <% end %>
+</div>
+
