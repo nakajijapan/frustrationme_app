@@ -15,6 +15,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :provider
       t.string :uid
 
+      t.string :reset_hash
+
       t.timestamps
     end
   end
