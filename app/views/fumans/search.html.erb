@@ -61,7 +61,7 @@
         </span>
 
         <%= text_field_tag :s_keywords, params[:s_keywords] %>
-        <%= text_field_tag :s_url,      params[:s_url], placeholder: 'http://' %>
+        <%= text_field_tag :s_url,      params[:s_url], placeholder: 'http://', class: 'hide' %>
         <%= button_tag "Search", type: :button, class: 'btn', id: 'search_button' %>
       </div>
     <% end %>

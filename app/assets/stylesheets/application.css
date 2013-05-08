@@ -21,4 +21,5 @@
  *= require_directory ./settings
  *= require_directory ./sessions
  *= require_directory ./friendships
+ *= require_directory ./password
  */

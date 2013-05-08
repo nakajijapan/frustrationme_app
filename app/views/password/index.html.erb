@@ -1,0 +1,21 @@
+<div id="<%= controller_name %>_index">
+  <h1>パスワード再設定</h1>
+
+  <%= form_for @user, url: {action: 'sendmail', method: :post} do |f| %>
+    <%= render template: 'layouts/error_message', locals: {models: @user} %>
+
+    <div class="field">
+      <%= f.text_field :username, placeholder: 'username', class: 'input-xlarge' %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :email, placeholder: 'email', class: 'input-xlarge' %>
+    </div>
+
+    <div class="actions">
+      <%= button_tag 'reset password', type: :submit, class: 'btn btn-large' %>
+    </div>
+
+  <% end %>
+</div>
+
