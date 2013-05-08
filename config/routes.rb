@@ -33,7 +33,7 @@ Frustration::Application.routes.draw do
     match '/',      to: 'password#index', via: :get
     match '/sendmail',   to: 'password#sendmail',  via: :post
     match '/reset',  to: 'password#reset', via: :get
-    match '/finish', to: 'password#finish', via: :post
+    match '/finish', to: 'password#finish', via: :put
   end
 
   # items
