@@ -23,8 +23,6 @@ Frustration::Application.routes.draw do
     end
   end
 
-
-
   # users
   scope '/users/:username', as: :users do
     match '/', to: 'users#show'
@@ -55,7 +53,7 @@ Frustration::Application.routes.draw do
   match 'fumans/'                 => 'fumans#index',      via: [:get, :post]
   match 'fumans/search'           => 'fumans#search',     via: [:get, :post]
   match 'fumans/categories/:type' => 'fumans#categories', via: :get
-  resources :fumans, :only => [:index, :update] do
+  resources :fumans, :only => [:index, :update, :destroy] do
     collection do
       get 'itunes'
       post 'create_with_item'

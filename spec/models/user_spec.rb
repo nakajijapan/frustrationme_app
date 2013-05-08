@@ -126,4 +126,24 @@ describe User do
       @u.following_ids([@u_target.id]).should have(1).items
     end
   end
+
+  context 'when user delete fuman' do
+    before do
+      @u = create(:user_nakaji)
+      @i = create(:item_amazon)
+      @f = create(:fuman, user_id: @u.id, item_id: @i.id)
+      @c = create(:comment, user_id: @u.id, item_id: @i.id, text: 'hogehoge')
+
+      @u.delete_fuman(@f.id)
+    end
+
+    it 'can delete fuman' do
+      expect(Fuman.where(:id, @f.id)).to be_empty
+    end
+
+    it 'can delete comment' do
+      expect(Comment.where(:item_id, @f.item_id)).to be_empty
+    end
+  end
+
 end

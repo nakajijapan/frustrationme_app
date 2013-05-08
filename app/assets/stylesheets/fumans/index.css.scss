@@ -62,6 +62,7 @@
       li.item {
         width: 100%;
         margin: 10px 0px;
+        position: relative;
         @include list_box_design;
 
         section {
@@ -133,6 +134,23 @@
                 position: absolute;
                 top: 10px;
                 left: 380px;
+              }
+            }
+
+            .delete_fuman {
+              display: none;
+              position: absolute;
+              top:   0px;
+              right: 0px;
+              //@include linear-gradient-top(#F07889, #E20E0E);
+              width: 50px;
+              height: 50px;
+              border-radius: 4px;
+              border: 2px solid #F07889;
+              font-size: 50px;
+
+              div {
+                padding-top: 8px;
               }
             }
 

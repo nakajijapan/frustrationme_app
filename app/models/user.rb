@@ -65,12 +65,18 @@ class User < ActiveRecord::Base
   end
 
   def self.create_with_omniauth(auth)
+    if auth['info']['image'].nil?
+      icon_name = nil
+    else
+      icon_name = open(auth['info']['image'].gsub(/_normal/, ''))
+    end
+
     params = {
       mode:      :social,
       provider:  auth['provider'],
       uid:       auth['uid'],
       username:  auth['info']['nickname'],
-      icon_name: open(auth['info']['image'].gsub(/_normal/, ''))
+      icon_name: icon_name
     }
     user = User.new(params)
 
@@ -150,5 +156,14 @@ class User < ActiveRecord::Base
   def following_ids(ids)
     return [] if ids.blank?
     Friendship.where('user_id = ?', self.id).where("following_id in (?)", ids).map{|f| f.following_id}
+  end
+
+  def delete_fuman(fuman_id)
+    fuman = Fuman.find_by_id_and_user_id(fuman_id, self.id)
+    fuman.destroy
+
+    Comment.delete_all(['user_id = ? and item_id = ?', self.id, fuman.item_id])
+
+    fuman
   end
 end

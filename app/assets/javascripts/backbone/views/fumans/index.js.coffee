@@ -21,11 +21,21 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
     'click  .save_button'      : 'create_comment'
     'click  .delete_comment a' : 'delete_comment'
 
+    'click  .delete_fuman'     : 'delete_fuman'
+
   #------------------------
   initialize: () ->
     # イベントの追加
     @delegateEvents(@events)
 
+    $('li.item').hover(
+      () ->
+        $('.delete_fuman', @).show()
+      () ->
+        $('.delete_fuman', @).hide()
+    )
+
+    # 404の画像はnoimageにする
     $('img.item_image').each (i, elm) ->
       $elm  = $(elm)
       i     = new Image()
@@ -35,6 +45,8 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
           $elm.attr('src', '/assets/noimage_l.png')
       i.onerror = () ->
         $elm.attr('src', '/assets/noimage_l.png')
+
+
 
   set_status: (e) ->
     status = $(e.currentTarget).data('status')
@@ -103,6 +115,18 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
         $(this).remove()
     )
 
+  delete_fuman: (e) ->
+    console.log "delete_fuman"
+    if confirm '削除します。よろしいですか？'
+      fuman_id = $(e.currentTarget).data('fuman_id')
+      data =
+        id: fuman_id
+      fuman = new BackboneFrustration.Models.Fuman(data)
+      fuman.destroy()
+
+      $("li.item[data-fuman_id=#{fuman_id}]").fadeOut('slow', ()->
+        @remove()
+      )
 
 #-----------------------------------------------------------------------------
 # Index_CommentView

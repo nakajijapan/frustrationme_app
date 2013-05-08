@@ -22,7 +22,7 @@
         <!-- category -->
         <div class="category">
           <h4>Category</h4>
-          <%= select_tag :category, options_for_select(@categories.map{|c| [c.name,c.id]}.unshift(['----', '']), selected: params[:category]), class: 'fuman_form' %>
+          <%= select_tag :category_id, options_for_select(@categories.map{|c| [c.name,c.id]}.unshift(['----', '']), selected: params[:category_id]), class: 'fuman_form' %>
         </div>
         <!-- /category -->
 
@@ -30,7 +30,6 @@
       </div>
     <% end %>
   </section>
-
 
   <!-- items -->
   <div class="items">
@@ -52,6 +51,10 @@
                   <%= item.title %>
                 </h2>
               </div>
+
+              <!-- delete fuman -->
+              <a href="javascript:;" class="delete_fuman btn btn-danger" data-fuman_id="<%= item.fuman.id %>"><div>x</div></a>
+              <!-- /delete fuman -->
 
               <!-- status -->
               <div class="status">
@@ -117,7 +120,6 @@
                   </ul>
                 </div>
               </div>
-
               <!-- comment -->
             </div>
             <!-- /side_right -->

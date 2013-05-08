@@ -49,6 +49,11 @@ class FumansController < ApplicationController
     respond_with @fuman, :notice => 'created!', :location => '/'
   end
 
+  def destroy
+    @fuman = @current_user.delete_fuman(params[:id])
+    respond_with @fuman
+  end
+
   def categories
     h = {}
     ApiBucket::Service.instance(:"#{params[:type]}").categories.each_pair {|k,v| h[v]=k}
