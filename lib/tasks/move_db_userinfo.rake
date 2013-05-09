@@ -76,7 +76,6 @@ namespace :batches do
           fuman.user_id     = user.id
           fuman.status      = row_fuman['status']
           fuman.category_id = categories_map[row_fuman['category_id']]
-          fuman.tag_ids     = row_fuman['tag_ids']
           fuman.item_id     = item.id
           fuman.created_at  = row_fuman['created']
           fuman.updated_at  = row_fuman['modified']
