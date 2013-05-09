@@ -109,19 +109,27 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
         $items = $('.items')
         if images.length > 0
           $items.html('')
-          for image, i in images
-            _._show_item(i, url, title, image)
+
+          for image_url, i in images
+            img = new Image()
+            img.src = image_url
+            img.onload = () ->
+
+              if @naturalHeight < 200 and @naturalWidth < 200
+                return
+
+              _._show_item(i, url, title, @src)
         else
           $items.html('<b>not found (ToT)</b>')
 
   #------------------------
   # 取得したアイテムを画面に描画
   #------------------------
-  _show_item: (i, url, title, image) ->
+  _show_item: (i, url, title, image_url) ->
     params =
       detail_url: url
       title: title
-      image: image
+      image: image_url
       index: i
 
     view = new BackboneFrustration.Views.Fumans.Search_ItemView params: params
@@ -134,7 +142,7 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
     return /<title>(.*)<\/title>/.exec(string)[1]
 
   #------------------------
-  # 画像URLの一覧を取得
+  # 画像URLの一覧を取得（サイズ関係なく）
   #------------------------
   _get_images: (string, url) ->
     image_urls = new Array()
@@ -142,24 +150,8 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
 
       src = $(v).attr('src')
 
-      #console.log "----------------------match start"
-      #if src.match(/^\//) == null && src.match(/^http:/) == null
-      #  img_url = url + src
-      #  v       = new Image()
-      #  v.src   = img_url
-      #  src     = img_url
-      #else
-      #  if v.naturalHeight < 200
-      #    return
-      #  if v.naturalWidth < 200
-      #    return
-      #console.log "----------------------match end"
-
-      # あまりにも小さい画像は取得しないようにする
-      if v.naturalHeight < 200
-        return
-      if v.naturalWidth < 200
-        return
+      if src.match(/^\//) == null and src.match(/^https?:/) == null
+        src     = url + src
 
       image_urls.push src
 
