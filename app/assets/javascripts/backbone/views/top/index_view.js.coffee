@@ -23,22 +23,33 @@ class BackboneFrustration.Views.Top.IndexView extends Backbone.View
       loaded: (content, next_page_num) ->
         _.initialize_grid()
       before_append: (content) ->
-        $('img.item_image', $(content)).each (i, elm) ->
-          i = new Image()
-          i.src = $(elm).attr('src')
+        $elm = $('img.item_image', $(content))
+
+        # 解析した画像の数
+        count = $elm.length
+
+        # prefetchして最後までいったらグリッドの計算
+        $elm.each (i, elm) ->
+          i        = new Image()
+          i.src    = $(elm).attr('src')
+          i.onload = () ->
+            count--
+            _.initialize_grid() if count < 1
           i.onerror = () ->
             $elm.attr('src', '/assets/noimage_l.png')
             $elm.css
               width:  "#{_.default_grid_size}px"
               height: "#{_.default_grid_size}px"
-            _.initialize_grid()
+            count--
+
         return content
 
   initialize_grid: () ->
     options =
       autoResize: true
       container: $('.items')
-      offset: 2
+      offset: 5
       item_width: 210
 
     $('.item').CoolGrid(options)
+

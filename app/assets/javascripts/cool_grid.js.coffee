@@ -99,7 +99,7 @@
       )
 
       options.container.css('height', "#{max_row_height + max_item_height}px")
-      console.log max_row_height
+      #console.log max_row_height
 
     #---------------------------
     # main

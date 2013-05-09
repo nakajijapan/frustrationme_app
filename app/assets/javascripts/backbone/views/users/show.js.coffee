@@ -33,23 +33,27 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
       content: '.items'
       loaded: (content, next_page_num) ->
         _.initialize_grid()
-        # setTimeout(_.initialize_grid(), 2000) # error: Uncaught SyntaxError: Unexpected identifier
       before_append: (content) ->
-        $('img.item_image', $(content)).each (i, elm) ->
+        $elm = $('img.item_image', $(content))
+
+        # 解析した画像の数
+        count = $elm.length
+
+        # prefetchして最後までいったらグリッドの計算
+        $elm.each (i, elm) ->
           i = new Image()
           $elm = $(elm)
           i.src = $elm.attr('src')
-          #i.onload = () ->
-          #  frame = $(@).getImageSize()
-          #  $elm.css
-          #    width:  "#{_.default_grid_size}px"
-          #    height: ((frame.height * _.default_grid_size) / frame.width) + 'px'
+          i.onload = () ->
+            count--
+            _.initialize_grid() if count < 1
           i.onerror = () ->
             $elm.attr('src', '/assets/noimage_l.png')
             $elm.css
               width:  "#{_.default_grid_size}px"
               height: "#{_.default_grid_size}px"
-            _.initialize_grid()
+            count--
+
         return content
 
   initialize_grid: () ->
