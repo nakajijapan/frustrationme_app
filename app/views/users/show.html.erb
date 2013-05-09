@@ -15,14 +15,16 @@
     </div>
 
     <!-- follow_button -->
-    <% if @current_user.id != @target_user.id %>
-      <div class="follow_group">
-        <% if @friendship.present? %>
-          <button class="btn" id="unfollow_button" data-following_id="<%= @target_user.id %>">unfollow</button>
-        <% else %>
-          <button class="btn" id="follow_button" data-following_id="<%= @target_user.id %>">follow</button>
-        <% end %>
-      </div>
+    <% if @current_user.present? %>
+      <% if @current_user.id != @target_user.id %>
+        <div class="follow_group">
+          <% if @friendship.present? %>
+            <button class="btn" id="unfollow_button" data-following_id="<%= @target_user.id %>">unfollow</button>
+          <% else %>
+            <button class="btn" id="follow_button" data-following_id="<%= @target_user.id %>">follow</button>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
     <!-- /follow_button -->
 

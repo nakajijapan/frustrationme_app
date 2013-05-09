@@ -27,7 +27,10 @@ class FriendshipsController < ApplicationController
     return render_not_found if @target_user.blank?
 
     @users = @target_user.followings
-    @current_friends = @current_user.following_ids(@users.map{|f| f.following_id})
+
+    if @current_user.present?
+      @current_friends = @current_user.following_ids(@users.map{|f| f.following_id})
+    end
 
     respond_with @users
   end
@@ -37,7 +40,10 @@ class FriendshipsController < ApplicationController
     return render_not_found if @target_user.blank?
 
     @users = @target_user.followers
-    @current_friends = @current_user.following_ids(@users.map{|f| f.following_id})
+
+    if @current_user.present?
+      @current_friends = @current_user.following_ids(@users.map{|f| f.following_id})
+    end
 
     respond_with @users
   end
