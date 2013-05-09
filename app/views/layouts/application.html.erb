@@ -1,15 +1,48 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+    <% site_description = '普段からあれほしいし、あれいらない、あれもってる！そんな物欲をまとめて管理して、さらにみんなで共有してしまおうというサービスです。自分のほしいものが他人にみられて、その物欲が他人に派生して、その方も欲求不満に！自分のいらないものが、それは他人が実はほしいものであったりして身近でコミュニケーションが弾みます！（多分！）さぁ欲求不満になって世界をうめつくせ！！' %>
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta http-equiv="Contents-type" content="text/html; charaset=utf-8">
     <meta name="keywords" content="欲求不満,frustration,frustrationme,frustrate,物欲,amazon,calamel,yahoo auction,ナカジ,nakaji,nakajijapan">
-    <meta name="description" content="普段からあれほしいし、あれいらない、あれもってる！そんな物欲をまとめて管理して、さらにみんなで共有してしまおうというサービスです。自分のほしいものが他人にみられて、その物欲が他人に派生して、その方も欲求不満に！自分のいらないものが、それは他人が実はほしいものであったりして身近でコミュニケーションが弾みます！（多分！）さぁ欲求不満になって世界をうめつくせ！！">
+    <meta name="description" content="<%= site_description %>">
     <link rel="shortcut icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "frustration.me - social wish management" %></title>
+    <title><%= yield(:header_title) %>frustration.me - social wish list</title>
     <%= csrf_meta_tags %>
+
+    <meta name="twitter:site" content="@frustrationme">
+    <meta name="twitter:creator" content="@nakajijapan">
+    <meta name="twitter:url" content="http://<%= Settings.site_name %><%= request.env['REQUEST_URI'] %>">
+    <% if content_for?(:header_image) %>
+      <meta name="twitter:card" content="photo">
+      <meta name="twitter:title" content="[frustration] ♥ <%= yield :header_title %>">
+      <meta name="twitter:description" content="<%= content_for?(:header_description) ? yield(:header_description) : site_description %>">
+      <meta name="twitter:image" content="<%= yield :header_image %>">
+
+      <meta property="og:title" content="[frustration] ♥ <%= yield :header_title %>" />
+      <meta property="og:type"  content="website" />
+      <meta property="og:url"   content="http://<%= Settings.site_name %><%= request.env['REQUEST_URI'] %>" />
+      <meta property="og:image" content="<%= yield :header_image %>" />
+      <meta property="og:description" content="<%= yield :header_description %>" />
+      <link rel="image_src" href="<%= yield :header_image %>" />
+    <% else %>
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="frustration.me">
+      <meta name="twitter:description" content="<%= site_description %>">
+      <meta name="twitter:image" content="http://<%= Settings.site_name %>/assets/icon500_500.png">
+      <meta property="og:title" content="frustration.me" />
+      <meta property="og:type"  content="website" />
+      <meta property="og:url"   content="http://<%= Settings.site_name %><%= request.env['REQUEST_URI'] %>" />
+      <meta property="og:image" content="http://<%= Settings.site_name %>/assets/icon500_500.png" />
+      <meta property="og:description" content="<%= site_description %>" />
+      <link rel="image_src" href="http://<%= Settings.site_name %>/assets/icon500_500.png" />
+    <% end %>
+
+
 
     <!-- Javascripts -->
     <%= javascript_include_tag :application %>

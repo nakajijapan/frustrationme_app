@@ -1,3 +1,8 @@
+<% content_for :header_title do %><%= @item.title %> : <% end %>
+<% content_for :header_image do %><%= @item.image_l %><% end %>
+<% content_for :header_description do %><%= @item.description %><% end %>
+
+
 <div id="<%= controller_name %>_<%= action_name %>">
   <!-- item_box -->
   <section class="item_box">
