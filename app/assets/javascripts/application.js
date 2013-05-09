@@ -18,6 +18,7 @@
 //= require cool_grid
 //= require auto_pager
 //= require simple_modal
+//= require common
 
 //----------------------------------------------
 // サイズ取得
