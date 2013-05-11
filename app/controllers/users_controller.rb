@@ -7,9 +7,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @user.save
+    saved = @user.save
 
-    UserMailer.regist(@user).deliver
+    UserMailer.regist(@user).deliver if saved
 
     respond_with @user, :location => root_url, :notice => 'created!'
   end
