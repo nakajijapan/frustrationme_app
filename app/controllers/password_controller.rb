@@ -14,7 +14,7 @@ class PasswordController < ApplicationController
       hash = Digest::MD5.hexdigest("%x" % (Time.now.to_i + rand(65535)))
       @user.mode = :social
       saved = @user.update_attributes({reset_hash: hash})
-      UserMailer.reset_password(@user).deliver
+      UserMailer.reset_password(@user).deliver if saved
     end
 
     respond_to do |format|
