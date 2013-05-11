@@ -64,4 +64,20 @@ Frustration::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  #--------------------------------------------
+  # output log
+  #--------------------------------------------
+  config.log_path = "log/#{Rails.env}.log"
+
+  # lotate
+  config.logger = Logger.new(config.log_path, 'daily') # 日別
+  #config.logger = Logger.new(config.log_path, 10, 1024 * 1024) # サイズ
+
+  # format
+  config.logger.formatter = Logger::Formatter.new
+  config.logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+
+  # log level
+  config.logger.level = Logger::DEBUG
 end
