@@ -34,4 +34,4 @@ ENV['DB_HOST']     = ''
 
 # mail
 ENV['MAIL_USERNAME'] = ''
-ENV['MAIL_PASSWARD'] = ''
+ENV['MAIL_PASSWORD'] = ''
