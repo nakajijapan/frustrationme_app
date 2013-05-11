@@ -36,10 +36,8 @@ Frustration::Application.configure do
   config.assets.debug = true
 
   #--------------------------------------------
-  # models
-  #config.photo.save_directory = Rails.root
-
   # output log
+  #--------------------------------------------
   config.log_path = "log/#{Rails.env}.log"
 
   # lotate
