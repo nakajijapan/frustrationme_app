@@ -15,7 +15,7 @@ describe User do
       end
 
       it 'is invalid length, too short.' do
-        @u.username = "hog"
+        @u.username = "ho"
         @u.should_not be_valid
       end
 
