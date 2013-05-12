@@ -99,5 +99,11 @@ Frustration::Application.routes.draw do
       match '/followings/' => 'friendships#followings', :via => :get
       match '/followers/' => 'friendships#followers', :via => :get
     end
+
+    resources :fumans do
+      collection do
+        get 'statuses'
+      end
+    end
   end
 end

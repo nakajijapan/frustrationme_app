@@ -1,4 +1,5 @@
 class Api::FumansController < ApplicationController
-  def index
+  def statuses
+    respond_with Fuman::STATUSES
   end
 end
