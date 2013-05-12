@@ -40,7 +40,9 @@
           <section>
             <div class="side_left">
               <h2>
-                <%= link_to image_tag(item.image_l, alt: item.title, class: 'item_image'), item.url, alt: item.title, target: '_blank' %>
+                <a href="/items/<%= item.id %>" alt="<%= item.title %>" target="_blank">
+                  <img src="<%= item.image_l%>" alt="<%= item.title %>" class="item_image" />
+                </a>
               </h2>
             </div>
 
