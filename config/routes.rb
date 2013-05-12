@@ -11,7 +11,11 @@ Frustration::Application.routes.draw do
   match 'login',                    to: 'sessions#new',     as: :login
   match 'logout',                   to: 'sessions#destroy', as: :logout
   match '/auth/:provider/callback', to: 'sessions#create'
-  resources :sessions, :only       => %w[new create destroy]
+  resources :sessions, only: %w[new create destroy] do
+    collection do
+      get 'loggedin'
+    end
+  end
 
   # sign up
   resources :users, only: [:new, :create]
