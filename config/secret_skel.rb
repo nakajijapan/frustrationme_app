@@ -35,3 +35,5 @@ ENV['DB_HOST']     = ''
 # mail
 ENV['MAIL_USERNAME'] = ''
 ENV['MAIL_PASSWORD'] = ''
+
+ENV['NEWRELIC_KEY'] = ''
