@@ -15,9 +15,9 @@ namespace :batches do
 
     # Users
     if ENV['username'].nil?
-      users = query("select * from t_user order by id")
+      users = query("select * from t_user where password <> '' order by id")
     else
-      users = query("select * from t_user where username = '#{ENV['username']}'")
+      users = query("select * from t_user where password <> '' and username = '#{ENV['username']}'")
     end
 
     puts "------ convert #{users.count} users ------\n"
@@ -39,9 +39,10 @@ namespace :batches do
         # User
         user                  = User.new
         user.mode             = :social
-        user.username         = row_user['username']
+        user.username         = row_user['username'].strip
         user.email            = row_user['mail']
         user.crypted_password = row_user['password']
+        user.icon_name        = open('http://hoge.com' + row_setting['icon_name']) if row_setting['icon_name'].present?
         user.created_at       = row_user['created']
         user.updated_at       = row_user['modified']
         user.save!
