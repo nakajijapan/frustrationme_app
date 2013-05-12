@@ -57,7 +57,9 @@
                   <a href="/users/<%= c.username %>">
                     <%= c.username %>
                   </a>
-                  <span class="created"><%= c.created_at %></span>
+                  <span class="created">
+                    <%= time_ago_in_words c.created_at %><%= t 'datetime.before_name' %>
+                  </span>
                 </div>
                 <p>
                   <%= c.text %>

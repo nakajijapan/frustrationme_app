@@ -109,7 +109,7 @@
                           <%= comment.text %>
                         </div>
                         <div class="date">
-                          <%= l comment.created_at, format: :short %>
+                          <%= time_ago_in_words comment.created_at %><%= t 'datetime.before_name' %>
                         </div>
                         <div class="delete_comment">
                           <a href="javascript:;" data-comment_id="<%= comment.id %>"><span>x</span></a>

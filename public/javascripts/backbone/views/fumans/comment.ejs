@@ -3,7 +3,7 @@
       <%= comment.text %>
     </div>
     <div class="date">
-      <%= comment.created_at.substr(0, 16).replace('T', ' ') %>
+      <%= $.timeago(comment.created_at) %>
     </div>
     <div class="delete_comment">
       <a href="javascript:;" data-comment_id="<%= comment.id %>"><span>x</span></a>

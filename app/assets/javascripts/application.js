@@ -14,6 +14,7 @@
 //= require jquery-ui.min
 //= require jquery_ujs
 //= require jquery/jquery.xdomainajax
+//= require jquery/jquery.timeago
 //= require bootstrap
 //= require cool_grid
 //= require auto_pager

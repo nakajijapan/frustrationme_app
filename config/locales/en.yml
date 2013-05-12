@@ -10,6 +10,8 @@ en:
     - :year
     - :month
     - :day
+  datetime:
+    before_name: 前
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:

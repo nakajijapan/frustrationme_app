@@ -134,17 +134,13 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
 class BackboneFrustration.Views.Fumans.Index_CommentView extends Backbone.View
   template: new EJS({url: '/javascripts/backbone/views/fumans/comment'})
   comment: null
-  #events:
-  #  'click .delete_comment a' : 'delete_comment'
 
   initialize: (item) ->
-     #_.bindAll @
-
-     @comment = item
+     @comment = item.model
 
   render: ->
     data =
-      comment: @comment.model
+      comment: @comment
 
     $(@el).html(@template.render(data)).fadeIn('slow')
 
