@@ -3,3 +3,4 @@
 set -e
 ln -s /home/sqale/etc/env.rb /home/sqale/current/config/env.rb
 
+/etc/init.d/app restart

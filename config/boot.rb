@@ -7,6 +7,7 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
 if ENV['RAILS_ENV'] == 'production'
   #require File.expand_path('../env.rb', __FILE__)
+  require File.expand_path('../env.rb', __FILE__) if File.exists?(File.expand_path('../env.rb', __FILE__))
 elsif ENV['RAILS_ENV'] == 'test'
   require File.expand_path('../secret_skel.rb', __FILE__)
 else
