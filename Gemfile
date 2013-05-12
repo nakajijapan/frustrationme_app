@@ -49,6 +49,8 @@ gem 'aws-sdk'
 # mail
 gem 'mail-iso-2022-jp'
 
+gem 'newrelic_rpm'
+
 # for development
 group :development do
   gem 'capistrano'
