@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 
   validates :password,
     presence: {unless: :social?},
-    length: {minimum: 3, maximum: 16, if: :password},
+    length: {minimum: 4, maximum: 16, if: :password},
     format: {with: /^[0-9a-zA-Z\-_]+$/, if: :password},
     confirmation: {if: :password}
 
