@@ -13,9 +13,6 @@ class ServiceFuman
   # fuman[:category_id]
   # fuman[:content]
   def create_with_item(params_item, params_fuman)
-    @logger.warn params_item
-    @logger.warn params_item[:product_id]
-    @logger.warn params_fuman
 
     ActiveRecord::Base.transaction do
 
@@ -31,8 +28,6 @@ class ServiceFuman
         @logger.warn 'itemはそんざいしない'
 
         name = ApiBucket::Service.name(params_item[:service_code].to_i)
-
-        @logger.warn name
 
         service = ApiBucket::Service.instance(:"#{name}")
         res     = service.lookup(params_item[:product_id])
