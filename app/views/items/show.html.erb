@@ -50,7 +50,7 @@
           <% @comments.each do |c| %>
             <li>
               <a href="#" class="user">
-                <%= icon_image_tag c.icon_name, class: 'icon_name' %>
+                <%= icon_image_tag c.user.icon_name, class: 'icon_name' %>
               </a>
               <div class="message">
                 <div class="username">
