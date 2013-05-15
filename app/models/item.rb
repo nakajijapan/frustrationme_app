@@ -10,6 +10,11 @@ class Item < ActiveRecord::Base
   has_many :comments
   accepts_nested_attributes_for :comments
 
+  validates :title,   presence: true, length: { maximum: 256 }
+  validates :image_s, presence: true
+  validates :image_m, presence: true
+  validates :image_l, presence: true
+
   scope :fuman_status,   lambda { |name| where("fumans.status = ?", name) if name.present? }
   scope :fuman_category, lambda { |name| where("fumans.category_id = ?", name) if name.present? }
 
