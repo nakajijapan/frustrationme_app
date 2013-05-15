@@ -1,5 +1,6 @@
 class FumansController < ApplicationController
   before_filter :current_user
+  protect_from_forgery except: :create_with_item
 
   def index
     @items     = @current_user.items_with_fuman(params, 30)
@@ -34,10 +35,13 @@ class FumansController < ApplicationController
       saved = service_fuman.create_with_item(params[:item], params[:fuman])
     end
 
-    respond_with service_fuman.fuman, :notice => 'created!', :location => '/'
-    #respond_with do |format|
-    #  format.json { render :json => service_fuman.fuman, status: 201}
-    #end
+    respond_to do |format|
+      if saved
+        format.json { render json: service_fuman.fuman, status: :created }
+      else
+        format.json { render json: {error: 'error'}, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
