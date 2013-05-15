@@ -179,10 +179,8 @@
 
           li {
             padding: 10px;
-
             position: relative;
             height: 100%;
-            width:  100%;
             display: table;
             border-left: 1px solid #ddd;
             border-right: 1px solid #ddd;
@@ -206,6 +204,7 @@
               padding: 0px;
               margin: 0px;
               display: table-cell;
+              width: 90%;
             }
 
             .username {
