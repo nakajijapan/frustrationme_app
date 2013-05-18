@@ -49,6 +49,9 @@ gem 'aws-sdk'
 # mail
 gem 'mail-iso-2022-jp'
 
+gem 'rabl'
+gem 'yajl-ruby'
+
 #gem 'newrelic_rpm'
 
 # for development
