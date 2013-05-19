@@ -6,6 +6,8 @@
       <%= $.timeago(comment.created_at) %>
     </div>
     <div class="delete_comment">
-      <a href="javascript:;" data-comment_id="<%= comment.id %>"><span>x</span></a>
+      <a href="javascript:;" data-comment_id="<%= comment.id %>" class="btn">
+        <span>x</span>
+      </a>
     </div>
   </li>
