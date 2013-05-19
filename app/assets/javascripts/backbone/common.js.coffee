@@ -12,8 +12,8 @@ window.BackboneFrustration =
 class BackboneFrustration.Model extends Backbone.Model
   # ui: Utils.UI
   initialize: (attributes, options) ->
-    @.bind('error', @.defaultErrorHandler)
-    @.bind('invalid', @.defaultErrorHandler)
+    @on 'error',   @defaultErrorHandler
+    @on 'invalid', @defaultErrorHandler
 
   defaultErrorHandler: (model, error) ->
     if typeof(error) == 'object'
