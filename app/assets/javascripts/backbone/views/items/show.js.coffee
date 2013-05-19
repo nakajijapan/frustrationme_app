@@ -23,13 +23,11 @@ class BackboneFrustration.Views.Items.ShowView extends Backbone.View
     @list()
     @collection.bind 'add', @_append_comment
 
-    _this = @
-
     # form
     @form_view = new BackboneFrustration.Views.Fumans.CreateView();
-    @form_view.close_callback = (product_id) ->
+    @form_view.close_callback = (product_id) =>
       $('#frustration_button').addClass('registered').fadeIn();
-      _this.undelegateEvents()
+      @undelegateEvents()
 
   show_modal: (e) ->
     $('.create_fuman').attr('data-product_code', $(e.currentTarget).data('product_code'))
@@ -45,12 +43,10 @@ class BackboneFrustration.Views.Items.ShowView extends Backbone.View
     # be empty
     $("#fuman_comment").val('').focus()
 
-    _this = @
-
     saved = comment.save(
       data,
-      success : (model, res) ->
-        _this._append_comment(res.comment, res.comment.user)
+      success : (model, res) =>
+        @_append_comment(res.comment, res.comment.user)
     )
 
   _append_comment : (comment, user) ->
@@ -62,9 +58,7 @@ class BackboneFrustration.Views.Items.ShowView extends Backbone.View
     @collection.fetch
       success: (model, response) =>
         $.each response, (key, val) =>
-          item      = new BackboneFrustration.Models.Comment(val)
-          item_view = new BackboneFrustration.Views.Items.Show_CommentView model: item
-          $('#comments_box').prepend item_view.render(val.user).el
+          @_append_comment(val, val.user)
 
 #-----------------------------------------------------------------------------
 # Index_CommentView
