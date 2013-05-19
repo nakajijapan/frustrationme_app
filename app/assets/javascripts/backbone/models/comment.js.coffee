@@ -19,3 +19,10 @@ class BackboneFrustration.Models.Comment extends BackboneFrustration.Model
 
 class BackboneFrustration.Collections.Comments extends Backbone.Collection
   model: BackboneFrustration.Models.Comment
+  url : '/settings/comments'
+
+  initialize: (models, options) ->
+    if options.user_id
+      @url = '/users/' + options.user_id + '/comments'
+    else if options.item_id
+      @url = '/items/' + options.item_id + '/comments'

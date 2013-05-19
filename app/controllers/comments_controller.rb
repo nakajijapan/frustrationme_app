@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
-  before_filter :current_user
+  before_filter :current_user, except: [:index]
 
   def index
-    @comments = @current_user.comments
+    @comments = Comment.timeline(params)
   end
 
   def create

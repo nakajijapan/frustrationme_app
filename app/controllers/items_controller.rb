@@ -20,8 +20,5 @@ class ItemsController < ApplicationController
     @registers[:give]       = @item.users_with_status(3)
     @registers[:experience] = @item.users_with_status(4)
     @registers[:had]        = @item.users_with_status(5)
-
-    # コメント一覧
-    @comments = @item.comment_list
   end
 end

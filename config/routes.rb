@@ -41,7 +41,9 @@ Frustration::Application.routes.draw do
   end
 
   # items
-  resources :items, only: [:show]
+  resources :items, only: [:show] do
+    resources :comments, only: [:index]
+  end
 
   # home
   match 'home' => 'home#index', :via => :get
