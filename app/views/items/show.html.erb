@@ -3,7 +3,7 @@
 <% content_for :header_description do %><%= @item.description %><% end %>
 
 
-<div id="<%= controller_name %>_<%= action_name %>">
+<div id="<%= controller_name %>_<%= action_name %>" data-item_id="<%= @item.id %>">
   <!-- item_box -->
   <section class="item_box">
     <%= link_to image_tag(@item.image_l), @item.url, class: 'item_image', target: '_blank' %>
@@ -45,29 +45,7 @@
   <section class="info_box">
     <article class="left_box">
       <div class="comments">
-        <ul>
-          <!-- comment -->
-          <% @comments.each do |c| %>
-            <li>
-              <a href="#" class="user">
-                <%= icon_image_tag c.user.icon_name, class: 'icon_name' %>
-              </a>
-              <div class="message">
-                <div class="username">
-                  <a href="/users/<%= c.username %>">
-                    <%= c.username %>
-                  </a>
-                  <span class="created">
-                    <%= time_ago_in_words c.created_at %><%= t 'datetime.before_name' %>
-                  </span>
-                </div>
-                <p>
-                  <%= c.text %>
-                </p>
-              </div>
-            </li>
-          <% end %>
-          <!-- /comment -->
+        <ul id="comments_box">
 
           <!-- create_comment -->
           <% if @current_user.nil? %>
