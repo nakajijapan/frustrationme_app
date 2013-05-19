@@ -13,8 +13,8 @@ class BackboneFrustration.Views.Categories.IndexView extends Backbone.View
     # イベントの追加
     @delegateEvents(@events)
 
+    # render category list
     @collection = new BackboneFrustration.Collections.Categories
-
     @list()
     @collection.bind 'add', @append_item
 

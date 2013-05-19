@@ -1,11 +1,12 @@
-              <a href="#" class="user">
-                <img alt="Icon" class="icon_name" src="/assets/users/icon.gif">
+              <!-- comment -->
+              <a href="/users/<% user.username %>" class="user">
+                <img alt="Icon" class="icon_name" src="<%= user.icon_name %>">
               </a>
 
               <div class="message">
                 <div class="username">
                   <a href="/users/<%= user.username %>">
-                    <%= comment.username %>
+                    <%= user.username %>
                   </a>
                   <span class="created">
                     <%= $.timeago(comment.created_at) %>
@@ -15,3 +16,4 @@
                   <%= comment.text %>
                 </p>
               </div>
+              <!-- /comment -->

@@ -18,6 +18,11 @@ class BackboneFrustration.Views.Items.ShowView extends Backbone.View
     # 登録されていればイベントは無くす
     @undelegateEvents() if $('#frustration_button').hasClass('registered')
 
+    # render comment list
+    @collection = new BackboneFrustration.Collections.Comments([], {item_id: @$el.data('item_id')})
+    @list()
+    @collection.bind 'add', @_append_comment
+
     _this = @
 
     # form
@@ -27,7 +32,6 @@ class BackboneFrustration.Views.Items.ShowView extends Backbone.View
       _this.undelegateEvents()
 
   show_modal: (e) ->
-    console.log $(e.currentTarget).data('product_code')
     $('.create_fuman').attr('data-product_code', $(e.currentTarget).data('product_code'))
     @form_view.open()
 
@@ -46,12 +50,21 @@ class BackboneFrustration.Views.Items.ShowView extends Backbone.View
     saved = comment.save(
       data,
       success : (model, res) ->
-        _this._append_comment(res)
+        _this._append_comment(res.comment, res.comment.user)
     )
 
-  _append_comment : (comment) ->
-    view = new BackboneFrustration.Views.Items.Show_CommentView model: comment
-    $(".comments ul").prepend view.render().el
+  _append_comment : (comment, user) ->
+    item = new BackboneFrustration.Models.Comment(comment)
+    view = new BackboneFrustration.Views.Items.Show_CommentView model: item
+    $("#comments_box").prepend view.render(user).el
+
+  list: ->
+    @collection.fetch
+      success: (model, response) =>
+        $.each response, (key, val) =>
+          item      = new BackboneFrustration.Models.Comment(val)
+          item_view = new BackboneFrustration.Views.Items.Show_CommentView model: item
+          $('#comments_box').prepend item_view.render(val.user).el
 
 #-----------------------------------------------------------------------------
 # Index_CommentView
@@ -62,15 +75,13 @@ class BackboneFrustration.Views.Items.Show_CommentView extends Backbone.View
   tagName: 'li'
 
   initialize: (item) ->
-     @comment = item
+    @comment = item.model
 
-  render: ->
+  render:(user) ->
     data =
-      comment: @comment.model
-      user:
-        username: $("#user_username").val()
-        icon_name: $("#icon_name").val()
+      comment: @comment.toJSON()
+      user: user
 
-    $(@el).html(@template.render(data)).fadeIn('slow').removeAttr('style')
+    $(@el).html(@template.render(data)).fadeIn(1000).removeAttr('style')
 
     @
