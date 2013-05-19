@@ -76,6 +76,6 @@ class BackboneFrustration.Views.Items.Show_CommentView extends Backbone.View
       comment: @comment.toJSON()
       user: user
 
-    $(@el).html(@template.render(data)).fadeIn(1000).removeAttr('style')
+    $(@el).html(@template.render(data)).fadeIn(1000)
 
     @
