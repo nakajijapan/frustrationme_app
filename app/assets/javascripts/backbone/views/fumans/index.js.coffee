@@ -91,12 +91,13 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
     saved = comment.save(
       data,
       success : (model, res) =>
-        @_append_comment(res)
+        @_append_comment(res.comment)
         $('[data-fuman_id=' + fuman_id  + '] .comment .popup_info').fadeIn(1000).fadeOut(1000)
     )
 
   _append_comment : (comment) ->
-    view = new BackboneFrustration.Views.Fumans.Index_CommentView model: comment
+    item = new BackboneFrustration.Models.Comment(comment)
+    view = new BackboneFrustration.Views.Fumans.Index_CommentView model: item
     $("ul[data-item_id=#{comment.item_id}]").prepend view.render().el
 
 
@@ -140,7 +141,7 @@ class BackboneFrustration.Views.Fumans.Index_CommentView extends Backbone.View
     data =
       comment: @comment.toJSON()
 
-    $(@el).html(@template.render(data)).fadeIn(1000)
+    @$el.html(@template.render(data)).fadeIn(1000)
 
     @
 
