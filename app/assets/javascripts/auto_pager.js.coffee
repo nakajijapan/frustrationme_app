@@ -5,6 +5,7 @@
   $.AutoPager = (options) ->
     defaults =
       content: ''
+      offset: 200
       start: () ->
       before_append: (content) ->
         return content
@@ -32,7 +33,7 @@
     # load_on_scroll
     #---------------------------
     _.load_on_scroll = () ->
-      if $(document).height() - $(window).height() - $(document).scrollTop() <= 0
+      if $(document).height() - $(window).height() - $(document).scrollTop() - _.options.offset <= 0
         _.load()
 
     #---------------------------
