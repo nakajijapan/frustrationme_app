@@ -178,6 +178,8 @@
               .list {
                 display: table-cell;
                 width: 480px;
+
+                // 吹き出し
                 li {
                   min-height: 70px;
                   position: relative;
@@ -185,14 +187,24 @@
                   padding: 5px 0 20px 5px;
                   border: 1px solid #ddd;
 
+                  // 吹き出し（内部）
                   &:before {
                     content: '';
                     position: absolute;
+                    border-bottom: 11px solid transparent;
+                    border-right:  11px solid #ddd;
+                    border-top:    12px solid transparent;
+                    left:         -11px;
+                  }
+                  // 吹き出し（枠線）
+                  &:after {
+                    content: '';
+                    position: absolute;
                     border-bottom: 10px solid transparent;
-                    border-right: 10px solid #ddd;
-                    //border-left: 5px solid #999;
-                    border-top: 10px solid transparent;
-                    left: -10px;
+                    border-right:  10px solid #fff;
+                    border-top:    10px solid transparent;
+                    left:         -10px;
+                    top:            7px;
                   }
                   .comment_line {
                     font-size: 14px;
@@ -201,7 +213,7 @@
                   .date {
                     position: absolute;
                     bottom: 0px;
-                    right: 0px;
+                    right: 5px;
                     font-size: 12px;
                     color: #999;
                   }
@@ -212,6 +224,8 @@
                     //  float: right;
                     vertical-align: middle;
                     text-align: center;
+                    border-bottom: 1px solid #ddd;
+                    border-left: 1px solid #ddd;
 
                     a {
                       font-size: 22px;
@@ -222,8 +236,7 @@
                       padding: 8px;
                       border-radius: 0;
                       border: none;
-                      border-left:    0 solid #bbb;
-                      border-bottom:  0 solid #bbb;
+
                       &:hover {
                         color: #000;
                       }
