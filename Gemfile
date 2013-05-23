@@ -81,9 +81,11 @@ group :development do
     gem 'guard-coffeescript'
     gem 'rspec-rails'
 
-    gem 'nyan-cat-formatter'
     gem 'ruby_gntp', platforms: :mswin
     gem 'pry-rails'
+
+    gem 'simplecov', require: false
+    gem 'coveralls', require: false
   end
 
 end
