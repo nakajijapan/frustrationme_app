@@ -11,6 +11,9 @@ if ENV['COVERAGE'] == 'on'
   SimpleCov.start 'rails'
 end
 
+require 'coveralls'
+Coveralls.wear!
+
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
