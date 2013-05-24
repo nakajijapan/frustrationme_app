@@ -52,7 +52,7 @@ gem 'mail-iso-2022-jp'
 gem 'rabl'
 gem 'yajl-ruby'
 
-#gem 'newrelic_rpm'
+gem 'newrelic_rpm'
 
 # for development
 group :development do
