@@ -20,38 +20,22 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
-# Use unicorn as the app server
 gem 'unicorn'
-
-# To use debugger
 gem 'execjs'
 gem 'therubyracer'
 gem 'rake'
-
 gem 'bcrypt-ruby', '~> 3.0.0'
-#gem 'omniauth-identity'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
-# To use paginator
 gem 'kaminari', '~>0.14.1'
-
 gem 'settingslogic'
-
-# search apis
 gem 'api_bucket'
-
-# file management
 gem 'paperclip'
 gem 'aws-sdk'
-
-# mail
 gem 'mail-iso-2022-jp'
-
 gem 'rabl'
 gem 'yajl-ruby'
-
 gem 'newrelic_rpm'
 
 # for development
@@ -60,7 +44,6 @@ group :development do
   gem 'capistrano_colors'
   gem 'capistrano-ext'
   gem 'capistrano_rsync_with_remote_cache'
-
   gem 'guard-coffeescript'
 
   group :test do
