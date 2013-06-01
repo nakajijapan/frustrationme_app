@@ -4,6 +4,8 @@
     <h1>Infomation</h1>
 
     <%= form_for(@user, :html => {:multipart => true}, :url => {:action => 'profile_update'}) do |f| %>
+      <%= render template: 'layouts/error_message', locals: {models: @user} %>
+
       <ul>
         <li>
           <%= f.label :icon_name %>
