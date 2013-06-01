@@ -35,7 +35,6 @@ class PasswordController < ApplicationController
     return render_not_found if params[:reset_hash].blank?
 
     @user = User.find_by_reset_hash(params[:reset_hash])
-
     return render_not_found if @user.nil?
 
     params[:user][:reset_hash] = ''
