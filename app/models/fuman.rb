@@ -16,6 +16,9 @@ class Fuman < ActiveRecord::Base
     '5' => '持っていた',
   }
 
+  validates :status,
+    inclusion: {in: [1, 2, 3, 4, 5], if: :status}
+
   def set_default
     self.status = 1 if self.status.blank?
   end
