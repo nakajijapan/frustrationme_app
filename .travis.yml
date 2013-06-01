@@ -15,7 +15,7 @@ before_script:
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate:reset
   - bundle exec rake db:test:prepare
-  - bundle exec rspec spec/
+  - COVERALLS=on bundle exec rspec spec/
 
 notifications:
   irc:

@@ -4,6 +4,7 @@ ENV["RAILS_ENV"] ||= 'test'
 if ENV['COVERAGE'] == 'on'
   require 'simplecov'
   require 'coveralls'
+
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
     SimpleCov::Formatter::HTMLFormatter,
     Coveralls::SimpleCov::Formatter
@@ -11,8 +12,10 @@ if ENV['COVERAGE'] == 'on'
   SimpleCov.start 'rails'
 end
 
-require 'coveralls'
-Coveralls.wear!
+if ENV['COVERALLS'] == 'on'
+  require 'coveralls'
+  Coveralls.wear!
+end
 
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
