@@ -17,15 +17,16 @@ class SessionsController < ApplicationController
 
     if @user
       session[:user_id] = @user.id
-      redirect_to "/users/#{@user.username}", :notice => 'Login successful.'
+      redirect_to "/users/#{@user.username}", notice: 'Login successful.'
     else
-      flash.now[:alert] = "Login failed."; render :action => "new"
+      flash.now[:alert] = "Login failed."
+      render action: 'new'
     end
   end
 
   def destroy
     reset_session
-    redirect_to '/', :notice => 'Logged out!'
+    redirect_to root_url, notice: 'Logged out!'
   end
 
   def loggedin
