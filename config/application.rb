@@ -64,6 +64,9 @@ module Frustration
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # for bower
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'components')
+
     # mail setting
     config.action_mailer.delivery_method = :smtp
   end
