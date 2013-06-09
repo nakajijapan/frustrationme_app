@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     UserMailer.regist(@user).deliver if saved
 
-    respond_with @user, :location => root_url, :notice => 'created!'
+    respond_with @user, location: '/login', notice: 'created!'
   end
 
   def show

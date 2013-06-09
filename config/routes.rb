@@ -54,12 +54,11 @@ Frustration::Application.routes.draw do
     match '/profile'    => 'settings#profile', via: :get
     match '/profile'    => 'settings#profile_update', via: :put
     resources :categories
-    resources :tags
+    #resources :tags
     resources :comments
-
-    match '/twitter'    => 'settings#twitter',  via: :get
-    match '/facebook'   => 'settings#facebook', via: :get
-    match '/gadget'     => 'settings#gadget',   via: :get
+    #match '/twitter'    => 'settings#twitter',  via: :get
+    #match '/facebook'   => 'settings#facebook', via: :get
+    #match '/gadget'     => 'settings#gadget',   via: :get
   end
 
   match 'fumans/'                 => 'fumans#index',      via: [:get, :post]

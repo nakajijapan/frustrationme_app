@@ -24,9 +24,9 @@ class BackboneFrustration.Views.Items.ShowView extends Backbone.View
     @collection.bind 'add', @_append_comment
 
     # form
-    @form_view = new BackboneFrustration.Views.Fumans.CreateView();
+    @form_view = new BackboneFrustration.Views.Fumans.CreateView()
     @form_view.close_callback = (product_id) =>
-      $('#frustration_button').addClass('registered').fadeIn();
+      $('#frustration_button').addClass('registered').fadeIn()
       @undelegateEvents()
 
   show_modal: (e) ->

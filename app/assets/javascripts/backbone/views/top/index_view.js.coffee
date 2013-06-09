@@ -20,6 +20,7 @@ class BackboneFrustration.Views.Top.IndexView extends Backbone.View
 
     $.AutoPager
       content: '.items'
+      offset:  800
       loaded: (content, next_page_num) ->
         _.initialize_grid()
       before_append: (content) ->

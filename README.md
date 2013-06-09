@@ -1,6 +1,7 @@
 # www.frustration.me
 
 [![Build Status](https://api.travis-ci.org/nakajijapan/frustrationme_app.png?branch=master)](http://travis-ci.org/nakajijapan/frustrationme_app)
+[![Coverage Status](https://coveralls.io/repos/nakajijapan/frustrationme_app/badge.png?branch=master)](https://coveralls.io/r/nakajijapan/frustrationme_app?branch=master)
 
 ## What is this?
 

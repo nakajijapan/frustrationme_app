@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
 
   validates :email,
     presence: {unless: :social?},
-    format: {with: /^[\.@0-9a-zA-Z\-_]+$/, if: :email}
+    format: {with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, if: :email}
 
   validates :sex,
     inclusion: {in: [1,2], if: :sex}
