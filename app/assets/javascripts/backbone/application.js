@@ -1,5 +1,5 @@
-//= require backbone/underscore.js
-//= require backbone/backbone.js
+//= require components/underscore/underscore.js
+//= require components/backbone/backbone.js
 //= require ejs
 //= require ./common
 //= require_tree ./models/
