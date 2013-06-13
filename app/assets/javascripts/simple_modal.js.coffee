@@ -55,13 +55,15 @@
       $modal_window = $('#modal_window')
 
       if $overlay.length < 1
-        $('body').append($('<div id="modal_overlay"></div>').css(options.css_overlay))
-
-      if $modal_window.length < 1
-        $('body').append($('<div id="modal_window"></div>'))
+        $('body').prepend($('<div id="modal_overlay"></div>').css(options.css_overlay))
 
       return plugin
 
+    #---------------------------
+    # instance
+    #---------------------------
+    plugin.instance = () ->
+      return $('#modal_window')
 
     #---------------------------
     # close
@@ -77,7 +79,7 @@
       else
         callback = options.close_callback
 
-      $modal = $('#modal_window')
+      $modal = $(_this)
       $modal.animate({top: "+=100px", opacity: 0}, 200,
         () ->
           setTimeout(() ->
@@ -89,7 +91,6 @@
       )
       return this
 
-
     #---------------------------
     # cancel
     #---------------------------
@@ -99,7 +100,7 @@
       callback = () ->
         $('#modal_overlay').fadeOut(1000, options.close_callback)
 
-      $modal = $('#modal_window')
+      $modal = $(_this)
       $modal.animate({top: "-=100px", opacity: 0}, 200, callback)
       return this
 
@@ -109,8 +110,6 @@
     plugin.open = () ->
       # init
       options = plugin.options;
-
-      $clone = $(_this).clone(true)
 
       # browser window size
       window_height = $(window).height()
@@ -131,9 +130,8 @@
       center_w = window_width * 0.5 - width * 0.5
 
       # configure position
-      $modal = $('#modal_window')
-      $modal.html($clone)
-      $modal.children().show()
+      $modal = $(_this)
+      $modal.show()
       $modal.css(options.css_window)
       $modal.css(
         'display': 'block'
