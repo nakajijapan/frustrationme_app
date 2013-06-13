@@ -20,10 +20,17 @@ mv  config/secret_skel.rb config/secret.rb
 vim config/secret_skel.rb
 ```
 
+* isntall gems
+
+```
+bundle install
+```
+
 * start unicorn
 
 ```
-RAILS_ENV=development bundle exec unicorn -c config/unicorn.rb  -l 5000
+bundle exec unicorn -c config/unicorn.rb -l 5000
 ```
+
 
 
