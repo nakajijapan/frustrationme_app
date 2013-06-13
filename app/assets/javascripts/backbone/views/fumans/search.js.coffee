@@ -262,8 +262,6 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
 
     return alert 'no service code'  if !name?
 
-    _this = @
-
     data = {
       item : {
         service_code: @services[name]
@@ -279,10 +277,10 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
       type : 'POST'
       url  : "/fumans/create_with_item.json"
       data : data
-      success : (data, status, xhr) ->
+      success : (data, status, xhr) =>
         $("#modal_create_fuman").SimpleModal({
-          close_callback: ()->
-            _this.close_callback(product_id)
+          close_callback: () =>
+            @close_callback(product_id)
         }).close();
     )
 
@@ -297,7 +295,6 @@ class BackboneFrustration.Views.Fumans.CreateFrustrationView extends BackboneFru
   # _create
   #-------------------
   _create: (e) ->
-    _ = @
 
     data = {
       item : {
@@ -316,10 +313,10 @@ class BackboneFrustration.Views.Fumans.CreateFrustrationView extends BackboneFru
       type : 'POST'
       url  : "/fumans/create_with_item.json"
       data : data
-      success : (data, status, xhr) ->
+      success : (data, status, xhr) =>
         $("#modal_create_fuman").SimpleModal({
-          close_callback: ()->
-            _.close_callback()
+          close_callback: () =>
+            @close_callback()
         }).close();
       error : (xhr, status, thrown) ->
 
