@@ -32,5 +32,8 @@ bundle install
 bundle exec unicorn -c config/unicorn.rb -l 5000
 ```
 
+## Test
 
-
+```
+bundle exec rspec spec
+```
