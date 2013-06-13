@@ -114,9 +114,6 @@ GEM
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
-    jquery-rails (2.2.1)
-      railties (>= 3.0, < 5.0)
-      thor (>= 0.14, < 2.0)
     json (1.7.7)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -301,7 +298,6 @@ DEPENDENCIES
   guard-coffeescript
   guard-rspec
   guard-spork
-  jquery-rails
   kaminari (~> 0.14.1)
   launchy
   less-rails

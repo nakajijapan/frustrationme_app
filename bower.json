@@ -1,0 +1,15 @@
+{
+  "name": "frustration",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "2.0.0",
+    "jquery-ui": "latest",
+    "underscore": "latest",
+    "backbone": "1.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}
