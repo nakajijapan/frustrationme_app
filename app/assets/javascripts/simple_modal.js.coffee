@@ -45,6 +45,10 @@
     plugin.options = $.fn.extend(defaults, options)
     _this = element
 
+    # browser window size
+    window_height = $(window).height()
+    window_width  = $(window).width()
+
     #---------------------------
     # init
     #---------------------------
@@ -80,14 +84,12 @@
         callback = options.close_callback
 
       $modal = $(_this)
-      $modal.animate({top: "+=100px", opacity: 0}, 200,
+      $modal.animate({top: "+=300px", opacity: 0}, 200)
+            .animate({top: "+=#{window_height}px"}, 10,
         () ->
           setTimeout(() ->
-            callback();
-          , 300);
-
-          $modal.html('')
-          $modal.remove()
+            callback()
+          , 300)
       )
       return this
 
@@ -101,7 +103,8 @@
         $('#modal_overlay').fadeOut(1000, options.close_callback)
 
       $modal = $(_this)
-      $modal.animate({top: "-=100px", opacity: 0}, 200, callback)
+      $modal.animate({top: "-300px", opacity: 0}, 200)
+            .animate({top: "-1000px"}, 0, callback)
       return this
 
     #---------------------------
@@ -110,10 +113,6 @@
     plugin.open = () ->
       # init
       options = plugin.options;
-
-      # browser window size
-      window_height = $(window).height()
-      window_width  = $(window).width()
 
       # modal window size
       height = $(_this).height()
