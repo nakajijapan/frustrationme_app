@@ -11,7 +11,7 @@
     <meta name="description" content="<%= site_description %>">
     <link rel="shortcut icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= yield(:header_title) %>frustration.me - social wish list</title>
+    <title><%= yield(:header_title) %>www.frustration.me - social wish list</title>
     <%= csrf_meta_tags %>
 
     <meta name="twitter:site" content="@frustrationme">
@@ -31,18 +31,16 @@
       <link rel="image_src" href="<%= yield :header_image %>" />
     <% else %>
       <meta name="twitter:card" content="summary">
-      <meta name="twitter:title" content="frustration.me">
+      <meta name="twitter:title" content="www.frustration.me">
       <meta name="twitter:description" content="<%= site_description %>">
       <meta name="twitter:image" content="http://<%= Settings.site_name %>/assets/icon500_500.png">
-      <meta property="og:title" content="frustration.me" />
+      <meta property="og:title" content="www.frustration.me" />
       <meta property="og:type"  content="website" />
       <meta property="og:url"   content="http://<%= Settings.site_name %><%= request.env['REQUEST_URI'] %>" />
       <meta property="og:image" content="http://<%= Settings.site_name %>/assets/icon500_500.png" />
       <meta property="og:description" content="<%= site_description %>" />
       <link rel="image_src" href="http://<%= Settings.site_name %>/assets/icon500_500.png" />
     <% end %>
-
-
 
     <!-- Javascripts -->
     <%= javascript_include_tag :application %>
