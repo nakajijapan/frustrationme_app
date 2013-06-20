@@ -8,18 +8,17 @@
       continue_overlay: false
       close_callback: ->
       css_overlay:
-        position: 'fixed'
-        top: 0
-        right: 0
-        bottom: 0
-        left: 0
-        'z-index': 1000;
-        'background-color': '#ffffff';
-        opacity: 0.85;
-        filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=85)'
-        filter: 'alpha(opacity=80)'
-        display: 'none'
-        cursor: 'wait'
+        position:           'fixed'
+        top:                0
+        right:              0
+        bottom:             0
+        left:               0
+        'z-index':          1000
+        'background-color': '#ffffff'
+        opacity:            0.85
+        filter:             'alpha(opacity=80)'
+        display:            'none'
+        cursor:             'wait'
       css_window:
         opacity:            0
         position:           'fixed'
@@ -29,7 +28,7 @@
         color:              'rgb(0, 0, 0)'
         border:             '0px'
         'background-color': '#fff'
-        'z-index': 9000
+        'z-index':          9000
 
     plugin = this;
 
