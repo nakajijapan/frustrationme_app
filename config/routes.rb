@@ -64,7 +64,7 @@ Frustration::Application.routes.draw do
   match 'fumans/'                 => 'fumans#index',      via: [:get, :post]
   match 'fumans/search'           => 'fumans#search',     via: [:get, :post]
   match 'fumans/categories/:type' => 'fumans#categories', via: :get
-  resources :fumans, :only => [:index, :update, :destroy] do
+  resources :fumans, :only => [:index, :new, :update, :destroy] do
     collection do
       get 'itunes'
       post 'create_with_item'

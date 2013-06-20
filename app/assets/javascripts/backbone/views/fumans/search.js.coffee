@@ -31,6 +31,7 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
     @form_view = new BackboneFrustration.Views.Fumans.CreateView();
     @form_view.close_callback = (product_id) ->
       $("[data-code='#{product_id}']").append('<div class="item_overlay"><div>f</div></div>')
+    $('body').append @form_view.render().el
 
   #------------------------
   # モーダル画面の表示
@@ -180,7 +181,7 @@ class BackboneFrustration.Views.Fumans.Search_ItemView extends Backbone.View
   template: new EJS({url: '/javascripts/backbone/views/fumans/item_frustration'})
   item: null
   events:
-    'click .show_modal_frustration':     'show_modal'
+    'click .show_modal_frustration': 'show_modal'
 
   #------------------------
   # init
@@ -212,6 +213,7 @@ class BackboneFrustration.Views.Fumans.Search_ItemView extends Backbone.View
     # form
     form_view = new BackboneFrustration.Views.Fumans.CreateFrustrationView()
     form_view.item = @item
+    $('body').append form_view.render().el
     form_view.close_callback = () ->
       $('.item_box', $(_.el)).append('<div class="item_overlay"><div>f</div></div>')
     form_view.open()
@@ -220,7 +222,9 @@ class BackboneFrustration.Views.Fumans.Search_ItemView extends Backbone.View
 # ModalView
 #-----------------------------------------------------------------------------
 class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
-  el: $("#modal_create_fuman")
+  id: 'modal_create_fuman'
+  className: 'modal_conteiner'
+  template: new EJS({url: '/fumans/new'})
   events:
     'click .create_fuman' : 'create'
   services:
@@ -235,14 +239,23 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
   # init
   #------------------------
   initialize: (options) ->
+    $("##{@id}").remove()
+
     # イベントの追加
     @delegateEvents(@events)
+
+  #------------------------
+  # render
+  #------------------------
+  render: ->
+    @$el.html(@template.text)
+    @
 
   #------------------------
   # open
   #------------------------
   open: () ->
-    $(@el).SimpleModal().open()
+    @$el.SimpleModal().open()
 
 
   #---------------------------------------
@@ -278,7 +291,7 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
       url  : "/fumans/create_with_item.json"
       data : data
       success : (data, status, xhr) =>
-        $("#modal_create_fuman").SimpleModal({
+        $("##{@id}").SimpleModal({
           close_callback: () =>
             @close_callback(product_id)
         }).close();
@@ -288,7 +301,9 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
 # ModalView
 #-----------------------------------------------------------------------------
 class BackboneFrustration.Views.Fumans.CreateFrustrationView extends BackboneFrustration.Views.Fumans.CreateView
-  el: $("#modal_create_fuman_frustration")
+  id: 'modal_create_fuman_frustration'
+  className: 'modal_conteiner'
+  template: new EJS({url: '/fumans/new.ejs?suffix=_frustration'})
   item: null
 
   #-------------------
@@ -314,7 +329,7 @@ class BackboneFrustration.Views.Fumans.CreateFrustrationView extends BackboneFru
       url  : "/fumans/create_with_item.json"
       data : data
       success : (data, status, xhr) =>
-        $("#modal_create_fuman").SimpleModal({
+        $("##{@id}").SimpleModal({
           close_callback: () =>
             @close_callback()
         }).close();

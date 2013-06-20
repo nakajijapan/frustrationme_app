@@ -7,6 +7,11 @@ class FumansController < ApplicationController
     @categories = @current_user.categories
   end
 
+  def new
+    @categories = @current_user.categories
+    render :new, layout: false
+  end
+
   def search
     @items         = {}
     @checked_items = {}
