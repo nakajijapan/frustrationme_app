@@ -1,6 +1,6 @@
 class FumansController < ApplicationController
   before_filter :current_user
-  protect_from_forgery except: :create_with_item
+  protect_from_forgery except: :destroy
 
   def index
     @items     = @current_user.items_with_fuman(params, 30)

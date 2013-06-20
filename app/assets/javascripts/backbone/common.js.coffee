@@ -25,5 +25,12 @@ class BackboneFrustration.Model extends Backbone.Model
        if error? or error != ''
          alert(error);
 
+  # POST, PUT
+  toJSON: () ->
+    return _(_.clone(@attributes)).extend
+      authenticity_token: BackboneFrustration.Model.csrf_token()
+
+BackboneFrustration.Model.csrf_token = () ->
+  $('meta[name="csrf-token"]').attr('content')
 
 class BackboneFrustration.Collection extends Backbone.Collection

@@ -18,7 +18,6 @@ class ApplicationController < ActionController::Base
     else
       render file: "#{Rails.root}/public/500", status: 500, layout: false
     end
-
   end
 
   def exception

@@ -272,6 +272,7 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
     return alert 'no service code'  if !name?
 
     data = {
+      authenticity_token: BackboneFrustration.Model.csrf_token()
       item : {
         service_code: @services[name]
         product_id: product_id
@@ -308,6 +309,7 @@ class BackboneFrustration.Views.Fumans.CreateFrustrationView extends BackboneFru
   _create: (e) ->
 
     data = {
+      authenticity_token: BackboneFrustration.Model.csrf_token()
       item : {
         service_code: 5
         title:        @item.title
