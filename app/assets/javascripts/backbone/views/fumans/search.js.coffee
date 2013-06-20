@@ -95,17 +95,15 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
   _search_items_frustration: () ->
     url = $('#s_url').val()
 
-    _ = @
-
     $.ajax
       url: url
       type: 'GET'
       beforeSend: (data) ->
         $('.items').html('<b>loading....</b>')
 
-      success: (data) ->
-        title  = _._get_title(data.responseText)
-        images = _._get_images(data.responseText, url)
+      success: (data) =>
+        title  = @_get_title(data.responseText)
+        images = @_get_images(data.responseText, url)
 
         $items = $('.items')
         if images.length > 0
@@ -119,7 +117,7 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
               if @naturalHeight < 200 and @naturalWidth < 200
                 return
 
-              _._show_item(i, url, title, @src)
+              @_show_item(i, url, title, @src)
         else
           $items.html('<b>not found (ToT)</b>')
 
@@ -208,14 +206,12 @@ class BackboneFrustration.Views.Fumans.Search_ItemView extends Backbone.View
   #------------------------
   show_modal : (e) ->
 
-    _ = @
-
     # form
     form_view = new BackboneFrustration.Views.Fumans.CreateFrustrationView()
     form_view.item = @item
     $('body').append form_view.render().el
-    form_view.close_callback = () ->
-      $('.item_box', $(_.el)).append('<div class="item_overlay"><div>f</div></div>')
+    form_view.close_callback = () =>
+      $('.item_box', @$el).append('<div class="item_overlay"><div>f</div></div>')
     form_view.open()
 
 #-----------------------------------------------------------------------------
