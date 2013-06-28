@@ -79,7 +79,7 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
     # be empty
     $("#fuman_comment_#{item_id}").val('').focus()
 
-    saved = comment.save(
+    comment.save(
       data,
       success : (model, res) =>
         @_append_comment(res.comment)
