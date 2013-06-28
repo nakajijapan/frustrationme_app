@@ -1,14 +1,5 @@
 BackboneFrustration.Views.Fumans ||= {}
 
-
-#$.event.add(window, "load", () ->
-#  console.log 'onload'
-#  $('li.item').CoolGrid()
-#)
-
-#Backbone.sync = (method, model) ->
-#  alert(method + ": " + JSON.stringify(model))
-
 #-----------------------------------------------------------------------------
 # View
 #-----------------------------------------------------------------------------
