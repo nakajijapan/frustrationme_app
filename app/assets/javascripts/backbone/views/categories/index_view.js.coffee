@@ -46,7 +46,7 @@ class BackboneFrustration.Views.Categories.CategoryView extends Backbone.View
     'click .category_update': 'update'
     'click .category_delete': 'delete'
     'click .category_cancel': 'toggle_mode_change'
-    'click .category_name':  'toggle_mode_change'
+    'click .mode_show':  'toggle_mode_change'
 
   #------------------------
   initialize: () ->
@@ -59,7 +59,7 @@ class BackboneFrustration.Views.Categories.CategoryView extends Backbone.View
     @_toggle_mode_change(id, class_name)
 
   _toggle_mode_change: (id, class_name)->
-    if class_name == 'category_name'
+    if class_name == 'mode_show'
       $(".mode_show[data-id=#{id}]").hide();
       $(".mode_edit[data-id=#{id}]").show();
     else
