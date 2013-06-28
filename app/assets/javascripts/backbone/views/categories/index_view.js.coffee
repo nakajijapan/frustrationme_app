@@ -25,8 +25,6 @@ class BackboneFrustration.Views.Categories.IndexView extends Backbone.View
     item = new BackboneFrustration.Models.Category
 
     if item.set(name: category_name)
-      _this = @
-
       item.save null, success : (model, res) =>
         @collection.add model
 
