@@ -31,14 +31,7 @@ class BackboneFrustration.Views.Categories.IndexView extends Backbone.View
     $('#category_name').focus()
 
   list: ->
-    @collection.fetch
-      success: (model, response) =>
-        $.each response, (key, val) =>
-
-          item = new BackboneFrustration.Models.Category({ id: val.id, name: val.name })
-          item_view = new BackboneFrustration.Views.Categories.CategoryView model: item
-          $('#items').append item_view.render().el
-
+    @collection.fetch()
 
   append_item : (item) ->
     item_view = new BackboneFrustration.Views.Categories.CategoryView model: item
