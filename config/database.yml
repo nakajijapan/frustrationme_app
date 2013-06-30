@@ -16,7 +16,7 @@ test:
   encoding: utf8
 
 production:
-  adapter:  <%= ENV['DB_ADAPTER'] %>
+  adapter:  mysql2
   database: <%= ENV['DB_DATABASE'] %>
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
