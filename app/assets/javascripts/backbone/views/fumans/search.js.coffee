@@ -104,6 +104,7 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
       success: (data) =>
         title  = @_get_title(data.responseText)
         images = @_get_images(data.responseText, url)
+        _this = @
 
         $items = $('.items')
         if images.length > 0
@@ -113,11 +114,8 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
             img = new Image()
             img.src = image_url
             img.onload = () ->
-
-              if @naturalHeight < 200 and @naturalWidth < 200
-                return
-
-              @_show_item(i, url, title, @src)
+              return if this.naturalHeight < 200 and this.naturalWidth < 200
+              _this._show_item(i, url, title, this.src)
         else
           $items.html('<b>not found (ToT)</b>')
 
