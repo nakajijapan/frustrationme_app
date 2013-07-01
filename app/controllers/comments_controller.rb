@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_filter :current_user, except: [:index]
-  protect_from_forgery except: :destroy
 
   def index
     @comments = Comment.timeline(params)
