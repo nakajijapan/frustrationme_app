@@ -27,6 +27,7 @@ gem 'mail-iso-2022-jp'
 gem 'rabl'
 gem 'yajl-ruby'
 gem 'newrelic_rpm'
+gem 'google_drive'
 
 # for development
 group :development do
