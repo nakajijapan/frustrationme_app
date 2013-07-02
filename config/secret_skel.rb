@@ -37,3 +37,7 @@ ENV['MAIL_USERNAME'] = ''
 ENV['MAIL_PASSWORD'] = ''
 
 ENV['NEWRELIC_KEY'] = ''
+
+# using at rake task 'batches:total_scores'
+ENV['GOOGLE_USERNAME'] = ''
+ENV['GOOGLE_PASSWORD'] = ''
