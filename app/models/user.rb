@@ -1,12 +1,5 @@
 # coding: utf-8
 class User < ActiveRecord::Base
-  attr_accessible :birthday, :message, :sex, :username, :email
-  attr_accessible :facebook_use, :twitter_use
-
-  attr_accessible :provider, :uid
-  attr_accessible :mode, :password, :password_confirmation, :icon_name, :crypted_password
-  attr_accessible :reset_hash
-
   attr_accessor :mode, :password, :password_confirmation
 
   has_attached_file :icon_name,
