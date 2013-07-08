@@ -2,7 +2,7 @@ Frustration::Application.routes.draw do
 
 
   # root
-  root :to => 'top#index'
+  root to: 'top#index'
 
   #-----------------------------------------------
   # web
@@ -46,21 +46,21 @@ Frustration::Application.routes.draw do
   end
 
   # home
-  get 'home' => 'home#index'
+  get 'home', to: 'home#index'
 
   # setting
   scope '/settings', as: :settings do
-    get '/icon'       => 'settings#icon'
-    get '/profile'    => 'settings#profile'
-    put '/profile'    => 'settings#profile_update'
+    get '/icon',       to: 'settings#icon'
+    get '/profile',    to: 'settings#profile'
+    put '/profile',    to: 'settings#profile_update'
     resources :categories
     resources :comments
   end
 
-  match 'fumans/'                 => 'fumans#index',      via: [:get, :post]
-  match 'fumans/search'           => 'fumans#search',     via: [:get, :post]
-  get 'fumans/categories/:type' => 'fumans#categories'
-  resources :fumans, :only => [:index, :update, :destroy] do
+  match 'fumans/',               to: 'fumans#index',      via: [:get, :post]
+  match 'fumans/search',         to: 'fumans#search',     via: [:get, :post]
+  get 'fumans/categories/:type', to: 'fumans#categories'
+  resources :fumans, only: [:index, :update, :destroy] do
     collection do
       get 'itunes'
       post 'create_with_item'
@@ -71,7 +71,7 @@ Frustration::Application.routes.draw do
   # api
   #-----------------------------------------------
   namespace :api do
-    resources :me, :only => [:index] do
+    resources :me, only: [:index] do
       collection do
         get 'loginedcheck'
         get 'friends_timeline'
@@ -83,13 +83,13 @@ Frustration::Application.routes.draw do
     scope '/me/' do
       resources :categories
     end
-    resources :users, :only => [:create, :destroy]
+    resources :users, only: [:create, :destroy]
     scope '/users/:username/' do
-      get '/'  => 'users#show'
-      post   '/follow/'     => 'friendships#create'
-      delete '/unfollow/'   => 'friendships#destroy'
-      get    '/followings/' => 'friendships#followings'
-      get    '/followers/'  => 'friendships#followers'
+      get    '/',            to: 'users#show'
+      post   '/follow/',     to: 'friendships#create'
+      delete '/unfollow/',   to: 'friendships#destroy'
+      get    '/followings/', to: 'friendships#followings'
+      get    '/followers/',  to: 'friendships#followers'
     end
 
     resources :fumans do
