@@ -8,9 +8,9 @@ Frustration::Application.routes.draw do
   # web
   #-----------------------------------------------
   # login/out
-  match 'login',                    to: 'sessions#new',     as: :login
-  match 'logout',                   to: 'sessions#destroy', as: :logout
-  match '/auth/:provider/callback', to: 'sessions#create'
+  get    'login',                    to: 'sessions#new',     as: :login
+  delete 'logout',                   to: 'sessions#destroy', as: :logout
+  post   '/auth/:provider/callback', to: 'sessions#create'
   resources :sessions, only: %w[new create destroy] do
     collection do
       get 'loggedin'
@@ -28,16 +28,16 @@ Frustration::Application.routes.draw do
 
   # users
   scope '/users/:username', as: :users do
-    match '/', to: 'users#show'
-    match '/followings', to: 'friendships#followings'
-    match '/followers',  to: 'friendships#followers'
+    get '/', to: 'users#show'
+    get '/followings', to: 'friendships#followings'
+    get '/followers',  to: 'friendships#followers'
   end
 
   scope '/password/', as: :passwords do
-    match '/',      to: 'password#index', via: :get
-    match '/sendmail',   to: 'password#sendmail',  via: :post
-    match '/reset',  to: 'password#reset', via: :get
-    match '/finish', to: 'password#finish', via: :put
+    get  '/',         to: 'password#index'
+    post '/sendmail', to: 'password#sendmail'
+    get  '/reset',    to: 'password#reset'
+    put  '/finish',   to: 'password#finish'
   end
 
   # items
@@ -46,24 +46,24 @@ Frustration::Application.routes.draw do
   end
 
   # home
-  match 'home' => 'home#index', :via => :get
+  get 'home' => 'home#index'
 
   # setting
   scope '/settings', as: :settings do
-    match '/icon'       => 'settings#icon',    via: :get
-    match '/profile'    => 'settings#profile', via: :get
-    match '/profile'    => 'settings#profile_update', via: :put
+    get '/icon'       => 'settings#icon'
+    get '/profile'    => 'settings#profile'
+    put '/profile'    => 'settings#profile_update'
     resources :categories
     #resources :tags
     resources :comments
-    #match '/twitter'    => 'settings#twitter',  via: :get
-    #match '/facebook'   => 'settings#facebook', via: :get
-    #match '/gadget'     => 'settings#gadget',   via: :get
+    #get '/twitter'    => 'settings#twitter'
+    #get '/facebook'   => 'settings#facebook'
+    #get '/gadget'     => 'settings#gadget'
   end
 
   match 'fumans/'                 => 'fumans#index',      via: [:get, :post]
   match 'fumans/search'           => 'fumans#search',     via: [:get, :post]
-  match 'fumans/categories/:type' => 'fumans#categories', via: :get
+  get 'fumans/categories/:type' => 'fumans#categories'
   resources :fumans, :only => [:index, :update, :destroy] do
     collection do
       get 'itunes'
@@ -93,16 +93,16 @@ Frustration::Application.routes.draw do
     end
     resources :users, :only => [:create, :destroy]
     scope '/users/:username/' do
-      match '/'  => 'users#show',  :via => :get
+      get '/'  => 'users#show'
       #resources :photos, :only => [:index, :show] do
       #  match '/cools' => 'cools#create',  :via => :post
       #  match '/cools' => 'cools#destroy', :via => :delete
       #  resources :comments, :only => [:index, :create, :destroy]
       #end
-      match '/follow/'   => 'friendships#create',  :via => :post
-      match '/unfollow/' => 'friendships#destroy', :via => :delete
-      match '/followings/' => 'friendships#followings', :via => :get
-      match '/followers/' => 'friendships#followers', :via => :get
+      post   '/follow/'     => 'friendships#create'
+      delete '/unfollow/'   => 'friendships#destroy'
+      get    '/followings/' => 'friendships#followings'
+      get    '/followers/'  => 'friendships#followers'
     end
 
     resources :fumans do
