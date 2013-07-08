@@ -1,6 +1,6 @@
 # coding: utf-8
 class User < ActiveRecord::Base
-  attr_accessor :mode, :password, :password_confirmation
+  #attr_accessor :mode, :password, :password_confirmation
 
   has_attached_file :icon_name,
     storage: :s3,
@@ -24,18 +24,18 @@ class User < ActiveRecord::Base
   validates :username,
     presence: true,
     length:   {minimum: 3, maximum: 16},
-    format:   {with: /^[0-9a-zA-Z\-_]+$/},
+    format:   {with: /\A^[0-9a-zA-Z\-_]+\z/},
     uniqueness: true
 
   validates :password,
     presence: {unless: :social?},
     length: {minimum: 4, maximum: 16, if: :password},
-    format: {with: /^[0-9a-zA-Z\-_]+$/, if: :password},
+    format: {with: /\A[0-9a-zA-Z\-_]+\z/, if: :password},
     confirmation: {if: :password}
 
   validates :email,
     presence: {unless: :social?},
-    format: {with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, if: :email}
+    format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, if: :email}
 
   validates :sex,
     inclusion: {in: [1,2], if: :sex}
