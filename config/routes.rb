@@ -54,11 +54,7 @@ Frustration::Application.routes.draw do
     get '/profile'    => 'settings#profile'
     put '/profile'    => 'settings#profile_update'
     resources :categories
-    #resources :tags
     resources :comments
-    #get '/twitter'    => 'settings#twitter'
-    #get '/facebook'   => 'settings#facebook'
-    #get '/gadget'     => 'settings#gadget'
   end
 
   match 'fumans/'                 => 'fumans#index',      via: [:get, :post]
@@ -86,19 +82,10 @@ Frustration::Application.routes.draw do
     end
     scope '/me/' do
       resources :categories
-      #resources :tags
-      #resources :fumans do
-      #  resources :tags, only: [:create]
-      #end
     end
     resources :users, :only => [:create, :destroy]
     scope '/users/:username/' do
       get '/'  => 'users#show'
-      #resources :photos, :only => [:index, :show] do
-      #  match '/cools' => 'cools#create',  :via => :post
-      #  match '/cools' => 'cools#destroy', :via => :delete
-      #  resources :comments, :only => [:index, :create, :destroy]
-      #end
       post   '/follow/'     => 'friendships#create'
       delete '/unfollow/'   => 'friendships#destroy'
       get    '/followings/' => 'friendships#followings'
