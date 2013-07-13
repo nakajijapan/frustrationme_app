@@ -27,6 +27,9 @@ Frustration::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+
+  config.active_record.mass_assignment_sanitizer = :strict
+
   #--------------------------------------------
   # output log
   #--------------------------------------------

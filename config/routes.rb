@@ -57,10 +57,10 @@ Frustration::Application.routes.draw do
     resources :comments
   end
 
-  match 'fumans/',               to: 'fumans#index',      via: [:get, :post]
-  match 'fumans/search',         to: 'fumans#search',     via: [:get, :post]
-  get 'fumans/categories/:type', to: 'fumans#categories'
-  resources :fumans, only: [:index, :update, :destroy] do
+  match 'fumans/',                  to: 'fumans#index',      via: [:get, :post]
+  match 'fumans/search',            to: 'fumans#search',     via: [:get, :post]
+  match 'fumans/categories/:type',  to: 'fumans#categories', via: :get
+  resources :fumans, :only => [:index, :new, :update, :destroy] do
     collection do
       get 'itunes'
       post 'create_with_item'

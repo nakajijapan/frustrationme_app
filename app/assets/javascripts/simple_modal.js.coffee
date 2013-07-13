@@ -8,18 +8,17 @@
       continue_overlay: false
       close_callback: ->
       css_overlay:
-        position: 'fixed'
-        top: 0
-        right: 0
-        bottom: 0
-        left: 0
-        'z-index': 1000;
-        'background-color': '#ffffff';
-        opacity: 0.85;
-        filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=85)'
-        filter: 'alpha(opacity=80)'
-        display: 'none'
-        cursor: 'wait'
+        position:           'fixed'
+        top:                0
+        right:              0
+        bottom:             0
+        left:               0
+        'z-index':          1000
+        'background-color': '#ffffff'
+        opacity:            0.85
+        filter:             'alpha(opacity=80)'
+        display:            'none'
+        cursor:             'wait'
       css_window:
         opacity:            0
         position:           'fixed'
@@ -29,7 +28,7 @@
         color:              'rgb(0, 0, 0)'
         border:             '0px'
         'background-color': '#fff'
-        'z-index': 9000
+        'z-index':          9000
 
     plugin = this;
 
@@ -44,6 +43,10 @@
 
     plugin.options = $.fn.extend(defaults, options)
     _this = element
+
+    # browser window size
+    window_height = $(window).height()
+    window_width  = $(window).width()
 
     #---------------------------
     # init
@@ -80,14 +83,12 @@
         callback = options.close_callback
 
       $modal = $(_this)
-      $modal.animate({top: "+=100px", opacity: 0}, 200,
+      $modal.animate({top: "+=300px", opacity: 0}, 200)
+            .animate({top: "+=#{window_height}px"}, 10,
         () ->
           setTimeout(() ->
-            callback();
-          , 300);
-
-          $modal.html('')
-          $modal.remove()
+            callback()
+          , 300)
       )
       return this
 
@@ -101,7 +102,8 @@
         $('#modal_overlay').fadeOut(1000, options.close_callback)
 
       $modal = $(_this)
-      $modal.animate({top: "-=100px", opacity: 0}, 200, callback)
+      $modal.animate({top: "-300px", opacity: 0}, 200)
+            .animate({top: "-1000px"}, 0, callback)
       return this
 
     #---------------------------
@@ -110,10 +112,6 @@
     plugin.open = () ->
       # init
       options = plugin.options;
-
-      # browser window size
-      window_height = $(window).height()
-      window_width  = $(window).width()
 
       # modal window size
       height = $(_this).height()

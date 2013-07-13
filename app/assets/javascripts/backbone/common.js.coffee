@@ -25,5 +25,25 @@ class BackboneFrustration.Model extends Backbone.Model
        if error? or error != ''
          alert(error);
 
+BackboneFrustration.Model.csrf_token = () ->
+  $('meta[name="csrf-token"]').attr('content')
 
 class BackboneFrustration.Collection extends Backbone.Collection
+
+
+#-------------------------------------------
+# Sync
+#-------------------------------------------
+Backbone._sync = Backbone.sync
+Backbone.sync = (method, model, options) ->
+  if method == 'create' || method == 'update' || method == 'delete'
+    options_csrf =
+      headers:
+        'X-CSRF-Token': BackboneFrustration.Model.csrf_token()
+
+    _.extend(
+      options,
+      options_csrf
+    )
+
+  return Backbone._sync(method, model, options)

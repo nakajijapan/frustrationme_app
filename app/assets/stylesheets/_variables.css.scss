@@ -56,7 +56,6 @@ $fuman_status_color_5_grad: rgba(168, 0, 24, 0.3);
 }
 
 @mixin linear-gradient-top($first, $second) {
-  //background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#F7E3E3),color-stop(100%,#FFD7D7));
   background: linear-gradient(top, $first, $second);
   background: -webkit-linear-gradient(top, $first, $second);
   background: -moz-linear-gradient(top, $first, $second);

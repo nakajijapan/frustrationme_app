@@ -1,10 +1,14 @@
 class FumansController < ApplicationController
   before_filter :current_user
-  protect_from_forgery except: :create_with_item
 
   def index
     @items     = @current_user.items_with_fuman(params, 30)
     @categories = @current_user.categories
+  end
+
+  def new
+    @categories = @current_user.categories
+    render :new, layout: false
   end
 
   def search

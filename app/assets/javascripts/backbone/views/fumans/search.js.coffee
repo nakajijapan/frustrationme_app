@@ -31,6 +31,7 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
     @form_view = new BackboneFrustration.Views.Fumans.CreateView();
     @form_view.close_callback = (product_id) ->
       $("[data-code='#{product_id}']").append('<div class="item_overlay"><div>f</div></div>')
+    $('body').append @form_view.render().el
 
   #------------------------
   # モーダル画面の表示
@@ -94,17 +95,16 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
   _search_items_frustration: () ->
     url = $('#s_url').val()
 
-    _ = @
-
     $.ajax
       url: url
       type: 'GET'
       beforeSend: (data) ->
         $('.items').html('<b>loading....</b>')
 
-      success: (data) ->
-        title  = _._get_title(data.responseText)
-        images = _._get_images(data.responseText, url)
+      success: (data) =>
+        title  = @_get_title(data.responseText)
+        images = @_get_images(data.responseText, url)
+        _this = @
 
         $items = $('.items')
         if images.length > 0
@@ -114,11 +114,8 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
             img = new Image()
             img.src = image_url
             img.onload = () ->
-
-              if @naturalHeight < 200 and @naturalWidth < 200
-                return
-
-              _._show_item(i, url, title, @src)
+              return if this.naturalHeight < 200 and this.naturalWidth < 200
+              _this._show_item(i, url, title, this.src)
         else
           $items.html('<b>not found (ToT)</b>')
 
@@ -180,7 +177,7 @@ class BackboneFrustration.Views.Fumans.Search_ItemView extends Backbone.View
   template: new EJS({url: '/javascripts/backbone/views/fumans/item_frustration'})
   item: null
   events:
-    'click .show_modal_frustration':     'show_modal'
+    'click .show_modal_frustration': 'show_modal'
 
   #------------------------
   # init
@@ -207,20 +204,21 @@ class BackboneFrustration.Views.Fumans.Search_ItemView extends Backbone.View
   #------------------------
   show_modal : (e) ->
 
-    _ = @
-
     # form
     form_view = new BackboneFrustration.Views.Fumans.CreateFrustrationView()
     form_view.item = @item
-    form_view.close_callback = () ->
-      $('.item_box', $(_.el)).append('<div class="item_overlay"><div>f</div></div>')
+    $('body').append form_view.render().el
+    form_view.close_callback = () =>
+      $('.item_box', @$el).append('<div class="item_overlay"><div>f</div></div>')
     form_view.open()
 
 #-----------------------------------------------------------------------------
 # ModalView
 #-----------------------------------------------------------------------------
 class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
-  el: $("#modal_create_fuman")
+  id: 'modal_create_fuman'
+  className: 'modal_conteiner'
+  template: new EJS({url: '/fumans/new'})
   events:
     'click .create_fuman' : 'create'
   services:
@@ -235,14 +233,23 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
   # init
   #------------------------
   initialize: (options) ->
+    $("##{@id}").remove()
+
     # イベントの追加
     @delegateEvents(@events)
+
+  #------------------------
+  # render
+  #------------------------
+  render: ->
+    @$el.html(@template.text)
+    @
 
   #------------------------
   # open
   #------------------------
   open: () ->
-    $(@el).SimpleModal().open()
+    @$el.SimpleModal().open()
 
 
   #---------------------------------------
@@ -263,6 +270,7 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
     return alert 'no service code'  if !name?
 
     data = {
+      authenticity_token: BackboneFrustration.Model.csrf_token()
       item : {
         service_code: @services[name]
         product_id: product_id
@@ -278,7 +286,7 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
       url  : "/fumans/create_with_item.json"
       data : data
       success : (data, status, xhr) =>
-        $("#modal_create_fuman").SimpleModal({
+        $("##{@id}").SimpleModal({
           close_callback: () =>
             @close_callback(product_id)
         }).close();
@@ -288,7 +296,9 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
 # ModalView
 #-----------------------------------------------------------------------------
 class BackboneFrustration.Views.Fumans.CreateFrustrationView extends BackboneFrustration.Views.Fumans.CreateView
-  el: $("#modal_create_fuman_frustration")
+  id: 'modal_create_fuman_frustration'
+  className: 'modal_conteiner'
+  template: new EJS({url: '/fumans/new.ejs?suffix=_frustration'})
   item: null
 
   #-------------------
@@ -297,6 +307,7 @@ class BackboneFrustration.Views.Fumans.CreateFrustrationView extends BackboneFru
   _create: (e) ->
 
     data = {
+      authenticity_token: BackboneFrustration.Model.csrf_token()
       item : {
         service_code: 5
         title:        @item.title
@@ -314,7 +325,7 @@ class BackboneFrustration.Views.Fumans.CreateFrustrationView extends BackboneFru
       url  : "/fumans/create_with_item.json"
       data : data
       success : (data, status, xhr) =>
-        $("#modal_create_fuman").SimpleModal({
+        $("##{@id}").SimpleModal({
           close_callback: () =>
             @close_callback()
         }).close();

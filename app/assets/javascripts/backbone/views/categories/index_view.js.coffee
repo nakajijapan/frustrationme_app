@@ -25,22 +25,13 @@ class BackboneFrustration.Views.Categories.IndexView extends Backbone.View
     item = new BackboneFrustration.Models.Category
 
     if item.set(name: category_name)
-      _this = @
-
       item.save null, success : (model, res) =>
         @collection.add model
 
     $('#category_name').focus()
 
   list: ->
-    @collection.fetch
-      success: (model, response) =>
-        $.each response, (key, val) =>
-
-          item = new BackboneFrustration.Models.Category({ id: val.id, name: val.name })
-          item_view = new BackboneFrustration.Views.Categories.CategoryView model: item
-          $('#items').append item_view.render().el
-
+    @collection.fetch()
 
   append_item : (item) ->
     item_view = new BackboneFrustration.Views.Categories.CategoryView model: item
@@ -55,7 +46,7 @@ class BackboneFrustration.Views.Categories.CategoryView extends Backbone.View
     'click .category_update': 'update'
     'click .category_delete': 'delete'
     'click .category_cancel': 'toggle_mode_change'
-    'click .category_name':  'toggle_mode_change'
+    'click .mode_show':  'toggle_mode_change'
 
   #------------------------
   initialize: () ->
@@ -68,7 +59,7 @@ class BackboneFrustration.Views.Categories.CategoryView extends Backbone.View
     @_toggle_mode_change(id, class_name)
 
   _toggle_mode_change: (id, class_name)->
-    if class_name == 'category_name'
+    if class_name == 'mode_show'
       $(".mode_show[data-id=#{id}]").hide();
       $(".mode_edit[data-id=#{id}]").show();
     else

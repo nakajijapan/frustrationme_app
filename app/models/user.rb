@@ -1,6 +1,6 @@
 # coding: utf-8
 class User < ActiveRecord::Base
-  #attr_accessor :mode, :password, :password_confirmation
+  attr_accessor :mode, :password, :password_confirmation
 
   has_attached_file :icon_name,
     storage: :s3,
