@@ -4,7 +4,9 @@ class PasswordController < ApplicationController
   end
 
   def sendmail
-    @user = User.where(username: params[:user][:username]).where(email: params[:user][:email]).first
+    @user = User.where(username: params[:user][:username])
+                .where(email: params[:user][:email])
+                .first
 
     if @user.nil?
       @user = User.new
@@ -38,7 +40,7 @@ class PasswordController < ApplicationController
     return render_not_found if @user.nil?
 
     params[:user][:reset_hash] = ''
-    saved = @user.update_attributes(params[:user])
+    saved = @user.update_attributes(user_params)
 
     respond_to do |format|
       if saved
@@ -48,4 +50,9 @@ class PasswordController < ApplicationController
       end
     end
   end
+
+  private
+    def user_params
+      params.require(:user).permit(:password, :password_confirmation)
+    end
 end

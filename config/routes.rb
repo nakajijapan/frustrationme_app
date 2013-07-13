@@ -2,15 +2,15 @@ Frustration::Application.routes.draw do
 
 
   # root
-  root :to => 'top#index'
+  root to: 'top#index'
 
   #-----------------------------------------------
   # web
   #-----------------------------------------------
   # login/out
-  match 'login',                    to: 'sessions#new',     as: :login
-  match 'logout',                   to: 'sessions#destroy', as: :logout
-  match '/auth/:provider/callback', to: 'sessions#create'
+  get    'login',                    to: 'sessions#new',     as: :login
+  get    'logout',                   to: 'sessions#destroy', as: :logout
+  post   '/auth/:provider/callback', to: 'sessions#create'
   resources :sessions, only: %w[new create destroy] do
     collection do
       get 'loggedin'
@@ -28,16 +28,16 @@ Frustration::Application.routes.draw do
 
   # users
   scope '/users/:username', as: :users do
-    match '/', to: 'users#show'
-    match '/followings', to: 'friendships#followings'
-    match '/followers',  to: 'friendships#followers'
+    get '/', to: 'users#show'
+    get '/followings', to: 'friendships#followings'
+    get '/followers',  to: 'friendships#followers'
   end
 
   scope '/password/', as: :passwords do
-    match '/',      to: 'password#index', via: :get
-    match '/sendmail',   to: 'password#sendmail',  via: :post
-    match '/reset',  to: 'password#reset', via: :get
-    match '/finish', to: 'password#finish', via: :put
+    get  '/',         to: 'password#index'
+    post '/sendmail', to: 'password#sendmail'
+    get  '/reset',    to: 'password#reset'
+    patch  '/finish',   to: 'password#finish'
   end
 
   # items
@@ -46,24 +46,20 @@ Frustration::Application.routes.draw do
   end
 
   # home
-  match 'home' => 'home#index', :via => :get
+  get 'home', to: 'home#index'
 
   # setting
   scope '/settings', as: :settings do
-    match '/icon'       => 'settings#icon',    via: :get
-    match '/profile'    => 'settings#profile', via: :get
-    match '/profile'    => 'settings#profile_update', via: :put
+    get '/icon',       to: 'settings#icon'
+    get '/profile',    to: 'settings#profile'
+    patch '/profile',    to: 'settings#profile_update'
     resources :categories
-    #resources :tags
     resources :comments
-    #match '/twitter'    => 'settings#twitter',  via: :get
-    #match '/facebook'   => 'settings#facebook', via: :get
-    #match '/gadget'     => 'settings#gadget',   via: :get
   end
 
-  match 'fumans/'                 => 'fumans#index',      via: [:get, :post]
-  match 'fumans/search'           => 'fumans#search',     via: [:get, :post]
-  match 'fumans/categories/:type' => 'fumans#categories', via: :get
+  match 'fumans/',                  to: 'fumans#index',      via: [:get, :post]
+  match 'fumans/search',            to: 'fumans#search',     via: [:get, :post]
+  match 'fumans/categories/:type',  to: 'fumans#categories', via: :get
   resources :fumans, :only => [:index, :new, :update, :destroy] do
     collection do
       get 'itunes'
@@ -75,7 +71,7 @@ Frustration::Application.routes.draw do
   # api
   #-----------------------------------------------
   namespace :api do
-    resources :me, :only => [:index] do
+    resources :me, only: [:index] do
       collection do
         get 'loginedcheck'
         get 'friends_timeline'
@@ -86,23 +82,14 @@ Frustration::Application.routes.draw do
     end
     scope '/me/' do
       resources :categories
-      #resources :tags
-      #resources :fumans do
-      #  resources :tags, only: [:create]
-      #end
     end
-    resources :users, :only => [:create, :destroy]
+    resources :users, only: [:create, :destroy]
     scope '/users/:username/' do
-      match '/'  => 'users#show',  :via => :get
-      #resources :photos, :only => [:index, :show] do
-      #  match '/cools' => 'cools#create',  :via => :post
-      #  match '/cools' => 'cools#destroy', :via => :delete
-      #  resources :comments, :only => [:index, :create, :destroy]
-      #end
-      match '/follow/'   => 'friendships#create',  :via => :post
-      match '/unfollow/' => 'friendships#destroy', :via => :delete
-      match '/followings/' => 'friendships#followings', :via => :get
-      match '/followers/' => 'friendships#followers', :via => :get
+      get    '/',            to: 'users#show'
+      post   '/follow/',     to: 'friendships#create'
+      delete '/unfollow/',   to: 'friendships#destroy'
+      get    '/followings/', to: 'friendships#followings'
+      get    '/followers/',  to: 'friendships#followers'
     end
 
     resources :fumans do

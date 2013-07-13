@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     saved = @user.save
 
     UserMailer.regist(@user).deliver if saved
@@ -25,4 +25,9 @@ class UsersController < ApplicationController
     @items      = @target_user.items_with_fuman(params, 50)
     @categories = @target_user.categories
   end
+
+  private
+    def user_params
+      params.require(:user).permit(:username, :password, :email, :password_confirmation)
+    end
 end
