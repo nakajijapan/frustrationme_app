@@ -9,7 +9,7 @@ Frustration::Application.routes.draw do
   #-----------------------------------------------
   # login/out
   get    'login',                    to: 'sessions#new',     as: :login
-  delete 'logout',                   to: 'sessions#destroy', as: :logout
+  get    'logout',                   to: 'sessions#destroy', as: :logout
   post   '/auth/:provider/callback', to: 'sessions#create'
   resources :sessions, only: %w[new create destroy] do
     collection do
@@ -37,7 +37,7 @@ Frustration::Application.routes.draw do
     get  '/',         to: 'password#index'
     post '/sendmail', to: 'password#sendmail'
     get  '/reset',    to: 'password#reset'
-    put  '/finish',   to: 'password#finish'
+    patch  '/finish',   to: 'password#finish'
   end
 
   # items
@@ -52,7 +52,7 @@ Frustration::Application.routes.draw do
   scope '/settings', as: :settings do
     get '/icon',       to: 'settings#icon'
     get '/profile',    to: 'settings#profile'
-    put '/profile',    to: 'settings#profile_update'
+    patch '/profile',    to: 'settings#profile_update'
     resources :categories
     resources :comments
   end
