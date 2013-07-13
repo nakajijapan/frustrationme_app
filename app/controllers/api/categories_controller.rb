@@ -1,9 +1,7 @@
 class Api::CategoriesController < Api::ApplicationController
 
   def index
-    @categories =  Category.find(
-      :all, conditions: {user_id: @current_user.id}
-    )
+    @categories = Category.where(user_id: @current_user.id).first
     respond_with @categories
   end
 
