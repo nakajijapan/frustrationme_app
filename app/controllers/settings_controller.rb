@@ -8,7 +8,7 @@ class SettingsController < ApplicationController
   def profile_update
     @user = @current_user
     @user.mode = :social
-    saved = @user.update_attributes(params[:user])
+    saved = @user.update_attributes(user_params)
 
     respond_to do |format|
       if saved
@@ -21,4 +21,10 @@ class SettingsController < ApplicationController
       end
     end
   end
+
+  private
+    def user_params
+      params.require(:user).permit(:icon_name, :email, :message)
+    end
+
 end

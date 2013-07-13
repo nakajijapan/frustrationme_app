@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(category_params)
     @category.user_id = @current_user.id
     @category.save
 
@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     params[:category][:user_id] = @current_user.id
-    @category.update_attributes(params[:category])
+    @category.update_attributes(category_params)
 
     respond_with @category
   end
@@ -33,4 +33,8 @@ class CategoriesController < ApplicationController
     respond_with @category
   end
 
+  private
+    def category_params
+      params.require(:category).permit(:user_id, :name)
+    end
 end

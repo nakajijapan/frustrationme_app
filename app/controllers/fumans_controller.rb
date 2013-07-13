@@ -34,9 +34,9 @@ class FumansController < ApplicationController
     service_fuman = ServiceFuman.new(@current_user)
 
     if params[:item][:service_code].to_i == Item::SERVICE_CODE_FRUSTRATION
-      saved = service_fuman.create_with_item_using_frustration(params[:item], params[:fuman])
+      saved = service_fuman.create_with_item_using_frustration(item_params, fuman_params)
     else
-      saved = service_fuman.create_with_item(params[:item], params[:fuman])
+      saved = service_fuman.create_with_item(item_params, fuman_params)
     end
 
     respond_to do |format|
@@ -52,7 +52,7 @@ class FumansController < ApplicationController
     @fuman = Fuman.find(params[:id])
 
     params[:fuman][:user_id] = @current_user.id
-    @fuman.update_attributes(params[:fuman])
+    @fuman.update_attributes(fuman_params)
 
     respond_with @fuman, :notice => 'created!', :location => '/'
   end
@@ -68,4 +68,13 @@ class FumansController < ApplicationController
     @categories = h rescue(return render_not_found)
     respond_with @categories, layout: false
   end
+
+  private
+    def fuman_params
+      params.require(:fuman).permit(:user_id, :item_id, :status, :category_id)
+    end
+
+    def item_params
+      params.require(:item).permit(:service_code, :product_id, :title, :url, :image_l)
+    end
 end

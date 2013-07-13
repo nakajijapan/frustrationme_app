@@ -11,7 +11,7 @@ class Api::CategoriesController < Api::ApplicationController
   end
 
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(category_params)
     if @category.save
       flash[:notice] = 'created!'
     end
@@ -22,7 +22,7 @@ class Api::CategoriesController < Api::ApplicationController
   def update
     logger.info params
     @category = Category.find(params[:id])
-    if @category.update_attributes(params[:category])
+    if @category.update_attributes(category_params)
       flash[:notice] = 'updated!'
     end
 
@@ -36,4 +36,8 @@ class Api::CategoriesController < Api::ApplicationController
     respond_with @category, notice: 'deleted!'
   end
 
+  private
+    def category_params
+      params.require(:category).permit(:user_id, :name)
+    end
 end
