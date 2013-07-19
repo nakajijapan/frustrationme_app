@@ -104,6 +104,7 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
       success: (data) =>
         title  = @_get_title(data.responseText)
         images = @_get_images(data.responseText, url)
+
         _this = @
 
         $items = $('.items')
@@ -135,6 +136,12 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
   #------------------------
   # タイトル取得
   #------------------------
+  _parse_url: (url) ->
+    return /(https?):\/\/([^\/]+)\//.exec(url)
+
+  #------------------------
+  # タイトル取得
+  #------------------------
   _get_title: (string) ->
     return /<title>(.*)<\/title>/.exec(string)[1]
 
@@ -143,17 +150,18 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
   #------------------------
   _get_images: (string, url) ->
     image_urls = new Array()
-    $(string).find('img').each (i, v) ->
+    parsed_url = @_parse_url(url)
+    top_url    = "#{parsed_url[1]}://#{parsed_url[2]}"
+    matches    = string.match(/<img .*?src="([^>"]+)".*?>/ig)
 
-      src = $(v).attr('src')
+    for image_url, i in matches
+      continue if i == 0
 
-      if src.match(/^\//) == null and src.match(/^https?:/) == null
-        src     = url + src
-
-      image_urls.push src
+      parsed = image_url.match(/<img .*?src="([^>"]+)".*?>/)
+      image_url = top_url + parsed[1]
+      image_urls.push image_url
 
     return image_urls
-
 
   #------------------------
   # キーでサービスを切り替えるようにする
