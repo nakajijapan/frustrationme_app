@@ -1,7 +1,5 @@
 # coding: utf-8
 class Comment < ActiveRecord::Base
-  attr_accessible :user_id, :item_id, :text
-
   belongs_to :user
 
   scope :by_user, lambda { |name| where('user_id = ?', name) if name.present? }

@@ -48,7 +48,7 @@ class ServiceFuman
         raise ActiveRecord::Rollback unless item.save
       end
 
-      @fuman = Fuman.find(:first, conditions: {user_id: @user.id, item_id: item.id})
+      @fuman = Fuman.where(user_id: @user.id).where(item_id: item.id).first
       return true if @fuman.present?
 
       # create

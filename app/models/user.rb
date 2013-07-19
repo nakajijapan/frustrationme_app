@@ -1,12 +1,5 @@
 # coding: utf-8
 class User < ActiveRecord::Base
-  attr_accessible :birthday, :message, :sex, :username, :email
-  attr_accessible :facebook_use, :twitter_use
-
-  attr_accessible :provider, :uid
-  attr_accessible :mode, :password, :password_confirmation, :icon_name, :crypted_password
-  attr_accessible :reset_hash
-
   attr_accessor :mode, :password, :password_confirmation
 
   has_attached_file :icon_name,
@@ -31,18 +24,18 @@ class User < ActiveRecord::Base
   validates :username,
     presence: true,
     length:   {minimum: 3, maximum: 16},
-    format:   {with: /^[0-9a-zA-Z\-_]+$/},
+    format:   {with: /\A^[0-9a-zA-Z\-_]+\z/},
     uniqueness: true
 
   validates :password,
     presence: {unless: :social?},
     length: {minimum: 4, maximum: 16, if: :password},
-    format: {with: /^[0-9a-zA-Z\-_]+$/, if: :password},
+    format: {with: /\A[0-9a-zA-Z\-_]+\z/, if: :password},
     confirmation: {if: :password}
 
   validates :email,
     presence: {unless: :social?},
-    format: {with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, if: :email}
+    format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, if: :email}
 
   validates :sex,
     inclusion: {in: [1,2], if: :sex}
