@@ -46,19 +46,22 @@ class BackboneFrustration.Views.Items.ShowView extends Backbone.View
     saved = comment.save(
       data,
       success : (model, res) =>
-        @_append_comment(res.comment, res.comment.user)
+        comment = new BackboneFrustration.Models.Comment(res.comment)
+        @_append_comment(comment, res.comment.user)
     )
 
   _append_comment : (comment, user) ->
-    item = new BackboneFrustration.Models.Comment(comment)
+    json = comment.toJSON()
+
+    item = new BackboneFrustration.Models.Comment(json)
     view = new BackboneFrustration.Views.Items.Show_CommentView model: item
-    $("#comments_box").prepend view.render(user).el
+    $("#comments_box").prepend view.render(json.user).el
 
   list: ->
     @collection.fetch
       success: (model, response) =>
         $.each response, (key, val) =>
-          @_append_comment(val, val.user)
+
 
 #-----------------------------------------------------------------------------
 # Index_CommentView
