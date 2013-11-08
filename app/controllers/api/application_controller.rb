@@ -16,7 +16,7 @@ class Api::ApplicationController < ActionController::Base
 
     # user check
     if @current_user
-      hash = @current_user.get_hash
+      hash = @current_user.token
 
       # key check
       if params[:token] != nil
