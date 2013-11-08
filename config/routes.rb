@@ -71,6 +71,8 @@ Frustration::Application.routes.draw do
   # api
   #-----------------------------------------------
   namespace :api do
+    resources :tokens, only: [:create]
+
     resources :me, only: [:index] do
       collection do
         get 'loginedcheck'

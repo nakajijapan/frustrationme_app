@@ -12,22 +12,20 @@ class Api::ApplicationController < ActionController::Base
   #   my_user_id
   #   my_key
   def require_user
-    @current_user = User.find_by_id(params[:my_user_id])
+    @current_user = User.find_by_id(params[:user_id])
 
     # user check
     if @current_user
       hash = @current_user.get_hash
 
       # key check
-      if params[:my_key] != nil
-        if hash === params[:my_key]
+      if params[:token] != nil
+        if hash == params[:token]
           return true
         end
       end
     end
 
-    respond_to do |format|
-      format.json {render :json => {:logined => false}}
-    end
+    render json: {status: false, message: 'logged out'}
   end
 end
