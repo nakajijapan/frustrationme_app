@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.1'
 gem 'mysql2'
 
 group :assets do
@@ -32,7 +32,6 @@ gem 'google_drive'
 # for development
 group :development do
   gem 'capistrano'
-  gem 'capistrano_colors'
   gem 'capistrano-ext'
   gem 'capistrano_rsync_with_remote_cache'
   gem 'guard-coffeescript'
