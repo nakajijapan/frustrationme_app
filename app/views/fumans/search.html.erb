@@ -78,7 +78,8 @@
       <div class="item_box" data-code="<%= item.product_code %>">
         <div class="item_image">
           <a href="<%= item.detail_url %>" target="_blank">
-            <img src="<%= item.image[:l][:url] %>" alt="<%= item.title %>" onload="Frustration.Common.show_resize_image(this, 250);" />
+            <% image_url = item.image[:l][:url] || '/assets/noimage_l.png' %>
+            <img src="<%= image_url %>" alt="<%= item.title %>" onload="Frustration.Common.show_resize_image(this, 250);" />
           </a>
         </div>
         <div class="item_title">
