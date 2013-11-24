@@ -1,4 +1,4 @@
-<%= form_tag sessions_path, :method => :post do %>
+<%= form_tag sessions_path, method: :post do %>
   <div class="field">
     <%= text_field_tag :username, '', placeholder: 'username' %>
   </div>
@@ -6,6 +6,11 @@
     <%= password_field_tag :password, '', placeholder: 'password' %>
   </div>
   <div class="actions">
-    <%= button_tag "Login", type: :submit, class: 'btn' %>
+    <%= link_to "Login", 'javascript:;',  onclick: 'submit();', class: 'social btn default' %><br />
+    <%= link_to 'Sign in with Twitter', '/auth/twitter', class: 'social btn twitter' %><br />
+    <%= link_to 'Sign in with Facebook', '/auth/facebook', class: 'social btn facebook' %><br />
+
+    <br />
+
   </div>
 <% end %>
