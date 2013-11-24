@@ -16,9 +16,7 @@ Frustration::Application.routes.draw do
   # sign up
   resources :users, only: [:new, :create]
   resources :friendships, only: [:create] do
-    collection do
-      delete 'delete'
-    end
+    delete 'delete', on: :collection
   end
 
   # users
@@ -75,9 +73,11 @@ Frustration::Application.routes.draw do
         put  'upload_icon'
       end
     end
+
     scope '/me/' do
       resources :categories
     end
+
     resources :users, only: [:create, :destroy]
     scope '/users/:username/' do
       get    '/',            to: 'users#show'
@@ -88,9 +88,7 @@ Frustration::Application.routes.draw do
     end
 
     resources :fumans do
-      collection do
-        get 'statuses'
-      end
+      get 'statuses', on: :collection
     end
   end
 end
