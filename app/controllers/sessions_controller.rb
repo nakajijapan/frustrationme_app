@@ -28,9 +28,4 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to root_url, notice: 'Logged out!'
   end
-
-  def loggedin
-    loggedin = session[:user_id].blank? ? false : true
-    render json: {status: loggedin}
-  end
 end
