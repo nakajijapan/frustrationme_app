@@ -6,7 +6,7 @@
     border: 1px solid #ddd;
     margin: 10px auto;
     padding: 10px 0;
-    display: table;
+    display: block;
     background-color: #fff;
     text-align: center;
     @include border-radius(8px);
@@ -16,5 +16,39 @@
       height: 38px;
       font-size: 32px;
     }
+
+    //
+    // social
+    //
+    .social {
+      margin: 5px 0px;
+      color: #fff;
+      width: 250px;
+
+      &.default {
+        color: #000;
+        box-shadow: 0 0 10px #ddd;
+        font-weight: bold;
+      }
+
+      &.facebook {
+        @include linear-gradient-top(#5F7EBE,#3B5998);
+        border-color: #3B5998;
+        box-shadow: 0 0 10px #5F7EBE;
+        &:hover {
+          @include linear-gradient-top(#3B5998,#3B5998);
+        }
+      }
+      &.twitter {
+        @include linear-gradient-top(#98C8FF,#4099FF);
+        border-color: #4099FF;
+        box-shadow: 0 0 10px #98C8FF;
+        &:hover {
+          @include linear-gradient-top(#4099FF,#4099FF);
+        }
+      }
+
+    }
+
   }
 }

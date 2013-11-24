@@ -9,11 +9,10 @@
     border: 1px solid #ddd;
     margin: 10px auto;
     padding: 10px 0;
-    display: table;
+    display: block;
     background-color: #fff;
     text-align: center;
     @include border-radius(8px);
-
 
     input {
       line-height: 38px;

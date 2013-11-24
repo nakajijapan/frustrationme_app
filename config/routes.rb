@@ -8,22 +8,15 @@ Frustration::Application.routes.draw do
   # web
   #-----------------------------------------------
   # login/out
-  get    'login',                    to: 'sessions#new',     as: :login
-  get    'logout',                   to: 'sessions#destroy', as: :logout
-  post   '/auth/:provider/callback', to: 'sessions#create'
-  resources :sessions, only: %w[new create destroy] do
-    collection do
-      get 'loggedin'
-    end
-  end
+  get 'login',                    to: 'sessions#new',     as: :login
+  get 'logout',                   to: 'sessions#destroy', as: :logout
+  get '/auth/:provider/callback', to: 'sessions#create'
+  resources :sessions, only: %w[new create destroy]
 
   # sign up
   resources :users, only: [:new, :create]
-
   resources :friendships, only: [:create] do
-    collection do
-      delete 'delete'
-    end
+    delete 'delete', on: :collection
   end
 
   # users
@@ -34,10 +27,10 @@ Frustration::Application.routes.draw do
   end
 
   scope '/password/', as: :passwords do
-    get  '/',         to: 'password#index'
-    post '/sendmail', to: 'password#sendmail'
-    get  '/reset',    to: 'password#reset'
-    patch  '/finish',   to: 'password#finish'
+    get   '/',         to: 'password#index'
+    post  '/sendmail', to: 'password#sendmail'
+    get   '/reset',    to: 'password#reset'
+    patch '/finish',   to: 'password#finish'
   end
 
   # items
@@ -50,16 +43,16 @@ Frustration::Application.routes.draw do
 
   # setting
   scope '/settings', as: :settings do
-    get '/icon',       to: 'settings#icon'
-    get '/profile',    to: 'settings#profile'
-    patch '/profile',    to: 'settings#profile_update'
+    get   '/icon',    to: 'settings#icon'
+    get   '/profile', to: 'settings#profile'
+    patch '/profile', to: 'settings#profile_update'
     resources :categories
     resources :comments
   end
 
-  match 'fumans/',                  to: 'fumans#index',      via: [:get, :post]
-  match 'fumans/search',            to: 'fumans#search',     via: [:get, :post]
-  match 'fumans/categories/:type',  to: 'fumans#categories', via: :get
+  match 'fumans/',                 to: 'fumans#index',      via: [:get, :post]
+  match 'fumans/search',           to: 'fumans#search',     via: [:get, :post]
+  match 'fumans/categories/:type', to: 'fumans#categories', via: :get
   resources :fumans, :only => [:index, :new, :update, :destroy] do
     collection do
       get 'itunes'
@@ -75,16 +68,18 @@ Frustration::Application.routes.draw do
 
     resources :me, only: [:index] do
       collection do
-        get 'loginedcheck'
-        get 'friends_timeline'
-        get 'user_timeline'
+        get  'loginedcheck'
+        get  'friends_timeline'
+        get  'user_timeline'
         post 'upload_file'
         put  'upload_icon'
       end
     end
+
     scope '/me/' do
       resources :categories
     end
+
     resources :users, only: [:create, :destroy]
     scope '/users/:username/' do
       get    '/',            to: 'users#show'
@@ -95,9 +90,7 @@ Frustration::Application.routes.draw do
     end
 
     resources :fumans do
-      collection do
-        get 'statuses'
-      end
+      get 'statuses', on: :collection
     end
   end
 end
