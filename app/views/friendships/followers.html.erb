@@ -50,8 +50,7 @@
           </div>
 
           <!-- follow_button -->
-
-          <% if @current_user.present? and @current_user.id != friendship.following_id %>
+          <% if @current_user.present? and @current_user.id != friendship.user_id %>
             <div class="follow_group" data-following_id="<%= friendship.following_id %>">
               <% unless @current_friends.index(friendship.following_id).nil? %>
                 <button class="btn" id="unfollow_button" data-following_id="<%= friendship.following_id %>">unfollow</button>
