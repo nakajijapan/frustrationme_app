@@ -27,10 +27,10 @@ Frustration::Application.routes.draw do
   end
 
   scope '/password/', as: :passwords do
-    get  '/',         to: 'password#index'
-    post '/sendmail', to: 'password#sendmail'
-    get  '/reset',    to: 'password#reset'
-    patch  '/finish',   to: 'password#finish'
+    get   '/',         to: 'password#index'
+    post  '/sendmail', to: 'password#sendmail'
+    get   '/reset',    to: 'password#reset'
+    patch '/finish',   to: 'password#finish'
   end
 
   # items
@@ -43,16 +43,16 @@ Frustration::Application.routes.draw do
 
   # setting
   scope '/settings', as: :settings do
-    get '/icon',       to: 'settings#icon'
-    get '/profile',    to: 'settings#profile'
-    patch '/profile',    to: 'settings#profile_update'
+    get   '/icon',    to: 'settings#icon'
+    get   '/profile', to: 'settings#profile'
+    patch '/profile', to: 'settings#profile_update'
     resources :categories
     resources :comments
   end
 
-  match 'fumans/',                  to: 'fumans#index',      via: [:get, :post]
-  match 'fumans/search',            to: 'fumans#search',     via: [:get, :post]
-  match 'fumans/categories/:type',  to: 'fumans#categories', via: :get
+  match 'fumans/',                 to: 'fumans#index',      via: [:get, :post]
+  match 'fumans/search',           to: 'fumans#search',     via: [:get, :post]
+  match 'fumans/categories/:type', to: 'fumans#categories', via: :get
   resources :fumans, :only => [:index, :new, :update, :destroy] do
     collection do
       get 'itunes'
@@ -66,9 +66,9 @@ Frustration::Application.routes.draw do
   namespace :api do
     resources :me, only: [:index] do
       collection do
-        get 'loginedcheck'
-        get 'friends_timeline'
-        get 'user_timeline'
+        get  'loginedcheck'
+        get  'friends_timeline'
+        get  'user_timeline'
         post 'upload_file'
         put  'upload_icon'
       end
