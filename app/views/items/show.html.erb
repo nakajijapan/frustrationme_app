@@ -22,7 +22,7 @@
         <% if @current_user.nil? %>
         <% else %>
           <%= hidden_field_tag :service_code, @item.service_code, id: 's_service_name' %>
-          <a href="#" class="btn frustrate <% if @registered %>registered<% end %>" title="このアイテムを登録します" data-product_code="<%= @item.product_id%>" id="frustration_button"><span>♥</span></a>
+          <a href="#" class="btn frustrate <% if @registered %>registered<% end %>" title="このアイテムを登録します" data-product_code="<%= @item.product_id %>" id="frustration_button"><span>♥</span></a>
         <% end %>
       </li>
       <li>

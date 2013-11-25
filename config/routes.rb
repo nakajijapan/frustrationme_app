@@ -63,7 +63,7 @@ Frustration::Application.routes.draw do
   #-----------------------------------------------
   # api
   #-----------------------------------------------
-  namespace :api do
+  namespace :api, defaults: {format: :json} do
     resources :tokens, only: [:create]
 
     resources :me, only: [:index] do
@@ -79,6 +79,8 @@ Frustration::Application.routes.draw do
     scope '/me/' do
       resources :categories
     end
+
+    resources :items, only: [:show]
 
     resources :users, only: [:create, :destroy]
     scope '/users/:username/' do
