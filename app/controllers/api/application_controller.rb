@@ -5,7 +5,7 @@ class Api::ApplicationController < ActionController::Base
 
   # 404
   def render_not_found
-    render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+    render json: {result: :NG, message: 'page not found'}, status: :not_found
   end
 
   def require_user
