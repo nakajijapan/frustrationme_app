@@ -65,6 +65,7 @@ Frustration::Application.routes.draw do
   #-----------------------------------------------
   namespace :api, defaults: {format: :json} do
     resources :tokens, only: [:create]
+    resources :sessions, only: [:create]
 
     resources :me, only: [:index] do
       collection do

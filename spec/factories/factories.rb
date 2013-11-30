@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :user_nakaji, :class => User do
      username 'daichi'
      password 'hogehoge'
+     auth_token 'qwertyuiop'
      email 'hogehoge@majide.com'
      sex 1
    end

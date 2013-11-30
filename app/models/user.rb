@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
   before_create :password_hash, unless: :social?
   before_update :password_hash, if: :password
 
+  def self.new_auth_token
+    SecureRandom.hex(8)
+  end
+
   # crypt md5
   def password_hash
     self.crypted_password = Digest::MD5.hexdigest(self.password)
