@@ -56,10 +56,6 @@ class User < ActiveRecord::Base
     @mode == :social
   end
 
-  def token
-    Digest::MD5.new.update(self.id.to_s + self.crypted_password).to_s
-  end
-
   def self.from_omniauth(auth)
     find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)
   end
