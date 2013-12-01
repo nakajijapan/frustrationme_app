@@ -2,39 +2,36 @@ class Api::CategoriesController < Api::ApplicationController
   before_filter :require_user
 
   def index
-    @categories = Category.where(user_id: @current_user.id).first
-    respond_with @categories
+    @categories = Category.where(user_id: @current_user.id)
+    render json: {result: :OK, categories: @categories}
   end
 
   def show
     @category = Category.find(params[:id])
-    respond_with @category
+    render json: {result: :OK, category: @category}
   end
 
   def create
     @category = Category.new(category_params)
-    if @category.save
-      flash[:notice] = 'created!'
+
+    if @category.save!
+      render json: {result: :OK, category: @category}, status: :created
     end
 
-    respond_with @category, location: nil
   end
 
   def update
-    logger.info params
     @category = Category.find(params[:id])
-    if @category.update_attributes(category_params)
-      flash[:notice] = 'updated!'
-    end
+    @category.update_attributes!(category_params)
 
-    respond_with @category
+    head :no_content
   end
 
   def destroy
     @category = Category.find(params[:id])
     @category.delete
 
-    respond_with @category, notice: 'deleted!'
+    head :no_content
   end
 
   private

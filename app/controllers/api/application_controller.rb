@@ -20,11 +20,11 @@ class Api::ApplicationController < ActionController::Base
   end
 
   def signed_in?
-    !!@current_user
+    !!current_user
   end
 
-  def current_user(auth_token)
-    @current_user ||= User.find_by_auth_token(auth_token)
+  def current_user
+    @current_user ||= User.find_by_auth_token(cookies[:auth_token])
   end
 
   def current_user=(user)
