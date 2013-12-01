@@ -1,6 +1,7 @@
 class Friendship < ActiveRecord::Base
   has_many :users
   belongs_to :user
+  belongs_to :fuman
 
   accepts_nested_attributes_for :users
 

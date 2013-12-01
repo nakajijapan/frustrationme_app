@@ -4,6 +4,8 @@ class Fuman < ActiveRecord::Base
 
   belongs_to :user
   has_one :item
+  #has_one :friendship, conditions: proc { 'fuman.user_id = friendship.following_id' }
+  has_one :friendship, primary_key: :user_id, foreign_key: :following_id
 
   before_save :set_default
 

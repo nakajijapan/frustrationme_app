@@ -109,6 +109,16 @@ class User < ActiveRecord::Base
     .page(params[:page]).per(per)
   end
 
+  # フォローしているユーザのアイテム一覧
+  def items_with_fuman_for_friends(params, per=10)
+    Item.includes(:fuman => :friendship)
+    .joins(:fuman => :friendship)
+    .where('friendships.user_id = ?', self.id)
+    .order('fumans.created_at desc')
+    .page(params[:page]).per(per)
+  end
+
+
   # フォローしているユーザを取得する
   def following(following_id)
     Friendship.where('user_id = ?',      self.id)
