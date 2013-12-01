@@ -1,6 +1,4 @@
 class Api::CategoriesController < Api::ApplicationController
-  before_filter :require_user
-
   def index
     @categories = Category.where(user_id: @current_user.id)
     render json: {result: :OK, categories: @categories}

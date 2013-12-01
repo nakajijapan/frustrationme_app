@@ -1,6 +1,4 @@
 class Api::ItemsController < Api::ApplicationController
-  skip_filter :require_user
-
   def show
     # item
     @item = Item.find(params[:id])

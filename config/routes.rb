@@ -64,31 +64,22 @@ Frustration::Application.routes.draw do
   # api
   #-----------------------------------------------
   namespace :api, defaults: {format: :json} do
-    resources :sessions, only: [:create]
-
-    resources :me, only: [:index] do
-      collection do
-        get  'loginedcheck'
-        get  'friends_timeline'
-        get  'user_timeline'
-        post 'upload_file'
-        put  'upload_icon'
-      end
-    end
+    get '/public_timeline' , to: 'media#public_timeline'
 
     scope '/me/' do
       resources :categories
     end
 
-    resources :items, only: [:show]
+    resources :sessions, only: [:create]
+    resources :items,    only: [:show]
+    resources :users,    only: [:create, :destroy, :show] do
+      get  'friends_timeline',  to: 'users#friends_timeline'
+      get  'user_timeline',     to: 'users#user_timeline'
 
-    resources :users, only: [:create, :destroy]
-    scope '/users/:username/' do
-      get    '/',            to: 'users#show'
-      post   '/follow/',     to: 'friendships#create'
-      delete '/unfollow/',   to: 'friendships#destroy'
-      get    '/followings/', to: 'friendships#followings'
-      get    '/followers/',  to: 'friendships#followers'
+      resources :friendships, only: [:create, :destroy] do
+        get    '/followings/', to: 'friendships#followings'
+        get    '/followers/',  to: 'friendships#followers'
+      end
     end
 
     resources :fumans do
