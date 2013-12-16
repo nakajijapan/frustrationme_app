@@ -42,7 +42,7 @@ class FriendshipsController < ApplicationController
     @users = @target_user.followers
 
     if @current_user.present?
-      @current_friends = @current_user.following_ids(@users.map{|f| f.following_id})
+      @current_friends = @current_user.following_ids(@users.map{|f| f.user_id})
     end
 
     respond_with @users
