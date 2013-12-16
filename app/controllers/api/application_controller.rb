@@ -8,6 +8,10 @@ class Api::ApplicationController < ActionController::Base
     render json: {result: :NG, message: 'page not found'}, status: :not_found
   end
 
+  def render_success(msg)
+    render json: {result: :OK, message: msg}, status: 200
+  end
+
   def require_user
     return if signed_in?
     render json: {result: :NG, message: 'auth error'}

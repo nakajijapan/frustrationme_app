@@ -76,10 +76,11 @@ Frustration::Application.routes.draw do
       get  'friends_timeline',  to: 'users#friends_timeline'
       get  'user_timeline',     to: 'users#user_timeline'
 
-      resources :friendships, only: [:create, :destroy] do
-        get    '/followings/', to: 'friendships#followings'
-        get    '/followers/',  to: 'friendships#followers'
-      end
+
+      resources :friendships, only: [:create, :destroy]
+      resources :friends,     only: [:index]
+      resources :followers,   only: [:index]
+
     end
 
     resources :fumans do
