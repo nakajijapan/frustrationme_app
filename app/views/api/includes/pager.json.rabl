@@ -1,0 +1,1 @@
+{ current: 1, next: false, back: false }
