@@ -13,7 +13,6 @@ class Api::UsersController < Api::ApplicationController
     return render_not_found if @target_user.blank?
 
     @items      = @target_user.items_with_fuman_for_friends(params, 50)
-    @categories = @target_user.categories
   end
 
 end
