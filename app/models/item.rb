@@ -36,8 +36,8 @@ class Item < ActiveRecord::Base
       .order('comments.created_at')
   end
 
-  def self.index_list(params, limit=20)
-    Item.order('created_at desc').page(params[:page]).limit(limit)
+  def self.public_timeline(params, limit=20)
+    Item.order('created_at desc').page(params[:page]).per(limit)
   end
 
   def last_created_user

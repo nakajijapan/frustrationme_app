@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
   before_create :password_hash, unless: :social?
   before_update :password_hash, if: :password
 
+  def self.new_auth_token
+    SecureRandom.hex(8)
+  end
+
   # crypt md5
   def password_hash
     self.crypted_password = Digest::MD5.hexdigest(self.password)
@@ -50,10 +54,6 @@ class User < ActiveRecord::Base
 
   def social?
     @mode == :social
-  end
-
-  def get_hash
-    Digest::MD5.new.update(@id.to_s + @crypted_password.to_s)
   end
 
   def self.from_omniauth(auth)
@@ -108,6 +108,16 @@ class User < ActiveRecord::Base
     .order('fumans.created_at desc')
     .page(params[:page]).per(per)
   end
+
+  # フォローしているユーザのアイテム一覧
+  def items_with_fuman_for_friends(params, per=10)
+    Item.includes(:fuman => :friendship)
+    .joins(:fuman => :friendship)
+    .where('friendships.user_id = ?', self.id)
+    .order('fumans.created_at desc')
+    .page(params[:page]).per(per)
+  end
+
 
   # フォローしているユーザを取得する
   def following(following_id)

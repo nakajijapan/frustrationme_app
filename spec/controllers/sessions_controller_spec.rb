@@ -9,30 +9,6 @@ describe SessionsController do
     end
   end
 
-  describe 'GET loggedin' do
-    before do
-      @u = create(:user_nakaji)
-      session[:user_id] = @u.id
-    end
-
-    it 'returns http success' do
-      params = {
-        format: 'json',
-      }
-      get 'loggedin'
-      expect(response).to be_success
-    end
-
-    it 'was logged in' do
-      params = {
-        format: 'json',
-      }
-      get 'loggedin'
-      data = JSON.parse(response.body)
-      expect(data['status']).to be_true
-    end
-  end
-
   describe 'DELETE destroy' do
     before do
       @u = create(:user_nakaji)
