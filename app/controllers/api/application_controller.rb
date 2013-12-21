@@ -35,4 +35,24 @@ class Api::ApplicationController < ActionController::Base
     @current_user = user
   end
 
+  rescue_from ActiveRecord::RecordInvalid do |exception|
+    respond_with_error(exception, 422, error: exception.record.errors.messages)
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    respond_with_error(exception, 404, error: exception.message)
+  end
+
+  private
+  def respond_with_error(exception, code, errors={})
+    render json: {
+      result: :NG,
+      status_code: code,
+      error: exception.class.to_s,
+      message: exception.to_s,
+      errors: errors,
+      },
+      status: code
+  end
+
 end

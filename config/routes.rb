@@ -70,7 +70,7 @@ Frustration::Application.routes.draw do
       resources :categories
     end
 
-    resources :sessions, only: [:create]
+    resources :sessions, only: [:create, :destroy]
     resources :items,    only: [:show]
     resources :users,    only: [:create, :destroy, :show] do
       get  'friends_timeline',  to: 'users#friends_timeline'
