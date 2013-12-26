@@ -288,6 +288,7 @@ DEPENDENCIES
   aws-sdk
   bcrypt-ruby (~> 3.0.0)
   capistrano
+  capistrano-bundler
   capistrano-rails
   capybara
   coffee-rails (~> 4.0.0)

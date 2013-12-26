@@ -33,6 +33,7 @@ gem 'google_drive'
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
+  gem 'capistrano-bundler', :require => false
   gem 'guard-coffeescript'
 
   group :test do
