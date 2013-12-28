@@ -20,5 +20,7 @@
 /.DS_Store
 
 secret.rb
+config/newrelic.yml
+
 /vendor/bundle
 coverage
