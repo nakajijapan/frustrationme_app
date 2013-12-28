@@ -1,3 +1,5 @@
+require 'active_record/validations'
+
 class Api::ApplicationController < ActionController::Base
 
   respond_to :json
