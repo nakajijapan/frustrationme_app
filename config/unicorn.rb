@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # application name
-application = 'frustration'
+application = 'app'
 
 # ワーカーの数
 worker_processes 3
@@ -26,7 +26,7 @@ pid "/tmp/unicorn_#{application}.pid"
 working_directory app_path
 
 # ソケット
-listen "/var/www/frustration/tmp/sockets/unicorn.sock"
+listen "#{app_path}tmp/sockets/unicorn.sock"
 
 # ダウンタイムなくす
 preload_app false
