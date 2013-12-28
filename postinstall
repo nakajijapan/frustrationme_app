@@ -1,6 +1,0 @@
-#!/bin/sh
-
-set -e
-ln -fs /home/sqale/etc/env.rb /home/sqale/current/config/env.rb
-cd /home/sqale/current && bundle exec rake assets:precompile
-/etc/init.d/app restart
