@@ -1,7 +1,7 @@
 set :application, 'frustration'
 set :repo_url, 'git@github.com:nakajijapan/frustrationme_app.git'
 
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 set :deploy_to, '/var/www/app/'
 set :scm, :git
@@ -24,6 +24,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
+      invoke 'unicorn:restart'
     end
   end
 

@@ -16,7 +16,7 @@ case rails_env
   when 'test'
     app_path = "/var/www/#{application}/current/"
   when 'development'
-    app_path = "/var/www/#{application}/"
+    app_path = "/var/www/frustration/"
 end
 
 # precess id
@@ -28,8 +28,7 @@ working_directory app_path
 # ソケット
 listen "#{app_path}tmp/sockets/unicorn.sock"
 
-# ダウンタイムなくす
-preload_app false
+preload_app true
 
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
