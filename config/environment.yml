@@ -1,16 +1,16 @@
 ## YAML Template.
 
 defaults: &defaults
-  site_name: 'www.frustration.me'
+  site_name: 'frustration.me'
   test: <%= "Did you know 5 + 5 = #{5 + 5}?" %>
 
 development:
   <<: *defaults
-  site_name: 'www.frustration.dev'
+  site_name: 'frustration.dev'
 
 test:
   <<: *defaults
-  site_name: 'www.frustration.dev'
+  site_name: 'frustration.dev'
 
 production:
   <<: *defaults
