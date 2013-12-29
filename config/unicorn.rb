@@ -20,7 +20,7 @@ case rails_env
 end
 
 # precess id
-pid "/tmp/unicorn_#{application}.pid"
+pid "#{app_path}tmp/pids/unicorn.pid"
 
 # capistrano 用に RAILS_ROOT を指定
 working_directory app_path
