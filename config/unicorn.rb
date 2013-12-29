@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # application name
-application = 'frustration'
+application = 'app'
 
 # ワーカーの数
 worker_processes 3
@@ -16,20 +16,19 @@ case rails_env
   when 'test'
     app_path = "/var/www/#{application}/current/"
   when 'development'
-    app_path = "/var/www/#{application}/"
+    app_path = "/var/www/frustration/"
 end
 
 # precess id
-pid "/tmp/unicorn_#{application}.pid"
+pid "#{app_path}tmp/pids/unicorn.pid"
 
 # capistrano 用に RAILS_ROOT を指定
 working_directory app_path
 
 # ソケット
-listen "/var/www/frustration/tmp/sockets/unicorn.sock"
+listen "#{app_path}tmp/sockets/unicorn.sock"
 
-# ダウンタイムなくす
-preload_app false
+preload_app true
 
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!

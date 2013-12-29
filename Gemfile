@@ -32,8 +32,8 @@ gem 'google_drive'
 # for development
 group :development do
   gem 'capistrano'
-  gem 'capistrano-ext'
-  gem 'capistrano_rsync_with_remote_cache'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler', :require => false
   gem 'guard-coffeescript'
 
   group :test do
