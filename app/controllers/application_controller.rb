@@ -46,7 +46,4 @@ class ApplicationController < ActionController::Base
     @current_user = user
   end
 
-  def check_user
-    @current_user = User.find_by_id(session[:user_id])
-  end
 end
