@@ -1,6 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_filter :current_user, only: [:create, :delete]
-  before_filter :check_user, only: [:followings, :followers]
+  before_filter :require_user, only: [:create, :delete]
 
   def create
     target_user = User.where(id: params[:following_id]).first
@@ -28,8 +27,8 @@ class FriendshipsController < ApplicationController
 
     @users = @target_user.followings
 
-    if @current_user.present?
-      @current_friends = @current_user.following_ids(@users.map{|f| f.following_id})
+    if current_user.present?
+      @current_friends = current_user.following_ids(@users.map{|f| f.following_id})
     end
 
     respond_with @users
@@ -41,10 +40,11 @@ class FriendshipsController < ApplicationController
 
     @users = @target_user.followers
 
-    if @current_user.present?
-      @current_friends = @current_user.following_ids(@users.map{|f| f.user_id})
+    if current_user.present?
+      @current_friends = current_user.following_ids(@users.map{|f| f.user_id})
     end
 
     respond_with @users
   end
+
 end

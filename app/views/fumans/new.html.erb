@@ -1,33 +1,35 @@
 <% suffix = params[:suffix] %>
-<!-- modal_create_fuman<%= suffix %> -->
-<div class="header">
-  <h2>Add</h2>
-  <a href="javascript:;" class="right" onClick="$('#modal_create_fuman<%= suffix %>').SimpleModal().cancel();">
-    <div>X</div>
-  </a>
-</div>
+<% if @current_user.present? %>
+  <!-- modal_create_fuman<%= suffix %> -->
+  <div class="header">
+    <h2>Add</h2>
+    <a href="javascript:;" class="right" onClick="$('#modal_create_fuman<%= suffix %>').SimpleModal().cancel();">
+      <div>X</div>
+    </a>
+  </div>
 
-<div class="body">
-  <h4>Status</h4>
-  <div style="margin: 0 0 15px 0;">
-    <div class="btn-group" data-toggle="buttons-radio">
-      <% Fuman::status_options.each do |v, k| %>
-        <button type="button" class="btn fuman_status" data-status="<%= k %>"><%= v %></button>
-      <% end %>
+  <div class="body">
+    <h4>Status</h4>
+    <div style="margin: 0 0 15px 0;">
+      <div class="btn-group" data-toggle="buttons-radio">
+        <% Fuman::status_options.each do |v, k| %>
+          <button type="button" class="btn fuman_status" data-status="<%= k %>"><%= v %></button>
+        <% end %>
+      </div>
+    </div>
+
+    <h4>Category</h4>
+    <div>
+      <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}), class: 'fuman_category' %>
+    </div>
+
+    <br />
+  </div>
+
+  <div class="footer">
+    <div class="actions">
+      <button class="btn create_fuman" data-product_code="" name="button" type="button">Save</button>
     </div>
   </div>
-
-  <h4>Category</h4>
-  <div>
-    <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}), class: 'fuman_category' %>
-  </div>
-
-  <br />
-</div>
-
-<div class="footer">
-  <div class="actions">
-    <button class="btn create_fuman" data-product_code="" name="button" type="button">Save</button>
-  </div>
-</div>
-<!-- /modal_create_fuman<%= suffix %> -->
+  <!-- /modal_create_fuman<%= suffix %> -->
+<% end %>

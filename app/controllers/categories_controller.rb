@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_filter :current_user
+  before_filter :require_user
 
   def index
     @categories = @current_user.categories

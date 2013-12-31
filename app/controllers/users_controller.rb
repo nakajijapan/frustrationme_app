@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :check_user, only: :show
 
   def new
     @user = User.new
@@ -18,8 +17,8 @@ class UsersController < ApplicationController
     @target_user = User.find_by_username(params[:username])
     return render_not_found if @target_user.blank?
 
-    if @current_user.present?
-      @friendship = @current_user.following(@target_user.id)
+    if current_user.present?
+      @friendship = current_user.following(@target_user.id)
     end
 
     @items      = @target_user.items_with_fuman(params, 50)
@@ -30,4 +29,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :password, :email, :password_confirmation)
     end
+
 end

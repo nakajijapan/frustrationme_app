@@ -1,13 +1,13 @@
 class FumansController < ApplicationController
-  before_filter :current_user
+  before_filter :require_user, except: [:new]
 
   def index
-    @items     = @current_user.items_with_fuman(params, 30)
+    @items      = @current_user.items_with_fuman(params, 30)
     @categories = @current_user.categories
   end
 
   def new
-    @categories = @current_user.categories
+    @categories = current_user.categories if current_user.present?
     render :new, layout: false
   end
 

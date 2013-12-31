@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :current_user
+  before_filter :require_user
 
   def index
   end

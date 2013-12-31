@@ -1,5 +1,5 @@
 class SettingsController < ApplicationController
-  before_filter :current_user
+  before_filter :require_user
 
   def profile
     @user = @current_user

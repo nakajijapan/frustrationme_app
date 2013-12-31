@@ -76,14 +76,8 @@ class User < ActiveRecord::Base
     }
     user = User.new(params)
 
-    if User.find_by_username(auth['info']['nickname'])
-      user.errors.add 'ユーザ名', 'が既に登録済みです'
-      return false
-    end
+    return false if User.find_by_username(auth['info']['nickname'])
 
-    #ActiveRecord::Base.transaction do
-    #  user.save!
-    #end
     user.save!
 
     user
