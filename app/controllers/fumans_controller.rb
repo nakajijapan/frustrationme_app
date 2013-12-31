@@ -1,5 +1,5 @@
 class FumansController < ApplicationController
-  before_filter :current_user
+  before_filter :require_user
 
   def index
     @items     = @current_user.items_with_fuman(params, 30)

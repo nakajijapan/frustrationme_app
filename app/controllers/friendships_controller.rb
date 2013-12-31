@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_filter :current_user, only: [:create, :delete]
+  before_filter :require_user, only: [:create, :delete]
   before_filter :check_user, only: [:followings, :followers]
 
   def create

@@ -28,11 +28,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_user
-    redirect_to :root if session[:user_id].blank?
+  def signed_in?
+    !!current_user
+  end
 
-    @current_user = User.find_by_id(session[:user_id])
-    redirect_to :root if @current_user.nil?
+  def require_user
+    return if signed_in?
+    redirect_to :root
+  end
+
+  def current_user
+    return nil if session[:user_id].nil?
+    @current_user ||= User.find_by_id(session[:user_id])
+  end
+
+  def current_user=(user)
+    @current_user = user
   end
 
   def check_user

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :current_user, except: [:index]
+  before_filter :require_user, except: [:index]
 
   def index
     @comments = Comment.timeline(params)
