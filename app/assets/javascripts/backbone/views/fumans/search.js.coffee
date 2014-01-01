@@ -151,13 +151,14 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
   _get_images: (string, url) ->
     image_urls = new Array()
     parsed_url = @_parse_url(url)
-    top_url    = "#{parsed_url[1]}://#{parsed_url[2]}"
+    top_url    = "#{parsed_url[1]}://#{parsed_url[2]}/"
     matches    = string.match(/<img .*?src="([^>"]+)".*?>/ig)
 
     for image_url, i in matches
       continue if i == 0
 
       parsed = image_url.match(/<img .*?src="([^>"]+)".*?>/)
+
       image_url = top_url + parsed[1]
       image_urls.push image_url
 
