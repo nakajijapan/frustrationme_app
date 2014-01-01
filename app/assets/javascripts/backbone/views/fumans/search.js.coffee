@@ -159,7 +159,12 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
 
       parsed = image_url.match(/<img .*?src="([^>"]+)".*?>/)
 
-      image_url = top_url + parsed[1]
+      # 'http(s)//hoge.com' or '//hoge.com'
+      if parsed[1].match(/^(http|\/\/)/)
+        image_url = parsed[1]
+      else
+        image_url = top_url + parsed[1]
+
       image_urls.push image_url
 
     return image_urls
