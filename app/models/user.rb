@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
     storage: :s3,
     s3_credentials: "#{Rails.root}/config/s3.yml",
     styles: {thumb: '200x200#'},
-    path: "#{Rails.env}/:id/icon_names/:style.:extension"
+    path: "#{Rails.env}/:id/icon_names/:style.:extension",
+    default_url: '/assets/users/icon.gif'
 
   validate :icon_name_size_validation, :if => "icon_name?"
   def icon_name_size_validation
