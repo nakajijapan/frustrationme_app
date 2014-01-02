@@ -83,8 +83,12 @@ Frustration::Application.routes.draw do
 
     end
 
-    resources :fumans do
-      get 'statuses', on: :collection
+    resources :fumans, only: [:create] do
+      collection do
+        get 'statuses'
+        get 'search'
+      end
     end
+
   end
 end
