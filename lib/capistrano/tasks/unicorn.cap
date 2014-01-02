@@ -1,7 +1,8 @@
 namespace :unicorn do
   task :environment do
-    set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
-    set :unicorn_config, "#{current_path}/config/unicorn.rb"
+    set :unicorn_pid,     "#{shared_path}/tmp/pids/unicorn.pid"
+    set :unicorn_config,  "#{current_path}/config/unicorn.rb"
+    set :cd_current_path, "cd #{current_path} && echo 'change directory OK'"
   end
 
   def start_unicorn
@@ -11,14 +12,17 @@ namespace :unicorn do
   end
 
   def stop_unicorn
+    execute fetch(:cd_current_path)
     execute :kill, "-s QUIT $(< #{fetch(:unicorn_pid)})"
   end
 
   def reload_unicorn
+    execute fetch(:cd_current_path)
     execute :kill, "-s USR2 $(< #{fetch(:unicorn_pid)})"
   end
 
   def force_stop_unicorn
+    execute fetch(:cd_current_path)
     execute :kill, "$(< #{fetch(:unicorn_pid)})"
   end
 
