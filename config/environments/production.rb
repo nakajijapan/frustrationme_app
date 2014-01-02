@@ -84,10 +84,6 @@ Frustration::Application.configure do
   #--------------------------------------------
   config.log_path = "log/#{Rails.env}.log"
 
-  # lotate
-  config.logger = Logger.new(config.log_path, 'daily') # 日別
-  #config.logger = Logger.new(config.log_path, 10, 1024 * 1024) # サイズ
-
   # format
   config.logger.formatter = Logger::Formatter.new
   config.logger.datetime_format = "%Y-%m-%d %H:%M:%S"
