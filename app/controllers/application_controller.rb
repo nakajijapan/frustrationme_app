@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     if params[:format] == 'json'
       render json: {info: msg}.to_json, status: 200, layout: false
     else
-      render file: "#{Rails.root}/public/500", status: 500, layout: false
+      render text: 'OK', status: 200, layout: false
     end
   end
 
