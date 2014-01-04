@@ -82,7 +82,6 @@ Frustration::Application.routes.draw do
       resources :friendships, only: [:create, :destroy]
       resources :friends,     only: [:index]
       resources :followers,   only: [:index]
-
     end
 
     resources :fumans, only: [:create] do
@@ -93,4 +92,6 @@ Frustration::Application.routes.draw do
     end
 
   end
+
+  get '*not_found' => 'application#render_not_found'
 end
