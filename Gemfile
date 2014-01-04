@@ -28,6 +28,7 @@ gem 'rabl'
 gem 'yajl-ruby'
 gem 'newrelic_rpm'
 gem 'google_drive'
+gem 'non-stupid-digest-assets'
 
 # for development
 group :development do
