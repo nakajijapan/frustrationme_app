@@ -26,11 +26,12 @@ Frustration::Application.routes.draw do
     get '/followers',  to: 'friendships#followers'
   end
 
-  scope '/password/', as: :passwords do
-    get   '/',         to: 'password#index'
-    post  '/sendmail', to: 'password#sendmail'
-    get   '/reset',    to: 'password#reset'
-    patch '/finish',   to: 'password#finish'
+  resources :password, only: [:index] do
+    collection do
+      post  'sendmail'
+      get   'reset'
+      patch 'finish'
+    end
   end
 
   # items
@@ -53,7 +54,7 @@ Frustration::Application.routes.draw do
   match 'fumans/',                 to: 'fumans#index',      via: [:get, :post]
   match 'fumans/search',           to: 'fumans#search',     via: [:get, :post]
   match 'fumans/categories/:type', to: 'fumans#categories', via: :get
-  resources :fumans, :only => [:index, :new, :update, :destroy] do
+  resources :fumans, only: [:index, :new, :update, :destroy] do
     collection do
       get 'itunes'
       post 'create_with_item'
