@@ -1,6 +1,5 @@
 Frustration::Application.routes.draw do
 
-
   # root
   root to: 'top#index'
 
@@ -51,11 +50,13 @@ Frustration::Application.routes.draw do
     resources :comments
   end
 
-  match 'fumans/',                 to: 'fumans#index',      via: [:get, :post]
-  match 'fumans/search',           to: 'fumans#search',     via: [:get, :post]
-  match 'fumans/categories/:type', to: 'fumans#categories', via: :get
   resources :fumans, only: [:index, :new, :update, :destroy] do
     collection do
+      post '/',                to: 'fumans#index'
+      get  'categories/:type', to: 'fumans#categories'
+      get  'search'
+      post 'search'
+
       get 'itunes'
       post 'create_with_item'
     end

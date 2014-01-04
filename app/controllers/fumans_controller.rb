@@ -1,5 +1,5 @@
 class FumansController < ApplicationController
-  before_filter :require_user, except: [:new]
+  before_filter :require_user, except: [:new, :categories]
 
   def index
     @items      = @current_user.items_with_fuman(params, 30)
