@@ -24,7 +24,7 @@ class FumansController < ApplicationController
 
       # get items which user has
       if @items.present?
-        product_codes  = @res.items.map {|i| i.product_code}
+        product_codes  = @items.map {|i| i.product_code}
         @checked_items = @current_user.checked_items(product_codes)
       end
     end
