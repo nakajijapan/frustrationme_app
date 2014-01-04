@@ -45,6 +45,10 @@ class Api::ApplicationController < ActionController::Base
     respond_with_error(exception, 404, error: exception.message)
   end
 
+  rescue_from ArgumentError do |exception|
+    respond_with_error(exception, 422, error: exception.message)
+  end
+
   private
   def respond_with_error(exception, code, errors={})
     render json: {

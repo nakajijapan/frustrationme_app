@@ -22,10 +22,10 @@ class FumansController < ApplicationController
       res     = service.search(params[:s_keywords], {count: 16, search_index: params[:s_category]})
       @items  = res.items
 
-      # get items checked
+      # get items which user has
       if @items.present?
-        code_list      = @items.map {|i| i.product_code}
-        @checked_items = @current_user.checked_items(code_list)
+        product_codes  = @res.items.map {|i| i.product_code}
+        @checked_items = @current_user.checked_items(product_codes)
       end
     end
   end
