@@ -40,3 +40,4 @@ server '219.94.254.109', user: 'app', roles: %w{web app}
 # setting per server overrides global ssh_options
 
 # fetch(:default_env).merge!(rails_env: :production)
+set :rails_env, :production
