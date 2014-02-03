@@ -83,7 +83,7 @@
     <ul class="items">
       <% @items.each do |item| %>
         <!-- item -->
-        <li class="item" data-fuman_id="<%= item.fuman.id %>">
+        <li class="item fuman_status fuman_status_<%= item.fuman.status %>" data-fuman_id="<%= item.fuman.id %>">
           <div class="side_top">
             <a href="/items/<%= item.id %>">
               <%= icon_image_tag item.image_l, alt: item.title, class: 'item_image' %>
