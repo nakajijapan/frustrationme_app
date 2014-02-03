@@ -37,7 +37,10 @@ class Item < ActiveRecord::Base
   end
 
   def self.public_timeline(params, limit=20)
-    Item.order('created_at desc').page(params[:page]).per(limit)
+    Item.includes(:fuman)
+        .joins(:fuman)
+        .order('items.created_at desc')
+        .page(params[:page]).per(limit)
   end
 
   def last_created_user
