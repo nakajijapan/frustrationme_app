@@ -40,11 +40,6 @@ group :development do
   group :test do
     gem 'guard-rspec'
     gem 'guard-spork'
-    #gem 'guard-jasmine'
-
-    # js
-    #gem 'jasminerice'
-    #gem 'headless'
 
     gem 'launchy'
     gem 'database_cleaner'
