@@ -47,7 +47,6 @@ group :development do
     gem "capybara"
 
     # rspec
-    gem 'guard-coffeescript'
     gem 'rspec-rails'
 
     gem 'ruby_gntp', platforms: :mswin
