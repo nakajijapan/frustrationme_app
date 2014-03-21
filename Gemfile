@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.3'
 gem 'mysql2'
 
 group :assets do
@@ -28,6 +28,7 @@ gem 'rabl'
 gem 'yajl-ruby'
 gem 'newrelic_rpm'
 gem 'google_drive'
+gem 'non-stupid-digest-assets'
 
 # for development
 group :development do
@@ -39,11 +40,6 @@ group :development do
   group :test do
     gem 'guard-rspec'
     gem 'guard-spork'
-    #gem 'guard-jasmine'
-
-    # js
-    #gem 'jasminerice'
-    #gem 'headless'
 
     gem 'launchy'
     gem 'database_cleaner'
@@ -51,7 +47,6 @@ group :development do
     gem "capybara"
 
     # rspec
-    gem 'guard-coffeescript'
     gem 'rspec-rails'
 
     gem 'ruby_gntp', platforms: :mswin

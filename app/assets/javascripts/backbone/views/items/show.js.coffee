@@ -29,6 +29,8 @@ class BackboneFrustration.Views.Items.ShowView extends Backbone.View
       $('#frustration_button').addClass('registered').fadeIn()
       @undelegateEvents()
 
+    $('body').append @form_view.render().el
+
   show_modal: (e) ->
     $('.create_fuman').attr('data-product_code', $(e.currentTarget).data('product_code'))
     @form_view.open()

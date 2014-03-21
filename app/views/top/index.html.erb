@@ -5,7 +5,7 @@
     <ul class="items">
       <% @items.each do |item| %>
         <!-- item -->
-        <li class="item" data-item_id="<%= item.id %>">
+        <li class="item fuman_status fuman_status_<%= item.fuman.status %>" data-item_id="<%= item.id %>">
           <div class="side_top">
             <a href="/items/<%= item.id %>">
               <%= icon_image_tag item.image_l, alt: item.title, class: 'item_image' %>

@@ -40,3 +40,4 @@ server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 # setting per server overrides global ssh_options
 
 # fetch(:default_env).merge!(rails_env: :staging)
+set :rails_env, :staging

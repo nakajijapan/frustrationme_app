@@ -9,10 +9,11 @@ class User < ActiveRecord::Base
     path: "#{Rails.env}/:id/icon_names/:style.:extension",
     default_url: '/assets/users/icon.gif'
 
-  validate :icon_name_size_validation, :if => "icon_name?"
-  def icon_name_size_validation
-    errors[:icon_name] << "should be less than 1MB" if icon_name.size > 2.megabytes
-  end
+  validates_attachment :icon_name,
+    presence: true,
+    content_type: { content_type: ['image/jpeg', 'image/jpg', 'image/png'] },
+    size: { :in => 0..2.megabytes },
+    if: "icon_name?"
 
   has_many :categories
   has_many :fumans
