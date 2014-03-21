@@ -20,7 +20,6 @@
         a {
           &.service_button {
             background-color: #fb697e;
-            @include linear-gradient-top(#fa8a9a, #fb697e);
             margin: 0px 10px;
             display: block;
             width: 95px;
@@ -33,12 +32,12 @@
             border-radius: 20px;
 
             &:hover {
-              background-color: #fb697e;
-              @include linear-gradient-top(#fb697e, #f53b55);
+              background-color: #f53b55;
               text-decoration: none;
             }
 
             p {
+              margin: 0 0 2px 0;
               padding: 5px 0px 3px 0px;
             }
 
@@ -155,15 +154,10 @@
       margin: 0 auto;
     }
     .item_title {
-
       padding: 10px 5px;
       border-radius: 8px;
-
-      // background-color: #FFCDD4;
       font-size: 16px;
       margin: 8px 3px;
-      /* padding: 5px; */
-      /*text-shadow: rgba(0, 0, 0, 0.4) 0 1px 2px;*/
     }
 
     .item_box ul {
@@ -178,7 +172,6 @@
     }
 
     .item_box .settings{
-      //background-color: #FFF2FA;
       padding: 0px 10px 10px 10px;
       position: absolute;
       top: 0px;
