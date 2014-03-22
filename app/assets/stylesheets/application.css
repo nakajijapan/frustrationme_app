@@ -10,7 +10,8 @@
  *
  *= require_self
  *= require reset
- *= require form
+ *= require ../../../vendor/assets/javascripts/components/flat-ui-official/bootstrap/css/bootstrap.css
+ *= require_directory ../../../vendor/assets/javascripts/components/flat-ui-official/css
  *= require common
  *= require effect
  *= require_directory ./fumans

@@ -5,6 +5,7 @@
     "jquery": "2.0.0",
     "jquery-ui": "latest",
     "underscore": "latest",
+    "flat-ui-official": "latest",
     "backbone": "1.0"
   },
   "ignore": [
