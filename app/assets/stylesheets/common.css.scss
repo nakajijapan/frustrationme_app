@@ -80,7 +80,7 @@ header#header_menu {
     height: 100%;
 
     &:hover {
-      background-color: $link_active_color;
+      background-color: $menu_background_color;
     }
 
     &.nologin {
