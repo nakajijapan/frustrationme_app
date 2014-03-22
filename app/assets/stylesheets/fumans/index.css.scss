@@ -38,6 +38,12 @@
             position: absolute;
             top: 10px;
             left: 150px;
+
+            .radio {
+              float: left;
+              padding-left:  25px;
+              padding-right: 10px;
+            }
           }
         }
         button[type=submit] {
@@ -135,6 +141,15 @@
                 top: 10px;
                 left: 420px;
               }
+            }
+
+            .status {
+              .radio {
+                float: left;
+                padding-left:  25px;
+                padding-right: 10px;
+              }
+
             }
 
             .delete_fuman {
