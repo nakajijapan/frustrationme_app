@@ -60,6 +60,8 @@
       if $overlay.length < 1
         $('body').prepend($('<div id="modal_overlay"></div>').css(options.css_overlay))
 
+      $overlay.show()
+
       return plugin
 
     #---------------------------
