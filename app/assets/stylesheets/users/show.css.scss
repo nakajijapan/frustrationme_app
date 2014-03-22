@@ -70,22 +70,27 @@
       .friends,
       .status_bar {
         button, a {
-          width:  80px;
-          height: 50px;
+          width:  100px;
+          height: 70px;
 
           h4, p {
-            font-size: 16px;
             line-height: 25px;
             color: white;
             margin: 0;
             padding: 0;
           }
-          //text-shadow: 1px 1px 1px #ddd;
-          @include linear-gradient-top(#FA8A9A,#FB697E);
+          p {
+            font-size: 18px;
+          }
+          h4 {
+            font-size: 28px;
+          }
+
+          background-color: #FB697E;
           border: 1px solid #FA8A9A;
 
           &:hover {
-            @include linear-gradient-top(#FB697E,#F6415B);
+            background-color: #F6415B;
             border: 1px solid #FA8A9A;
             color: white;
           }
@@ -143,48 +148,43 @@
       .menu_status {
         text-align: center;
         a {
-          width: 100px;
+          width: 120px;
           font-size: 18px;
           margin: 2px 0;
           border: 1px solid #eee;
-          //border: 1px solid white;
           &:hover {
             color: #000;
           }
 
           &.f_1 {
-            @include linear-gradient-top($fuman_status_color_1, $fuman_status_color_1_grad);
+            background-color: $fuman_status_color_1;
             &:hover {
-              @include linear-gradient-top($fuman_status_color_1, $fuman_status_color_1);
+              background-color: $fuman_status_color_1_grad;
             }
           }
 
           &.f_2 {
             background-color: $fuman_status_color_2;
-            @include linear-gradient-top($fuman_status_color_2, $fuman_status_color_2_grad);
             &:hover {
-              @include linear-gradient-top($fuman_status_color_2, $fuman_status_color_2);
+              background-color: $fuman_status_color_2_grad;
             }
           }
           &.f_3 {
             background-color: $fuman_status_color_3;
-            @include linear-gradient-top($fuman_status_color_3, $fuman_status_color_3_grad);
             &:hover {
-              @include linear-gradient-top($fuman_status_color_3, $fuman_status_color_3);
+              background-color: $fuman_status_color_3_grad;
             }
           }
           &.f_4 {
             background-color: $fuman_status_color_4;
-            @include linear-gradient-top($fuman_status_color_4, $fuman_status_color_4_grad);
             &:hover {
-              @include linear-gradient-top($fuman_status_color_4, $fuman_status_color_4);
+              background-color: $fuman_status_color_4_grad;
             }
           }
           &.f_5 {
             background-color: $fuman_status_color_5;
-            @include linear-gradient-top($fuman_status_color_5, $fuman_status_color_5_grad);
             &:hover {
-              @include linear-gradient-top($fuman_status_color_5, $fuman_status_color_5);
+              background-color: $fuman_status_color_5_grad;
             }
           }
         }
