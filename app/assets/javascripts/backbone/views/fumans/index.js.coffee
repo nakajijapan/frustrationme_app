@@ -47,8 +47,8 @@ class BackboneFrustration.Views.Fumans.IndexView extends Backbone.View
     fuman = new BackboneFrustration.Models.Fuman
 
     data =
-      id     : $(e.currentTarget).data('fuman_id')
-      status : $(e.currentTarget).data('status')
+      id     : $('input', e.currentTarget).data('fuman_id')
+      status : $('input', e.currentTarget).data('status')
 
     fuman.save(
       data,
