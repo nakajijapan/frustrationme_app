@@ -14,7 +14,7 @@
         bottom:             0
         left:               0
         'z-index':          1000
-        'background-color': '#ffffff'
+        'background-color': '#000000'
         opacity:            0.85
         filter:             'alpha(opacity=80)'
         display:            'none'

@@ -19,9 +19,10 @@
     </div>
 
     <h4>Category</h4>
-    <div>
+    <div class="btn-group btn-large">
       <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}), class: 'fuman_category' %>
     </div>
+
 
     <br />
   </div>
@@ -33,3 +34,4 @@
   </div>
   <!-- /modal_create_fuman<%= suffix %> -->
 <% end %>
+

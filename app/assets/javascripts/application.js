@@ -1,6 +1,7 @@
 //= require components/jquery/jquery.js
 //= require components/jquery-ui/ui/jquery-ui.js
-//= require components/flat-ui-official/js/bootstrap.min.js
+//#= require components/flat-ui-official/js/bootstrap.min.js
+//#= require components/flat-ui-official/js/bootstrap-select.js
 //= require jquery/jquery.xdomainajax
 //= require jquery/jquery.timeago
 //= require cool_grid

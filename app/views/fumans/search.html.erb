@@ -56,13 +56,12 @@
 
       <div class="input-append">
         <span class="service_categories">
-          <% h = {}; ApiBucket::Service.instance(:amazon).categories.each_pair {|k,v| h[v]=k} %>
-          <%= select_tag :s_category, options_for_select(h), selected: params[:s_category]  %>
+
         </span>
 
         <%= text_field_tag :s_keywords, params[:s_keywords] %>
         <%= text_field_tag :s_url,      params[:s_url], placeholder: 'http://', class: 'hide' %>
-        <%= button_tag "Search", type: :button, class: 'btn', id: 'search_button' %>
+        <%= button_tag "Search", type: :button, class: 'btn btn-default', id: 'search_button' %>
       </div>
     <% end %>
   </section>

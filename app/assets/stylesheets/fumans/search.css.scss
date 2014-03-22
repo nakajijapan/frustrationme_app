@@ -3,7 +3,7 @@
 #frustration {
   #fumans_search {
     #search_box {
-      width:  580px;
+      width:  600px;
       padding: 10px;
       margin: 0 auto;
       margin-bottom: 10px;
@@ -29,7 +29,7 @@
             position: relative;
             font-size: 11px;
             line-height: 120%;
-            border-radius: 20px;
+            border-radius: 4px;
 
             &:hover {
               background-color: #f53b55;
@@ -38,7 +38,7 @@
 
             p {
               margin: 0 0 2px 0;
-              padding: 5px 0px 3px 0px;
+              padding: 0;
             }
 
             img {
@@ -79,17 +79,37 @@
     form {
       margin: 0 auto;
       width: 600px;
-    }
-    input {
-      width: 250px;
+
+      input {
+        width: 260px;
+      }
+
+      button {
+        color: #fff;
+      }
+
+      #s_url {
+        width: 500px;
+      }
+
+      // for selectpicker
+      .select {
+        margin-bottom: 0px;
+      }
+
+      .btn-group {
+        .open > .dropdown-menu {
+          margin-top: 0px;
+        }
+
+        .dropdown-menu {
+          width: 220px;
+        }
+      }
+
+
     }
 
-    #s_category {
-      margin-right: 10px;
-    }
-    #s_url {
-      width: 500px;
-    }
 
     //---------------
     // item_box
@@ -102,7 +122,6 @@
       width:  250px;
       border: 1px solid #eee;
       background-color: #fff;
-      padding: 10px;
       margin: 10px;
       display: block;
       @include list_box_design;
@@ -110,10 +129,7 @@
       float: left;
       margin: 0px 11px 20px 1px;
 
-      /* border: solid 2px #FF8294; */
       position: relative;
-      /* background-color: white; */
-      padding: 4px 4px;
       overflow: hidden;
     }
     .item_box .item_overlay {

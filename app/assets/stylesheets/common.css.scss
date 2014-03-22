@@ -2,13 +2,28 @@
 
 h1, h2, h3, h4 {
   color: #2f4154;
+  margin-bottom: 5px;
 }
+h1 {
+  font-size: 28px;
+}
+h2 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 20px;
+}
+h4 {
+  font-size: 16px;
+}
+
 
 //------------------------------------------------------------------------------
 // override
 //------------------------------------------------------------------------------
-button {
-  margin-top: -0.5px;
+input {
+  //position: relative;
+  //top: 2px;
 }
 ul ol {
   margin: 0;
@@ -20,6 +35,15 @@ img {
   &:hover {
     opacity: 0.9;
   }
+}
+
+//------------------------------------------------------------------------------
+// form
+//------------------------------------------------------------------------------
+input {
+  height: 41px;
+  border-radius: 4px;
+  border: 1px solid #eee;
 }
 //------------------------------------------------------------------------------
 // body
@@ -182,13 +206,12 @@ header#header_menu {
   padding: 0px;
   background-color: white;
   border: 1px solid #aaa;
-  border-radius: 6px;
+  border-radius: 4px;
   overflow: auto;
 
   .header{
     border-radius: 6px 6px 0 0;
-    border-bottom: 1px solid #DDD;
-    background-color: whitesmoke;
+    border-bottom: 1px solid #ddd;
 
     a.right{
       position: absolute;
@@ -199,25 +222,24 @@ header#header_menu {
       display: block;
       width:   60px;
       height:  60px;
-
       font-size: 20px;
-
-      border-left: 1px solid rgba(34, 25, 25, 0.15);
+      //border-left: 1px solid #ffffff
     }
     a:hover.right{
       background-color: #ddd;
+      text-decoration: none;
     }
     a.right div{
       text-align: center;
-      top: 10px;
+      top: 8px;
       position: relative;
       font-size: 30px;
     }
 
     h2 {
-      height:  50px;
+      height: 60px;
       margin: 0;
-      padding: 10px 0 0 10px;
+      padding: 18px 0 0 10px;
     }
   }
 
@@ -228,12 +250,27 @@ header#header_menu {
 
     select {
       font-size: 24px;
+      display: inline-block;
     }
 
     h4 {
       color: #666;
     }
+/*
+    .btn-group {
+      .open > .dropdown-menu {
+        margin-top: 0px;
+      }
 
+      .dropdown-menu {
+        width: 220px;
+      }
+
+      &.select {
+        padding: 0;
+      }
+    }
+*/
     .btn-group > .btn {
       height: 50px;
     }
@@ -245,19 +282,3 @@ header#header_menu {
   }
 }
 
-#modal_overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  background-color: #ffffff;
-  opacity: 0.85;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
-  filter: alpha(opacity=80);
-
-  &.visible{
-    display: none;
-  }
-}
