@@ -5,7 +5,7 @@
       auto_resize: true
       container:   $('.items')
       offset: 2
-      item_width:  210
+      item_width: 210
 
     plugin = this;
     plugin.resize_timer = null
@@ -86,6 +86,7 @@
         $(v).css
           'position': 'absolute'
           'display': 'list-item'
+          'width': options.item_width
           'top': data.top
           'left': data.left_position
 
