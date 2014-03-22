@@ -9,12 +9,12 @@
     display: block;
     background-color: #fff;
     text-align: center;
-    @include border-radius(8px);
+    @include border-radius(4px);
 
     input {
-      line-height: 38px;
-      height: 38px;
-      font-size: 32px;
+      font-size: 18px;
+      padding: 5px;
+      margin-bottom: 10px;
     }
 
     //
@@ -26,27 +26,23 @@
       width: 250px;
 
       &.default {
-        color: #000;
-        box-shadow: 0 0 10px #ddd;
         font-weight: bold;
       }
 
       &.facebook {
-        @include linear-gradient-top(#5F7EBE,#3B5998);
+        background-color: #5F7EBE;
         border-color: #3B5998;
-        box-shadow: 0 0 10px #5F7EBE;
         text-shadow: none;
         &:hover {
-          @include linear-gradient-top(#3B5998,#3B5998);
+          background-color: #3B5998;
         }
       }
       &.twitter {
-        @include linear-gradient-top(#98C8FF,#4099FF);
+        background-color: #98C8FF;
         border-color: #4099FF;
-        box-shadow: 0 0 10px #98C8FF;
         text-shadow: none;
         &:hover {
-          @include linear-gradient-top(#4099FF,#4099FF);
+          background-color: #4099FF;
         }
       }
 
