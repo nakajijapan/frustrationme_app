@@ -1,8 +1,8 @@
 //------------------------------------------------------------------------------
 //   common value
 //------------------------------------------------------------------------------
-$main_background_color: #FB697E;
-$body_background_color: #fffafa;
+$main_background_color: #FF3A56;
+$body_background_color: #ffffff;
 
 //$header_background_color: #ffffff;
 
@@ -30,6 +30,8 @@ $fuman_status_color_4: #f9f99e;
 $fuman_status_color_4_grad: #FFFF42;
 $fuman_status_color_5: rgba(255,130,148, 0.3);
 $fuman_status_color_5_grad: rgba(255, 34, 66, 0.3);
+
+$fuman_border_color: #ffffff;
 
 @mixin list_box_design {
   border: 1px solid #ccc;
