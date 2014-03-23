@@ -46,18 +46,18 @@ describe FriendshipsController do
 
       params = {
         format: 'json',
-        following_id: @u_target.id
+        id: @u_target.id
       }
-      delete 'delete', params
+      delete 'destroy', params
       expect(response).to be_success
     end
 
     it "returns 204" do
       params = {
         format: 'json',
-        following_id: 9999
+        id: 9999
       }
-      delete 'delete', params
+      delete 'destroy', params
       expect(response.code).to eq '204'
     end
   end
