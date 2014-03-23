@@ -28,8 +28,6 @@ h4 {
   color: #fff;
 }
 input {
-  //position: relative;
-  //top: 2px;
   width: 260px;
 }
 ul ol {
@@ -38,6 +36,7 @@ ul ol {
 }
 img {
   @include border-radius(4px);
+  max-width: 512px;
 
   &:hover {
     opacity: 0.9;
