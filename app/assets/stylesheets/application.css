@@ -10,7 +10,7 @@
  *
  *= require_self
  *= require ../../../vendor/assets/javascripts/components/flat-ui-official/bootstrap/css/bootstrap.css
- *= require_directory ../../../vendor/assets/javascripts/components/flat-ui-official/css
+ *= require ../../../vendor/assets/javascripts/components/flat-ui-official/css/flat-ui.css
  *= require reset
  *= require common
  *= require effect
