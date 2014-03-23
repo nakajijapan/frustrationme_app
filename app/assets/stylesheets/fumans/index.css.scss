@@ -5,11 +5,16 @@
     button.active {
       background-color: #888;
       color: #fff;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
     }
 
     h1 {
       margin: 10px;
+    }
+
+    select.btn {
+      font-size: 22px;
+      padding: 5px 0;
+      background-color: #d6d6d6;
     }
 
     //------------------------
@@ -163,6 +168,7 @@
               border: 2px solid #F07889;
               font-size: 50px;
               line-height: 0px;
+              text-align: center;
 
               div {
                 top: 8px;
