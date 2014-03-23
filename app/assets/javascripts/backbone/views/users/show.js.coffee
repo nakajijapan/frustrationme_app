@@ -59,7 +59,7 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
     options =
       autoResize: true
       container: $('.items')
-      offset: 2
+      offset: 5
       item_width: 210
 
     $('.item').CoolGrid(options)
