@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_filter :require_user, only: [:create, :delete]
+  before_filter :require_user, only: [:create, :destroy]
 
   def create
     target_user = User.where(id: params[:following_id]).first
@@ -12,8 +12,10 @@ class FriendshipsController < ApplicationController
     respond_with @friendship, location: nil
   end
 
-  def delete
-    @friendship = @current_user.unfollow(params[:following_id])
+  def destroy
+    logger.warn @current_user
+
+    @friendship = @current_user.unfollow(params[:id])
 
     respond_to do |format|
       format.html

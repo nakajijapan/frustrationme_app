@@ -68,14 +68,14 @@ class BackboneFrustration.Views.Users.ShowView extends Backbone.View
     item = new BackboneFrustration.Models.Friendship
     following_id = $(e.currentTarget).data('following_id')
     item.save {following_id: following_id}, success : (model, res) =>
-      console.log model
       $('.follow_group').html('<button class="btn" id="unfollow_button" data-following_id="' + following_id + '">unfollow</button>')
 
   destroy_friendship: (e) ->
     following_id = $(e.currentTarget).data('following_id')
 
-    item = new BackboneFrustration.Models.Friendship()
-    item.delete(following_id, success : (result) ->
+    item    = new BackboneFrustration.Models.Friendship()
+    item.id = following_id
+    item.destroy(success : (model, response) ->
       $('.follow_group').html('<button class="btn" id="follow_button" data-following_id="' + following_id + '">follow</button>')
     )
 
