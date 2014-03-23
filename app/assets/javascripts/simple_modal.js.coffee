@@ -14,7 +14,7 @@
         bottom:             0
         left:               0
         'z-index':          1000
-        'background-color': '#ffffff'
+        'background-color': '#000000'
         opacity:            0.85
         filter:             'alpha(opacity=80)'
         display:            'none'
@@ -59,6 +59,8 @@
 
       if $overlay.length < 1
         $('body').prepend($('<div id="modal_overlay"></div>').css(options.css_overlay))
+
+      $overlay.show()
 
       return plugin
 

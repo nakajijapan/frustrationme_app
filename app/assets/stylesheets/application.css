@@ -9,8 +9,9 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require ../../../vendor/assets/javascripts/components/flat-ui-official/bootstrap/css/bootstrap.css
+ *= require_directory ../../../vendor/assets/javascripts/components/flat-ui-official/css
  *= require reset
- *= require form
  *= require common
  *= require effect
  *= require_directory ./fumans

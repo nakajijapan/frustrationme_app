@@ -47,8 +47,8 @@ class BackboneFrustration.Views.Top.IndexView extends Backbone.View
     options =
       autoResize: true
       container: $('.items')
-      offset: 5
-      item_width: 210
+      offset: 4
+      item_width: 180
 
     $('.item').CoolGrid(options)
 

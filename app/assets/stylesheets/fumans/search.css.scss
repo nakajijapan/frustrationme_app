@@ -3,7 +3,7 @@
 #frustration {
   #fumans_search {
     #search_box {
-      width:  580px;
+      width:  600px;
       padding: 10px;
       margin: 0 auto;
       margin-bottom: 10px;
@@ -20,7 +20,6 @@
         a {
           &.service_button {
             background-color: #fb697e;
-            @include linear-gradient-top(#fa8a9a, #fb697e);
             margin: 0px 10px;
             display: block;
             width: 95px;
@@ -30,16 +29,16 @@
             position: relative;
             font-size: 11px;
             line-height: 120%;
-            border-radius: 20px;
+            border-radius: 4px;
 
             &:hover {
-              background-color: #fb697e;
-              @include linear-gradient-top(#fb697e, #f53b55);
+              background-color: #f53b55;
               text-decoration: none;
             }
 
             p {
-              padding: 5px 0px 3px 0px;
+              margin: 0 0 2px 0;
+              padding: 0;
             }
 
             img {
@@ -80,17 +79,37 @@
     form {
       margin: 0 auto;
       width: 600px;
-    }
-    input {
-      width: 250px;
+
+      input {
+        width: 260px;
+      }
+
+      button {
+        color: #fff;
+      }
+
+      #s_url {
+        width: 500px;
+      }
+
+      // for selectpicker
+      .select {
+        margin-bottom: 0px;
+      }
+
+      .btn-group {
+        .open > .dropdown-menu {
+          margin-top: 0px;
+        }
+
+        .dropdown-menu {
+          width: 220px;
+        }
+      }
+
+
     }
 
-    #s_category {
-      margin-right: 10px;
-    }
-    #s_url {
-      width: 500px;
-    }
 
     //---------------
     // item_box
@@ -102,9 +121,7 @@
     .item_box {
       width:  250px;
       border: 1px solid #eee;
-      box-shadow: 1px 1px 2px #EEE;
       background-color: #fff;
-      padding: 10px;
       margin: 10px;
       display: block;
       @include list_box_design;
@@ -112,10 +129,7 @@
       float: left;
       margin: 0px 11px 20px 1px;
 
-      /* border: solid 2px #FF8294; */
       position: relative;
-      /* background-color: white; */
-      padding: 4px 4px;
       overflow: hidden;
     }
     .item_box .item_overlay {
@@ -155,15 +169,10 @@
       margin: 0 auto;
     }
     .item_title {
-
       padding: 10px 5px;
       border-radius: 8px;
-
-      // background-color: #FFCDD4;
       font-size: 16px;
       margin: 8px 3px;
-      /* padding: 5px; */
-      /*text-shadow: rgba(0, 0, 0, 0.4) 0 1px 2px;*/
     }
 
     .item_box ul {
@@ -178,7 +187,6 @@
     }
 
     .item_box .settings{
-      //background-color: #FFF2FA;
       padding: 0px 10px 10px 10px;
       position: absolute;
       top: 0px;

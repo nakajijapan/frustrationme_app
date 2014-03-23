@@ -71,6 +71,9 @@ class BackboneFrustration.Views.Fumans.SearchView extends Backbone.View
 
         # add options
         $('.service_categories').html(data)
+
+        $('#s_category').selectpicker()
+
       )
 
     # arrow

@@ -1,13 +1,15 @@
 //------------------------------------------------------------------------------
 //   common value
 //------------------------------------------------------------------------------
-$main_background_color: #FB697E;
-$body_background_color: #fffafa;
+$main_background_color: #FF3A56;
+$body_background_color: #ffffff;
+//$main_background_color: #FB697E;
+//$body_background_color: #fffafa;
 
 //$header_background_color: #ffffff;
 
-$menu_background_color: #FA8A9A;
-$menu_hover_color: #FB697E;
+$menu_background_color: #FF647A;
+$menu_hover_color: #fa8a9a;
 
 $link_hover_color: #aaaaaa;
 $link_active_color: #fa8a9a;
@@ -20,19 +22,21 @@ $created_button_bottom: #F6415B;
 
 // graduation colors
 $fuman_status_color_1: #ff8294;
-$fuman_status_color_1_grad: #D16675;
+$fuman_status_color_1_grad: #FF4568;
+//$fuman_status_color_1_grad: #D16675;
 $fuman_status_color_2: #bcf99e;
-$fuman_status_color_2_grad: #7AA764;
+$fuman_status_color_2_grad: #94FF5F;
 $fuman_status_color_3: #9ef2f9;
-$fuman_status_color_3_grad: #82CBD1;
+$fuman_status_color_3_grad: #58F1FD;
 $fuman_status_color_4: #f9f99e;
-$fuman_status_color_4_grad: #D5D57C;
+$fuman_status_color_4_grad: #FFFF42;
 $fuman_status_color_5: rgba(255,130,148, 0.3);
-$fuman_status_color_5_grad: rgba(168, 0, 24, 0.3);
+$fuman_status_color_5_grad: rgba(255, 34, 66, 0.3);
+
+$fuman_border_color: #ffffff;
 
 @mixin list_box_design {
   border: 1px solid #ccc;
-  box-shadow: 0px 0px 1px #bbb;
   background-color: #fff;
   border-radius: 4px;
 }

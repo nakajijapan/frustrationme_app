@@ -5,11 +5,16 @@
     button.active {
       background-color: #888;
       color: #fff;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
     }
 
     h1 {
       margin: 10px;
+    }
+
+    select.btn {
+      font-size: 22px;
+      padding: 5px 0;
+      background-color: #d6d6d6;
     }
 
     //------------------------
@@ -17,7 +22,7 @@
     //------------------------
     #search_box {
       margin: 0 auto;
-      width: 600px;
+      width: 640px;
       @include list_box_design;
 
       form {
@@ -31,17 +36,23 @@
         .category {
           position: relative;
           margin: 0px;
-          padding: 5px 0px;
+          padding: 20px 0px;
           border-bottom: 1px dotted #ccc;
 
           .fuman_form {
             position: absolute;
             top: 10px;
             left: 150px;
+
+            .radio {
+              float: left;
+              padding-left:  25px;
+              padding-right: 10px;
+            }
           }
         }
         button[type=submit] {
-          margin: 20px 0 0 0;
+          margin: 10px 0;
         }
       }
     }
@@ -54,7 +65,7 @@
       position: relative;
       margin: 0 auto;
       display: block;
-      width: 800px;
+      width: 840px;
 
       ul {
         margin: 0px;
@@ -122,7 +133,7 @@
             .tag {
               position: relative;
               margin: 0px;
-              padding: 5px 0px;
+              padding: 20px 0px;
               border-bottom: 1px dotted #ccc;
 
               .fuman_form {
@@ -133,8 +144,17 @@
               .save_button {
                 position: absolute;
                 top: 10px;
-                left: 380px;
+                left: 420px;
               }
+            }
+
+            .status {
+              .radio {
+                float: left;
+                padding-left:  25px;
+                padding-right: 10px;
+              }
+
             }
 
             .delete_fuman {
@@ -142,15 +162,18 @@
               position: absolute;
               top:   0px;
               right: 0px;
-              //@include linear-gradient-top(#F07889, #E20E0E);
               width: 50px;
               height: 50px;
               border-radius: 4px;
               border: 2px solid #F07889;
               font-size: 50px;
+              line-height: 0px;
+              text-align: center;
 
               div {
-                padding-top: 8px;
+                top: 8px;
+                left: -4px;
+                position: relative;
               }
             }
 
@@ -221,11 +244,9 @@
                     position: absolute;
                     right: 0px;
                     top: 0;
-                    //  float: right;
-                    vertical-align: middle;
-                    text-align: center;
                     border-bottom: 1px solid #ddd;
                     border-left: 1px solid #ddd;
+                    text-align: center;
 
                     a {
                       font-size: 22px;
@@ -242,6 +263,10 @@
                       }
                       span {
                         color: #999;
+                        line-height: 0;
+                        display: block;
+                        right: 3px;
+                        position: relative;
                       }
                     }
                   }

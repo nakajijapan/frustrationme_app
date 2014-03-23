@@ -11,16 +11,18 @@
   <div class="body">
     <h4>Status</h4>
     <div style="margin: 0 0 15px 0;">
-      <div class="btn-group" data-toggle="buttons-radio">
-        <% Fuman::status_options.each do |v, k| %>
-          <button type="button" class="btn fuman_status" data-status="<%= k %>"><%= v %></button>
-        <% end %>
-      </div>
+
+      <% Fuman::status_options.each do |v, k| %>
+        <label class="radio">
+          <input type="radio" name="status" value="<%= k %>" class="fumans_status" data-status="<%= k %>" data-toggle="radio" /> <%= v %>
+        </label>
+      <% end %>
+
     </div>
 
     <h4>Category</h4>
     <div>
-      <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}), class: 'fuman_category' %>
+      <%= select_tag 'fuman_category', options_for_select(@categories.map{|c| [c.name,c.id]}), class: 'btn btn-large fuman_category' %>
     </div>
 
     <br />
@@ -28,8 +30,9 @@
 
   <div class="footer">
     <div class="actions">
-      <button class="btn create_fuman" data-product_code="" name="button" type="button">Save</button>
+      <button class="btn btn-default create_fuman" data-product_code="" name="button" type="button">Save</button>
     </div>
   </div>
   <!-- /modal_create_fuman<%= suffix %> -->
 <% end %>
+

@@ -69,7 +69,7 @@
 
     <div class="menu_category hide">
       <% @categories.each do |c| %>
-        <a href="/users/<%= @target_user.username %>/?category_id=<%= c.id %>" class="btn btn-large">
+        <a href="/users/<%= @target_user.username %>/?category_id=<%= c.id %>" class="btn btn-large btn-default">
           <%= c.name %>
         </a>
       <% end %>

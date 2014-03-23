@@ -66,14 +66,10 @@
         color: #fff;
         border: solid 1px #ECBBBB;
         background-color: #F7E3E3;
-        text-shadow: 0 2px 5px white, 0 -2px 5px white;
-        @include linear-gradient-top($create_button_top, $create_button_bottom);
 
         &.registered,
         &:hover {
-          text-shadow: 0 2px 5px #F8ADC1, 0 -2px 5px #F8ADC1;
-          box-shadow: 0 0 10px #FFAEAE;
-          @include linear-gradient-top($created_button_top, $created_button_bottom);
+          background-color: $created_button_bottom;
         }
 
         &:active {
@@ -88,11 +84,8 @@
         color: #fff;
         border: solid 1px #ECBBBB;
         background-color: #F7E3E3;
-        text-shadow: 0 2px 5px white, 0 -2px 5px white;
-        @include linear-gradient-top(#F7E3E3,#FFD7D7);
 
         &:hover {
-          text-shadow: 0 2px 5px #F8ADC1, 0 -2px 5px #F8ADC1;
         }
         &:active {
           top: 13px;
@@ -100,24 +93,21 @@
 
         &.facebook {
           &:hover {
-            @include linear-gradient-top(#5F7EBE,#3B5998);
+            background-color: #3B5998;
             border-color: #3B5998;
-            box-shadow: 0 0 10px #5F7EBE;
           }
         }
         &.twitter {
           &:hover {
-            @include linear-gradient-top(#98C8FF,#4099FF);
+            background-color: #4099FF;
             border-color: #4099FF;
-            box-shadow: 0 0 10px #98C8FF;
           }
 
         }
         &.pintarest {
           &:hover {
-            @include linear-gradient-top(#E3262E,#AB171E);
+            background-color: #AB171E;
             border-color: #AB171E;
-            box-shadow: 0 0 10px #E3262E;
           }
 
           span {
@@ -163,7 +153,6 @@
       .left_box {
         display: table-cell;
         width: 520px;
-        //border: 1px solid #ddd;
         vertical-align: top;
 
         //---------------------------
@@ -230,8 +219,6 @@
       .right_box {
         display: table-cell;
         width: 280px;
-        //border: 1px solid #ddd;
-        //text-align: center;
 
         .status {
           @include border-radius(8px);

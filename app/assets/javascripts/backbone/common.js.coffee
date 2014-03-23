@@ -36,6 +36,7 @@ class BackboneFrustration.Collection extends Backbone.Collection
 #-------------------------------------------
 Backbone._sync = Backbone.sync
 Backbone.sync = (method, model, options) ->
+
   if method == 'create' || method == 'update' || method == 'delete'
     options_csrf =
       headers:

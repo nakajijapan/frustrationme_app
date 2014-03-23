@@ -67,22 +67,27 @@
 
         .friends {
           button, a {
-            width:  80px;
-            height: 50px;
+            width:  100px;
+            height: 70px;
 
             h4, p {
-              font-size: 16px;
               line-height: 25px;
               color: white;
               margin: 0;
               padding: 0;
             }
-            //text-shadow: 1px 1px 1px #ddd;
-            @include linear-gradient-top(#FA8A9A,#FB697E);
+            p {
+              font-size: 18px;
+            }
+            h4 {
+              font-size: 28px;
+            }
+
+            background-color: #FB697E;
             border: 1px solid #FA8A9A;
 
             &:hover {
-              @include linear-gradient-top(#FB697E,#F6415B);
+              background-color: #F6415B;
               border: 1px solid #FA8A9A;
               color: white;
             }
