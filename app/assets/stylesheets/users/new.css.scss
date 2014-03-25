@@ -11,6 +11,9 @@
     text-align: center;
     @include border-radius(8px);
 
+    button {
+      width: 260px;
+    }
 
     input {
       font-size: 18px;
