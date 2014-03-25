@@ -69,7 +69,7 @@
                   <% Fuman::status_options.each do |v, k| %>
                     <% pushed = 'checked' if item.fuman.status == k.to_i %>
                     <label class="fuman_status radio <%= pushed %>">
-                      <input type="radio" name="status" value="<%= k %>" data-status="<%= k %>" data-toggle="radio" data-fuman_id="<%= item.fuman.id %>" /> <%= v %>
+                      <input type="radio" name="status_<%= item.fuman.id %>" value="<%= k %>" data-status="<%= k %>" data-toggle="radio" data-fuman_id="<%= item.fuman.id %>" /> <%= v %>
                     </label>
                   <% end %>
                 </div>
