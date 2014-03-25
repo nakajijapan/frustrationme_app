@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       @friendship = current_user.following(@target_user.id)
     end
 
-    @items      = @target_user.items_with_fuman(params, 50)
+    @items      = @target_user.items_with_fuman(params, 60)
     @categories = @target_user.categories
   end
 
