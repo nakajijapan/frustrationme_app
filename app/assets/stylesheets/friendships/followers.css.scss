@@ -51,11 +51,11 @@
             width: 200px;
             font-size: 32px;
             color: white;
-            @include linear-gradient-top(#FA8A9A,#FB697E);
+            background-color: #FB697E;
             border: 1px solid #FA8A9A;
 
             &:hover {
-              @include linear-gradient-top(#FB697E,#F6415B);
+              background-color: #F6415B;
               border: 1px solid #FA8A9A;
               color: white;
             }
