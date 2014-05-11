@@ -281,7 +281,7 @@ class BackboneFrustration.Views.Fumans.CreateView extends Backbone.View
   _create: (e) ->
     name       = $('#s_service_name').val()
     product_id = $(e.currentTarget).attr('data-product_code')
-    status     = $('.fuman_status.active').data('status')
+    status     = $(".radio.checked input").data('status')
     category   = $('#fuman_category option:selected').val()
 
     return alert 'no service code'  if !name?
