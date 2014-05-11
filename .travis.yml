@@ -21,4 +21,4 @@ notifications:
     on_success: change
     on_failure: always
     channels:
-      - "irc.freenode.org#frustrationme"
+      - "irc.freenode.org#frustration"
