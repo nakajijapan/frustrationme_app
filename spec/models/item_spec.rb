@@ -30,7 +30,7 @@ describe Item do
     describe '#comment_list' do
       it 'has 1 comment' do
         item = Item.find(@i.id)
-        expect(item.comment_list.count).to eq 1
+        expect(item.comment_list.length).to eq 1
       end
 
       it 'has Comment Class' do

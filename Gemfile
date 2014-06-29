@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.3'
+gem 'rails', '4.1.2'
 gem 'mysql2'
 
 group :assets do
@@ -38,7 +38,7 @@ group :development do
   gem 'guard-coffeescript'
 
   group :test do
-    gem 'guard-rspec'
+    gem 'guard-rspec', '~> 4.2.8'
     gem 'guard-spork'
 
     gem 'launchy'
@@ -47,7 +47,7 @@ group :development do
     gem "capybara"
 
     # rspec
-    gem 'rspec-rails'
+    gem 'rspec-rails', '~> 2.14.1'
 
     gem 'ruby_gntp', platforms: :mswin
     gem 'pry-rails'
