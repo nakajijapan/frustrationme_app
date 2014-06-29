@@ -29,6 +29,7 @@ gem 'yajl-ruby'
 gem 'newrelic_rpm'
 gem 'google_drive'
 gem 'non-stupid-digest-assets'
+gem 'open_uri_redirections'
 
 # for development
 group :development do
