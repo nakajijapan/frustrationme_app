@@ -63,10 +63,10 @@ class User < ActiveRecord::Base
   end
 
   def self.create_with_omniauth(auth)
-    if auth['info']['image'].nil?
-      icon_name = nil
-    else
-      icon_name = open(auth['info']['image'].gsub(/_normal/, ''))
+
+    icon_name = nil
+    if auth['info']['image'].present?
+      icon_name = self.process_uri(auth['info']['image'].gsub(/_normal/, ''))
     end
 
     params = {
@@ -83,6 +83,12 @@ class User < ActiveRecord::Base
     user.save!
 
     user
+  end
+
+  def self.process_uri(uri)
+    open(uri, allow_redirections: :safe) do |r|
+      r.base_uri.to_s
+    end
   end
 
   # 指定されたIDから自分が持っているアイテムを抽出
