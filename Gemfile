@@ -38,7 +38,7 @@ group :development do
   gem 'guard-coffeescript'
 
   group :test do
-    gem 'guard-rspec'
+    gem 'guard-rspec', '~> 4.2.8'
     gem 'guard-spork'
 
     gem 'launchy'
@@ -47,7 +47,7 @@ group :development do
     gem "capybara"
 
     # rspec
-    gem 'rspec-rails'
+    gem 'rspec-rails', '~> 2.14.1'
 
     gem 'ruby_gntp', platforms: :mswin
     gem 'pry-rails'
