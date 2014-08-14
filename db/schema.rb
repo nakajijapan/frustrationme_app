@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130074920) do
+ActiveRecord::Schema.define(version: 20140813221629) do
+
+  create_table "activities", force: true do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "fuman_id",    null: false
+    t.integer  "item_id",     null: false
+    t.string   "table_name",  null: false
+    t.string   "column_name", null: false
+    t.integer  "target_data"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.integer  "user_id",    null: false
