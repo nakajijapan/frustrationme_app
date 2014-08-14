@@ -21,6 +21,7 @@ Frustration::Application.routes.draw do
     get '/', to: 'users#show'
     get '/followings', to: 'friendships#followings'
     get '/followers',  to: 'friendships#followers'
+    resources :activities, only: [:index]
   end
 
   resources :password, only: [:index] do
