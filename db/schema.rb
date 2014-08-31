@@ -14,13 +14,10 @@
 ActiveRecord::Schema.define(version: 20140813221629) do
 
   create_table "activities", force: true do |t|
-    t.integer  "user_id",     null: false
-    t.integer  "fuman_id",    null: false
-    t.integer  "item_id",     null: false
-    t.string   "table_name",  null: false
-    t.string   "column_name", null: false
-    t.integer  "target_data"
-    t.text     "message"
+    t.integer  "user_id",    null: false
+    t.integer  "item_id",    null: false
+    t.string   "event_type", null: false
+    t.text     "message",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

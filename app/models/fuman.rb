@@ -9,6 +9,10 @@ class Fuman < ActiveRecord::Base
 
   before_save :set_default
 
+  after_create :save_activity_after_create
+  after_update :save_activity_after_update
+  after_destroy :save_activity_after_destroy
+
   STATUSES = {
     '1' => '欲しい',
     '2' => '持ってる',
@@ -22,6 +26,38 @@ class Fuman < ActiveRecord::Base
 
   def set_default
     self.status = 1 if self.status.blank?
+  end
+
+  def save_activity_after_create
+    params = {
+      user_id: self.user_id,
+      item_id: self.item_id,
+      event_type: :create,
+      message: 'が登録されました',
+    }
+    Activity.new(params).save
+  end
+
+  def save_activity_after_update
+    if self.status_changed?
+      params = {
+        user_id: self.user_id,
+        item_id: self.item_id,
+        event_type: :update,
+        message: "のステータスが「#{STATUSES[self.status]}」に変更されました",
+      }
+      Activity.new(params).save
+    end
+  end
+
+  def save_activity_after_destroy
+    params = {
+      user_id: self.user_id,
+      item_id: self.item_id,
+      event_type: :destroy,
+      message: 'が削除されました',
+    }
+    Activity.new(params).save
   end
 
   def self.status_options
