@@ -49,6 +49,7 @@ group :development do
 
     # rspec
     gem 'rspec-rails', '~> 2.14.1'
+    gem 'spring-commands-rspec'
 
     gem 'ruby_gntp', platforms: :mswin
     gem 'pry-rails'
