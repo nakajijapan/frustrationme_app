@@ -10,7 +10,6 @@ class CreateUsers < ActiveRecord::Migration
       t.text      :message
 
       t.string  :twitter_use
-      t.integer :facebook_use
 
       t.string :provider
       t.string :uid
