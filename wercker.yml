@@ -1,0 +1,43 @@
+box: wercker/rvm
+# Build definition
+# See the Rails section on the wercker devcenter:
+# http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html
+# You will want to define your database as follows:
+services:
+  - wercker/mysql
+
+# See more about services on our devcenter:
+# http://devcenter.wercker.com/articles/services/
+build:
+    steps:
+        # Uncomment this to force RVM to use a specific Ruby version
+        - rvm-use:
+            version: 2.1.5
+
+        - bundle-install
+        - rails-database-yml
+
+        - script:
+            name: echo ruby information
+            code: |
+                echo "ruby version $(ruby --version) running"
+                echo "from location $(which ruby)"
+                echo -p "gem list: $(gem list)"
+
+        - script:
+            name: setup db
+            code: |
+              mysql --version
+              bundle exec rake --trace db:migrate:reset RAILS_ENV=test
+              bundle exec rake --trace db:seed
+
+        # Add more steps here:
+        - script:
+            name: rspec
+            code: OVERALLS=on bundle exec rspec spec
+
+    after-steps:
+        - linyows/slack_notification:
+            channel: C03PM9N62
+            token: $SLACK_TOKEN
+
