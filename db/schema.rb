@@ -87,7 +87,6 @@ ActiveRecord::Schema.define(version: 20131130074920) do
     t.datetime "birthday"
     t.text     "message"
     t.string   "twitter_use"
-    t.integer  "facebook_use"
     t.string   "provider"
     t.string   "uid"
     t.string   "reset_hash"
