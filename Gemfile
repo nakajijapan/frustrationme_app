@@ -16,7 +16,6 @@ gem 'unicorn'
 gem 'rake'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'omniauth-twitter'
-gem 'omniauth-facebook'
 
 gem 'kaminari', '~>0.14.1'
 gem 'settingslogic'
